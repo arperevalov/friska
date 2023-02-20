@@ -13,7 +13,7 @@ const useMainStore = create<MainStoreInterface>(set => ({
     {
       title : 'Milk',
       category: 'veggies',
-      expDate: '02.02.2022',
+      expDate: '02.20.2023',
       left: 1,
       units: 'l'
     }
@@ -31,14 +31,14 @@ export default function Home() {
       setCards({
         title : 'sss',
         category: 'veggies',
-        expDate: '02.02.2022',
+        expDate: '02.21.2023',
         left: 1,
         units: 'l'
       })
       setCards({
         title : 'sss1',
         category: 'veggies',
-        expDate: '02.02.2022',
+        expDate: '02.19.2023',
         left: 1,
         units: 'l'
       })

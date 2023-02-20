@@ -9,6 +9,7 @@
         bottom: 0;
         margin: auto;
         max-width: rem(200);
+        z-index: 9999;
 
         #{$self}__container {
             margin-top: rem(20);
@@ -18,7 +19,18 @@
         }
     }
 
+    &.outdated {
+        #{$self}__container {
+            &::before {
+                display: block;
+            }
+        }
+    }
+
+    
+
     &__container{
+        position: relative;
         aspect-ratio: 1/1;
         padding: rem(7);
         border-radius: rem(8);
@@ -28,12 +40,24 @@
         justify-content: space-between;
         border: 2px solid transparent;
         transition: background 0.2s, border-color 0.2s;
-        
         cursor: pointer;
 
         &:hover {
             background: $white;
             border-color: $gray;
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            right: rem(-8);
+            top: rem(-8);
+            width: rem(8);
+            height: rem(8);
+            display: none;
+            background: $secondary;
+            border-radius: 50%;
+            border: rem(4) solid $white;
         }
     }
 

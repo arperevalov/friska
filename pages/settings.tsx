@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ElementRef, useRef } from "react";
 import { create } from "zustand"
 
@@ -17,6 +18,7 @@ export default function Settings() {
     const daysBeforeSettingInput = useRef(null)
 
     return <>
+    <Link href='/'>Home</Link>
         <div>
             {daysBeforeSetting}
             <label>

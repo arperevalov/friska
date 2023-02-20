@@ -20,14 +20,16 @@ export const Card = (props: CardInterface) => {
         setActive(!active)
     }
 
-    const CompareDates = () => {
-        // wrong. Should be rewritten
-        return new Date().getDay() - new Date(expDate).getDay() > daysBeforeSetting
+    const checkExpired = () => {
+        const daysBeforeInMillisec = daysBeforeSetting * 24 * 60 * 60 * 1000
+        const date = new Date()
+        const oldDate = new Date(expDate);
+        return (date.getTime() - oldDate.getTime()) > daysBeforeInMillisec;
     }
 
     return <>
         <div className={`backdrop ${active ? 'active' : ''}`} onClick={toggleActive}></div>
-        <div className={`card ${active ? 'active' : ''} ${CompareDates() ? 'Outdated' : ''}`} 
+        <div className={`card ${active ? 'active' : ''} ${checkExpired() ? 'outdated' : ''}`} 
         onClick={()=>{if (!active)toggleActive()}}>
             <div className="card__container">
                 <div className="card__top h4">
@@ -51,7 +53,11 @@ export const Card = (props: CardInterface) => {
             </div>
 
             <form action="#" className={`card__form ${active ? 'active' : ''}`}>
-                { active ? <Input type="string" label="asdas" /> : null }
+                <Input type="string" label="Title" defaultValue={title} />
+                <Input type="string" label="Category" defaultValue={category} />
+                <Input type="string" label="Exp" defaultValue={expDate} />
+                <Input type="string" label="Left" defaultValue={left} />
+                <Input type="string" label="units" defaultValue={units} />
             </form>
         </div>
     </>
