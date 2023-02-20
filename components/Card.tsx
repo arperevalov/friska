@@ -1,5 +1,6 @@
 import { useSettingsStore } from "@/pages/settings";
 import { useState } from "react";
+import { Input } from "./Input";
 
 export interface CardInterface {
     title: string,
@@ -45,6 +46,10 @@ export const Card = (props: CardInterface) => {
                 { category }
             </h4>
           </div>
+
+          <form action="#" className={`card__form ${active ? 'active' : ''}`}>
+            { active ? <Input type="string" label="asdas" /> : null }
+            </form>
         </div>
     </>
 }

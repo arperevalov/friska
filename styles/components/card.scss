@@ -7,11 +7,6 @@
     flex-direction: column;
     justify-content: space-between;
 
-    &__line {
-        display: flex;
-        justify-content: space-between;
-    }
-
     &.active {
         position: fixed;
         left: 0;
@@ -20,5 +15,19 @@
         bottom: 0;
         margin: auto;
         max-width: rem(200);
+    }
+
+    &__line {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__form {
+        display: none;
+        flex-direction: column;
+
+        &.active {
+            display: flex;
+        }
     }
 }
