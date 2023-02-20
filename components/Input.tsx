@@ -9,8 +9,8 @@ export const Input = (props: InputInterface) => {
 
     return <>
         <label htmlFor="" className="input">
-            <span className="input__label">{label}</span>
-            <input type={ type } value={ defaultValue ? defaultValue : undefined}/>
+            <span className="input__label h3">{label}</span>
+            <input className="input__input" type={ type } value={ defaultValue ? defaultValue : undefined}/>
         </label>
     </>
 }
