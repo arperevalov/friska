@@ -1,5 +1,5 @@
 import { useSettingsStore } from "@/pages/settings";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Input } from "./Input";
 
 export interface CardInterface {
@@ -27,28 +27,31 @@ export const Card = (props: CardInterface) => {
 
     return <>
         <div className={`backdrop ${active ? 'active' : ''}`} onClick={toggleActive}></div>
-        <div className={`card ${active ? 'active' : ''} ${CompareDates() ? 'Outdated' : ''}`} onClick={toggleActive}>
-          <div className="card__top h4">
-            <div className="card__line">
-                { expDate }
-                <div>exp</div>
+        <div className={`card ${active ? 'active' : ''} ${CompareDates() ? 'Outdated' : ''}`} 
+        onClick={()=>{if (!active)toggleActive()}}>
+            <div className="card__container">
+                <div className="card__top h4">
+                    <div className="card__line">
+                        { expDate }
+                        <div>exp</div>
+                    </div>
+                    <div className="card__line">
+                        { left + units }
+                        <div>left</div>
+                    </div>
+                </div>
+                <div className="card__bottom">
+                    <h3 className='h2'>
+                        { title }
+                    </h3>
+                    <h4 className='h4'>
+                        { category }
+                    </h4>
+                </div>
             </div>
-            <div className="card__line">
-                { left + units }
-                <div>left</div>
-            </div>
-          </div>
-          <div className="card__bottom">
-            <h3 className='h2'>
-                { title }
-            </h3>
-            <h4 className='h4'>
-                { category }
-            </h4>
-          </div>
 
-          <form action="#" className={`card__form ${active ? 'active' : ''}`}>
-            { active ? <Input type="string" label="asdas" /> : null }
+            <form action="#" className={`card__form ${active ? 'active' : ''}`}>
+                { active ? <Input type="string" label="asdas" /> : null }
             </form>
         </div>
     </>

@@ -1,11 +1,5 @@
 .card {
-    aspect-ratio: 1/1;
-    padding: rem(7);
-    border-radius: rem(8);
-    background: $gray;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    $self: &;
 
     &.active {
         position: fixed;
@@ -15,6 +9,32 @@
         bottom: 0;
         margin: auto;
         max-width: rem(200);
+
+        #{$self}__container {
+            margin-top: rem(20);
+            background: $white;
+            border-color: $gray;
+            cursor: auto;
+        }
+    }
+
+    &__container{
+        aspect-ratio: 1/1;
+        padding: rem(7);
+        border-radius: rem(8);
+        background: $gray;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border: 2px solid transparent;
+        transition: background 0.2s, border-color 0.2s;
+        
+        cursor: pointer;
+
+        &:hover {
+            background: $white;
+            border-color: $gray;
+        }
     }
 
     &__line {
@@ -23,6 +43,7 @@
     }
 
     &__form {
+        margin-top: rem(20);
         display: none;
         flex-direction: column;
 
