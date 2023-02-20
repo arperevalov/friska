@@ -1,0 +1,15 @@
+.card {
+    flex-basis: 33.3%;
+    aspect-ratio: 1/1;
+    padding: rem(7);
+    border-radius: rem(8);
+    background: $gray;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &__line {
+        display: flex;
+        justify-content: space-between;
+    }
+}

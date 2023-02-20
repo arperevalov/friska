@@ -1,0 +1,15 @@
+@mixin font-face-import($font-family, $src, $weight) {
+    @font-face {
+        font-family: $font-family;
+        src: url($src);
+        font-weight: $weight;
+    }
+}
+
+@include font-face-import('Manrope', '../fonts/Manrope-ExtraBold.ttf', 800);
+@include font-face-import('Manrope', '../fonts/Manrope-Bold.ttf', 700);
+@include font-face-import('Manrope', '../fonts/Manrope-SemiBold.ttf', 600);
+@include font-face-import('Manrope', '../fonts/Manrope-Medium.ttf', 500);
+@include font-face-import('Manrope', '../fonts/Manrope-Regular.ttf', 400);
+@include font-face-import('Manrope', '../fonts/Manrope-Light.ttf', 300);
+@include font-face-import('Manrope', '../fonts/Manrope-ExtraLight.ttf', 200);
