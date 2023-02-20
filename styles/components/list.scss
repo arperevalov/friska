@@ -1,10 +1,19 @@
 .list {
+    --gap: #{rem(12)};
     display: flex;
     flex-wrap: wrap;
     width: 100%;
 
     &__item {
         margin: rem(6);
-        flex: 0 0 calc(33.33% - rem(12));
+        flex: 0 0 calc(33.33% - var(--gap));
+
+        @include media-breakpoint-up(600px) {
+            flex: 0 0 calc(20% - var(--gap));
+        }
+
+        @include media-breakpoint-up(900px) {
+            flex: 0 0 calc(10% - var(--gap));
+        }
     }
 }
