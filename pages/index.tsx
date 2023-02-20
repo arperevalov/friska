@@ -15,7 +15,7 @@ const useMainStore = create<MainStoreInterface>(set => ({
       category: 'veggies',
       expDate: '02.02.2022',
       left: 1,
-      measurement: 'l'
+      units: 'l'
     }
   ],
   setCards: (card:CardInterface) => set((state) => {
@@ -33,14 +33,14 @@ export default function Home() {
         category: 'veggies',
         expDate: '02.02.2022',
         left: 1,
-        measurement: 'l'
+        units: 'l'
       })
       setCards({
         title : 'sss1',
         category: 'veggies',
         expDate: '02.02.2022',
         left: 1,
-        measurement: 'l'
+        units: 'l'
       })
   },[])
 
@@ -58,7 +58,7 @@ export default function Home() {
             { cards.length > 0 ? cards.map((i: CardInterface, index: number) => {
               return (
                 <div key={index} className="list__item">
-                  <Card card={i}/>
+                  <Card {...i} />
                 </div>
               )
             }) : '' }

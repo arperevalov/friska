@@ -6,15 +6,14 @@ export interface CardInterface {
     category: string,
     expDate: string,
     left: number,
-    measurement: string
+    units: string
 }
 
-export const Card = (props: {
-    card: CardInterface
-}) => {
+export const Card = (props: CardInterface) => {
     const { daysBeforeSetting } = useSettingsStore(store => store);
     const [active, setActive] = useState(false);
-    const { title, category, expDate, left, measurement} = props.card;
+    const { title, category, expDate, left, units} = props;
+
 
     const toggleActive = () => {
         setActive(!active)
@@ -34,7 +33,7 @@ export const Card = (props: {
                 <div>exp</div>
             </div>
             <div className="card__line">
-                { left + measurement }
+                { left + units }
                 <div>left</div>
             </div>
           </div>
