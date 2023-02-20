@@ -1,0 +1,18 @@
+.backdrop {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background: rgba($white, .2);
+    backdrop-filter: blur(3px);
+    
+    &.active {
+        display: flex;
+    }
+}

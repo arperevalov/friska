@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 export interface CardInterface {
     title: string,
     category: string,
@@ -9,11 +11,16 @@ export interface CardInterface {
 export const Card = (props: {
     card: CardInterface
 }) => {
-
+    const [active, setActive] = useState(false);
     const { title, category, expDate, left, measurement} = props.card;
 
+    const toggleActive = () => {
+        setActive(!active)
+    }
+
     return <>
-        <div className="card">
+        <div className={`backdrop ${active ? 'active' : ''}`} onClick={toggleActive}></div>
+        <div className={`card ${active ? 'active' : ''}`} onClick={toggleActive}>
           <div className="card__top h4">
             <div className="card__line">
                 { expDate }
