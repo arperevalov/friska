@@ -5,13 +5,15 @@ import { useEffect } from 'react'
 
 interface MainStoreInterface {
   cards: CardInterface[],
-  setCards: CallableFunction
+  setCards: CallableFunction,
+  updateCard: CallableFunction
 }
 
-const useMainStore = create<MainStoreInterface>(set => ({
+export const useMainStore = create<MainStoreInterface>(set => ({
   cards: [
     {
-      title : 'Milk',
+      id: 0,
+      title: 'Milk',
       category: 'veggies',
       expDate: '02.20.2023',
       left: 1,
@@ -19,7 +21,15 @@ const useMainStore = create<MainStoreInterface>(set => ({
     }
   ],
   setCards: (card:CardInterface) => set((state) => {
-    return {cards: [...state.cards, card]}
+    const newCard = {...card, id: state.cards.length}
+    return {cards: [...state.cards, newCard]}
+  }),
+  updateCard: (card: CardInterface) => set((state) => {
+    const index = state.cards.findIndex(item => {
+      return item.id === card.id;
+    })
+    state.cards[index] = card;
+    return {cards: [...state.cards]}
   })
 }))
 
@@ -55,9 +65,9 @@ export default function Home() {
       <main>
         <div className="container">
           <div className="list">
-            { cards.length > 0 ? cards.map((i: CardInterface, index: number) => {
+            { cards.length > 0 ? cards.map((i: CardInterface) => {
               return (
-                <div key={index} className="list__item">
+                <div key={i.id} className="list__item">
                   <Card {...i} />
                 </div>
               )

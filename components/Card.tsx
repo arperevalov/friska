@@ -1,8 +1,10 @@
 import { useSettingsStore } from "@/pages/settings";
-import { useRef, useState } from "react";
+import { useMainStore } from "@/pages/index";
+import { useState } from "react";
 import { Input } from "./Input";
 
 export interface CardInterface {
+    id: number,
     title: string,
     category: string,
     expDate: string,
@@ -12,8 +14,10 @@ export interface CardInterface {
 
 export const Card = (props: CardInterface) => {
     const { daysBeforeSetting } = useSettingsStore(store => store);
+    const { updateCard } = useMainStore(store => store);
     const [active, setActive] = useState(false);
-    const { title, category, expDate, left, units} = props;
+    const { id, title, category, expDate, left, units} = props;
+    const [formData, setFormData] = useState({...props});
 
 
     const toggleActive = () => {
@@ -25,6 +29,11 @@ export const Card = (props: CardInterface) => {
         const date = new Date()
         const oldDate = new Date(expDate);
         return (date.getTime() - oldDate.getTime()) > daysBeforeInMillisec;
+    }
+
+    const updateCardOnSubmit = () => {
+        updateCard(formData);
+        setActive(!active);
     }
 
     return <>
@@ -52,12 +61,18 @@ export const Card = (props: CardInterface) => {
                 </div>
             </div>
 
-            <form action="#" className={`card__form ${active ? 'active' : ''}`}>
-                <Input type="string" label="Title" defaultValue={title} />
-                <Input type="string" label="Category" defaultValue={category} />
-                <Input type="string" label="Exp" defaultValue={expDate} />
-                <Input type="string" label="Left" defaultValue={left} />
-                <Input type="string" label="units" defaultValue={units} />
+            <form action="#" className={`card__form ${active ? 'active' : ''}`} 
+                  onSubmit={(event: React.FormEvent)=>{
+                    event.preventDefault()
+                    updateCardOnSubmit()
+                }}>
+                <Input type="string" label="Title" defaultValue={title} setFormData={setFormData} formKey="title"/>
+                <Input type="string" label="Category" defaultValue={category} setFormData={setFormData} formKey="category"/>
+                <Input type="string" label="Best Before" defaultValue={expDate} setFormData={setFormData} formKey="expDate"/>
+                <Input type="string" label="Left" defaultValue={left} setFormData={setFormData} formKey="left"/>
+                <Input type="string" label="Units" defaultValue={units} setFormData={setFormData} formKey="units"/>
+
+                <button className="btn btn--primary" type="submit">Save</button>
             </form>
         </div>
     </>

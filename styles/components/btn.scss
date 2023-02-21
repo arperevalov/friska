@@ -1,0 +1,38 @@
+.btn {
+    --btn-bg: transparent;
+    --btn-color: #{$black};
+    --btn-hover-bg: transparent;
+    --btn-hover-color: #{rgba($black, .7)};
+    --btn-border-radius: #{rem(30)};
+    --btn-padding-y: #{rem(12)};
+    --btn-padding-x: #{rem(20)};
+    --btn-font-size: #{rem(24)};
+    --btn-font-weight: 600;
+    --btn-border-width: 1px;
+    --btn-border-color: #{$gray};
+
+    background: var(--btn-bg);
+    color: var(--btn-color);
+    border-radius: var(--btn-border-radius);
+    padding: var(--btn-padding-y) var(--btn-padding-x);
+    font-size: var(--btn-font-size);
+    font-weight: var(--btn-font-weight);
+    border: var(--btn-border-width) solid var(--btn-border-color);
+    
+    text-transform: uppercase;
+    letter-spacing: -0.04em;
+
+    &:hover {
+        background: var(--btn-hover-bg);
+        color: var(--btn-hover-color);
+    }
+    
+    @each $color, $value in $theme-colors {
+        &--#{$color} {
+            --btn-bg: #{$value};
+            --btn-color: #{$black};
+            --btn-hover-bg: #{rgba($value, .7)};
+            --btn-hover-color: #{$black};
+        }
+    }
+}

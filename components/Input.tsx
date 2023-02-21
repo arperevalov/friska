@@ -1,20 +1,24 @@
 import { useState } from "react";
+import { CardInterface } from "./Card";
 
 export interface InputInterface {
     label: string,
     defaultValue?: string | null | number ,
     type: string,
     min?: number,
-    max?: number
+    max?: number,
+    setFormData: CallableFunction,
+    formKey: string
 }
 
 export const Input = (props: InputInterface) => {
-    const { label, defaultValue, type, min, max } = props;
+    const { label, defaultValue, type, min, max, setFormData, formKey } = props;
     const [inputValue, setInputValue] = useState(defaultValue);
 
     const onChange = (event: React.FormEvent<HTMLInputElement>) => {
         const value = event.currentTarget.value;
         setInputValue(value);
+        setFormData((previousValue: CardInterface)=>({...previousValue, [formKey]: value}))
     }
 
     return <>
