@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { ElementRef, useRef } from "react";
+import Header from "@/components/Header";
+import { useRef } from "react";
 import { create } from "zustand"
 
 interface SettingsStoreInterface {
@@ -18,13 +18,17 @@ export default function Settings() {
     const daysBeforeSettingInput = useRef(null)
 
     return <>
-    <Link href='/'>Home</Link>
-        <div>
-            {daysBeforeSetting}
-            <label>
-                <span>Days before setting</span>
-                <input value={daysBeforeSetting} type="number" onChange={(event)=>{setDaysBeforeSetting(event.currentTarget.value)}}/>
-            </label>
+    <Header/>
+    <main>
+        <div className="container">
+            <div>
+                {daysBeforeSetting}
+                <label>
+                    <span>Days before setting</span>
+                    <input value={daysBeforeSetting} type="number" onChange={(event)=>{setDaysBeforeSetting(event.currentTarget.value)}}/>
+                </label>
+            </div>
         </div>
+      </main>
     </>
 }

@@ -6,8 +6,22 @@
     justify-content: center;
     margin: rem(8) 0;
     width: 100%;
+    $self: &;
+
+    &.active {
+        #{$self}__dropdown {
+            display: flex;
+        }
+
+        #{$self}__logo {
+            background: $white;
+            border: 2px solid $black;
+            color: $black;
+        }
+    }
 
     &__logo {
+        border: none;
         text-decoration: none;
         padding: rem(4) rem(12);
         background: $black;
@@ -15,13 +29,42 @@
         font-size: rem(24);
         line-height: 1;
         margin: 0;
-        font-weight: 800;
+        font-weight: 700;
         color: $white;
         letter-spacing: -0.05em;
         transition: ease opacity $duration-fast;
 
         &:hover {
             opacity: .6;
+        }
+    }
+
+    &__dropdown {
+        display: none;
+        position: absolute;
+        margin: auto;
+        top: rem(-40);
+    }
+
+    &__nav {
+        padding: rem(8) rem(5);
+        background: $black;
+        border-radius: 50px;
+    }
+
+    &__link {
+        padding: rem(4) rem(12);
+        border-radius: 50px;
+        text-decoration: none;
+        color: $white;
+
+        &.active {
+            background: $white;
+            color: $black;
+        }
+
+        & + & {
+            margin-left: rem(12);
         }
     }
 }
