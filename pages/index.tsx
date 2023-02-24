@@ -3,13 +3,27 @@ import { Card, CardInterface } from '@/components/Card'
 import { create } from 'zustand'
 import { useEffect } from 'react'
 
+interface List {
+  title: string,
+  id: number
+}
+
 interface MainStoreInterface {
+  lists: List[],
   cards: CardInterface[],
   setCards: CallableFunction,
   updateCard: CallableFunction
 }
 
 export const useMainStore = create<MainStoreInterface>(set => ({
+  lists: [{
+    title: 'something',
+    id: 0
+  },
+  {
+    title: 'supersomething',
+    id: 1
+  }],
   cards: [
     {
       id: 0,
@@ -17,7 +31,8 @@ export const useMainStore = create<MainStoreInterface>(set => ({
       category: 'veggies',
       expDate: '02.20.2023',
       left: 1,
-      units: 'l'
+      units: 'l',
+      listId: 0
     }
   ],
   setCards: (card:CardInterface) => set((state) => {
@@ -35,7 +50,7 @@ export const useMainStore = create<MainStoreInterface>(set => ({
 
 export default function Home() {
 
-  const { cards, setCards } = useMainStore(store => store)
+  const { lists, cards, setCards } = useMainStore(store => store)
 
   useEffect(()=>{
       setCards({
@@ -43,14 +58,16 @@ export default function Home() {
         category: 'veggies',
         expDate: '02.21.2023',
         left: 1,
-        units: 'l'
+        units: 'l',
+        listId: 1,
       })
       setCards({
         title : 'sss1',
         category: 'veggies',
         expDate: '02.19.2023',
         left: 1,
-        units: 'l'
+        units: 'l',
+        listId: 1,
       })
   },[])
 
@@ -64,15 +81,24 @@ export default function Home() {
       </Head>
       <main>
         <div className="container">
-          <div className="list">
-            { cards.length > 0 ? cards.map((i: CardInterface) => {
-              return (
-                <div key={i.id} className="list__item">
-                  <Card {...i} />
+          { lists.length > 0 ? lists.map(list => {
+            return (
+              <div className="list" key={list.id}>
+                <div className="list__header">
+                  <h2 className='list__title h3'>{list.title}</h2>
                 </div>
-              )
-            }) : '' }
-          </div>
+                { cards.length > 0 ? cards.map((card: CardInterface) => {
+                  if (card.listId === list.id) {
+                    return (
+                      <div key={card.id} className="list__item">
+                        <Card {...card} />
+                      </div>
+                    )
+                  }
+                }) : '' }
+              </div>
+            )
+          }) : '' }
         </div>
       </main>
     </>

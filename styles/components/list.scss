@@ -3,6 +3,17 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
+    margin-bottom: rem(32);
+
+    &__title {
+        margin-bottom: rem(4);
+    }
+
+    &__header {
+        flex: 0 0 100%;
+        border-bottom: 1px solid $black;
+        margin-bottom: rem(12);
+    }
 
     &__item {
         margin: calc(var(--gap) / 2);

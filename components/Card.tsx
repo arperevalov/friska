@@ -9,7 +9,8 @@ export interface CardInterface {
     category: string,
     expDate: string,
     left: number,
-    units: string
+    units: string,
+    listId: number
 }
 
 export const Card = (props: CardInterface) => {
