@@ -7,6 +7,7 @@
     margin: rem(8) 0;
     width: 100%;
     $self: &;
+    z-index: $zindex-header;
 
     &.active {
         #{$self}__dropdown {
