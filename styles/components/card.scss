@@ -45,7 +45,7 @@
         flex-direction: column;
         justify-content: space-between;
         border: 2px solid transparent;
-        transition: background 0.2s, border-color 0.2s;
+        transition: background ease $duration-fast, border-color ease $duration-fast;
         cursor: pointer;
 
         &:hover {

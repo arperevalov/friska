@@ -1,0 +1,27 @@
+.header {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    margin: rem(8) 0;
+    width: 100%;
+
+    &__logo {
+        text-decoration: none;
+        padding: rem(4) rem(12);
+        background: $black;
+        border-radius: 50px;
+        font-size: rem(24);
+        line-height: 1;
+        margin: 0;
+        font-weight: 800;
+        color: $white;
+        letter-spacing: -0.05em;
+        transition: ease opacity $duration-fast;
+
+        &:hover {
+            opacity: .6;
+        }
+    }
+}

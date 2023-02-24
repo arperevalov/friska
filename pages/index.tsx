@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { Card, CardInterface } from '@/components/Card'
 import { create } from 'zustand'
 import { useEffect } from 'react'
+import Header from '@/components/Header'
 
 interface List {
   title: string,
@@ -79,6 +80,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Header/>
       <main>
         <div className="container">
           { lists.length > 0 ? lists.map(list => {
