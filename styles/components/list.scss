@@ -1,7 +1,5 @@
 .list {
     --gap: #{rem(12)};
-    display: flex;
-    flex-wrap: wrap;
     width: 100%;
     margin-bottom: rem(32);
 
@@ -13,6 +11,12 @@
         flex: 0 0 100%;
         border-bottom: 1px solid $black;
         margin-bottom: rem(12);
+    }
+
+    &__items {
+        display: flex;
+        flex-wrap: wrap;
+        margin: calc(var(--gap) * -0.5);
     }
 
     &__item {

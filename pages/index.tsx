@@ -87,15 +87,17 @@ export default function Home() {
                 <div className="list__header">
                   <h2 className='list__title h3'>{list.title}</h2>
                 </div>
-                { cards.length > 0 ? cards.map((card: CardInterface) => {
-                  if (card.listId === list.id) {
-                    return (
-                      <div key={card.id} className="list__item">
-                        <Card {...card} />
-                      </div>
-                    )
-                  }
-                }) : '' }
+                <div className="list__items">
+                  { cards.length > 0 ? cards.map((card: CardInterface) => {
+                    if (card.listId === list.id) {
+                      return (
+                        <div key={card.id} className="list__item">
+                          <Card {...card} />
+                        </div>
+                      )
+                    }
+                  }) : '' }
+                </div>
               </div>
             )
           }) : '' }
