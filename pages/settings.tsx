@@ -1,6 +1,8 @@
 import Header from "@/components/Header";
+import { Input } from "@/components/Input";
 import { useRef } from "react";
 import { create } from "zustand"
+import { useMainStore } from ".";
 
 interface SettingsStoreInterface {
     daysBeforeSetting: number,
@@ -15,19 +17,29 @@ export const useSettingsStore = create<SettingsStoreInterface>(set => ({
 export default function Settings() {
 
     const {daysBeforeSetting, setDaysBeforeSetting} = useSettingsStore(state=>state);
-    const daysBeforeSettingInput = useRef(null)
+    const {lists} = useMainStore(state=>state);
 
     return <>
     <Header/>
     <main>
         <div className="container">
-            <div>
-                {daysBeforeSetting}
-                <label>
-                    <span>Days before setting</span>
-                    <input value={daysBeforeSetting} type="number" onChange={(event)=>{setDaysBeforeSetting(event.currentTarget.value)}}/>
-                </label>
-            </div>
+            <label htmlFor="" className="input">
+                <span className="input__label h3">Best before limit, days {daysBeforeSetting}</span>
+                <input onChange={(event)=>{setDaysBeforeSetting(event.currentTarget.value)}} className="input__input" type='number' value={ daysBeforeSetting } min='0'/>
+            </label>
+            
+            <label htmlFor="" className="input">
+                <span className="input__label h3">Categories</span>
+                <div className="chips">
+                    { lists.length > 0 ? lists.map(list => (
+                        <>
+                            <div className="chips__item">
+                                {list.title}
+                            </div>
+                        </>
+                    )) : ''}
+                </div>
+            </label>
         </div>
       </main>
     </>

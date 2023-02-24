@@ -1,0 +1,16 @@
+.chips {
+    --flex-gap: #{rem(6)};
+    display: flex;
+    margin: calc(var(--flex-gap) * -0.5);
+    
+    &__item {
+        margin: calc(var(--flex-gap) / 2);
+        padding: rem(9) rem(12);
+        font-size: rem(14);
+        border: 1px solid $primary;
+        background: $white;
+        border-radius: 50px;
+        color: $black;
+        display: inline-block;
+    }
+}
