@@ -52,7 +52,7 @@ export const Card = (props: CardInterface) => {
                     </div>
                 </div>
                 <div className="card__bottom">
-                    <h3 className='h2'>
+                    <h3 className='card__title h2'>
                         { title }
                     </h3>
                     <h4 className='h4'>

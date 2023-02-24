@@ -9,8 +9,9 @@
     right: 0;
     bottom: 0;
     margin: auto;
-    background: rgba($white, .4);
-    backdrop-filter: blur(13px);
+    background: rgba($white, .8);
+    filter: blur(14px);
+    margin: rem(-13 * 2);
     transition: opacity 0.2s;
     opacity: 0;
     

@@ -67,6 +67,10 @@
         }
     }
 
+    &__title {
+        word-wrap: break-word;
+    }
+
     &__line {
         display: flex;
         justify-content: space-between;
