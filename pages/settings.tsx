@@ -33,7 +33,7 @@ export default function Settings() {
                 <div className="chips">
                     { lists.length > 0 ? lists.map(list => (
                         <>
-                            <div className="chips__item">
+                            <div className="chips__item h3">
                                 {list.title}
                             </div>
                         </>
