@@ -23,6 +23,14 @@
             border-color: $gray;
             cursor: auto;
         }
+
+        #{$self}__title {
+            max-width: initial;
+        }
+        
+        #{$self}__category {
+            max-width: initial;
+        }
     }
 
     &.outdated {
@@ -36,6 +44,7 @@
     
 
     &__container{
+        width: 100%;
         position: relative;
         aspect-ratio: 1/1;
         padding: rem(7);
@@ -68,7 +77,17 @@
     }
 
     &__title {
-        word-wrap: break-word;
+        max-width: rem(80);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    
+    &__category {
+        max-width: rem(80);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     &__line {

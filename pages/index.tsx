@@ -26,7 +26,6 @@ export const useMainStore = create<MainStoreInterface>(set => ({
     {
       id: 0,
       title: 'Milk',
-      category: 'veggies',
       expDate: '02.20.2023',
       left: 1,
       units: 'l',
@@ -53,7 +52,6 @@ export default function Home() {
   useEffect(()=>{
       setCards({
         title : 'sss',
-        category: 'veggies',
         expDate: '02.21.2023',
         left: 1,
         units: 'l',
@@ -61,7 +59,6 @@ export default function Home() {
       })
       setCards({
         title : 'sss1',
-        category: 'veggies',
         expDate: '02.19.2023',
         left: 1,
         units: 'l',

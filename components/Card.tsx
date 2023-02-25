@@ -58,7 +58,7 @@ export const Card = (props: CardInterface) => {
                     <h3 className='card__title h2'>
                         { title }
                     </h3>
-                    <h4 className='h4'>
+                    <h4 className='card__category h4'>
                         { category }
                     </h4>
                 </div>
