@@ -10,31 +10,19 @@ interface MainStoreInterface {
   lists: ListInterface[],
   cards: CardInterface[],
   setCards: CallableFunction,
-  updateCard: CallableFunction
+  updateCard: CallableFunction,
+  setLists: CallableFunction
 }
 
 export const useMainStore = create<MainStoreInterface>(set => ({
-  lists: [{
-    title: 'something',
-    id: 0
-  },
-  {
-    title: 'supersomething',
-    id: 1
-  }],
-  cards: [
-    {
-      id: 0,
-      title: 'Milk',
-      expDate: '02.20.2023',
-      left: 1,
-      units: 'l',
-      listId: 0
-    }
-  ],
-  setCards: (card:CardInterface) => set((state) => {
-    const newCard = {...card, id: state.cards.length}
-    return {cards: [...state.cards, newCard]}
+  lists: [],
+  cards: [],
+  setCards: (cards:CardInterface[]) => set((state) => {
+    const newCards = cards.map( (card, index) => {
+      const id = card.id ? card.id : state.cards.length + index
+      return {...card, id}
+    });
+    return {cards: [...state.cards, ...newCards]}
   }),
   updateCard: (card: CardInterface) => set((state) => {
     const index = state.cards.findIndex(item => {
@@ -42,34 +30,36 @@ export const useMainStore = create<MainStoreInterface>(set => ({
     })
     state.cards[index] = card;
     return {cards: [...state.cards]}
+  }),
+  setLists: (lists:ListInterface[]) => set((state) => {
+    return {lists}
   })
 }))
 
 export default function Home() {
 
-  const { lists, cards, setCards } = useMainStore(store => store)
+  const { lists, cards, setCards, setLists } = useMainStore(store => store)
 
   useEffect(()=>{
-      setCards({
-        title : 'sss',
-        expDate: '02.21.2023',
-        left: 1,
-        units: 'l',
-        listId: 1,
-      })
-      setCards({
-        title : 'sss1',
-        expDate: '02.19.2023',
-        left: 1,
-        units: 'l',
-        listId: 1,
-      })
+    const requestLists = async () =>{
+      const request = await fetch('/api/lists')
+      const requestJSON = await request.json();
+      setLists(requestJSON.lists)
+    }
+    
+    const requestData = async ()=>{
+      const request = await fetch('/api/cards')
+      const requestJSON = await request.json();
+      setCards(requestJSON.cards)
+    }
+    requestLists();
+    requestData()
   },[])
 
   return (
     <>
       <Head>
-        <title>stor+</title>
+        <title>Friska</title>
         <meta name="description" content="Storage management app" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
@@ -77,7 +67,7 @@ export default function Home() {
       <Header/>
       <main>
         <div className="container">
-          { lists.length > 0 ? lists.map(list => {
+          { lists?.length > 0 ? lists.map(list => {
             return (
               <div className="list" key={list.id}>
                 <div className="list__header">
