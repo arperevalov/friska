@@ -1,12 +1,12 @@
 import { useSettingsStore } from "@/pages/settings";
 import { useMainStore } from "@/pages/index";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "./Input";
+import { Select } from "./Select";
 
 export interface CardInterface {
     id: number,
     title: string,
-    category: string,
     expDate: string,
     left: number,
     units: string,
@@ -15,11 +15,21 @@ export interface CardInterface {
 
 export const Card = (props: CardInterface) => {
     const { daysBeforeSetting } = useSettingsStore(store => store);
-    const { updateCard } = useMainStore(store => store);
+    const { updateCard, lists } = useMainStore(store => store);
     const [active, setActive] = useState(false);
-    const { id, title, category, expDate, left, units} = props;
+    const { id, title, expDate, left, units, listId} = props;
     const [formData, setFormData] = useState({...props});
+    const [category, setCategory] = useState('');
 
+    useEffect(()=>{
+        const category = () => {
+            const index =  lists.findIndex(list => {
+                return list.id === listId
+            })
+            return  lists[index].title
+        }
+        setCategory(category)
+    },[])
 
     const toggleActive = () => {
         setActive(!active)
@@ -68,7 +78,7 @@ export const Card = (props: CardInterface) => {
                     updateCardOnSubmit()
                 }}>
                 <Input type="string" label="Title" defaultValue={title} setFormData={setFormData} formKey="title"/>
-                <Input type="string" label="Category" defaultValue={category} setFormData={setFormData} formKey="category"/>
+                <Select label="Category" values={lists} formKey="listId" defaultValue={listId} setFormData={setFormData}/>
                 <Input type="string" label="Best Before" defaultValue={expDate} setFormData={setFormData} formKey="expDate"/>
                 <Input type="string" label="Left" defaultValue={left} setFormData={setFormData} formKey="left"/>
                 <Input type="string" label="Units" defaultValue={units} setFormData={setFormData} formKey="units"/>

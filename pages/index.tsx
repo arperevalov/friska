@@ -4,7 +4,7 @@ import { create } from 'zustand'
 import { useEffect } from 'react'
 import Header from '@/components/Header'
 
-interface List {
+export interface List {
   title: string,
   id: number
 }
