@@ -1,29 +1,17 @@
 import Head from 'next/head'
 import { Card } from '@/components/Card'
-import { useEffect } from 'react'
 import Header from '@/components/Header'
 import CardInterface from '@/interfaces/Card'
 import { useMainStore } from '@/store/MainStore'
+import useLists from '@/hooks/useLists'
+import useCards from '@/hooks/useCards'
 
 export default function Home() {
 
-  const { lists, cards, setCards, setLists } = useMainStore(store => store)
+  const { lists, cards } = useMainStore(store => store)
 
-  useEffect(()=>{
-    const requestLists = async () =>{
-      const request = await fetch('/api/lists')
-      const requestJSON = await request.json();
-      setLists(requestJSON.lists)
-    }
-    
-    const requestData = async ()=>{
-      const request = await fetch('/api/cards')
-      const requestJSON = await request.json();
-      setCards(requestJSON.cards)
-    }
-    requestLists();
-    requestData()
-  },[])
+  useLists()
+  useCards()
 
   return (
     <>

@@ -1,21 +1,14 @@
 import Header from "@/components/Header";
+import useLists from "@/hooks/useLists";
 import { useMainStore } from "@/store/MainStore";
 import { useSettingsStore } from "@/store/SettingsStore";
-import { useEffect, } from "react";
 
 export default function Settings() {
 
     const {daysBeforeSetting, setDaysBeforeSetting} = useSettingsStore(state=>state);
-    const {lists, setLists} = useMainStore(state=>state);
+    const {lists} = useMainStore(state=>state);
 
-    useEffect(()=>{
-        const requestLists = async () =>{
-        const request = await fetch('/api/lists')
-        const requestJSON = await request.json();
-        setLists(requestJSON.lists)
-        }
-        requestLists();
-    },[])
+    useLists()
 
     return <>
     <Header/>
