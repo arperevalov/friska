@@ -13,7 +13,7 @@ export interface InputInterface {
 
 export const Input = (props: InputInterface) => {
     const { label, defaultValue, type, min, max, setFormData, formKey } = props;
-    const [inputValue, setInputValue] = useState(defaultValue);
+    const [inputValue, setInputValue] = useState(defaultValue ? defaultValue : '');
 
     const onChange = (event: React.FormEvent<HTMLInputElement>) => {
         const value = event.currentTarget.value;

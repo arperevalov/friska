@@ -1,6 +1,6 @@
 import CardInterface from "@/interfaces/Card";
 import ListInterface from "@/interfaces/List";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export interface InputInterface {
     label: string,
@@ -12,7 +12,11 @@ export interface InputInterface {
 
 export const Select = (props: InputInterface) => {
     const { label, defaultValue, values, setFormData, formKey } = props;
-    const [inputValue, setInputValue] = useState(defaultValue);
+    const [inputValue, setInputValue] = useState(defaultValue ? defaultValue : 0);
+
+    useEffect(()=>{
+        setFormData((previousValue: CardInterface)=>({...previousValue, [formKey]: inputValue}))
+    },[])
 
     const onChange = (event: React.FormEvent<HTMLSelectElement>) => {
         const value = parseInt(event.currentTarget.value);
