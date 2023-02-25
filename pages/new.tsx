@@ -10,7 +10,7 @@ export default function New () {
     const [formData, setFormData] = useState({});
 
     const submitForm = () => {
-        setCards(formData)
+        setCards([formData])
     }
 
     useEffect(()=>{
