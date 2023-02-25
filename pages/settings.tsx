@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import { Input } from "@/components/Input";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { create } from "zustand"
 import { useMainStore } from ".";
 
@@ -17,7 +17,16 @@ export const useSettingsStore = create<SettingsStoreInterface>(set => ({
 export default function Settings() {
 
     const {daysBeforeSetting, setDaysBeforeSetting} = useSettingsStore(state=>state);
-    const {lists} = useMainStore(state=>state);
+    const {lists, setLists} = useMainStore(state=>state);
+
+    useEffect(()=>{
+        const requestLists = async () =>{
+        const request = await fetch('/api/lists')
+        const requestJSON = await request.json();
+        setLists(requestJSON.lists)
+        }
+        requestLists();
+    },[])
 
     return <>
     <Header/>

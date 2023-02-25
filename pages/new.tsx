@@ -2,17 +2,25 @@ import Header from "@/components/Header"
 import { Input } from "@/components/Input"
 import { Select } from "@/components/Select"
 import { useMainStore } from ".";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function New () {
 
-    const { setCards, lists } = useMainStore(store => store);
+    const { setCards, lists, setLists } = useMainStore(store => store);
     const [formData, setFormData] = useState({});
 
     const submitForm = () => {
-        debugger
         setCards(formData)
     }
+
+    useEffect(()=>{
+        const requestLists = async () =>{
+        const request = await fetch('/api/lists')
+        const requestJSON = await request.json();
+        setLists(requestJSON.lists)
+        }
+        requestLists();
+    },[])
 
     return <>
         <Header/>
