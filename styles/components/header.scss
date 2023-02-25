@@ -1,30 +1,9 @@
 .header {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    margin: rem(8) 0;
-    width: 100%;
-    $self: &;
-    z-index: $zindex-header;
-
-    &.active {
-        #{$self}__dropdown {
-            display: flex;
-        }
-
-        #{$self}__logo {
-            background: $white;
-            border: 2px solid $black;
-            color: $black;
-        }
-    }
-
     &__logo {
-        border: none;
-        text-decoration: none;
-        padding: rem(4) rem(12);
+        display: flex;
+        align-items: center;
+        height: 100%;
+        padding: 0 rem(20);
         background: $black;
         border-radius: 50px;
         font-size: rem(24);
@@ -33,39 +12,58 @@
         font-weight: 700;
         color: $white;
         letter-spacing: -0.05em;
-        transition: ease opacity $duration-fast;
-
-        &:hover {
-            opacity: .6;
-        }
     }
 
-    &__dropdown {
-        display: none;
-        position: absolute;
-        margin: auto;
-        top: rem(-40);
+    &__top {
+        height: rem(48);
+        margin-top: rem(16);
+        padding: 0 rem(16);
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    &__bottom {
+        padding: rem(16);
+        display: flex;
+        justify-content: center;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: $zindex-header;
     }
 
     &__nav {
-        padding: rem(8) rem(5);
+        width: fit-content;
+        display: flex;
+        padding: rem(8);
         background: $black;
         border-radius: 50px;
     }
 
     &__link {
-        padding: rem(4) rem(12);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: rem(32);
+        height: rem(32);
         border-radius: 50px;
         text-decoration: none;
-        color: $white;
+        background: $white;
+        color: $black;
+        transition: ease opacity $duration-fast;
 
-        &.active {
-            background: $white;
-            color: $black;
+        &:hover {
+            opacity: .7;
+        }
+
+        &--new {
+            background: $primary;
         }
 
         & + & {
-            margin-left: rem(12);
+            margin-left: rem(8);
         }
     }
 }
