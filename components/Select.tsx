@@ -1,10 +1,10 @@
+import CardInterface from "@/interfaces/Card";
+import ListInterface from "@/interfaces/List";
 import { useState } from "react";
-import { CardInterface } from "./Card";
-import { List } from "@/pages";
 
 export interface InputInterface {
     label: string,
-    values: List[]
+    values: ListInterface[]
     defaultValue?: number ,
     setFormData: CallableFunction,
     formKey: string

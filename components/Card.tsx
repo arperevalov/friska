@@ -3,15 +3,7 @@ import { useMainStore } from "@/pages/index";
 import { useEffect, useState } from "react";
 import { Input } from "./Input";
 import { Select } from "./Select";
-
-export interface CardInterface {
-    id: number,
-    title: string,
-    expDate: string,
-    left: number,
-    units: string,
-    listId: number
-}
+import CardInterface from "@/interfaces/Card";
 
 export const Card = (props: CardInterface) => {
     const { daysBeforeSetting } = useSettingsStore(store => store);

@@ -1,16 +1,13 @@
 import Head from 'next/head'
-import { Card, CardInterface } from '@/components/Card'
+import { Card } from '@/components/Card'
 import { create } from 'zustand'
 import { useEffect } from 'react'
 import Header from '@/components/Header'
-
-export interface List {
-  title: string,
-  id: number
-}
+import ListInterface from '@/interfaces/List'
+import CardInterface from '@/interfaces/Card'
 
 interface MainStoreInterface {
-  lists: List[],
+  lists: ListInterface[],
   cards: CardInterface[],
   setCards: CallableFunction,
   updateCard: CallableFunction

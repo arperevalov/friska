@@ -1,5 +1,5 @@
+import CardInterface from "@/interfaces/Card";
 import { useState } from "react";
-import { CardInterface } from "./Card";
 
 export interface InputInterface {
     label: string,
