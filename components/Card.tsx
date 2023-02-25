@@ -1,9 +1,9 @@
-import { useSettingsStore } from "@/pages/settings";
-import { useMainStore } from "@/pages/index";
 import { useEffect, useState } from "react";
 import { Input } from "./Input";
 import { Select } from "./Select";
 import CardInterface from "@/interfaces/Card";
+import { useSettingsStore } from "@/store/SettingsStore";
+import { useMainStore } from "@/store/MainStore";
 
 export const Card = (props: CardInterface) => {
     const { daysBeforeSetting } = useSettingsStore(store => store);

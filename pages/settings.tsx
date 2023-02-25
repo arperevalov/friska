@@ -1,18 +1,7 @@
 import Header from "@/components/Header";
-import { Input } from "@/components/Input";
-import { useEffect, useRef } from "react";
-import { create } from "zustand"
-import { useMainStore } from ".";
-
-interface SettingsStoreInterface {
-    daysBeforeSetting: number,
-    setDaysBeforeSetting: CallableFunction
-}
-
-export const useSettingsStore = create<SettingsStoreInterface>(set => ({
-    daysBeforeSetting: 1,
-    setDaysBeforeSetting: (value:number) => set((state) => ({...state, daysBeforeSetting: value}))
-}))
+import { useMainStore } from "@/store/MainStore";
+import { useSettingsStore } from "@/store/SettingsStore";
+import { useEffect, } from "react";
 
 export default function Settings() {
 

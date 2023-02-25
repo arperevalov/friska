@@ -1,7 +1,7 @@
 import Header from "@/components/Header"
 import { Input } from "@/components/Input"
 import { Select } from "@/components/Select"
-import { useMainStore } from ".";
+import { useMainStore } from "@/store/MainStore";
 import { useEffect, useState } from "react";
 
 export default function New () {

@@ -1,40 +1,9 @@
 import Head from 'next/head'
 import { Card } from '@/components/Card'
-import { create } from 'zustand'
 import { useEffect } from 'react'
 import Header from '@/components/Header'
-import ListInterface from '@/interfaces/List'
 import CardInterface from '@/interfaces/Card'
-
-interface MainStoreInterface {
-  lists: ListInterface[],
-  cards: CardInterface[],
-  setCards: CallableFunction,
-  updateCard: CallableFunction,
-  setLists: CallableFunction
-}
-
-export const useMainStore = create<MainStoreInterface>(set => ({
-  lists: [],
-  cards: [],
-  setCards: (cards:CardInterface[]) => set((state) => {
-    const newCards = cards.map( (card, index) => {
-      const id = card.id ? card.id : state.cards.length + index
-      return {...card, id}
-    });
-    return {cards: [...state.cards, ...newCards]}
-  }),
-  updateCard: (card: CardInterface) => set((state) => {
-    const index = state.cards.findIndex(item => {
-      return item.id === card.id;
-    })
-    state.cards[index] = card;
-    return {cards: [...state.cards]}
-  }),
-  setLists: (lists:ListInterface[]) => set((state) => {
-    return {lists}
-  })
-}))
+import { useMainStore } from '@/store/MainStore'
 
 export default function Home() {
 
