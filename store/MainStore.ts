@@ -7,7 +7,8 @@ interface MainStoreInterface {
     cards: CardInterface[],
     setCards: CallableFunction,
     updateCard: CallableFunction,
-    setLists: CallableFunction
+    setLists: CallableFunction,
+    addList: CallableFunction
   }
   
   export const useMainStore = create<MainStoreInterface>(set => ({
@@ -29,5 +30,13 @@ interface MainStoreInterface {
     }),
     setLists: (lists:ListInterface[]) => set((state) => {
       return {lists}
+    }),
+    addList: (list: ListInterface) => set((state)=> {
+      return {
+        lists: [
+          ...state.lists,
+          list
+        ]
+      }
     })
   }))
