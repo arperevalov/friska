@@ -26,7 +26,7 @@ export const Select = (props: InputInterface) => {
 
     return <>
         <label htmlFor="" className="input">
-            <span className="input__label h3">{label}</span>
+            <span className="input__label">{label}</span>
             <select defaultValue={defaultValue} onChange={onChange} className="input__input">
                 {values.map(value => {
                     return <option 
