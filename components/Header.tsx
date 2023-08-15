@@ -18,15 +18,15 @@ export default function Header () {
 
             <div className="header__bottom">
                 <nav className="header__nav">
-                    <Link className={`header__link header__link--new h3`} href={'/new'}>
+                    <Link className={`header__link${router.pathname === '/new' ? ' header__link--active' : ''}`} href={'/new'}>
                         <img src="/svg/new.svg" alt="" />
                         <span className="visually-hidden">New Item</span>
                     </Link>
-                    <Link className={`header__link h3`} href={'/'}>
+                    <Link className={`header__link${router.pathname === '/' ? ' header__link--active' : ''}`} href={'/'}>
                         <img src="/svg/lists.svg" alt="" />
                         <span className="visually-hidden">Lists</span>
                     </Link>
-                    <Link className={`header__link h3`} href={'/settings'}>
+                    <Link className={`header__link${router.pathname === '/settings' ? ' header__link--active' : ''}`} href={'/settings'}>
                         <img src="/svg/settings.svg" alt="" />
                         <span className="visually-hidden">Settings</span>
                     </Link>
