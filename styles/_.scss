@@ -1,11 +1,11 @@
-@import './variables';
-@import './reboot';
-@import './functions';
-@import './breakpoints';
-@import './helpers';
+@import 'variables';
+@import 'reboot';
+@import 'functions';
+@import 'breakpoints';
+@import 'helpers';
 
-@import './typography';
-@import './layout';
-@import './fonts';
+@import 'typography';
+@import 'layout';
+@import 'fonts';
     
-@import './components/_';
+@import 'components/_';
