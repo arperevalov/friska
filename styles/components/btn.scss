@@ -4,9 +4,10 @@
     --btn-hover-bg: transparent;
     --btn-hover-color: #{rgba($black, .7)};
     --btn-border-radius: #{rem(30)};
-    --btn-padding-y: #{rem(12)};
-    --btn-padding-x: #{rem(20)};
-    --btn-font-size: #{rem(24)};
+    --btn-padding-y: #{var(--space-3xs)};
+    --btn-padding-x: #{var(--space-m)};
+    --btn-height: #{var(--space-xl)};
+    --btn-font-size: #{var(--step-1)};
     --btn-font-weight: 600;
     --btn-border-width: 1px;
     --btn-border-color: #{$gray};
@@ -17,6 +18,7 @@
     padding: var(--btn-padding-y) var(--btn-padding-x);
     font-size: var(--btn-font-size);
     font-weight: var(--btn-font-weight);
+    height: var(--btn-height);
     border: var(--btn-border-width) solid var(--btn-border-color);
     
     text-transform: uppercase;

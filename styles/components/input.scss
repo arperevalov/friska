@@ -1,16 +1,20 @@
 .input {
-    margin-bottom: rem(16);
     display: block;
+    margin-bottom: var(--input-margin);
 
     &__label {
-        margin-bottom: rem(4);
+        display: block;
+        margin-bottom: var(--space-2xs);
         color: $muted;
+        font-size: var(--step-n1);
+        text-transform: uppercase;
+        font-weight: 600;
     }
 
     &__input {
-        font-size: rem(20);
-        height: rem(48);
-        padding: 0 rem(10);
+        font-size: var(--step-1);
+        height: var(--space-xl);
+        padding: var(--space-3xs) var(--space-xs);
         width: 100%;
         border-radius: rem(8);
         border: 1px solid $muted;
