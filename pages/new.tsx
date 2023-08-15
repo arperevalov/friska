@@ -27,8 +27,14 @@ export default function New () {
                     <Input type="string" label="Title" setFormData={setFormData} formKey="title"/>
                     <Select label="Category" values={lists} setFormData={setFormData} formKey="listId"/>
                     <Input type="string" label="Best Before" setFormData={setFormData} formKey="expDate"/>
-                    <Input type="string" label="Left" setFormData={setFormData} formKey="left"/>
-                    <Input type="string" label="Units" setFormData={setFormData} formKey="units"/>
+                    <div className="input-row">
+                        <div className="input-row__col">
+                            <Input type="string" label="Left" setFormData={setFormData} formKey="left"/>
+                        </div>
+                        <div className="input-row__col">
+                            <Input type="string" label="Units" setFormData={setFormData} formKey="units"/>
+                        </div>
+                    </div>
                     <button className="btn btn--primary" type="submit">Add new</button>
                 </form>
             </div>
