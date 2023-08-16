@@ -22,14 +22,14 @@
     &__top {
         height: rem(48);
         margin-top: rem(16);
-        padding: 0 rem(16);
+        padding: 0 var(--container-padding-x);
         display: flex;
         justify-content: center;
         width: 100%;
     }
 
     &__bottom {
-        padding: rem(16);
+        padding: var(--container-padding-x);
         display: flex;
         justify-content: center;
         position: fixed;
@@ -42,7 +42,7 @@
     &__nav {
         width: fit-content;
         display: flex;
-        padding: rem(8);
+        padding: var(--space-2xs);
         background: $black;
         border-radius: 50px;
     }
@@ -51,8 +51,8 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: rem(32);
-        height: rem(32);
+        width: var(--space-l);
+        height: var(--space-l);
         border-radius: 50px;
         text-decoration: none;
         background: $white;

@@ -21,19 +21,21 @@
     &__items {
         display: flex;
         flex-wrap: wrap;
-        margin: calc(var(--gap) * -0.5);
+        margin-left: calc(var(--gap) * -0.5);
+        margin-right: calc(var(--gap) * -0.5);
+        margin-top: calc(var(--gap) * -1);
     }
 
     &__item {
-        margin: calc(var(--gap) / 2);
-        flex: 0 0 calc(33.33% - var(--gap));
+        padding-left: calc(var(--gap) * 0.5);
+        padding-right: calc(var(--gap) * 0.5);
+        margin-top: var(--gap);
 
-        @include media-breakpoint-up(600px) {
-            flex: 0 0 calc(20% - var(--gap));
-        }
+        flex: 0 0 auto;
+        width: 33%;
 
         @include media-breakpoint-up(900px) {
-            flex: 0 0 calc(10% - var(--gap));
+            width: 20%;
         }
     }
 }

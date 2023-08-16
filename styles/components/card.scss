@@ -1,9 +1,6 @@
 .card {
     $self: &;
 
-    &.active {
-    }
-
     &.outdated {
         #{$self}__container {
             &::before {
@@ -63,15 +60,5 @@
         line-height: 1.2;
         font-weight: 600;
         letter-spacing: -0.04em;
-    }
-
-    &__form {
-        margin-top: rem(20);
-        display: none;
-        flex-direction: column;
-
-        &.active {
-            display: flex;
-        }
     }
 }

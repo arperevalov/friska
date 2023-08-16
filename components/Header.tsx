@@ -7,14 +7,14 @@ export default function Header () {
 
     return <>
         <header className={`header`}>
-            { router.pathname === '/' ? <>
-                <div className="header__top">
+            <div className="header__top">
+                { router.pathname === '/' ? <>
                     <div className="header__logo">    
                         <img className="header__logo-icon" src="/friska.svg" alt="" />
                         Friska
                     </div>
-                </div>
-            </> : ''}
+                </> : <></>}
+            </div>
 
             <div className="header__bottom">
                 <nav className="header__nav">

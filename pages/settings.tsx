@@ -29,15 +29,15 @@ export default function Settings() {
     <main>
         <div className="container">
             <label htmlFor="" className="input">
-                <span className="input__label h3">Best before limit, days</span>
+                <span className="input__label">Best before limit, days</span>
                 <input onChange={(event)=>{setDaysBeforeSetting(event.currentTarget.value)}} className="input__input" type='number' value={ daysBeforeSetting } min='0'/>
             </label>
             
             <div className="input">
-                <span className="input__label h3">Categories</span>
+                <span className="input__label">Categories</span>
                 <div className="chips">
                     { lists.length > 0 ? lists.map(list => (
-                        <div key={list.id} className="chips__item h3">
+                        <div key={list.id} className="chips__item">
                             {list.title}
                         </div>
                     )) : ''}
@@ -45,7 +45,7 @@ export default function Settings() {
             </div>
             <form onSubmit={createList}>
                 <label htmlFor="" className="input">
-                    <span className="input__label h3">New Category</span>
+                    <span className="input__label">New Category</span>
                     <input className="input__input" value={newListValue} onChange={(event)=>{setNewListValue(event.currentTarget.value)}} type="text" required/>
                 </label>
                 <button type="submit">Add</button>

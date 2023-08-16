@@ -1,4 +1,9 @@
 .container {
     width: 100%;
     padding: rem(20);
+
+    @include media-breakpoint-up(900px) {
+        max-width: 900px;
+        margin: auto;
+    }
 }
