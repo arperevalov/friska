@@ -28,7 +28,7 @@ export default function Home() {
             return (
               <div className="list" key={list.id}>
                 <div className="list__header">
-                  <h2 className='list__title h3'>{list.title}</h2>
+                  <h2 className='list__title'>{list.title}</h2>
                 </div>
                 <div className="list__items">
                   { cards.length > 0 ? cards.map((card: CardInterface) => {
