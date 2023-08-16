@@ -40,11 +40,10 @@ export const Card = (props: CardInterface) => {
     }
 
     return <>
-        <div className={`backdrop ${active ? 'active' : ''}`} onClick={toggleActive}></div>
         <div className={`card ${active ? 'active' : ''} ${checkExpired() ? 'outdated' : ''}`} 
         onClick={()=>{if (!active)toggleActive()}}>
             <div className="card__container">
-                <div className="card__top h4">
+                <div className="card__top">
                     <div className="card__line">
                         { expDate }
                         <div>exp</div>
@@ -55,28 +54,11 @@ export const Card = (props: CardInterface) => {
                     </div>
                 </div>
                 <div className="card__bottom">
-                    <h3 className='card__title h2'>
+                    <h3 className='card__title'>
                         { title }
                     </h3>
-                    <h4 className='card__category h4'>
-                        { category }
-                    </h4>
                 </div>
             </div>
-
-            <form action="#" className={`card__form ${active ? 'active' : ''}`} 
-                  onSubmit={(event: React.FormEvent)=>{
-                    event.preventDefault()
-                    updateCardOnSubmit()
-                }}>
-                <Input type="string" label="Title" defaultValue={title} setFormData={setFormData} formKey="title"/>
-                <Select label="Category" values={lists} formKey="listId" defaultValue={listId} setFormData={setFormData}/>
-                <Input type="string" label="Best Before" defaultValue={expDate} setFormData={setFormData} formKey="expDate"/>
-                <Input type="string" label="Left" defaultValue={left} setFormData={setFormData} formKey="left"/>
-                <Input type="string" label="Units" defaultValue={units} setFormData={setFormData} formKey="units"/>
-
-                <button className="btn btn--primary" type="submit">Save</button>
-            </form>
         </div>
     </>
 }

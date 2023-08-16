@@ -2,35 +2,6 @@
     $self: &;
 
     &.active {
-        position: fixed;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        margin: auto;
-        overflow-y: auto;
-        padding: rem(20);
-        max-width: rem(300);
-        z-index: 9999;
-
-        @include media-breakpoint-up(700px) {
-            max-width: rem(500);
-        }
-
-        #{$self}__container {
-            margin-top: rem(20);
-            background: $white;
-            border-color: $gray;
-            cursor: auto;
-        }
-
-        #{$self}__title {
-            max-width: initial;
-        }
-        
-        #{$self}__category {
-            max-width: initial;
-        }
     }
 
     &.outdated {
@@ -40,8 +11,6 @@
             }
         }
     }
-
-    
 
     &__container{
         width: 100%;
@@ -81,18 +50,19 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-    }
-    
-    &__category {
-        max-width: rem(80);
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+        font-size: var(--step-1);
+        line-height: 1.2;
+        font-weight: 600;
+        letter-spacing: -0.04em;
     }
 
     &__line {
         display: flex;
         justify-content: space-between;
+        font-size: var(--step-n2);
+        line-height: 1.2;
+        font-weight: 600;
+        letter-spacing: -0.04em;
     }
 
     &__form {
