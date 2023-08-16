@@ -34,9 +34,7 @@ export default function Home() {
                   { cards.length > 0 ? cards.map((card: CardInterface) => {
                     if (card.listId === list.id) {
                       return (
-                        <div key={card.id} className="list__item">
-                          <Card {...card} />
-                        </div>
+                        <Card {...card} key={card.id} />
                       )
                     }
                   }) : '' }

@@ -40,23 +40,25 @@ export const Card = (props: CardInterface) => {
     }
 
     return <>
-        <div className={`card ${active ? 'active' : ''} ${checkExpired() ? 'outdated' : ''}`} 
-        onClick={()=>{if (!active)toggleActive()}}>
-            <div className="card__container">
-                <div className="card__top">
-                    <div className="card__line">
-                        { expDate }
-                        <div>exp</div>
+        <div className={`list__item${active ? ' active' : ''}`}>
+            <div className={`card${active ? ' active' : ''}${checkExpired() ? ' outdated' : ''}`} 
+            onClick={()=>{if (!active)toggleActive()}}>
+                <div className="card__container">
+                    <div className="card__top">
+                        <div className="card__line">
+                            { expDate }
+                            <div>exp</div>
+                        </div>
+                        <div className="card__line">
+                            { left + units }
+                            <div>left</div>
+                        </div>
                     </div>
-                    <div className="card__line">
-                        { left + units }
-                        <div>left</div>
+                    <div className="card__bottom">
+                        <h3 className='card__title'>
+                            { title }
+                        </h3>
                     </div>
-                </div>
-                <div className="card__bottom">
-                    <h3 className='card__title'>
-                        { title }
-                    </h3>
                 </div>
             </div>
         </div>
