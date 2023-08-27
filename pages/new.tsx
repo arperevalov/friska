@@ -7,11 +7,11 @@ import { useState } from "react";
 
 export default function New () {
 
-    const { setCards, lists } = useMainStore(store => store);
+    const { addCard, lists } = useMainStore(store => store);
     const [formData, setFormData] = useState({});
 
     const submitForm = () => {
-        setCards([formData])
+        addCard(formData)
     }
 
     useLists()
