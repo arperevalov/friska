@@ -37,5 +37,14 @@
         @include media-breakpoint-up(900px) {
             width: 20%;
         }
+
+        &.active {
+            flex: 0 0 auto;
+            width: 100%;
+
+            @include media-breakpoint-up(900px) {
+                width: 100%;
+            }
+        }
     }
 }

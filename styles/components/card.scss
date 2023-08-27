@@ -1,5 +1,24 @@
 .card {
     $self: &;
+    --card-header-fz: var(--step-1);
+    --card-categories-fz: var(--step-n2);
+    display: flex;
+
+    &.active {
+        --card-header-fz: var(--step-3);
+        --card-categories-fz: var(--step-1);
+
+        #{$self}__container {
+            aspect-ratio: initial;
+            width: 64%;
+            height: auto;
+            padding: var(--space-xs);
+        }
+
+        #{$self}__options {
+            display: flex;
+        }
+    }
 
     &.outdated {
         #{$self}__container {
@@ -13,7 +32,7 @@
         width: 100%;
         position: relative;
         aspect-ratio: 1/1;
-        padding: rem(7);
+        padding: var(--space-2xs);
         border-radius: rem(8);
         background: $gray;
         display: flex;
@@ -47,18 +66,29 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        font-size: var(--step-1);
+        font-size: var(--card-header-fz);
         line-height: 1.2;
         font-weight: 600;
         letter-spacing: -0.04em;
+        transition: font-size ease $duration-fast;
     }
 
     &__line {
         display: flex;
         justify-content: space-between;
-        font-size: var(--step-n2);
+        font-size: var(--card-categories-fz);
         line-height: 1.2;
         font-weight: 600;
         letter-spacing: -0.04em;
+        transition: font-size ease $duration-fast;
+    }
+
+    &__options {
+        display: none;
+        flex-direction: column;
+        padding: var(--space-xs);
+        height: fit-content;
+        width: 36%;
+        flex: 0 0 auto;
     }
 }
