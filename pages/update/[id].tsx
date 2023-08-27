@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import { Input } from "@/components/Input";
+import { InputCalendar } from "@/components/InputCalendar";
 import { Select } from "@/components/Select";
 import useLists from "@/hooks/useLists";
 import CardInterface from "@/interfaces/Card";
@@ -49,15 +50,15 @@ export default function Update () {
                         event.preventDefault()
                         submitForm()
                     }}>
-                    <Input type="string" label="Title" defaultValue={card.title} setFormData={setFormData} formKey="title"/>
-                    <Select label="Category" values={lists} formKey="listId" defaultValue={card.listId} setFormData={setFormData}/>
-                    <Input type="string" label="Best Before" defaultValue={card.expDate} setFormData={setFormData} formKey="expDate"/>
+                    <Input type="text" label="Title" defaultValue={card.title} setFormData={setFormData} formKey="title" required={true}/>
+                    <Select label="Category" values={lists} defaultValue={card.listId} setFormData={setFormData} formKey="listId" required={true}/>
+                    <InputCalendar label="Best Before" defaultValue={card.expDate} setFormData={setFormData} formKey="expDate" required={true}/>
                     <div className="input-row">
                         <div className="input-row__col">
-                            <Input type="string" label="Left" setFormData={setFormData} formKey="left"/>
+                            <Input type="number" label="Left" defaultValue={card.left} setFormData={setFormData} formKey="left"/>
                         </div>
                         <div className="input-row__col">
-                            <Input type="string" label="Units" setFormData={setFormData} formKey="units"/>
+                            <Input type="text" label="Units" defaultValue={card.units} setFormData={setFormData} formKey="units"/>
                         </div>
                     </div>
 

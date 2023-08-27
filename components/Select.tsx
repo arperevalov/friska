@@ -7,11 +7,12 @@ export interface InputInterface {
     values: ListInterface[]
     defaultValue?: number ,
     setFormData: CallableFunction,
-    formKey: string
+    formKey: string,
+    required?: boolean
 }
 
 export const Select = (props: InputInterface) => {
-    const { label, defaultValue, values, setFormData, formKey } = props;
+    const { label, defaultValue, values, setFormData, formKey, required } = props;
     const [inputValue, setInputValue] = useState(defaultValue ? defaultValue : 0);
 
     useEffect(()=>{
@@ -27,7 +28,7 @@ export const Select = (props: InputInterface) => {
     return <>
         <label htmlFor="" className="input">
             <span className="input__label">{label}</span>
-            <select defaultValue={defaultValue} onChange={onChange} className="input__input">
+            <select defaultValue={defaultValue} onChange={onChange} className="input__input" required={required}>
                 {values.map(value => {
                     return <option 
                         key={value.id} 

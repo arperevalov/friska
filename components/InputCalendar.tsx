@@ -3,17 +3,14 @@ import { useState } from "react";
 
 export interface InputInterface {
     label: string,
-    defaultValue?: string | null | number ,
-    type: string,
-    min?: number,
-    max?: number,
+    defaultValue?: string | null,
     setFormData: CallableFunction,
-    formKey: string
+    formKey: string,
     required?: boolean,
 }
 
-export const Input = (props: InputInterface) => {
-    const { label, defaultValue, type, min, max, setFormData, formKey, required } = props;
+export const InputCalendar = (props: InputInterface) => {
+    const { label, defaultValue, setFormData, formKey, required } = props;
     const [inputValue, setInputValue] = useState(defaultValue ? defaultValue : '');
 
     const onChange = (event: React.FormEvent<HTMLInputElement>) => {
@@ -25,7 +22,7 @@ export const Input = (props: InputInterface) => {
     return <>
         <label htmlFor="" className="input">
             <span className="input__label">{label}</span>
-            <input onChange={onChange} className="input__input" type={ type } value={ inputValue ? inputValue : '' } min={min} max={max} required={required}/>
+            <input onChange={onChange} className="input__input" type="date" value={ inputValue ? inputValue : '' } required={required}/>
         </label>
     </>
 }

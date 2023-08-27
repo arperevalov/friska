@@ -1,5 +1,6 @@
 import Header from "@/components/Header"
 import { Input } from "@/components/Input"
+import { InputCalendar } from "@/components/InputCalendar";
 import { Select } from "@/components/Select"
 import useLists from "@/hooks/useLists";
 import { useMainStore } from "@/store/MainStore";
@@ -24,15 +25,15 @@ export default function New () {
                     event.preventDefault()
                     submitForm()
                 }}>
-                    <Input type="string" label="Title" setFormData={setFormData} formKey="title"/>
-                    <Select label="Category" values={lists} setFormData={setFormData} formKey="listId"/>
-                    <Input type="string" label="Best Before" setFormData={setFormData} formKey="expDate"/>
+                    <Input type="text" label="Title" setFormData={setFormData} formKey="title" required={true}/>
+                    <Select label="Category" values={lists} setFormData={setFormData} formKey="listId" required={true}/>
+                    <InputCalendar label="Best Before" setFormData={setFormData} formKey="expDate" required={true}/>
                     <div className="input-row">
                         <div className="input-row__col">
-                            <Input type="string" label="Left" setFormData={setFormData} formKey="left"/>
+                            <Input type="number" label="Left" setFormData={setFormData} formKey="left"/>
                         </div>
                         <div className="input-row__col">
-                            <Input type="string" label="Units" setFormData={setFormData} formKey="units"/>
+                            <Input type="text" label="Units" setFormData={setFormData} formKey="units"/>
                         </div>
                     </div>
                     <button className="btn btn--primary" type="submit">Add new</button>
