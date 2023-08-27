@@ -5,16 +5,26 @@ import { create } from "zustand";
 interface MainStoreInterface {
     lists: ListInterface[],
     cards: CardInterface[],
-    setCards: CallableFunction,
+    addCard: CallableFunction,
     updateCard: CallableFunction,
     setLists: CallableFunction,
-    addList: CallableFunction
+    addList: CallableFunction,
+	initCards: CallableFunction
   }
   
 export const useMainStore = create<MainStoreInterface>(set => ({
     lists: [],
     cards: [],
-    setCards: (cards:CardInterface[]) => set((state) => {
+	initCards: (cards: CardInterface[]) => set((state) => {
+		const newCards = cards.map( (card, index) => {
+			const id = card.id ? card.id : state.cards.length + index
+			return {...card, id}
+		});
+		return {
+			cards: [...newCards]
+		}
+	}),
+    addCard: (cards: CardInterface[]) => set((state) => {
 		const newCards = cards.map( (card, index) => {
 			const id = card.id ? card.id : state.cards.length + index
 			return {...card, id}
