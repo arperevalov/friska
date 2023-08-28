@@ -39,11 +39,11 @@ export const Card = (props: CardInterface) => {
                     </div>
                 </div>
                 <div className="card__options">
-                    <Link href={`update/${id}`} className="btn">Edit</Link>
-                    <button type="button" className="btn">Remove</button>
+                    <Link href={`update/${id}`} className="link link--primary link--centered">Edit</Link>
+                    <button type="button" className="link link--secondary link--centered">Remove</button>
                     <div className="card__btns">
-                        <button type="button" className="btn">-1</button>
-                        <button type="button" className="btn">+1</button>
+                        <button type="button" className="btn btn--sm btn--secondary">-1</button>
+                        <button type="button" className="btn btn--sm btn--primary">+1</button>
                     </div>
                 </div>
             </div>

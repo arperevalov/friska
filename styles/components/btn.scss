@@ -37,4 +37,10 @@
             --btn-hover-color: #{$black};
         }
     }
+
+    &--sm {
+        --btn-padding-y: #{var(--space-3xs)};
+        --btn-padding-x: #{var(--space-2xs)};
+        --btn-height: #{var(--space-l)};
+    }
 }

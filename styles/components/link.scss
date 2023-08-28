@@ -1,0 +1,32 @@
+.link {
+    --link-color: #{$black};
+    --link-hover-color: #{rgba($black, .7)};
+    --link-font-size: #{var(--step-1)};
+    --link-font-weight: 600;
+
+    color: var(--link-color);
+    transition: color ease $duration-fast;
+    font-size: var(--link-font-size);
+    font-weight: 400;
+    line-height: 1;
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    text-transform: uppercase;
+    text-align: left;
+
+    &:hover {
+        color: var(--link-hover-color);
+    }
+    
+    @each $color, $value in $theme-colors {
+        &--#{$color} {
+            --link-color: #{$value};
+            --link-hover-color: #{rgba($value, .7)};
+        }
+    }
+
+    &--centered {
+        text-align: center;
+    }
+}
