@@ -9,7 +9,8 @@ interface MainStoreInterface {
     updateCard: CallableFunction,
     setLists: CallableFunction,
     addList: CallableFunction,
-	initCards: CallableFunction
+	initCards: CallableFunction,
+	removeList: CallableFunction
   }
   
 export const useMainStore = create<MainStoreInterface>(set => ({
@@ -38,12 +39,31 @@ export const useMainStore = create<MainStoreInterface>(set => ({
     setLists: (lists:ListInterface[]) => set((state) => {
       	return {lists}
     }),
-    addList: (list: ListInterface) => set((state)=> {
+    addList: (list: ListInterface) => set((state) => {
 		return {
 			lists: [
 			...state.lists,
 			list
 			]
 		}
-    })
+    }),
+	removeList: (id: number) => set((state) => {
+		const index = state.lists.findIndex(item => {
+			return item.id === id;
+		});
+
+		const cards = state.cards.find(item => {
+			if (item.listId === id) return item;
+		});
+
+		if (!index && cards) return {}
+
+		state.lists.splice(index, 1)
+
+		return {
+			lists: [
+				...state.lists
+			]
+		}
+	}),
 }))
