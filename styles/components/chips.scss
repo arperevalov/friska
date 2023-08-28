@@ -1,10 +1,12 @@
 .chips {
-    --flex-gap: #{var(--space-3xs)};
-    display: flex;
-    margin: calc(var(--flex-gap) * -0.5);
+    @include make-row(var(--space-3xs), var(--space-3xs));
+    flex-wrap: wrap;
     
     &__item {
-        margin: calc(var(--flex-gap) / 2);
+        @include make-col-ready();
+    }
+
+    &__content {
         height: var(--space-l);
         padding: 0 calc(var(--space-xs) - var(--space-3xs)) 0 var(--space-xs);
         border: 1px solid $primary;

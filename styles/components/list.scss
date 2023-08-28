@@ -21,15 +21,11 @@
     &__items {
         display: flex;
         flex-wrap: wrap;
-        margin-left: calc(var(--gap) * -0.5);
-        margin-right: calc(var(--gap) * -0.5);
-        margin-top: calc(var(--gap) * -1);
+        @include make-row(var(--gap), var(--gap))
     }
 
     &__item {
-        padding-left: calc(var(--gap) * 0.5);
-        padding-right: calc(var(--gap) * 0.5);
-        margin-top: var(--gap);
+        @include make-col-ready();
 
         flex: 0 0 auto;
         width: 33%;
