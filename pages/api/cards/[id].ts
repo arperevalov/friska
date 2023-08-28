@@ -8,7 +8,7 @@ type Data = {
 }
 
 export default function handler(
-  req: any,
+  req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
   const id = req.query.id;
@@ -17,7 +17,7 @@ export default function handler(
     res.status(200).json({cards: [
       {
         id: 0,
-        title: 'Milky Shakey',
+        title: id.toString(),
         expDate: '02.20.2023',
         left: 1,
         units: 'l',
