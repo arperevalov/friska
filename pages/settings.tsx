@@ -47,8 +47,8 @@ export default function Settings() {
                 <label htmlFor="" className="input">
                     <span className="input__label">New Category</span>
                     <input className="input__input" value={newListValue} onChange={(event)=>{setNewListValue(event.currentTarget.value)}} type="text" required/>
+                    <button className="input__button link link--primary" type="submit">Add Category</button>
                 </label>
-                <button type="submit">Add</button>
             </form>
         </div>
       </main>

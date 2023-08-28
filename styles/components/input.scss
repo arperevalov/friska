@@ -1,6 +1,7 @@
 .input {
     display: block;
     margin-bottom: var(--input-margin);
+    position: relative;
 
     &__label {
         display: block;
@@ -22,5 +23,14 @@
         font-weight: 600;
         letter-spacing: -0.04em;
         font-family: $font-face;
+    }
+
+    &__button {
+        position: absolute;
+        margin: auto;
+        right: var(--space-xs);
+        top: 0;
+        bottom: 0;
+        transform: translate(0%, var(--step-n1));
     }
 }
