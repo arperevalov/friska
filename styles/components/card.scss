@@ -7,6 +7,7 @@
     &.active {
         --card-header-fz: var(--step-3);
         --card-categories-fz: var(--step-1);
+        padding-bottom: var(--space-3xs);
 
         #{$self}__container {
             aspect-ratio: initial;
@@ -88,7 +89,24 @@
         flex-direction: column;
         padding: var(--space-xs);
         height: fit-content;
-        width: 36%;
+        width: calc(36% - var(--space-2xs));
+        margin-left: var(--space-2xs);
         flex: 0 0 auto;
+        background: $gray;
+        border-radius: rem(8);
+    }
+
+    &__btns {
+        --flex-gap-x: var(--space-3xs);
+        display: flex;
+        margin-top: var(--space-l);
+        margin-left: calc(var(--flex-gap-x) * -0.5);
+        margin-right: calc(var(--flex-gap-x) * -0.5);
+
+        > * {
+            width: 50%;
+            padding-right: calc(var(--flex-gap-x) * 0.5);
+            padding-left: calc(var(--flex-gap-x) * 0.5);
+        }
     }
 }
