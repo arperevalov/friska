@@ -2,9 +2,11 @@ import { useState } from "react";
 import CardInterface from "@/interfaces/Card";
 import { useSettingsStore } from "@/store/SettingsStore";
 import Link from "next/link";
+import { useMainStore } from "@/store/MainStore";
 
 export const Card = (props: CardInterface) => {
     const { daysBeforeSetting } = useSettingsStore(store => store);
+    const { removeCard } = useMainStore(store => store);
     const [active, setActive] = useState(false);
     const { id, title, expDate, left, units, listId} = props;
 
@@ -40,7 +42,7 @@ export const Card = (props: CardInterface) => {
                 </div>
                 <div className="card__options">
                     <Link href={`update/${id}`} className="link link--primary link--centered">Edit</Link>
-                    <button type="button" className="link link--secondary link--centered">Remove</button>
+                    <button type="button" className="link link--secondary link--centered" onClick={()=>{removeCard(id)}}>Remove</button>
                     <div className="card__btns">
                         <button type="button" className="btn btn--sm btn--secondary">-1</button>
                         <button type="button" className="btn btn--sm btn--primary">+1</button>
