@@ -6,7 +6,7 @@
     &__item {
         margin: calc(var(--flex-gap) / 2);
         height: var(--space-l);
-        padding: 0 var(--space-xs);
+        padding: 0 calc(var(--space-xs) - var(--space-3xs)) 0 var(--space-xs);
         border: 1px solid $primary;
         background: $white;
         border-radius: 50px;
@@ -17,5 +17,17 @@
         line-height: 1.2;
         font-weight: 600;
         letter-spacing: -0.04em;
+    }
+
+    &__remove {
+        background: transparent;
+        border: none;
+        padding: var(--space-3xs);
+        cursor: pointer;
+    }
+
+    &__icon {
+        width: var(--space-2xs);
+        height: var(--space-2xs);
     }
 }

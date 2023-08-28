@@ -39,6 +39,12 @@ export default function Settings() {
                     { lists.length > 0 ? lists.map(list => (
                         <div key={list.id} className="chips__item">
                             {list.title}
+                            <button type="button" className="chips__remove">
+                                <svg className="chips__icon" width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1.1709 1.17188L6.82775 6.82873" stroke="#050401" stroke-width="2"/>
+                                    <path d="M6.82812 1.17139L1.17127 6.82824" stroke="#050401" stroke-width="2"/>
+                                </svg>
+                            </button>
                         </div>
                     )) : ''}
                 </div>
