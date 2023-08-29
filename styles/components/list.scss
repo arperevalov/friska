@@ -28,7 +28,10 @@
         @include make-col-ready();
 
         flex: 0 0 auto;
-        width: 33%;
+        width: 50%;
+        @include media-breakpoint-up(375px) {
+            width: 33%;
+        }
 
         @include media-breakpoint-up(900px) {
             width: 20%;
