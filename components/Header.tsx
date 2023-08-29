@@ -12,7 +12,9 @@ export default function Header() {
                     {router.pathname === "/" ? (
                         <>
                             <div className="header__logo">
-                                <Image className="header__logo-icon" src="/friska.svg" alt="" />
+                                <div className="header__logo-icon">
+                                    <Image src="/friska.svg" alt="" fill />
+                                </div>
                                 Friska
                             </div>
                         </>
@@ -27,21 +29,27 @@ export default function Header() {
                             className={`header__link${router.pathname === "/new" ? " header__link--active" : ""}`}
                             href={"/new"}
                         >
-                            <Image src="/svg/new.svg" alt="" />
+                            <div className="header__icon">
+                                <Image src="/svg/new.svg" alt="" fill />
+                            </div>
                             <span className="visually-hidden">New Item</span>
                         </Link>
                         <Link
                             className={`header__link${router.pathname === "/" ? " header__link--active" : ""}`}
                             href={"/"}
                         >
-                            <Image src="/svg/lists.svg" alt="" />
+                            <div className="header__icon">
+                                <Image src="/svg/lists.svg" alt="" fill />
+                            </div>
                             <span className="visually-hidden">Lists</span>
                         </Link>
                         <Link
                             className={`header__link${router.pathname === "/settings" ? " header__link--active" : ""}`}
                             href={"/settings"}
                         >
-                            <Image src="/svg/settings.svg" alt="" />
+                            <div className="header__icon">
+                                <Image src="/svg/settings.svg" alt="" fill />
+                            </div>
                             <span className="visually-hidden">Settings</span>
                         </Link>
                     </nav>

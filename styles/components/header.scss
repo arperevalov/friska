@@ -76,4 +76,10 @@
             margin-left: rem(8);
         }
     }
+
+    &__icon {
+        position: relative;
+        width: var(--space-s);
+        height: var(--space-s);
+    }
 }
