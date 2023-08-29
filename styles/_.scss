@@ -1,17 +1,17 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
-@import './mixins/gap.scss';
+@import "./mixins/gap.scss";
 
-@import 'variables';
-@import 'reboot';
-@import 'functions';
-@import 'breakpoints';
-@import 'helpers';
+@import "variables";
+@import "reboot";
+@import "functions";
+@import "breakpoints";
+@import "helpers";
 
-@import 'typography';
-@import 'layout';
-@import 'fonts';
-    
-@import 'components/_';
+@import "typography";
+@import "layout";
+@import "fonts";
+
+@import "components/_";

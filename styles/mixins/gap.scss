@@ -1,7 +1,7 @@
 @mixin make-row($horizontal: 0, $vertical: 0) {
     --row-gap-x: #{$horizontal};
     --row-gap-y: #{$vertical};
-    
+
     display: flex;
     margin-left: calc(var(--row-gap-x) * -0.5);
     margin-right: calc(var(--row-gap-x) * -0.5);

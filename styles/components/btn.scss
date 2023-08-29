@@ -2,7 +2,7 @@
     --btn-bg: transparent;
     --btn-color: #{$black};
     --btn-hover-bg: transparent;
-    --btn-hover-color: #{rgba($black, .7)};
+    --btn-hover-color: #{rgba($black, 0.7)};
     --btn-border-radius: #{rem(30)};
     --btn-padding-y: #{var(--space-3xs)};
     --btn-padding-x: #{var(--space-m)};
@@ -20,7 +20,7 @@
     font-weight: var(--btn-font-weight);
     height: var(--btn-height);
     border: var(--btn-border-width) solid var(--btn-border-color);
-    
+
     text-transform: uppercase;
     letter-spacing: -0.04em;
 
@@ -28,12 +28,12 @@
         background: var(--btn-hover-bg);
         color: var(--btn-hover-color);
     }
-    
+
     @each $color, $value in $theme-colors {
         &--#{$color} {
             --btn-bg: #{$value};
             --btn-color: #{$black};
-            --btn-hover-bg: #{rgba($value, .7)};
+            --btn-hover-bg: #{rgba($value, 0.7)};
             --btn-hover-color: #{$black};
         }
     }

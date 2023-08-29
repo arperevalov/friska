@@ -9,16 +9,16 @@
     right: 0;
     bottom: 0;
     margin: auto;
-    background-color: rgba($white, .8);
+    background-color: rgba($white, 0.8);
     transition: opacity ease $duration-fast;
     opacity: 0;
 
     @supports ((-webkit-backdrop-filter: blur(2px)) or (backdrop-filter: blur(2px))) {
-        background: rgba($white, .8);
+        background: rgba($white, 0.8);
         -webkit-backdrop-filter: blur(14px);
         backdrop-filter: blur(2px);
     }
-    
+
     &.active {
         opacity: 1;
         width: 100vw;

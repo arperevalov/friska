@@ -1,12 +1,12 @@
 $font-size-base: 16;
-$font-face: 'Manrope', 'Helvetica', 'Arial', sans-serif;
+$font-face: "Manrope", "Helvetica", "Arial", sans-serif;
 
-$primary: #30BCED;
-$secondary: #FC5130;
-$muted: #B8BDC2;
-$gray: #EFF0F0;
+$primary: #30bced;
+$secondary: #fc5130;
+$muted: #b8bdc2;
+$gray: #eff0f0;
 $black: #050401;
-$white: #FFFAFF;
+$white: #fffaff;
 
 $theme-colors: (
     "primary": $primary,
@@ -14,7 +14,7 @@ $theme-colors: (
     "muted": $muted,
     "gray": $gray,
     "black": $black,
-    "white": $white
+    "white": $white,
 );
 
 $duration-fast: 0.3s;

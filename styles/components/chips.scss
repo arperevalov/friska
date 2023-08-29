@@ -1,7 +1,7 @@
 .chips {
     @include make-row(var(--space-3xs), var(--space-3xs));
     flex-wrap: wrap;
-    
+
     &__item {
         @include make-col-ready();
     }

@@ -5,7 +5,7 @@
 
     &__title {
         margin-bottom: var(--space-2xs);
-        
+
         font-size: var(--step-0);
         line-height: 1.2;
         font-weight: 600;
@@ -21,7 +21,7 @@
     &__items {
         display: flex;
         flex-wrap: wrap;
-        @include make-row(var(--gap), var(--gap))
+        @include make-row(var(--gap), var(--gap));
     }
 
     &__item {
