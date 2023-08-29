@@ -14,5 +14,6 @@ export default function useCards() {
         };
 
         requestData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 }

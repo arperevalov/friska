@@ -13,5 +13,6 @@ export default function useLists() {
             setLists(requestJSON.lists);
         };
         requestLists();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 }

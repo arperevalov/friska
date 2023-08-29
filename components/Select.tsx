@@ -17,6 +17,7 @@ export const Select = (props: InputInterface) => {
 
     useEffect(() => {
         setFormData((previousValue: CardInterface) => ({ ...previousValue, [formKey]: inputValue }));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const onChange = (event: React.FormEvent<HTMLSelectElement>) => {
