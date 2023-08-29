@@ -1,4 +1,4 @@
 export default interface ListInterface {
-	title: string,
-	id: number
+    title: string;
+    id: number;
 }

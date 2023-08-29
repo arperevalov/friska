@@ -1,17 +1,17 @@
 import { useMainStore } from "@/store/MainStore";
 import { useEffect } from "react";
 
-export default function useLists () {
-    const {setLists, lists} = useMainStore(state=>state);
+export default function useLists() {
+    const { setLists, lists } = useMainStore((state) => state);
 
-    useEffect(()=>{
+    useEffect(() => {
         if (lists.length > 0) return;
-        
-        const requestLists = async () =>{
-            const request = await fetch('/api/lists')
+
+        const requestLists = async () => {
+            const request = await fetch("/api/lists");
             const requestJSON = await request.json();
-            setLists(requestJSON.lists)
-        }
+            setLists(requestJSON.lists);
+        };
         requestLists();
-    },[])
+    }, []);
 }
