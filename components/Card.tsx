@@ -45,12 +45,12 @@ export const Card = (props: CardInterface) => {
                         </div>
                     </div>
                     <div className="card__options">
-                        <Link href={`update/${id}`} className="link link--primary link--centered">
+                        <Link href={`update/${id}`} className="card__link link link--primary link--centered">
                             Edit
                         </Link>
                         <button
                             type="button"
-                            className="link link--secondary link--centered"
+                            className="card__link link link--secondary link--centered"
                             onClick={() => {
                                 removeCard(id);
                             }}
