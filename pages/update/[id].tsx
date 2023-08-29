@@ -10,7 +10,7 @@ import { useState } from "react";
 
 export default function Update() {
     const router = useRouter();
-    const { id } = router.query;
+    const id = router.query.id as string;
 
     const { updateCard, lists } = useMainStore((store) => store);
     const [formData, setFormData] = useState({});
@@ -19,7 +19,7 @@ export default function Update() {
         updateCard([formData]);
     };
 
-    const requestCard = async (id: any) => {
+    const requestCard = async (id: string) => {
         try {
             const request = await fetch(`/api/cards/${id}`);
             const requestJSON = await request.json();
