@@ -41,7 +41,7 @@ export default function Header(props: HeaderProps) {
                                             fill="none"
                                             xmlns="http://www.w3.org/2000/svg"
                                         >
-                                            <path d="M8 1L2 7L8 13" stroke="black" stroke-width="2" />
+                                            <path d="M8 1L2 7L8 13" stroke="black" strokeWidth="2" />
                                         </svg>
                                     </button>
                                 </div>
