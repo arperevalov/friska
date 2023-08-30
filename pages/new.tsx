@@ -18,7 +18,7 @@ export default function New() {
 
     return (
         <>
-            <Header />
+            <Header title="New" />
             <main>
                 <div className="container">
                     <form

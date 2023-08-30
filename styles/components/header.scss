@@ -25,9 +25,8 @@
     }
 
     &__top {
-        height: rem(48);
-        margin-top: rem(16);
-        padding: 0 var(--container-padding-x);
+        height: calc(var(--space-2xl) - var(--space-2xs));
+        align-items: center;
         display: flex;
         justify-content: center;
         width: 100%;
@@ -42,6 +41,35 @@
         left: 0;
         width: 100%;
         z-index: $zindex-header;
+    }
+
+    &__inner {
+        display: flex;
+        width: 100%;
+        max-width: var(--container-max-width);
+        padding: 0 var(--container-padding-x);
+        align-items: center;
+    }
+
+    &__element {
+        flex: 0 0 auto;
+        width: 20%;
+        display: flex;
+        align-items: flex-start;
+
+        &:last-child {
+            align-items: flex-end;
+        }
+    }
+
+    &__title {
+        flex: 0 0 auto;
+        width: 60%;
+        text-align: center;
+        font-size: var(--step-2);
+        letter-spacing: -0.04em;
+        font-weight: 600;
+        line-height: 1.2;
     }
 
     &__nav {

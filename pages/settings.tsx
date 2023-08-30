@@ -24,7 +24,7 @@ export default function Settings() {
 
     return (
         <>
-            <Header />
+            <Header title="Account" />
             <main>
                 <div className="container">
                     <label htmlFor="" className="input">

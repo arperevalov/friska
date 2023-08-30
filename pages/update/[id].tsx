@@ -43,7 +43,7 @@ export default function Update() {
 
     return (
         <>
-            <Header />
+            <Header title={card.title} />
             <main>
                 <div className="container">
                     <form
