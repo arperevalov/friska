@@ -27,18 +27,27 @@ export default function Settings() {
             <Header title="Account" />
             <main>
                 <div className="container">
-                    <label htmlFor="" className="input">
-                        <span className="input__label">Best before limit, days</span>
-                        <input
-                            onChange={(event) => {
-                                setDaysBeforeSetting(event.currentTarget.value);
-                            }}
-                            className="input__input"
-                            type="number"
-                            value={daysBeforeSetting}
-                            min="0"
-                        />
-                    </label>
+                    <div className="input-row">
+                        <div className="input-row__col">
+                            <label htmlFor="" className="input">
+                                <span className="input__label">Best before limit, days</span>
+                                <input
+                                    onChange={(event) => {
+                                        setDaysBeforeSetting(event.currentTarget.value);
+                                    }}
+                                    className="input__input"
+                                    type="number"
+                                    value={daysBeforeSetting}
+                                    min="0"
+                                />
+                            </label>
+                        </div>
+                        <div className="input-row__col">
+                            <p className="input-row__text">
+                                Set number of days when we should notify you about outdated products in your list
+                            </p>
+                        </div>
+                    </div>
 
                     <div className="input">
                         <span className="input__label">Categories</span>

@@ -7,4 +7,17 @@
         width: 50%;
         padding: 0 calc(var(--space-xs) * 0.5);
     }
+
+    &__text {
+        margin-top: var(--step-2);
+        font-size: var(--step-n1);
+        font-weight: 600;
+        line-height: 1.2;
+        letter-spacing: -0.04em;
+        color: $muted;
+
+        @include media-breakpoint-up(900px) {
+            width: 80%;
+        }
+    }
 }
