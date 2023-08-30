@@ -15,7 +15,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
                 {
                     id: 0,
                     title: id.toString(),
-                    expDate: "02.20.2023",
+                    expDate: new Date(),
                     left: 1,
                     units: "l",
                     listId: 1,

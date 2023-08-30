@@ -14,6 +14,8 @@ export const Card = (props: CardInterface) => {
         setActive(!active);
     };
 
+    const dateString = new Date(expDate).toLocaleDateString();
+
     const checkExpired = () => {
         const daysBeforeInMillisec = daysBeforeSetting * 24 * 60 * 60 * 1000;
         const date = new Date();
@@ -32,7 +34,7 @@ export const Card = (props: CardInterface) => {
                     >
                         <div className="card__top">
                             <div className="card__line">
-                                {expDate}
+                                {dateString}
                                 <div>exp</div>
                             </div>
                             <div className="card__line">

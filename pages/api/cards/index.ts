@@ -12,7 +12,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
             {
                 id: 0,
                 title: "Milk",
-                expDate: "02.20.2023",
+                expDate: new Date(),
                 left: 1,
                 units: "l",
                 listId: 0,
@@ -20,7 +20,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
             {
                 id: 1,
                 title: "sss",
-                expDate: "02.21.2023",
+                expDate: new Date(),
                 left: 1,
                 units: "l",
                 listId: 1,
@@ -28,7 +28,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
             {
                 id: 2,
                 title: "sss1",
-                expDate: "02.19.2023",
+                expDate: new Date(),
                 left: 1,
                 units: "l",
                 listId: 1,

@@ -6,7 +6,7 @@ import useLists from "@/hooks/useLists";
 import CardInterface from "@/interfaces/Card";
 import { useMainStore } from "@/store/MainStore";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Update() {
     const router = useRouter();
@@ -19,25 +19,26 @@ export default function Update() {
         updateCard([formData]);
     };
 
-    const requestCard = async (id: string) => {
-        try {
-            const request = await fetch(`/api/cards/${id}`);
-            const requestJSON = await request.json();
-            return requestJSON.cards[0];
-        } catch (error) {
-            Error("Dunno how");
-        }
-    };
-
     useLists();
 
     const [card, setCard] = useState<CardInterface | null>(null);
 
-    if (!id) return;
-
-    requestCard(id).then((result) => {
-        setCard(result);
-    });
+    useEffect(() => {
+        if (!id) return;
+        const requestCard = async (id: string) => {
+            try {
+                const request = await fetch(`/api/cards/${id}`);
+                const requestJSON = await request.json();
+                return requestJSON.cards[0];
+            } catch (error) {
+                Error("Dunno how");
+            }
+        };
+        requestCard(id).then((result) => {
+            setCard(result);
+        });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     if (!card) return;
 
@@ -71,7 +72,7 @@ export default function Update() {
                         />
                         <InputCalendar
                             label="Best Before"
-                            defaultValue={card.expDate}
+                            defaultValue={new Date(card.expDate).toLocaleDateString("sv-SE")}
                             setFormData={setFormData}
                             formKey="expDate"
                             required={true}
