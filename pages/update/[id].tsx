@@ -16,7 +16,7 @@ export default function Update() {
     const [formData, setFormData] = useState({});
 
     const submitForm = () => {
-        updateCard([formData]);
+        updateCard(formData);
     };
 
     useLists();
@@ -26,19 +26,20 @@ export default function Update() {
     useEffect(() => {
         if (!id) return;
         const requestCard = async (id: string) => {
-            try {
-                const request = await fetch(`/api/cards/${id}`);
-                const requestJSON = await request.json();
-                return requestJSON.cards[0];
-            } catch (error) {
-                Error("Dunno how");
-            }
+            const request = await fetch(`/api/cards/${id}`);
+            const requestJSON = await request.json();
+            return requestJSON.cards[0];
         };
         requestCard(id).then((result) => {
             setCard(result);
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    useEffect(() => {
+        if (!card) return;
+        setFormData((previousValue) => ({ ...previousValue, ...card }));
+    }, [card]);
 
     if (!card) return;
 
