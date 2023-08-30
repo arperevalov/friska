@@ -7,14 +7,14 @@ type Data = {
 };
 
 export default function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
-    const id = req.query.id;
+    const id = req.query.id as string;
 
     if (id) {
         res.status(200).json({
             cards: [
                 {
-                    id: 0,
-                    title: id.toString(),
+                    id: parseInt(id, 10),
+                    title: id,
                     expDate: new Date(),
                     left: 1,
                     units: "l",
