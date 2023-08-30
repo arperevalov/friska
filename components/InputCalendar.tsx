@@ -15,8 +15,9 @@ export const InputCalendar = (props: InputInterface) => {
 
     const onChange = (event: React.FormEvent<HTMLInputElement>) => {
         const value = event.currentTarget.value;
+        const date = new Date(value);
         setInputValue(value);
-        setFormData((previousValue: CardInterface) => ({ ...previousValue, [formKey]: value }));
+        setFormData((previousValue: CardInterface) => ({ ...previousValue, [formKey]: date }));
     };
 
     return (
