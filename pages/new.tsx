@@ -44,10 +44,22 @@ export default function New() {
                         />
                         <div className="input-row">
                             <div className="input-row__col">
-                                <Input type="number" label="Left" setFormData={setFormData} formKey="left" />
+                                <Input
+                                    type="number"
+                                    label="Left"
+                                    setFormData={setFormData}
+                                    formKey="left"
+                                    required={true}
+                                />
                             </div>
                             <div className="input-row__col">
-                                <Input type="text" label="Units" setFormData={setFormData} formKey="units" />
+                                <Input
+                                    type="text"
+                                    label="Units"
+                                    setFormData={setFormData}
+                                    formKey="units"
+                                    required={true}
+                                />
                             </div>
                         </div>
                         <button className="btn btn--primary" type="submit">

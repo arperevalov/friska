@@ -84,6 +84,7 @@ export default function Update() {
                                     defaultValue={card.left}
                                     setFormData={setFormData}
                                     formKey="left"
+                                    required={true}
                                 />
                             </div>
                             <div className="input-row__col">
@@ -93,6 +94,7 @@ export default function Update() {
                                     defaultValue={card.units}
                                     setFormData={setFormData}
                                     formKey="units"
+                                    required={true}
                                 />
                             </div>
                         </div>
