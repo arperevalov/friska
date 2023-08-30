@@ -56,14 +56,15 @@
         &::before {
             content: "";
             position: absolute;
-            right: rem(-8);
-            top: rem(-8);
-            width: rem(8);
-            height: rem(8);
+            right: 0;
+            top: 0;
+            transform: translate(50%, -50%);
+            width: var(--space-xs);
+            height: var(--space-xs);
             display: none;
             background: $secondary;
             border-radius: 50%;
-            border: rem(4) solid $white;
+            border: calc(var(--space-3xs) / 1.5) solid $white;
         }
     }
 
