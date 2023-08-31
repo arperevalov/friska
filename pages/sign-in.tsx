@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import { Input } from "@/components/Input";
 import { useState } from "react";
 
-export default function New() {
+export default function SignIn() {
     const [formData, setFormData] = useState({});
 
     const submitForm = () => {
