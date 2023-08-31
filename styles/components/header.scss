@@ -41,6 +41,7 @@
         left: 0;
         width: 100%;
         z-index: $zindex-header;
+        pointer-events: none;
     }
 
     &__inner {
@@ -78,6 +79,7 @@
         padding: var(--space-2xs);
         background: $black;
         border-radius: 50px;
+        pointer-events: all;
     }
 
     &__link {

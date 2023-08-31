@@ -1,6 +1,7 @@
 .container {
     width: 100%;
     padding: var(--container-padding-x);
+    padding-bottom: var(--space-3xl);
 
     @include media-breakpoint-up(900px) {
         max-width: var(--container-max-width);
