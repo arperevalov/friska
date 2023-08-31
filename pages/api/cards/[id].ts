@@ -1,4 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import Units from "@/enums/Units";
 import CardInterface from "@/interfaces/Card";
 import type { NextApiRequest, NextApiResponse } from "next";
 
@@ -17,7 +18,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
                     title: id,
                     expDate: new Date(),
                     left: 1,
-                    units: "l",
+                    units: Units.units,
                     listId: 1,
                 },
             ],

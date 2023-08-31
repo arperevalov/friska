@@ -2,6 +2,8 @@ import Header from "@/components/Header";
 import { Input } from "@/components/Input";
 import { InputCalendar } from "@/components/InputCalendar";
 import { Select } from "@/components/Select";
+import { SelectUnits } from "@/components/SelectUnits";
+import Units from "@/enums/Units";
 import useLists from "@/hooks/useLists";
 import { useMainStore } from "@/store/MainStore";
 import { useState } from "react";
@@ -9,6 +11,7 @@ import { useState } from "react";
 export default function New() {
     const { addCard, lists } = useMainStore((store) => store);
     const [formData, setFormData] = useState({});
+    const units = Object.keys(Units);
 
     const submitForm = () => {
         addCard(formData);
@@ -53,9 +56,9 @@ export default function New() {
                                 />
                             </div>
                             <div className="input-row__col">
-                                <Input
-                                    type="text"
+                                <SelectUnits
                                     label="Units"
+                                    values={units}
                                     setFormData={setFormData}
                                     formKey="units"
                                     required={true}

@@ -38,7 +38,7 @@ export const Card = (props: CardInterface) => {
                                 <div>exp</div>
                             </div>
                             <div className="card__line">
-                                {left + units}
+                                {`${left} ${units}`}
                                 <div>left</div>
                             </div>
                         </div>
