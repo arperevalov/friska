@@ -12,6 +12,8 @@ interface MainStoreInterface {
     addList: CallableFunction;
     initCards: CallableFunction;
     removeList: CallableFunction;
+    incrementCardLeft: CallableFunction;
+    decrementCardLeft: CallableFunction;
 }
 
 export const useMainStore = create<MainStoreInterface>((set) => ({
@@ -47,6 +49,40 @@ export const useMainStore = create<MainStoreInterface>((set) => ({
             });
             state.cards.splice(index, 1);
             return { cards: [...state.cards] };
+        }),
+    incrementCardLeft: (id: number) =>
+        set((state) => {
+            const index = state.cards.findIndex((item) => {
+                return id === item.id;
+            });
+
+            const left = state.cards[index].left + 1;
+
+            state.cards[index] = {
+                ...state.cards[index],
+                left,
+            };
+
+            return {
+                cards: [...state.cards],
+            };
+        }),
+    decrementCardLeft: (id: number) =>
+        set((state) => {
+            const index = state.cards.findIndex((item) => {
+                return id === item.id;
+            });
+
+            const left = state.cards[index].left > 0 ? state.cards[index].left - 1 : 0;
+
+            state.cards[index] = {
+                ...state.cards[index],
+                left,
+            };
+
+            return {
+                cards: [...state.cards],
+            };
         }),
     setLists: (lists: ListInterface[]) =>
         set(() => {

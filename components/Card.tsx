@@ -6,12 +6,20 @@ import { useMainStore } from "@/store/MainStore";
 
 export const Card = (props: CardInterface) => {
     const { daysBeforeSetting } = useSettingsStore((store) => store);
-    const { removeCard } = useMainStore((store) => store);
+    const { removeCard, incrementCardLeft, decrementCardLeft } = useMainStore((store) => store);
     const [active, setActive] = useState(false);
     const { id, title, expDate, left, units } = props;
 
     const toggleActive = () => {
         setActive(!active);
+    };
+
+    const onIncrementClick = () => {
+        incrementCardLeft(id);
+    };
+
+    const onDecrementClick = () => {
+        decrementCardLeft(id);
     };
 
     const dateString = new Date(expDate).toLocaleDateString();
@@ -60,10 +68,10 @@ export const Card = (props: CardInterface) => {
                             Remove
                         </button>
                         <div className="card__btns">
-                            <button type="button" className="btn btn--sm btn--secondary">
+                            <button type="button" className="btn btn--sm btn--secondary" onClick={onDecrementClick}>
                                 -1
                             </button>
-                            <button type="button" className="btn btn--sm btn--primary">
+                            <button type="button" className="btn btn--sm btn--primary" onClick={onIncrementClick}>
                                 +1
                             </button>
                         </div>
