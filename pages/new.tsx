@@ -10,11 +10,24 @@ import { useState } from "react";
 
 export default function New() {
     const { addCard, lists } = useMainStore((store) => store);
-    const [formData, setFormData] = useState({});
+    const [formData, setFormData] = useState({
+        id: null,
+        title: "",
+        expDate: new Date(),
+        left: "",
+        units: Units.kg,
+        listId: 0,
+    });
     const units = Object.keys(Units);
 
     const submitForm = () => {
-        addCard(formData);
+        if (formData) {
+            const formattedData = {
+                ...formData,
+                left: parseInt(formData.left, 10),
+            };
+            addCard(formattedData);
+        }
     };
 
     useLists();
