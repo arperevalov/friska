@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import { Input } from "@/components/Input";
+import { InputAction } from "@/components/InputAction";
 import { useState } from "react";
 
 export default function SignUp() {
@@ -8,6 +9,8 @@ export default function SignUp() {
     const submitForm = () => {
         console.log(formData);
     };
+
+    const callAction = () => {};
 
     return (
         <>
@@ -23,7 +26,14 @@ export default function SignUp() {
                         }}
                     >
                         <Input type="text" label="Login" setFormData={setFormData} formKey="login" required={true} />
-                        <Input type="email" label="E-mail" setFormData={setFormData} formKey="email" required={true} />
+                        <InputAction
+                            type="email"
+                            label="E-mail"
+                            setFormData={setFormData}
+                            formKey="email"
+                            required={true}
+                            buttonAction={callAction}
+                        />
                         <Input
                             type="password"
                             label="Password"
