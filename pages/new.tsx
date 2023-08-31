@@ -25,6 +25,7 @@ export default function New() {
             <main>
                 <div className="container">
                     <form
+                        className="form"
                         action="#"
                         onSubmit={(event: React.FormEvent) => {
                             event.preventDefault();
@@ -65,7 +66,7 @@ export default function New() {
                                 />
                             </div>
                         </div>
-                        <button className="btn btn--primary" type="submit">
+                        <button className="form__btn btn btn--primary" type="submit">
                             Add new
                         </button>
                     </form>
