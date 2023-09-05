@@ -11,10 +11,11 @@ export interface InputActionInterface {
     formKey: string;
     required?: boolean;
     buttonAction: CallableFunction;
+    buttonText: string;
 }
 
 export const InputAction = (props: InputActionInterface) => {
-    const { label, defaultValue, type, min, max, setFormData, formKey, required, buttonAction } = props;
+    const { label, defaultValue, type, min, max, setFormData, formKey, required, buttonAction, buttonText } = props;
     const [inputValue, setInputValue] = useState(defaultValue ? defaultValue : "");
 
     const onChange = (event: React.FormEvent<HTMLInputElement>) => {
@@ -41,7 +42,7 @@ export const InputAction = (props: InputActionInterface) => {
                     required={required}
                 />
                 <button className="input__button link link--primary" type="button" onClick={onButtonClick}>
-                    Add Category
+                    {buttonText}
                 </button>
             </label>
         </>

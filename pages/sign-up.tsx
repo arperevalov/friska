@@ -33,6 +33,7 @@ export default function SignUp() {
                             formKey="email"
                             required={true}
                             buttonAction={callAction}
+                            buttonText="Validate"
                         />
                         <Input
                             type="password"
