@@ -1,0 +1,27 @@
+.intro {
+    &__logo {
+        display: flex;
+        align-items: center;
+        height: var(--space-l);
+        padding: var(--space-3xs) var(--space-s);
+        background: $black;
+        border-radius: 50px;
+        font-size: var(--step-2);
+        line-height: 1;
+        margin: 0;
+        font-weight: 700;
+        color: $white;
+        letter-spacing: -0.05em;
+        text-transform: uppercase;
+    }
+
+    &__logo-icon {
+        display: block;
+        height: 100%;
+        position: relative;
+        aspect-ratio: 1/1;
+        margin-left: calc(var(--space-2xs) * -1);
+        margin-right: var(--space-3xs);
+    }
+
+}
