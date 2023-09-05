@@ -11,6 +11,7 @@
     --btn-font-weight: 600;
     --btn-border-width: 1px;
     --btn-border-color: #{$gray};
+    --btn-hover-border-color: #{$gray};
 
     background: var(--btn-bg);
     color: var(--btn-color);
@@ -27,6 +28,7 @@
     &:hover {
         background: var(--btn-hover-bg);
         color: var(--btn-hover-color);
+        border-color: var(--btn-hover-border-color);
     }
 
     @each $color, $value in $theme-colors {
@@ -35,6 +37,17 @@
             --btn-color: #{$black};
             --btn-hover-bg: #{rgba($value, 0.7)};
             --btn-hover-color: #{$black};
+        }
+    }
+
+    @each $color, $value in $theme-colors {
+        &--outline-#{$color} {
+            --btn-bg: transparent;
+            --btn-color: #{$black};
+            --btn-hover-bg: transparent;
+            --btn-hover-color: #{$black};
+            --btn-border-color: #{$value};
+            --btn-hover-border-color: #{rgba($value, 0.7)};
         }
     }
 
