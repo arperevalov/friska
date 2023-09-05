@@ -6,6 +6,7 @@ import { SelectUnits } from "@/components/SelectUnits";
 import Units from "@/enums/Units";
 import useLists from "@/hooks/useLists";
 import { useMainStore } from "@/store/MainStore";
+import Head from "next/head";
 import { useState } from "react";
 
 export default function New() {
@@ -34,6 +35,12 @@ export default function New() {
 
     return (
         <>
+            <Head>
+                <title>New Card — Friska</title>
+                <meta name="description" content="Storage management app" />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
             <Header title="New" />
             <main>
                 <div className="container">

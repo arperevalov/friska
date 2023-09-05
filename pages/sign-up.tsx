@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import { Input } from "@/components/Input";
 import { InputAction } from "@/components/InputAction";
+import Head from "next/head";
 import { useState } from "react";
 
 export default function SignUp() {
@@ -14,6 +15,12 @@ export default function SignUp() {
 
     return (
         <>
+            <Head>
+                <title>Sign-up — Friska</title>
+                <meta name="description" content="Storage management app" />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
             <Header title="Sign-up" />
             <main>
                 <div className="container">

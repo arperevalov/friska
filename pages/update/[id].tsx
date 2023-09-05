@@ -7,6 +7,7 @@ import Units from "@/enums/Units";
 import useLists from "@/hooks/useLists";
 import CardInterface from "@/interfaces/Card";
 import { useMainStore } from "@/store/MainStore";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -48,6 +49,12 @@ export default function Update() {
 
     return (
         <>
+            <Head>
+                <title>Edit {card.title} — Friska</title>
+                <meta name="description" content="Storage management app" />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
             <Header title={card.title} />
             <main>
                 <div className="container">

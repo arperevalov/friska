@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import useLists from "@/hooks/useLists";
 import { useMainStore } from "@/store/MainStore";
 import { useSettingsStore } from "@/store/SettingsStore";
+import Head from "next/head";
 import { FormEvent, useState } from "react";
 
 export default function Settings() {
@@ -24,6 +25,12 @@ export default function Settings() {
 
     return (
         <>
+            <Head>
+                <title>Account — Friska</title>
+                <meta name="description" content="Storage management app" />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
             <Header title="Account" />
             <main>
                 <div className="container">
