@@ -20,10 +20,9 @@ export const useMainStore = create<MainStoreInterface>((set) => ({
     lists: [],
     cards: [],
     initCards: (cards: CardInterface[]) =>
-        set((state) => {
-            const newCards = cards.map((card, index) => {
-                const id = card.id ? card.id : state.cards.length + index;
-                return { ...card, id };
+        set(() => {
+            const newCards = cards.map((card) => {
+                return { ...card};
             });
             return {
                 cards: [...newCards],
@@ -31,8 +30,7 @@ export const useMainStore = create<MainStoreInterface>((set) => ({
         }),
     addCard: (card: CardInterface) =>
         set((state) => {
-            const id = card.id ? card.id : state.cards.length + 1;
-            return { cards: [...state.cards, { ...card, id }] };
+            return { cards: [...state.cards, { ...card }] };
         }),
     updateCard: (card: CardInterface) =>
         set((state) => {
