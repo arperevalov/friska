@@ -22,7 +22,7 @@ export const useMainStore = create<MainStoreInterface>((set) => ({
     initCards: (cards: CardInterface[]) =>
         set(() => {
             const newCards = cards.map((card) => {
-                return { ...card};
+                return { ...card };
             });
             return {
                 cards: [...newCards],

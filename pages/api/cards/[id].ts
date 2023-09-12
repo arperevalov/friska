@@ -1,5 +1,4 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import Units from "@/enums/Units";
 import CardInterface from "@/interfaces/Card";
 import type { NextApiRequest, NextApiResponse } from "next";
 
@@ -11,18 +10,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
     const id = req.query.id as string;
 
     if (id) {
-        res.status(200).json({
-            cards: [
-                {
-                    id: parseInt(id, 10),
-                    title: id,
-                    expDate: new Date(),
-                    left: 1,
-                    units: Units.units,
-                    listId: 1,
-                },
-            ],
-        });
+        fetch(`http://localhost:3004/cards?id=${id}`)
+            .then((response) => {
+                return response.json();
+            })
+            .then((response) => {
+                console.log(response);
+                res.status(200).json({ cards: response });
+            });
     } else {
         res.status(200).json({ cards: [] });
     }
