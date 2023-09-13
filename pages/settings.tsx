@@ -19,8 +19,8 @@ export default function Settings() {
         fetch("/api/lists", {
             method: "post",
             body: JSON.stringify({
-            title: newListValue,
-        }),
+                title: newListValue,
+            }),
         })
             .then((response) => {
                 return response.json();
@@ -28,7 +28,7 @@ export default function Settings() {
             .then((response) => {
                 if (response) {
                     const formattedData = {
-                        ...response.lists
+                        ...response.lists,
                     };
                     addList(formattedData);
                 }
@@ -105,7 +105,7 @@ export default function Settings() {
                                               </button>
                                           </div>
                                       </div>
-                                ))
+                                  ))
                                 : ""}
                         </div>
                     </div>
