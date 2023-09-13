@@ -7,11 +7,14 @@ type Data = {
 };
 
 export default function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
-    fetch("http://localhost:3004/cards")
-        .then((response) => {
-            return response.json();
-        })
-        .then((response) => {
-            res.status(200).json({ cards: response });
-        });
+    console.log(req.body);
+    fetch('http://localhost:3004/cards', {
+        method: req.method ? req.method : 'get',
+        headers: new Headers({'content-type': 'application/json'}),
+        body: req.body ? req.body : null
+    }).then(response => {
+        return response.json();
+    }).then((response) => {
+        res.status(200).json({cards: response});
+    })
 }

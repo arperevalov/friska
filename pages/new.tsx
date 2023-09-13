@@ -12,7 +12,6 @@ import { useState } from "react";
 export default function New() {
     const { addCard, lists } = useMainStore((store) => store);
     const [formData, setFormData] = useState({
-        id: null,
         title: "",
         expDate: new Date(),
         left: "",
@@ -22,13 +21,21 @@ export default function New() {
     const units = Object.keys(Units);
 
     const submitForm = () => {
-        if (formData) {
-            const formattedData = {
-                ...formData,
-                left: parseInt(formData.left, 10),
-            };
-            addCard(formattedData);
-        }
+        fetch('/api/cards', {
+            method: 'post',
+            body: JSON.stringify(formData)
+        }).then((response)=> {
+            return response.json()
+        })
+        .then((response) => {
+            if (response) {
+                const formattedData = {
+                    response,
+                    left: parseInt(response.left, 10),
+                };
+                addCard(formattedData);
+            }
+        })
     };
 
     useLists();
