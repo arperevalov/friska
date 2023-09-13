@@ -16,11 +16,23 @@ export default function Settings() {
     const createList = (event: FormEvent) => {
         event.preventDefault();
 
-        addList({
+        fetch("/api/lists", {
+            method: "post",
+            body: JSON.stringify({
             title: newListValue,
-            id: lists.length,
-        });
-        setNewListValue("");
+        }),
+        })
+            .then((response) => {
+                return response.json();
+            })
+            .then((response) => {
+                if (response) {
+                    const formattedData = {
+                        ...response.lists
+                    };
+                    addList(formattedData);
+                }
+            });
     };
 
     return (
@@ -93,7 +105,7 @@ export default function Settings() {
                                               </button>
                                           </div>
                                       </div>
-                                  ))
+                                ))
                                 : ""}
                         </div>
                     </div>

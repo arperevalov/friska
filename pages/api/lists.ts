@@ -7,7 +7,11 @@ type Data = {
 };
 
 export default function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
-    fetch("http://localhost:3004/lists")
+    fetch("http://localhost:3004/lists", {
+        method: req.method ? req.method : "get",
+        headers: new Headers({ "content-type": "application/json" }),
+        body: req.body ? req.body : null,
+    })
         .then((response) => {
             return response.json();
         })
