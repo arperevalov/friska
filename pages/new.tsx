@@ -21,21 +21,22 @@ export default function New() {
     const units = Object.keys(Units);
 
     const submitForm = () => {
-        fetch('/api/cards', {
-            method: 'post',
-            body: JSON.stringify(formData)
-        }).then((response)=> {
-            return response.json()
+        fetch("/api/cards", {
+            method: "post",
+            body: JSON.stringify(formData),
         })
-        .then((response) => {
-            if (response) {
-                const formattedData = {
-                    response,
-                    left: parseInt(response.left, 10),
-                };
-                addCard(formattedData);
-            }
-        })
+            .then((response) => {
+                return response.json();
+            })
+            .then((response) => {
+                if (response) {
+                    const formattedData = {
+                        response,
+                        left: parseInt(response.left, 10),
+                    };
+                    addCard(formattedData);
+                }
+            });
     };
 
     useLists();
