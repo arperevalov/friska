@@ -13,7 +13,7 @@ export default function Settings() {
 
     useLists();
 
-    const createList = (event: FormEvent) => {
+    const fetchCreateList = (event: FormEvent) => {
         event.preventDefault();
 
         fetch("/api/lists", {
@@ -34,6 +34,16 @@ export default function Settings() {
                 }
             });
     };
+
+    const fetchRemoveList = (id: number) => {
+        fetch(`/api/lists/${id}`, {
+            method: "delete",
+        }).then((response)=> {
+            if (response.ok) {
+                removeList(id);
+            }
+        })
+    }
 
     return (
         <>
@@ -80,7 +90,7 @@ export default function Settings() {
                                                   type="button"
                                                   className="chips__remove"
                                                   onClick={() => {
-                                                      removeList(list.id);
+                                                      fetchRemoveList(list.id);
                                                   }}
                                               >
                                                   <svg
@@ -109,7 +119,7 @@ export default function Settings() {
                                 : ""}
                         </div>
                     </div>
-                    <form onSubmit={createList}>
+                    <form onSubmit={fetchCreateList}>
                         <label htmlFor="" className="input">
                             <input
                                 className="input__input"
