@@ -38,12 +38,12 @@ export default function Settings() {
     const fetchRemoveList = (id: number) => {
         fetch(`/api/lists/${id}`, {
             method: "delete",
-        }).then((response)=> {
+        }).then((response) => {
             if (response.ok) {
                 removeList(id);
             }
-        })
-    }
+        });
+    };
 
     return (
         <>
