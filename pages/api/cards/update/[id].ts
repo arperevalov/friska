@@ -10,7 +10,11 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
     const id = req.query.id as string;
 
     if (id) {
-        fetch(`http://localhost:3004/cards?id=${id}`)
+        fetch(`http://localhost:3004/cards/${id}`, {
+            method: "put",
+            headers: new Headers({ "content-type": "application/json" }),
+            body: req.body,
+        })
             .then((response) => {
                 return response.json();
             })

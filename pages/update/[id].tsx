@@ -20,7 +20,17 @@ export default function Update() {
     const units = Object.keys(Units);
 
     const submitForm = () => {
-        updateCard(formData);
+        fetch(`/api/cards/update/${id}`, {
+            method: "put",
+            body: JSON.stringify(formData),
+        })
+            .then((response) => {
+                return response.json();
+            })
+            .then(() => {
+                updateCard(formData);
+                router.push("/");
+            });
     };
 
     useLists();
