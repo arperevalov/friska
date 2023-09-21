@@ -22,6 +22,14 @@ export const Card = (props: CardInterface) => {
         decrementCardLeft(id);
     };
 
+    const fetchRemoveCard = () => {
+        fetch(`/api/cards/remove/${id}`).then((response) => {
+            if (response.ok) {
+                removeCard(id);
+            }
+        });
+    };
+
     const dateString = new Date(expDate).toLocaleDateString();
 
     const checkExpired = () => {
@@ -61,9 +69,7 @@ export const Card = (props: CardInterface) => {
                         <button
                             type="button"
                             className="card__link link link--secondary link--centered"
-                            onClick={() => {
-                                removeCard(id);
-                            }}
+                            onClick={fetchRemoveCard}
                         >
                             Remove
                         </button>
