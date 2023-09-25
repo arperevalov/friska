@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import useLists from "@/hooks/useLists";
 import { useMainStore } from "@/store/MainStore";
 import { useSettingsStore } from "@/store/SettingsStore";
+import axios from "axios";
 import Head from "next/head";
 import { FormEvent, useState } from "react";
 
@@ -16,14 +17,11 @@ export default function Settings() {
     const fetchCreateList = (event: FormEvent) => {
         event.preventDefault();
 
-        fetch("/api/lists", {
-            method: "post",
-            body: JSON.stringify({
-                title: newListValue,
-            }),
+        axios.post("/api/lists", {
+            title: newListValue,
         })
             .then((response) => {
-                return response.json();
+                return response.data;
             })
             .then((response) => {
                 if (response) {
@@ -36,10 +34,8 @@ export default function Settings() {
     };
 
     const fetchRemoveList = (id: number) => {
-        fetch(`/api/lists/${id}`, {
-            method: "delete",
-        }).then((response) => {
-            if (response.ok) {
+        axios.delete(`/api/lists/${id}`).then((response) => {
+            if (response.statusText === "OK") {
                 removeList(id);
             }
         });

@@ -1,4 +1,5 @@
 import { useMainStore } from "@/store/MainStore";
+import axios from "axios";
 import { useEffect } from "react";
 
 export default function useCards() {
@@ -8,8 +9,8 @@ export default function useCards() {
         if (cards.length > 0) return;
 
         const requestData = async () => {
-            const request = await fetch("/api/cards");
-            const requestJSON = await request.json();
+            const request = await axios.get("/api/cards");
+            const requestJSON = await request.data;
             initCards(requestJSON.cards);
         };
 

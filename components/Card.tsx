@@ -3,6 +3,7 @@ import CardInterface from "@/interfaces/Card";
 import { useSettingsStore } from "@/store/SettingsStore";
 import Link from "next/link";
 import { useMainStore } from "@/store/MainStore";
+import axios from "axios";
 
 export const Card = (props: CardInterface) => {
     const { daysBeforeSetting } = useSettingsStore((store) => store);
@@ -23,8 +24,8 @@ export const Card = (props: CardInterface) => {
     };
 
     const fetchRemoveCard = () => {
-        fetch(`/api/cards/remove/${id}`).then((response) => {
-            if (response.ok) {
+        axios.get(`/api/cards/remove/${id}`).then((response) => {
+            if (response.statusText === "OK") {
                 removeCard(id);
             }
         });

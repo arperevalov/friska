@@ -7,6 +7,7 @@ import Units from "@/enums/Units";
 import useLists from "@/hooks/useLists";
 import CardInterface from "@/interfaces/Card";
 import { useMainStore } from "@/store/MainStore";
+import axios from "axios";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -20,12 +21,9 @@ export default function Update() {
     const units = Object.keys(Units);
 
     const submitForm = () => {
-        fetch(`/api/cards/update/${id}`, {
-            method: "put",
-            body: JSON.stringify(formData),
-        })
+        axios.put(`/api/cards/update/${id}`, formData)
             .then((response) => {
-                return response.json();
+                return response.data;
             })
             .then(() => {
                 updateCard(formData);
@@ -40,8 +38,8 @@ export default function Update() {
     useEffect(() => {
         if (!id) return;
         const requestCard = async (id: string) => {
-            const request = await fetch(`/api/cards/${id}`);
-            const requestJSON = await request.json();
+            const request = await axios.get(`/api/cards/${id}`);
+            const requestJSON = await request.data;
             return requestJSON.cards[0];
         };
         requestCard(id).then((result) => {

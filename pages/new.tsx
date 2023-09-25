@@ -6,6 +6,7 @@ import { SelectUnits } from "@/components/SelectUnits";
 import Units from "@/enums/Units";
 import useLists from "@/hooks/useLists";
 import { useMainStore } from "@/store/MainStore";
+import axios from "axios";
 import Head from "next/head";
 import { useState } from "react";
 
@@ -21,23 +22,19 @@ export default function New() {
     const units = Object.keys(Units);
 
     const submitForm = () => {
-        fetch("/api/cards", {
-            method: "post",
-            body: JSON.stringify(formData),
-        })
-            .then((response) => {
-                return response.json();
-            })
-            .then((response) => {
-                if (response) {
-                    const formattedData = {
-                        response,
-                        left: parseInt(response.left, 10),
-                    };
-                    addCard(formattedData);
-                }
-            });
-    };
+        axios
+          .post('/api/cards', formData)
+          .then((response) => {
+            const responseData = response.data;
+            if (responseData) {
+              const formattedData = {
+                response: responseData,
+                left: parseInt(responseData.left, 10),
+              };
+              addCard(formattedData);
+            }
+          });
+      };
 
     useLists();
 

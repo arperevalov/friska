@@ -1,4 +1,5 @@
 import { useMainStore } from "@/store/MainStore";
+import axios from "axios";
 import { useEffect } from "react";
 
 export default function useLists() {
@@ -8,8 +9,8 @@ export default function useLists() {
         if (lists.length > 0) return;
 
         const requestLists = async () => {
-            const request = await fetch("/api/lists");
-            const requestJSON = await request.json();
+            const request = await axios.get("/api/lists");
+            const requestJSON = await request.data;
             setLists(requestJSON.lists);
         };
         requestLists();
