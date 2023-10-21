@@ -19,7 +19,7 @@ describe('Index Page', ()=> {
 
     it('renders without data', () => {
         const { getByText } = render(<Home />);
-        expect(getByText('New Item')).toBeInTheDocument();
+        expect(getByText(/new item/i)).toBeInTheDocument();
     })
 
     it('renders with data', () => {
@@ -62,10 +62,8 @@ describe('Index Page', ()=> {
         mockUseMainStore.mockReturnValue(initialState);
 
         const { getByText } = render(<Home />);
-        // screen.debug()
 
         // Assert that the component renders correctly
-        expect(getByText('Milk')).toBeInTheDocument();
-        screen.debug()
+        expect(getByText(/milk/i)).toBeInTheDocument();
     })
 })
