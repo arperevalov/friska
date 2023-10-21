@@ -12,11 +12,35 @@ export default function Home() {
     useLists();
     useCards();
 
+    if (lists === undefined || lists.length <= 0) {
+        return <>
+                <Head>
+                    <title>Friska</title>
+                    <meta name="description" content="" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1" />
+                    <link rel="icon" href="/favicon.ico" />
+                </Head>
+                <Header />
+            </>
+    }
+
+    if (cards === undefined || cards.length <= 0) {
+        return <>
+                <Head>
+                    <title>Friska</title>
+                    <meta name="description" content="" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1" />
+                    <link rel="icon" href="/favicon.ico" />
+                </Head>
+                <Header />
+            </>
+    }
+
     return (
         <>
             <Head>
                 <title>Friska</title>
-                <meta name="description" content="Storage management app" />
+                <meta name="description" content="" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
