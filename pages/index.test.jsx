@@ -47,7 +47,7 @@ beforeEach(() => {
   useMainStore.mockClear();
 });
 
-describe('Home component', () => {
+describe('Home page', () => {
     it('renders without data', () => {
         useMainStore.mockReturnValue(emptyStore);
 
