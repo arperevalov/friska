@@ -7,26 +7,10 @@ import useLists from "@/hooks/useLists";
 import useCards from "@/hooks/useCards";
 
 export default function Home() {
-    const { lists, cards } = useMainStore((store) => store);
+    const { lists, cards } = useMainStore();
 
     useLists();
     useCards();
-
-    const renderEmpty = () => {
-        return <>
-                <Head>
-                    <title>Friska</title>
-                    <meta name="description" content="" />
-                    <meta name="viewport" content="width=device-width, initial-scale=1" />
-                    <link rel="icon" href="/favicon.ico" />
-                </Head>
-                <Header />
-            </>
-    }
-
-    if (lists === undefined || cards === undefined) {
-        renderEmpty()
-    }
 
     return (
         <>
@@ -39,8 +23,7 @@ export default function Home() {
             <Header />
             <main>
                 <div className="container">
-                    {lists?.length > 0
-                        ? lists.map((list) => {
+                    {lists.map((list) => {
                               return (
                                   <div className="list" key={list.id}>
                                       <div className="list__header">
@@ -57,8 +40,7 @@ export default function Home() {
                                       </div>
                                   </div>
                               );
-                          })
-                        : ""}
+                          })}
                 </div>
             </main>
         </>

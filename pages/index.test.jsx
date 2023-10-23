@@ -1,69 +1,70 @@
-import useLists from "@/hooks/useLists";
-import useCards from '@/hooks/useCards';
-import { render, screen } from "@testing-library/react";
-import Home from ".";
+import React from 'react';
+import { render } from '@testing-library/react';
+import { useMainStore } from '@/store/MainStore';
+import Home from '@/pages/index';
+
+jest.mock('@/store/MainStore');
 jest.mock("@/hooks/useLists");
 jest.mock("@/hooks/useCards");
-const mockUseMainStore = jest.fn();
 
-describe('Index Page', ()=> {
-    beforeEach(() => {
-        useLists.mockClear();
-        useCards.mockClear();
-        jest.mock('@/store/MainStore', () => ({
-          useMainStore: mockUseMainStore,
-        }));
-        // Reset the mock calls for each test
-        mockUseMainStore.mockReset();
-    })
-
-    it('renders without data', () => {
-        const { getByText } = render(<Home />);
-        expect(getByText(/new item/i)).toBeInTheDocument();
-    })
-
-    it('renders with data', () => {
-
-        const mockUseLists = jest.fn();
-        const mockUseCards = jest.fn();
-        jest.mock('@/hooks/useLists', () => mockUseLists);
-        jest.mock('@/hooks/useCards', () => mockUseCards);
-        const initialState = {
-        cards: [
-            {
-                id: 0,
-                title: "Milk",
-                expDate: "Tue Sep 12 2023 23:39:55 GMT+0700 (Krasnoyarsk Standard Time)",
-                left: 1,
-                units: "kg",
-                listId: 0
-            },
-            {
-                id: 1,
-                title: "sss",
-                expDate: "Tue Sep 12 2023 23:39:55 GMT+0700 (Krasnoyarsk Standard Time)",
-                left: 1,
-                units: "l",
-                listId: 1
-            },
+const mockStore = {
+    cards: [
+        {
+            id: 0,
+            title: "Milk",
+            expDate: "Tue Sep 12 2023 23:39:55 GMT+0700 (Krasnoyarsk Standard Time)",
+            left: 1,
+            units: "kg",
+            listId: 0
+        },
+        {
+            id: 1,
+            title: "sss",
+            expDate: "Tue Sep 12 2023 23:39:55 GMT+0700 (Krasnoyarsk Standard Time)",
+            left: 1,
+            units: "l",
+            listId: 1
+        },
         ],
         lists: [
-            {
+        {
             title: "Fridge",
             id: 0
-            },
-            {
+        },
+        {
             title: "Shelf",
             id: 1
-            }
-        ],
-            initCards: jest.fn(),
-        };
-        mockUseMainStore.mockReturnValue(initialState);
+        }
+    ],
+};
+
+const emptyStore = {
+    cards: [],
+    lists: []
+}
+
+beforeEach(() => {
+  useMainStore.mockClear();
+});
+
+describe('Home component', () => {
+    it('renders without data', () => {
+        useMainStore.mockReturnValue(emptyStore);
 
         const { getByText } = render(<Home />);
 
-        // Assert that the component renders correctly
-        expect(getByText(/milk/i)).toBeInTheDocument();
-    })
-})
+        const settingsText = getByText(/settings/i);
+        expect(settingsText).toBeInTheDocument();
+    });
+
+    it('renders correctly', () => {
+        useMainStore.mockReturnValue(mockStore);
+
+        const { getByText } = render(<Home />);
+        
+        const listText = getByText(/fridge/i);
+        const cardText = getByText(/milk/i);
+        expect(listText).toBeInTheDocument();
+        expect(cardText).toBeInTheDocument();
+    });
+});
