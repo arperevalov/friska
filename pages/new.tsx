@@ -22,18 +22,21 @@ export default function New() {
 
     const submitForm = () => {
         fetch("/api/cards", {
-            method: 'post',
-            body: JSON.stringify(formData)
-        }).then((response) => {
-            const responseData = response.json();
-            if (responseData) {
-                const formattedData = {
-                    response: responseData,
-                    left: parseInt(responseData.left, 10),
-                };
-                addCard(formattedData);
-            }
-        });
+            method: "post",
+            body: JSON.stringify(formData),
+        })
+            .then((response) => {
+                return response.json();
+            })
+            .then((response) => {
+                if (response) {
+                    const formattedData = {
+                        response,
+                        left: parseInt(response.left, 10),
+                    };
+                    addCard(formattedData);
+                }
+            });
     };
 
     useLists();
