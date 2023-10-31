@@ -1,9 +1,9 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import { useMainStore } from '@/store/MainStore';
-import Home from '@/pages/index';
+import React from "react";
+import { render } from "@testing-library/react";
+import { useMainStore } from "@/store/MainStore";
+import Home from "@/pages/index";
 
-jest.mock('@/store/MainStore');
+jest.mock("@/store/MainStore");
 jest.mock("@/hooks/useLists");
 jest.mock("@/hooks/useCards");
 
@@ -15,7 +15,7 @@ const mockStore = {
             expDate: "Tue Sep 12 2023 23:39:55 GMT+0700 (Krasnoyarsk Standard Time)",
             left: 1,
             units: "kg",
-            listId: 0
+            listId: 0,
         },
         {
             id: 1,
@@ -23,32 +23,32 @@ const mockStore = {
             expDate: "Tue Sep 12 2023 23:39:55 GMT+0700 (Krasnoyarsk Standard Time)",
             left: 1,
             units: "l",
-            listId: 1
+            listId: 1,
         },
-        ],
-        lists: [
+    ],
+    lists: [
         {
             title: "Fridge",
-            id: 0
+            id: 0,
         },
         {
             title: "Shelf",
-            id: 1
-        }
+            id: 1,
+        },
     ],
 };
 
 const emptyStore = {
     cards: [],
-    lists: []
-}
+    lists: [],
+};
 
 beforeEach(() => {
-  useMainStore.mockClear();
+    useMainStore.mockClear();
 });
 
-describe('Home page', () => {
-    it('renders without data', () => {
+describe("Home page", () => {
+    it("renders without data", () => {
         useMainStore.mockReturnValue(emptyStore);
 
         const { getByText } = render(<Home />);
@@ -57,11 +57,11 @@ describe('Home page', () => {
         expect(settingsText).toBeInTheDocument();
     });
 
-    it('renders correctly', () => {
+    it("renders correctly", () => {
         useMainStore.mockReturnValue(mockStore);
 
         const { getByText } = render(<Home />);
-        
+
         const listText = getByText(/fridge/i);
         const cardText = getByText(/milk/i);
         expect(listText).toBeInTheDocument();

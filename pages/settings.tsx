@@ -17,10 +17,10 @@ export default function Settings() {
         event.preventDefault();
 
         fetch("/api/lists", {
-            method: 'post',
+            method: "post",
             body: JSON.stringify({
                 title: newListValue,
-            })
+            }),
         })
             .then((response) => {
                 return response.json();
@@ -36,7 +36,7 @@ export default function Settings() {
     };
 
     const fetchRemoveList = (id: number) => {
-        fetch(`/api/lists/${id}`, {method: 'delete'}).then((response) => {
+        fetch(`/api/lists/${id}`, { method: "delete" }).then((response) => {
             if (response.ok) {
                 removeList(id);
             }

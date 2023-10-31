@@ -21,8 +21,8 @@ export default function Update() {
 
     const submitForm = () => {
         fetch(`/api/cards/update/${id}`, {
-            method: 'put',
-            body: JSON.stringify(formData)
+            method: "put",
+            body: JSON.stringify(formData),
         })
             .then((response) => {
                 return response.json();
