@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "@testing-library/react";
 import Header from "@/components/Header";
 
-describe("Card component", () => {
+describe("Header component", () => {
     // it("renders with data", () => {
     // const title = 'random title'
     // const { getByText } = render(<Header title={title}/>);
