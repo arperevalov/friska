@@ -1,10 +1,10 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import { Input } from "@/components/Input";
 
 const data = {
     label: "Some label",
-    setFormData: () => {},
+    setFormData: jest.fn(),
     formKey: "random",
 };
 
@@ -54,5 +54,18 @@ describe("Input component", () => {
         expect(labelText).toBeInTheDocument();
         expect(inputTypeText).toBeTruthy();
         expect(inputValue).toEqual(dataText.defaultValue);
+    });
+
+    it("calls callback onchange", () => {
+        const { container } = render(<Input {...data} {...dataText} />);
+
+        const input = container.querySelector("input");
+
+        fireEvent.change(input, {target: {value: 'Hello'}});
+        fireEvent.change(input, {target: {value: 'Hello world'}});
+
+        const callbackCalls = data.setFormData.mock.calls;
+
+        expect(callbackCalls.length).toBe(2)
     });
 });
