@@ -1,11 +1,13 @@
 import React from "react";
 import { fireEvent, render } from "@testing-library/react";
-import { Input } from "@/components/Input";
+import { InputAction } from "@/components/InputAction";
 
 const data = {
     label: "Some label",
     setFormData: jest.fn(),
     formKey: "random",
+    buttonAction: jest.fn(),
+    buttonText: "Button Action",
 };
 
 const dataNumber = {
@@ -20,11 +22,12 @@ const dataText = {
     type: "text",
 };
 
-describe("Input component", () => {
+describe("InputAction component", () => {
     it("renders number type", () => {
-        const { container, getByText } = render(<Input {...data} {...dataNumber} />);
+        const { container, getByText } = render(<InputAction {...data} {...dataNumber} />);
 
         const labelText = getByText(/some label/i);
+        const buttonText = getByText(/button action/i);
 
         const input = container.querySelector("input");
         const inputTypeNumber = input.getAttribute("type") === "number";
@@ -36,15 +39,17 @@ describe("Input component", () => {
         const inputValue = parseInt(input.value, 10);
 
         expect(labelText).toBeInTheDocument();
+        expect(buttonText).toBeInTheDocument();
         expect(inputTypeNumber).toBeTruthy();
         expect(inputMinAndMaxSet).toBeTruthy();
         expect(inputValue).toEqual(dataNumber.defaultValue);
     });
 
     it("renders text type", () => {
-        const { container, getByText } = render(<Input {...data} {...dataText} />);
+        const { container, getByText } = render(<InputAction {...data} {...dataText} />);
 
         const labelText = getByText(/some label/i);
+        const buttonText = getByText(/button action/i);
 
         const input = container.querySelector("input");
         const inputTypeText = input.getAttribute("type") === "text";
@@ -52,12 +57,13 @@ describe("Input component", () => {
         const inputValue = input.value;
 
         expect(labelText).toBeInTheDocument();
+        expect(buttonText).toBeInTheDocument();
         expect(inputTypeText).toBeTruthy();
         expect(inputValue).toEqual(dataText.defaultValue);
     });
 
     it("calls callback onchange", () => {
-        const { container } = render(<Input {...data} {...dataText} />);
+        const { container } = render(<InputAction {...data} {...dataText} />);
 
         const input = container.querySelector("input");
 
@@ -67,5 +73,22 @@ describe("Input component", () => {
         const callbackCalls = data.setFormData.mock.calls;
 
         expect(callbackCalls.length).toBe(2);
+    });
+
+    it("calls buttonAction callback on click", () => {
+        const { container } = render(<InputAction {...data} {...dataText} />);
+
+        const button = container.querySelector("button");
+
+        fireEvent.click(button)
+
+        const callbackCalls = data.buttonAction.mock.calls;
+
+        expect(callbackCalls.length).toBe(1);
+
+        fireEvent.click(button)
+        fireEvent.click(button)
+
+        expect(callbackCalls.length).toBe(3);
     });
 });
