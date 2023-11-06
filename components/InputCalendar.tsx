@@ -3,7 +3,7 @@ import { useState } from "react";
 
 export interface InputInterface {
     label: string;
-    defaultValue?: string | null;
+    defaultValue?: Date | null;
     setFormData: CallableFunction;
     formKey: string;
     required?: boolean;
@@ -11,7 +11,7 @@ export interface InputInterface {
 
 export const InputCalendar = (props: InputInterface) => {
     const { label, defaultValue, setFormData, formKey, required } = props;
-    const [inputValue, setInputValue] = useState(defaultValue ? defaultValue : "");
+    const [inputValue, setInputValue] = useState(defaultValue ? defaultValue.toLocaleDateString("sv-SE") : "");
 
     const onChange = (event: React.FormEvent<HTMLInputElement>) => {
         const value = event.currentTarget.value;

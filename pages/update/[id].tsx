@@ -94,7 +94,7 @@ export default function Update() {
                         />
                         <InputCalendar
                             label="Best Before"
-                            defaultValue={new Date(card.expDate).toLocaleDateString("sv-SE")}
+                            defaultValue={new Date(card.expDate)}
                             setFormData={setFormData}
                             formKey="expDate"
                             required={true}
