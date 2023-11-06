@@ -80,14 +80,14 @@ describe("InputAction component", () => {
 
         const button = container.querySelector("button");
 
-        fireEvent.click(button)
+        fireEvent.click(button);
 
         const callbackCalls = data.buttonAction.mock.calls;
 
         expect(callbackCalls.length).toBe(1);
 
-        fireEvent.click(button)
-        fireEvent.click(button)
+        fireEvent.click(button);
+        fireEvent.click(button);
 
         expect(callbackCalls.length).toBe(3);
     });
