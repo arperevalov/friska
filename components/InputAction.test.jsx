@@ -23,6 +23,11 @@ const dataText = {
 };
 
 describe("InputAction component", () => {
+    beforeEach(() => {
+        data.setFormData.mockClear();
+        data.buttonAction.mockClear();
+    });
+
     it("renders number type", () => {
         const { container, getByText } = render(<InputAction {...data} {...dataNumber} />);
 

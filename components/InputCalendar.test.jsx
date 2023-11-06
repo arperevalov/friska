@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import { InputCalendar } from "@/components/InputCalendar";
 
 const data = {
@@ -9,6 +9,10 @@ const data = {
 };
 
 describe("InputCalendar component", () => {
+    beforeEach(() => {
+        data.setFormData.mockClear();
+    });
+
     it("renders", () => {
         const { container, getByText } = render(<InputCalendar {...data} />);
 
@@ -33,5 +37,19 @@ describe("InputCalendar component", () => {
 
         expect(labelText).toBeInTheDocument();
         expect(inputValue).toEqual(date.toLocaleDateString("sv-SE"));
+    });
+
+    it("calls callback onchange", () => {
+        const { container } = render(<InputCalendar {...data} />);
+
+        const input = container.querySelector("input");
+
+        const date = new Date();
+
+        fireEvent.change(input, { target: { value: date.toLocaleDateString("sv-SE") } });
+
+        const callbackCalls = data.setFormData.mock.calls;
+
+        expect(callbackCalls.length).toBe(1);
     });
 });

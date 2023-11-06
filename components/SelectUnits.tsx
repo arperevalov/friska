@@ -32,7 +32,7 @@ export const SelectUnits = (props: SelectUnitsInterface) => {
                 <select defaultValue={defaultValue} onChange={onChange} className="input__input" required={required}>
                     {values.map((value, id) => {
                         return (
-                            <option key={id} value={value}>
+                            <option key={id} value={value} selected={id === defaultValue}>
                                 {value}
                             </option>
                         );
