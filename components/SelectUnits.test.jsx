@@ -4,11 +4,7 @@ import { SelectUnits } from "@/components/SelectUnits";
 
 const data = {
     label: "Some label",
-    values: [
-        'uno',
-        'dos',
-        'tres'
-    ],
+    values: ["uno", "dos", "tres"],
     defaultValue: 2,
     setFormData: jest.fn(),
     formKey: "random",
@@ -33,7 +29,7 @@ describe("SelectUnits component", () => {
     });
 
     it("renders without values", () => {
-        const { container, getByText } = render(<SelectUnits {...data} values={[]} defaultValue={ null } />);
+        const { container, getByText } = render(<SelectUnits {...data} values={[]} defaultValue={null} />);
 
         const labelText = getByText(/some label/i);
 

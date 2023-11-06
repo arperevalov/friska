@@ -12,7 +12,7 @@ export interface SelectUnitsInterface {
 
 export const SelectUnits = (props: SelectUnitsInterface) => {
     const { label, defaultValue, values, setFormData, formKey, required } = props;
-    const [inputValue, setInputValue] = useState(defaultValue ? defaultValue : values[0]);
+    const [inputValue, setInputValue] = useState(defaultValue ? values[defaultValue] : values[0]);
 
     useEffect(() => {
         setFormData((previousValue: CardInterface) => ({ ...previousValue, [formKey]: inputValue }));
@@ -29,10 +29,10 @@ export const SelectUnits = (props: SelectUnitsInterface) => {
         <>
             <label htmlFor="" className="input">
                 <span className="input__label">{label}</span>
-                <select defaultValue={defaultValue} onChange={onChange} className="input__input" required={required}>
+                <select defaultValue={inputValue} onChange={onChange} className="input__input" required={required}>
                     {values.map((value, id) => {
                         return (
-                            <option key={id} value={value} selected={id === defaultValue}>
+                            <option key={id} value={value}>
                                 {value}
                             </option>
                         );
