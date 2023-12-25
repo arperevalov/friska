@@ -10,7 +10,8 @@ import Head from "next/head";
 import { useState } from "react";
 
 export default function New() {
-    const { addCard, lists } = useMainStore((store) => store);
+    const { addCard } = useMainStore((store) => store);
+    const { lists } = useLists();
     const [formData, setFormData] = useState({
         title: "",
         expDate: new Date(),
@@ -38,8 +39,6 @@ export default function New() {
                 }
             });
     };
-
-    useLists();
 
     return (
         <>

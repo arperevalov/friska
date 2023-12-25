@@ -15,7 +15,8 @@ export default function Update() {
     const router = useRouter();
     const id = router.query.id as string;
 
-    const { updateCard, lists } = useMainStore((store) => store);
+    const { updateCard } = useMainStore((store) => store);
+    const { lists } = useLists();
     const [formData, setFormData] = useState({});
     const units = Object.keys(Units);
 
@@ -32,8 +33,6 @@ export default function Update() {
                 router.push("/");
             });
     };
-
-    useLists();
 
     const [card, setCard] = useState<CardInterface | null>(null);
 

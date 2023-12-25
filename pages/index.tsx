@@ -1,15 +1,12 @@
 import Head from "next/head";
 import Header from "@/components/Header";
-import { useMainStore } from "@/store/MainStore";
 import useLists from "@/hooks/useLists";
 import useCards from "@/hooks/useCards";
 import List from "@/components/List";
 
 export default function Home() {
-    const { lists, cards } = useMainStore();
-
-    useLists();
-    useCards();
+    const { lists } = useLists();
+    const { cards } = useCards();
 
     return (
         <>
@@ -23,9 +20,7 @@ export default function Home() {
             <main>
                 <div className="container">
                     {lists.map((list) => {
-                        return (
-                            <List key={list.id} id={list.id} title={list.title} cards={cards}/>
-                        );
+                        return <List key={list.id} id={list.id} title={list.title} cards={cards} />;
                     })}
                 </div>
             </main>

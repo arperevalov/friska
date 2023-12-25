@@ -7,11 +7,10 @@ import { FormEvent, useState } from "react";
 
 export default function Settings() {
     const { daysBeforeSetting, setDaysBeforeSetting } = useSettingsStore((state) => state);
-    const { lists, addList, removeList } = useMainStore((state) => state);
+    const { addList, removeList } = useMainStore((state) => state);
+    const { lists } = useLists();
 
     const [newListValue, setNewListValue] = useState("");
-
-    useLists();
 
     const fetchCreateList = (event: FormEvent) => {
         event.preventDefault();

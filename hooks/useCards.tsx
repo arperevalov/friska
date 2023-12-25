@@ -2,7 +2,7 @@ import { useMainStore } from "@/store/MainStore";
 import { useEffect } from "react";
 
 export default function useCards() {
-    const { initCards } = useMainStore((state) => state);
+    const { cards, initCards } = useMainStore((state) => state);
 
     useEffect(() => {
         const requestData = async () => {
@@ -14,4 +14,8 @@ export default function useCards() {
         requestData();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    return {
+        cards
+    }
 }

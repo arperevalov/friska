@@ -2,7 +2,7 @@ import { useMainStore } from "@/store/MainStore";
 import { useEffect } from "react";
 
 export default function useLists() {
-    const { setLists } = useMainStore((state) => state);
+    const { lists, setLists } = useMainStore((state) => state);
 
     useEffect(() => {
         const requestLists = async () => {
@@ -14,4 +14,8 @@ export default function useLists() {
         requestLists();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    return {
+        lists
+    }
 }

@@ -1,9 +1,9 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { useMainStore } from "@/store/MainStore";
+import useLists from "@/hooks/useLists";
+import useCards from "@/hooks/useCards";
 import Home from "@/pages/index";
 
-jest.mock("@/store/MainStore");
 jest.mock("@/hooks/useLists");
 jest.mock("@/hooks/useCards");
 
@@ -44,12 +44,14 @@ const emptyStore = {
 };
 
 beforeEach(() => {
-    useMainStore.mockClear();
+    useLists.mockClear();
+    useCards.mockClear();
 });
 
 describe("Home page", () => {
     it("renders without data", () => {
-        useMainStore.mockReturnValue(emptyStore);
+        useLists.mockReturnValue({lists: emptyStore.lists});
+        useCards.mockReturnValue({lists: emptyStore.cards});
 
         const { getByText } = render(<Home />);
 
@@ -58,7 +60,8 @@ describe("Home page", () => {
     });
 
     it("renders correctly", () => {
-        useMainStore.mockReturnValue(mockStore);
+        useLists.mockReturnValue({lists: mockStore.lists});
+        useCards.mockReturnValue({cards: mockStore.cards});
 
         const { getByText } = render(<Home />);
 
