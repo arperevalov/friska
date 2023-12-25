@@ -8,12 +8,12 @@ import useCards from "@/hooks/useCards";
 import useLists from "@/hooks/useLists";
 import CardInterface from "@/interfaces/Card";
 import Head from "next/head";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-export default function Update() {
+export default function Update({ params }: { params: { id: string } }) {
     const router = useRouter();
-    const id = router.query.id as string;
+    const { id } = params;
 
     const { updateCard } = useCards();
     const { lists } = useLists();

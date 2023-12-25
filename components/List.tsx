@@ -1,3 +1,5 @@
+"use client";
+
 import CardInterface from "@/interfaces/Card";
 import { Card } from "./Card";
 import { useState } from "react";

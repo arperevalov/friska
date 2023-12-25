@@ -1,6 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { usePathname, useRouter } from "next/navigation";
 
 interface HeaderProps {
     title?: string;
@@ -8,13 +10,14 @@ interface HeaderProps {
 
 export default function Header(props: HeaderProps) {
     const { title } = props;
+    const pathname = usePathname();
     const router = useRouter();
 
     return (
         <>
             <header className={`header`}>
                 <div className="header__top">
-                    {router.pathname === "/" ? (
+                    {pathname === "/" ? (
                         <>
                             <div className="header__logo">
                                 <div className="header__logo-icon">
@@ -55,7 +58,7 @@ export default function Header(props: HeaderProps) {
                 <div className="header__bottom">
                     <nav className="header__nav">
                         <Link
-                            className={`header__link${router.pathname === "/new" ? " header__link--active" : ""}`}
+                            className={`header__link${pathname === "/new" ? " header__link--active" : ""}`}
                             href={"/new"}
                         >
                             <div className="header__icon">
@@ -63,17 +66,14 @@ export default function Header(props: HeaderProps) {
                             </div>
                             <span className="visually-hidden">New Item</span>
                         </Link>
-                        <Link
-                            className={`header__link${router.pathname === "/" ? " header__link--active" : ""}`}
-                            href={"/"}
-                        >
+                        <Link className={`header__link${pathname === "/" ? " header__link--active" : ""}`} href={"/"}>
                             <div className="header__icon">
                                 <Image src="/svg/lists.svg" alt="" fill />
                             </div>
                             <span className="visually-hidden">Lists</span>
                         </Link>
                         <Link
-                            className={`header__link${router.pathname === "/settings" ? " header__link--active" : ""}`}
+                            className={`header__link${pathname === "/settings" ? " header__link--active" : ""}`}
                             href={"/settings"}
                         >
                             <div className="header__icon">
