@@ -4,13 +4,13 @@ import { InputCalendar } from "@/components/InputCalendar";
 import { Select } from "@/components/Select";
 import { SelectUnits } from "@/components/SelectUnits";
 import Units from "@/enums/Units";
+import useCards from "@/hooks/useCards";
 import useLists from "@/hooks/useLists";
-import { useMainStore } from "@/store/MainStore";
 import Head from "next/head";
 import { useState } from "react";
 
 export default function New() {
-    const { addCard } = useMainStore((store) => store);
+    const { addCard } = useCards();
     const { lists } = useLists();
     const [formData, setFormData] = useState({
         title: "",

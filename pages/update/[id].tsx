@@ -4,9 +4,9 @@ import { InputCalendar } from "@/components/InputCalendar";
 import { Select } from "@/components/Select";
 import { SelectUnits } from "@/components/SelectUnits";
 import Units from "@/enums/Units";
+import useCards from "@/hooks/useCards";
 import useLists from "@/hooks/useLists";
 import CardInterface from "@/interfaces/Card";
-import { useMainStore } from "@/store/MainStore";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -15,7 +15,7 @@ export default function Update() {
     const router = useRouter();
     const id = router.query.id as string;
 
-    const { updateCard } = useMainStore((store) => store);
+    const { updateCard } = useCards();
     const { lists } = useLists();
     const [formData, setFormData] = useState({});
     const units = Object.keys(Units);

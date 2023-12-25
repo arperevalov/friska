@@ -1,6 +1,9 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
+import useCards from "@/hooks/useCards";
 import { Card } from "@/components/Card";
+
+jest.mock("@/hooks/useCards");
 
 const cardData = {
     id: 0,
@@ -14,6 +17,11 @@ const currentDate = new Date();
 const oldDate = "Tue Sep 12 1999 23:39:55 GMT+0700 (Krasnoyarsk Standard Time)";
 
 describe("Card component", () => {
+    beforeEach(() => {
+        useCards.mockClear();
+        useCards.mockReturnValue({});
+    });
+
     it("renders with data", () => {
         const { getByText } = render(<Card {...cardData} expDate={currentDate} />);
 

@@ -50,8 +50,8 @@ beforeEach(() => {
 
 describe("Home page", () => {
     it("renders without data", () => {
-        useLists.mockReturnValue({lists: emptyStore.lists});
-        useCards.mockReturnValue({lists: emptyStore.cards});
+        useLists.mockReturnValue({ lists: emptyStore.lists });
+        useCards.mockReturnValue({ lists: emptyStore.cards });
 
         const { getByText } = render(<Home />);
 
@@ -60,8 +60,8 @@ describe("Home page", () => {
     });
 
     it("renders correctly", () => {
-        useLists.mockReturnValue({lists: mockStore.lists});
-        useCards.mockReturnValue({cards: mockStore.cards});
+        useLists.mockReturnValue({ lists: mockStore.lists });
+        useCards.mockReturnValue({ cards: mockStore.cards });
 
         const { getByText } = render(<Home />);
 

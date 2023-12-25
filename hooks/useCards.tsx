@@ -2,7 +2,9 @@ import { useMainStore } from "@/store/MainStore";
 import { useEffect } from "react";
 
 export default function useCards() {
-    const { cards, initCards } = useMainStore((state) => state);
+    const { cards, initCards, removeCard, incrementCardLeft, decrementCardLeft, addCard, updateCard } = useMainStore(
+        (state) => state,
+    );
 
     useEffect(() => {
         let ignore = false;
@@ -13,18 +15,22 @@ export default function useCards() {
             initCards(requestJSON.cards);
         };
 
-        if(!ignore) {
+        if (!ignore) {
             requestData();
         }
 
         return () => {
             ignore = true;
-        }
-
+        };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return {
         cards,
+        removeCard,
+        incrementCardLeft,
+        decrementCardLeft,
+        addCard,
+        updateCard,
     };
 }

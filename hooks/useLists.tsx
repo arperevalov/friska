@@ -26,6 +26,6 @@ export default function useLists() {
     return {
         lists,
         addList,
-        removeList
+        removeList,
     };
 }
