@@ -5,17 +5,26 @@ export default function useLists() {
     const { lists, setLists } = useMainStore((state) => state);
 
     useEffect(() => {
-        const requestLists = async () => {
+        let ignore = false;
+
+        const requestData = async () => {
             const request = await fetch("/api/lists");
             const requestJSON = await request.json();
             setLists(requestJSON.lists);
         };
 
-        requestLists();
+        if(!ignore) {
+            requestData();
+        }
+
+        return () => {
+            ignore = true;
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+
     return {
-        lists
-    }
+        lists,
+    };
 }
