@@ -2,7 +2,7 @@ import { useMainStore } from "@/store/MainStore";
 import { useEffect } from "react";
 
 export default function useLists() {
-    const { lists, setLists } = useMainStore((state) => state);
+    const { lists, setLists, addList, removeList } = useMainStore((state) => state);
 
     useEffect(() => {
         let ignore = false;
@@ -13,18 +13,19 @@ export default function useLists() {
             setLists(requestJSON.lists);
         };
 
-        if(!ignore) {
+        if (!ignore) {
             requestData();
         }
 
         return () => {
             ignore = true;
-        }
+        };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-
     return {
         lists,
+        addList,
+        removeList
     };
 }

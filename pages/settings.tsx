@@ -1,14 +1,12 @@
 import Header from "@/components/Header";
 import useLists from "@/hooks/useLists";
-import { useMainStore } from "@/store/MainStore";
 import { useSettingsStore } from "@/store/SettingsStore";
 import Head from "next/head";
 import { FormEvent, useState } from "react";
 
 export default function Settings() {
     const { daysBeforeSetting, setDaysBeforeSetting } = useSettingsStore((state) => state);
-    const { addList, removeList } = useMainStore((state) => state);
-    const { lists } = useLists();
+    const { lists, addList, removeList } = useLists();
 
     const [newListValue, setNewListValue] = useState("");
 
