@@ -1,7 +1,5 @@
 "use client";
 
-import Head from "next/head";
-import Header from "@/components/Header";
 import useLists from "@/hooks/useLists";
 import useCards from "@/hooks/useCards";
 import List from "@/components/List";
@@ -10,15 +8,15 @@ export default function Home() {
     const { lists } = useLists();
     const { cards } = useCards();
 
+
+    if (!lists) return <></>
+
+    if (lists.length === 0) {
+        return <></>
+    }
+
     return (
         <>
-            <Head>
-                <title>Friska</title>
-                <meta name="description" content="" />
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
-            <Header />
             <main>
                 <div className="container">
                     {lists.map((list) => {
