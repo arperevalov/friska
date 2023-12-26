@@ -1,6 +1,7 @@
 "use client";
 
 import { useMainStore } from "@/store/MainStore";
+import axios from "axios";
 import { useEffect } from "react";
 
 export default function useCards() {
@@ -12,9 +13,9 @@ export default function useCards() {
         let ignore = false;
 
         const requestData = async () => {
-            const request = await fetch("/api/cards");
-            const requestJSON = await request.json();
-            initCards(requestJSON.cards);
+            const request = await axios.get("/api/cards");
+            const requestJSON = request.data;
+            initCards(requestJSON);
         };
 
         if (!ignore) {

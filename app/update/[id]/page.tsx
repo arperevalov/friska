@@ -1,3 +1,5 @@
+"use client";
+
 import Header from "@/components/Header";
 import { Input } from "@/components/Input";
 import { InputCalendar } from "@/components/InputCalendar";
@@ -7,6 +9,7 @@ import Units from "@/enums/Units";
 import useCards from "@/hooks/useCards";
 import useLists from "@/hooks/useLists";
 import CardInterface from "@/interfaces/Card";
+import axios from "axios";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -21,12 +24,10 @@ export default function Update({ params }: { params: { id: string } }) {
     const units = Object.keys(Units);
 
     const submitForm = () => {
-        fetch(`/api/cards/update/${id}`, {
-            method: "put",
-            body: JSON.stringify(formData),
-        })
+        axios
+            .put(`/api/cards/${id}`, formData)
             .then((response) => {
-                return response.json();
+                return response.data;
             })
             .then(() => {
                 updateCard(formData);
@@ -39,9 +40,9 @@ export default function Update({ params }: { params: { id: string } }) {
     useEffect(() => {
         if (!id) return;
         const requestCard = async (id: string) => {
-            const request = await fetch(`/api/cards/${id}`);
-            const requestJSON = await request.json();
-            return requestJSON.cards[0];
+            const request = await axios.get(`/api/cards/${id}`);
+            const requestJSON = await request.data;
+            return requestJSON;
         };
         requestCard(id).then((result) => {
             setCard(result);

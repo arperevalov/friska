@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import Header from "@/components/Header";
 import { Input } from "@/components/Input";
@@ -8,6 +8,7 @@ import { SelectUnits } from "@/components/SelectUnits";
 import Units from "@/enums/Units";
 import useCards from "@/hooks/useCards";
 import useLists from "@/hooks/useLists";
+import axios from "axios";
 import { useState } from "react";
 
 export default function New() {
@@ -23,12 +24,10 @@ export default function New() {
     const units = Object.keys(Units);
 
     const submitForm = () => {
-        fetch("/api/cards", {
-            method: "post",
-            body: JSON.stringify(formData),
-        })
+        axios
+            .post("/api/cards", formData)
             .then((response) => {
-                return response.json();
+                return response.data;
             })
             .then((response) => {
                 if (response) {
@@ -41,7 +40,7 @@ export default function New() {
             });
     };
 
-    if (!lists) return <></>
+    if (!lists) return <></>;
 
     return (
         <>
@@ -63,12 +62,7 @@ export default function New() {
                         formKey="listId"
                         required={true}
                     />
-                    <InputCalendar
-                        label="Best Before"
-                        setFormData={setFormData}
-                        formKey="expDate"
-                        required={true}
-                    />
+                    <InputCalendar label="Best Before" setFormData={setFormData} formKey="expDate" required={true} />
                     <div className="input-row">
                         <div className="input-row__col">
                             <Input

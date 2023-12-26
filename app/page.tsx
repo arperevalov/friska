@@ -8,11 +8,10 @@ export default function Home() {
     const { lists } = useLists();
     const { cards } = useCards();
 
-
-    if (!lists) return <></>
+    if (!lists) return <></>;
 
     if (lists.length === 0) {
-        return <></>
+        return <></>;
     }
 
     return (
