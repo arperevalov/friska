@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "@testing-library/react";
 import useLists from "@/hooks/useLists";
 import useCards from "@/hooks/useCards";
-import Home from "@/pages/index";
+import Home from "@/app/page";
 
 jest.mock("@/hooks/useLists");
 jest.mock("@/hooks/useCards");

@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 
-jest.mock("next/router", () => ({
+jest.mock("next/navigation", () => ({
     useRouter() {
         return {
             route: "/",
@@ -16,4 +16,7 @@ jest.mock("next/router", () => ({
             prefetch: jest.fn(() => null),
         };
     },
+    usePathname() {
+        return "/"
+    }
 }));
