@@ -8,11 +8,10 @@ import { SelectUnits } from "@/components/SelectUnits";
 import Units from "@/enums/Units";
 import useCards from "@/hooks/useCards";
 import useLists from "@/hooks/useLists";
-import axios from "axios";
 import { useState } from "react";
 
 export default function New() {
-    const { addCard } = useCards();
+    const { addCardAction } = useCards();
     const { lists } = useLists();
     const [formData, setFormData] = useState({
         title: "",
@@ -24,20 +23,11 @@ export default function New() {
     const units = Object.keys(Units);
 
     const submitForm = () => {
-        axios
-            .post("/api/cards", formData)
-            .then((response) => {
-                return response.data;
-            })
-            .then((response) => {
-                if (response) {
-                    const formattedData = {
-                        response,
-                        left: parseInt(response.left, 10),
-                    };
-                    addCard(formattedData);
-                }
-            });
+        const formattedData = {
+            ...formData,
+            left: parseInt(formData.left, 10)
+        }
+        addCardAction(formattedData)
     };
 
     if (!lists) return <></>;

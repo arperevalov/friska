@@ -1,13 +1,34 @@
 "use client";
 
+import CardInterface from "@/interfaces/Card";
 import { useMainStore } from "@/store/MainStore";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export default function useCards() {
+    const router = useRouter();
     const { cards, initCards, removeCard, incrementCardLeft, decrementCardLeft, addCard, updateCard } = useMainStore(
         (state) => state,
     );
+
+    const addCardAction = (card: Omit<CardInterface, 'id'>) => {
+        axios
+            .post("/api/cards", card)
+            .then((response) => {
+                return response.data;
+            })
+            .then((response) => {
+                if (response) {
+                    const formattedData = {
+                        response,
+                        left: parseInt(response.left, 10),
+                    };
+                    router.push('/');
+                    addCard(formattedData);
+                }
+            });
+    }
 
     useEffect(() => {
         let ignore = false;
@@ -33,7 +54,7 @@ export default function useCards() {
         removeCard,
         incrementCardLeft,
         decrementCardLeft,
-        addCard,
+        addCardAction,
         updateCard,
     };
 }
