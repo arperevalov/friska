@@ -25,9 +25,9 @@ export default function New() {
     const submitForm = () => {
         const formattedData = {
             ...formData,
-            left: parseInt(formData.left, 10)
-        }
-        addCardAction(formattedData)
+            left: parseInt(formData.left, 10),
+        };
+        addCardAction(formattedData);
     };
 
     if (!lists) return <></>;

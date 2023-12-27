@@ -12,7 +12,7 @@ export default function useCards() {
         (state) => state,
     );
 
-    const addCardAction = (card: Omit<CardInterface, 'id'>) => {
+    const addCardAction = (card: Omit<CardInterface, "id">) => {
         axios
             .post("/api/cards", card)
             .then((response) => {
@@ -24,11 +24,11 @@ export default function useCards() {
                         response,
                         left: parseInt(response.left, 10),
                     };
-                    router.push('/');
+                    router.push("/");
                     addCard(formattedData);
                 }
             });
-    }
+    };
 
     useEffect(() => {
         let ignore = false;
