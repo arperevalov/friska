@@ -1,39 +1,38 @@
 "use client";
 
 import Header from "@/components/Header";
-import { Input } from "@/components/Input";
-import { InputCalendar } from "@/components/InputCalendar";
-import { Select } from "@/components/Select";
-import { SelectUnits } from "@/components/SelectUnits";
 import Units from "@/enums/Units";
 import useCards from "@/hooks/useCards";
 import useLists from "@/hooks/useLists";
-import { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+
+interface FormValues {
+    title: string;
+    exp_date: string;
+    left_count: string;
+    units: string;
+    list_id: string;
+}
 
 export default function New() {
+    const { register, handleSubmit } = useForm<FormValues>();
     const { addCardAction } = useCards();
     const { lists } = useLists();
-    const [formData, setFormData] = useState({
-        title: "",
-        exp_date: new Date(),
-        left_count: "",
-        units: Units.kg,
-        list_id: 0,
-        user_id: 0,
-    });
     const units = Object.keys(Units);
 
-    const submitForm = () => {
+    const submitForm: SubmitHandler<FormValues> = (data) => {
         const formattedData = {
-            ...formData,
-            exp_date: formData.exp_date.toISOString().replace(/(\d)T(\d.{0,})\.\d{0,}Z/, "$1 $2"),
-            left_count: parseInt(formData.left_count, 10),
-            user_id: 0,
+            ...data,
+            exp_date: new Date(data.exp_date).toISOString().replace(/(\d)T(\d.{0,})\.\d{0,}Z/, "$1 $2"),
+            list_id: parseInt(data.list_id, 10),
+            left_count: parseFloat(data.left_count),
+            user_id: 1,
         };
         addCardAction(formattedData);
     };
 
     if (!lists) return <></>;
+    if (lists.length === 0) return <></>
 
     return (
         <>
@@ -42,38 +41,64 @@ export default function New() {
                 <form
                     className="form"
                     action="#"
-                    onSubmit={(event: React.FormEvent) => {
-                        event.preventDefault();
-                        submitForm();
-                    }}
+                    onSubmit={handleSubmit(submitForm)}
                 >
-                    <Input type="text" label="Title" setFormData={setFormData} formKey="title" required={true} />
-                    <Select
-                        label="Category"
-                        values={lists}
-                        setFormData={setFormData}
-                        formKey="list_id"
-                        required={true}
-                    />
-                    <InputCalendar label="Best Before" setFormData={setFormData} formKey="exp_date" required={true} />
+                    <label htmlFor="" className="input">
+                        <span className="input__label">Title</span>
+                        <input
+                            className="input__input"
+                            type="text"
+                            required
+                            {...register('title')}
+                        />
+                    </label>
+                    <label htmlFor="" className="input">
+                        <span className="input__label">Category</span>
+                        <select defaultValue={lists[0].id} className="input__input" required {...register("list_id")}>
+                            {lists.map((value) => {
+                                return (
+                                    <option key={value.id} value={value.id}>
+                                        {value.title}
+                                    </option>
+                                );
+                            })}
+                        </select>
+                    </label>
+                    <label htmlFor="" className="input">
+                        <span className="input__label">Best Before</span>
+                        <input
+                            className="input__input"
+                            type="date"
+                            required
+                            {...register('exp_date')}
+                        />
+                    </label>
                     <div className="input-row">
                         <div className="input-row__col">
-                            <Input
-                                type="number"
-                                label="Left"
-                                setFormData={setFormData}
-                                formKey="left_count"
-                                required={true}
-                            />
+                            <label htmlFor="" className="input">
+                                <span className="input__label">Left</span>
+                                <input
+                                    className="input__input"
+                                    type="number"
+                                    step={0.1}
+                                    required
+                                    {...register('left_count')}
+                                />
+                            </label>
                         </div>
                         <div className="input-row__col">
-                            <SelectUnits
-                                label="Units"
-                                values={units}
-                                setFormData={setFormData}
-                                formKey="units"
-                                required={true}
-                            />
+                            <label htmlFor="" className="input">
+                                <span className="input__label">Units</span>
+                                <select defaultValue={0} className="input__input" required {...register("units")}>
+                                    {units.map((value) => {
+                                        return (
+                                            <option key={value} value={value}>
+                                                {value}
+                                            </option>
+                                        );
+                                    })}
+                                </select>
+                            </label>
                         </div>
                     </div>
                     <button className="form__btn btn btn--primary" type="submit">
