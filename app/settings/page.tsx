@@ -20,7 +20,7 @@ export default function Settings() {
     };
 
     const fetchRemoveList = (id: number) => {
-        removeListAction(id)
+        removeListAction(id);
     };
 
     if (!lists) return <></>;

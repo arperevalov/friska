@@ -28,6 +28,18 @@ export default function useCards() {
             });
     };
 
+    const updateCardAction = (card: CardInterface) => {
+        axios
+            .put(`/api/cards/${card.id}`, card)
+            .then((response) => {
+                return response.data;
+            })
+            .then((response) => {
+                updateCard(response);
+                router.push("/");
+            });
+    }
+
     const incrementCardLeftAction = () => {
         // axios
         //     .put("/api/cards/", card)
@@ -89,6 +101,6 @@ export default function useCards() {
         incrementCardLeftAction,
         decrementCardLeftAction,
         addCardAction,
-        updateCard,
+        updateCardAction,
     };
 }

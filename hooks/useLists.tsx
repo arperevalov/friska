@@ -30,7 +30,7 @@ export default function useLists() {
                 removeList(id);
             }
         });
-    }
+    };
 
     useEffect(() => {
         let ignore = false;

@@ -11,28 +11,29 @@ import useLists from "@/hooks/useLists";
 import CardInterface from "@/interfaces/Card";
 import axios from "axios";
 import Head from "next/head";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Update({ params }: { params: { id: string } }) {
-    const router = useRouter();
     const { id } = params;
 
-    const { updateCard } = useCards();
+    const { updateCardAction } = useCards();
     const { lists } = useLists();
-    const [formData, setFormData] = useState({});
+    const [formData, setFormData] = useState<Omit<CardInterface, "id">>({
+        exp_date: new Date().toISOString(),
+        left_count: 0,
+        list_id: 0,
+        title: '',
+        units: '',
+        user_id: 0
+    });
     const units = Object.keys(Units);
 
     const submitForm = () => {
-        axios
-            .put(`/api/cards/${id}`, formData)
-            .then((response) => {
-                return response.data;
-            })
-            .then(() => {
-                updateCard(formData);
-                router.push("/");
-            });
+        updateCardAction({
+            ...formData, 
+            id: parseInt(id, 10),
+            exp_date: new Date(formData.exp_date).toISOString().replace(/(\d)T(\d.{0,})\.\d{0,}Z/, "$1 $2")
+        })
     };
 
     const [card, setCard] = useState<CardInterface | null>(null);
