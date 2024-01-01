@@ -19,12 +19,14 @@ export default function New() {
         left_count: "",
         units: Units.kg,
         list_id: 0,
+        user_id: 0,
     });
     const units = Object.keys(Units);
 
     const submitForm = () => {
         const formattedData = {
             ...formData,
+            exp_date: formData.exp_date.toISOString().replace(/(\d)T(\d.{0,})\.\d{0,}Z/, "$1 $2"),
             left_count: parseInt(formData.left_count, 10),
             user_id: 0,
         };

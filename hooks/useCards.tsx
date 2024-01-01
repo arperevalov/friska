@@ -68,7 +68,7 @@ export default function useCards() {
         let ignore = false;
 
         const requestData = async () => {
-            const request = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/cards`);
+            const request = await axios.get("/api/cards");
             const requestJSON = request.data;
             initCards(requestJSON);
         };
