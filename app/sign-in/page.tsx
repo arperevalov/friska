@@ -1,6 +1,5 @@
 import Header from "@/components/Header";
 import { Input } from "@/components/Input";
-import Head from "next/head";
 import { useState } from "react";
 
 export default function SignIn() {
@@ -12,12 +11,6 @@ export default function SignIn() {
 
     return (
         <>
-            <Head>
-                <title>Sign-in — Friska</title>
-                <meta name="description" content="Storage management app" />
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
             <Header title="Sign-in" />
             <main>
                 <div className="container">

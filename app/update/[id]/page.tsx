@@ -9,7 +9,6 @@ import Units from "@/enums/Units";
 import useCards from "@/hooks/useCards";
 import useLists from "@/hooks/useLists";
 import CardInterface from "@/interfaces/Card";
-import Head from "next/head";
 import { useEffect, useState } from "react";
 
 export default function Update({ params }: { params: { id: string } }) {
@@ -36,10 +35,9 @@ export default function Update({ params }: { params: { id: string } }) {
         });
     };
 
-
     useEffect(() => {
         if (!id) return;
-        getCardAction(id).then((result)=>{
+        getCardAction(id).then((result) => {
             setCard(result);
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -54,12 +52,6 @@ export default function Update({ params }: { params: { id: string } }) {
 
     return (
         <>
-            <Head>
-                <title>Edit {card.title} — Friska</title>
-                <meta name="description" content="Storage management app" />
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
             <Header title={card.title} />
             <main>
                 <div className="container">
