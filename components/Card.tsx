@@ -3,11 +3,10 @@ import CardInterface from "@/interfaces/Card";
 import { useSettingsStore } from "@/store/SettingsStore";
 import Link from "next/link";
 import useCards from "@/hooks/useCards";
-import axios from "axios";
 
 export const Card = (props: CardInterface) => {
     const { daysBeforeSetting } = useSettingsStore((store) => store);
-    const { removeCard, incrementCardLeftAction, decrementCardLeftAction } = useCards();
+    const { removeCardAction, incrementCardLeftAction, decrementCardLeftAction } = useCards();
     const [active, setActive] = useState(false);
     const { id, title, exp_date, left_count, units } = props;
 
@@ -23,12 +22,8 @@ export const Card = (props: CardInterface) => {
         decrementCardLeftAction();
     };
 
-    const fetchRemoveCard = () => {
-        axios.delete(`/api/cards/${id}`).then((response) => {
-            if (response.status === 200) {
-                removeCard(id);
-            }
-        });
+    const onRemoveClick = () => {
+        removeCardAction(id);
     };
 
     const dateString = new Date(exp_date).toLocaleDateString();
@@ -70,7 +65,7 @@ export const Card = (props: CardInterface) => {
                         <button
                             type="button"
                             className="card__link link link--secondary link--centered"
-                            onClick={fetchRemoveCard}
+                            onClick={onRemoveClick}
                         >
                             Remove
                         </button>

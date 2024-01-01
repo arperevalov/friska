@@ -46,6 +46,14 @@ export default function useCards() {
             });
     };
 
+    const removeCardAction = (id: number) => {
+        axios.delete(`/api/cards/${id}`).then((response) => {
+            if (response.status === 200) {
+                removeCard(id);
+            }
+        });
+    }
+
     const incrementCardLeftAction = () => {
         // axios
         //     .put("/api/cards/", card)
@@ -103,7 +111,7 @@ export default function useCards() {
 
     return {
         cards,
-        removeCard,
+        removeCardAction,
         getCardAction,
         incrementCardLeftAction,
         decrementCardLeftAction,

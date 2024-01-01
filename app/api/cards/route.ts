@@ -16,7 +16,7 @@ export async function GET() {
 export async function POST(req: Request) {
     try {
         const requestData = await req.json();
-        const request = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/cards/`, requestData, {
+        const request = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/cards`, requestData, {
             headers: {
                 "Content-Type": "application/json",
             },
