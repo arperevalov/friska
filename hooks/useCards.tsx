@@ -38,7 +38,7 @@ export default function useCards() {
                 updateCard(response);
                 router.push("/");
             });
-    }
+    };
 
     const incrementCardLeftAction = () => {
         // axios

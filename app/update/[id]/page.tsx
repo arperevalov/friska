@@ -22,18 +22,18 @@ export default function Update({ params }: { params: { id: string } }) {
         exp_date: new Date().toISOString(),
         left_count: 0,
         list_id: 0,
-        title: '',
-        units: '',
-        user_id: 0
+        title: "",
+        units: "",
+        user_id: 0,
     });
     const units = Object.keys(Units);
 
     const submitForm = () => {
         updateCardAction({
-            ...formData, 
+            ...formData,
             id: parseInt(id, 10),
-            exp_date: new Date(formData.exp_date).toISOString().replace(/(\d)T(\d.{0,})\.\d{0,}Z/, "$1 $2")
-        })
+            exp_date: new Date(formData.exp_date).toISOString().replace(/(\d)T(\d.{0,})\.\d{0,}Z/, "$1 $2"),
+        });
     };
 
     const [card, setCard] = useState<CardInterface | null>(null);
