@@ -3,12 +3,11 @@
 import Header from "@/components/Header";
 import useLists from "@/hooks/useLists";
 import { useSettingsStore } from "@/store/SettingsStore";
-import axios from "axios";
 import { FormEvent, useState } from "react";
 
 export default function Settings() {
     const { daysBeforeSetting, setDaysBeforeSetting } = useSettingsStore((state) => state);
-    const { lists, addListAction, removeList } = useLists();
+    const { lists, addListAction, removeListAction } = useLists();
 
     const [newListValue, setNewListValue] = useState("");
 
@@ -16,16 +15,12 @@ export default function Settings() {
         event.preventDefault();
         addListAction({
             title: newListValue,
-            user_id: 1
-        })
+            user_id: 1,
+        });
     };
 
     const fetchRemoveList = (id: number) => {
-        axios.delete(`/api/lists/${id}`).then((response) => {
-            if (response.status === 200) {
-                removeList(id);
-            }
-        });
+        removeListAction(id)
     };
 
     if (!lists) return <></>;

@@ -22,6 +22,14 @@ export default function useLists() {
                     addList(formattedData);
                 }
             });
+    };
+
+    const removeListAction = (id: number) => {
+        axios.delete(`/api/lists/${id}`).then((response) => {
+            if (response.status === 200) {
+                removeList(id);
+            }
+        });
     }
 
     useEffect(() => {
@@ -46,6 +54,6 @@ export default function useLists() {
     return {
         lists,
         addListAction,
-        removeList,
+        removeListAction,
     };
 }
