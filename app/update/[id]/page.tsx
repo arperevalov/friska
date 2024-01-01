@@ -9,15 +9,15 @@ import Units from "@/enums/Units";
 import useCards from "@/hooks/useCards";
 import useLists from "@/hooks/useLists";
 import CardInterface from "@/interfaces/Card";
-import axios from "axios";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 
 export default function Update({ params }: { params: { id: string } }) {
     const { id } = params;
 
-    const { updateCardAction } = useCards();
+    const { updateCardAction, getCardAction } = useCards();
     const { lists } = useLists();
+    const [card, setCard] = useState<CardInterface | null>(null);
     const [formData, setFormData] = useState<Omit<CardInterface, "id">>({
         exp_date: new Date().toISOString(),
         left_count: 0,
@@ -36,16 +36,10 @@ export default function Update({ params }: { params: { id: string } }) {
         });
     };
 
-    const [card, setCard] = useState<CardInterface | null>(null);
 
     useEffect(() => {
         if (!id) return;
-        const requestCard = async (id: string) => {
-            const request = await axios.get(`/api/cards/${id}`);
-            const requestJSON = await request.data;
-            return requestJSON;
-        };
-        requestCard(id).then((result) => {
+        getCardAction(id).then((result)=>{
             setCard(result);
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps

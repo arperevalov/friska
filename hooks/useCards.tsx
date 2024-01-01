@@ -10,6 +10,12 @@ export default function useCards() {
     const router = useRouter();
     const { cards, initCards, removeCard, addCard, updateCard } = useMainStore((state) => state);
 
+    const getCardAction = async (id: string) => {
+        const request = await axios.get(`/api/cards/${id}`);
+        const requestJSON = await request.data;
+        return requestJSON;
+    };
+
     const addCardAction = (card: Omit<CardInterface, "id">) => {
         axios
             .post("/api/cards", card)
@@ -98,6 +104,7 @@ export default function useCards() {
     return {
         cards,
         removeCard,
+        getCardAction,
         incrementCardLeftAction,
         decrementCardLeftAction,
         addCardAction,
