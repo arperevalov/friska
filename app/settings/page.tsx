@@ -8,29 +8,16 @@ import { FormEvent, useState } from "react";
 
 export default function Settings() {
     const { daysBeforeSetting, setDaysBeforeSetting } = useSettingsStore((state) => state);
-    const { lists, addList, removeList } = useLists();
+    const { lists, addListAction, removeList } = useLists();
 
     const [newListValue, setNewListValue] = useState("");
 
     const fetchCreateList = (event: FormEvent) => {
         event.preventDefault();
-
-        axios
-            .post("/api/lists", {
-                title: newListValue,
-                user_id: 1,
-            })
-            .then((response) => {
-                return response.data;
-            })
-            .then((response) => {
-                if (response) {
-                    const formattedData = {
-                        ...response.lists,
-                    };
-                    addList(formattedData);
-                }
-            });
+        addListAction({
+            title: newListValue,
+            user_id: 1
+        })
     };
 
     const fetchRemoveList = (id: number) => {
