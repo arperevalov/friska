@@ -18,6 +18,7 @@ export default function Settings() {
         axios
             .post("/api/lists", {
                 title: newListValue,
+                user_id: 1,
             })
             .then((response) => {
                 return response.data;
