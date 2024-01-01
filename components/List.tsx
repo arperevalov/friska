@@ -30,7 +30,7 @@ export const List = (props: ListProps) => {
                 <div className="list__items">
                     {cards.length > 0
                         ? cards.map((card: CardInterface) => {
-                              if (card.listId === id) {
+                              if (card.list_id === id) {
                                   return <Card {...card} key={card.id} />;
                               }
                           })

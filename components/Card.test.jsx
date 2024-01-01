@@ -10,7 +10,7 @@ const cardData = {
     title: "Milk",
     left: 1,
     units: "kg",
-    listId: 0,
+    list_id: 0,
 };
 
 const currentDate = new Date();
@@ -23,33 +23,33 @@ describe("Card component", () => {
     });
 
     it("renders with data", () => {
-        const { getByText } = render(<Card {...cardData} expDate={currentDate} />);
+        const { getByText } = render(<Card {...cardData} exp_date={currentDate} />);
 
         const titleText = getByText(/Milk/i);
-        const expDateText = getByText(currentDate.toLocaleDateString());
+        const exp_dateText = getByText(currentDate.toLocaleDateString());
         const leftText = getByText(/1 kg/i);
 
         expect(titleText).toBeInTheDocument();
-        expect(expDateText).toBeInTheDocument();
+        expect(exp_dateText).toBeInTheDocument();
         expect(leftText).toBeInTheDocument();
     });
 
     it("renders fresh", () => {
-        const { container } = render(<Card {...cardData} expDate={currentDate} />);
+        const { container } = render(<Card {...cardData} exp_date={currentDate} />);
 
         const outdated = container.querySelector(".card").classList.contains("outdated");
         expect(outdated).toBeFalsy();
     });
 
     it("renders outdated", () => {
-        const { container } = render(<Card {...cardData} expDate={oldDate} />);
+        const { container } = render(<Card {...cardData} exp_date={oldDate} />);
 
         const outdated = container.querySelector(".card").classList.contains("outdated");
         expect(outdated).toBeTruthy();
     });
 
     it("toggles card active state", () => {
-        const { container } = render(<Card {...cardData} expDate={currentDate} />);
+        const { container } = render(<Card {...cardData} exp_date={currentDate} />);
 
         const card = container.querySelector(".card");
         const cardContainer = container.querySelector(".card__container");

@@ -15,17 +15,18 @@ export default function New() {
     const { lists } = useLists();
     const [formData, setFormData] = useState({
         title: "",
-        expDate: new Date(),
-        left: "",
+        exp_date: new Date(),
+        left_count: "",
         units: Units.kg,
-        listId: 0,
+        list_id: 0,
     });
     const units = Object.keys(Units);
 
     const submitForm = () => {
         const formattedData = {
             ...formData,
-            left: parseInt(formData.left, 10),
+            left_count: parseInt(formData.left_count, 10),
+            user_id: 0,
         };
         addCardAction(formattedData);
     };
@@ -49,17 +50,17 @@ export default function New() {
                         label="Category"
                         values={lists}
                         setFormData={setFormData}
-                        formKey="listId"
+                        formKey="list_id"
                         required={true}
                     />
-                    <InputCalendar label="Best Before" setFormData={setFormData} formKey="expDate" required={true} />
+                    <InputCalendar label="Best Before" setFormData={setFormData} formKey="exp_date" required={true} />
                     <div className="input-row">
                         <div className="input-row__col">
                             <Input
                                 type="number"
                                 label="Left"
                                 setFormData={setFormData}
-                                formKey="left"
+                                formKey="left_count"
                                 required={true}
                             />
                         </div>

@@ -87,16 +87,16 @@ export default function Update({ params }: { params: { id: string } }) {
                         <Select
                             label="Category"
                             values={lists}
-                            defaultValue={card.listId}
+                            defaultValue={card.list_id}
                             setFormData={setFormData}
-                            formKey="listId"
+                            formKey="list_id"
                             required={true}
                         />
                         <InputCalendar
                             label="Best Before"
-                            defaultValue={new Date(card.expDate)}
+                            defaultValue={new Date(card.exp_date)}
                             setFormData={setFormData}
-                            formKey="expDate"
+                            formKey="exp_date"
                             required={true}
                         />
                         <div className="input-row">
@@ -104,9 +104,9 @@ export default function Update({ params }: { params: { id: string } }) {
                                 <Input
                                     type="number"
                                     label="Left"
-                                    defaultValue={card.left}
+                                    defaultValue={card.left_count}
                                     setFormData={setFormData}
-                                    formKey="left"
+                                    formKey="left_count"
                                     required={true}
                                 />
                             </div>

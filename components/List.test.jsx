@@ -6,23 +6,23 @@ const cards = [
     {
         id: 0,
         title: "Milk",
-        left: 1,
+        left_count: 1,
         units: "l",
-        listId: 0,
+        list_id: 0,
     },
     {
         id: 1,
         title: "Juice",
-        left: 1,
+        left_count: 1,
         units: "l",
-        listId: 0,
+        list_id: 0,
     },
     {
         id: 2,
         title: "Another List Product",
-        left: 1,
+        left_count: 1,
         units: "kg",
-        listId: 1,
+        list_id: 1,
     },
 ];
 

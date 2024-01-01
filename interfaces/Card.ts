@@ -1,8 +1,9 @@
 export default interface CardInterface {
     id: number;
     title: string;
-    expDate: Date;
-    left: number;
+    exp_date: Date;
+    left_count: number;
     units: string;
-    listId: number;
+    list_id: number;
+    user_id: number;
 }

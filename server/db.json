@@ -3,36 +3,41 @@
         {
             "id": 0,
             "title": "Milk",
-            "expDate": "Tue Sep 12 2023 23:39:55 GMT+0700 (Krasnoyarsk Standard Time)",
-            "left": 1,
+            "exp_date": "Tue Sep 12 2023 23:39:55 GMT+0700 (Krasnoyarsk Standard Time)",
+            "left_count": 1,
             "units": "kg",
-            "listId": 0
+            "list_id": 0,
+            "user_id": 0
         },
         {
             "id": 1,
             "title": "sss",
-            "expDate": "Tue Sep 12 2023 23:39:55 GMT+0700 (Krasnoyarsk Standard Time)",
-            "left": 1,
+            "exp_date": "Tue Sep 12 2023 23:39:55 GMT+0700 (Krasnoyarsk Standard Time)",
+            "left_count": 1,
             "units": "l",
-            "listId": 1
+            "list_id": 1,
+            "user_id": 0
         },
         {
             "id": 2,
             "title": "sss1",
-            "expDate": "Tue Sep 12 2023 23:39:55 GMT+0700 (Krasnoyarsk Standard Time)",
-            "left": 1,
+            "exp_date": "Tue Sep 12 2023 23:39:55 GMT+0700 (Krasnoyarsk Standard Time)",
+            "left_count": 1,
             "units": "units",
-            "listId": 1
+            "list_id": 1,
+            "user_id": 0
         }
     ],
     "lists": [
         {
             "title": "Fridge",
-            "id": 0
+            "id": 0,
+            "user_id": 0
         },
         {
             "title": "Shelf",
-            "id": 1
+            "id": 1,
+            "user_id": 0
         }
     ],
     "users": []

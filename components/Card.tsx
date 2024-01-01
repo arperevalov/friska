@@ -7,20 +7,20 @@ import axios from "axios";
 
 export const Card = (props: CardInterface) => {
     const { daysBeforeSetting } = useSettingsStore((store) => store);
-    const { removeCard, incrementCardLeft, decrementCardLeft } = useCards();
+    const { removeCard, incrementCardLeftAction, decrementCardLeftAction } = useCards();
     const [active, setActive] = useState(false);
-    const { id, title, expDate, left, units } = props;
+    const { id, title, exp_date, left_count, units } = props;
 
     const toggleActive = () => {
         setActive(!active);
     };
 
     const onIncrementClick = () => {
-        incrementCardLeft(id);
+        incrementCardLeftAction();
     };
 
     const onDecrementClick = () => {
-        decrementCardLeft(id);
+        decrementCardLeftAction();
     };
 
     const fetchRemoveCard = () => {
@@ -31,12 +31,12 @@ export const Card = (props: CardInterface) => {
         });
     };
 
-    const dateString = new Date(expDate).toLocaleDateString();
+    const dateString = new Date(exp_date).toLocaleDateString();
 
     const checkExpired = () => {
         const daysBeforeInMillisec = daysBeforeSetting * 24 * 60 * 60 * 1000;
         const date = new Date();
-        const oldDate = new Date(expDate);
+        const oldDate = new Date(exp_date);
         return date.getTime() - oldDate.getTime() > daysBeforeInMillisec;
     };
     return (
@@ -55,7 +55,7 @@ export const Card = (props: CardInterface) => {
                                 <div>exp</div>
                             </div>
                             <div className="card__line">
-                                {`${left} ${units}`}
+                                {`${left_count} ${units}`}
                                 <div>left</div>
                             </div>
                         </div>

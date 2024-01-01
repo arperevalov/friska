@@ -8,9 +8,7 @@ import { useEffect } from "react";
 
 export default function useCards() {
     const router = useRouter();
-    const { cards, initCards, removeCard, incrementCardLeft, decrementCardLeft, addCard, updateCard } = useMainStore(
-        (state) => state,
-    );
+    const { cards, initCards, removeCard, addCard, updateCard } = useMainStore((state) => state);
 
     const addCardAction = (card: Omit<CardInterface, "id">) => {
         axios
@@ -22,7 +20,7 @@ export default function useCards() {
                 if (response) {
                     const formattedData = {
                         response,
-                        left: parseInt(response.left, 10),
+                        left_count: parseInt(response.left_count, 10),
                     };
                     router.push("/");
                     addCard(formattedData);
@@ -30,11 +28,47 @@ export default function useCards() {
             });
     };
 
+    const incrementCardLeftAction = () => {
+        // axios
+        //     .put("/api/cards/", card)
+        //     .then((response) => {
+        //         return response.data;
+        //     })
+        //     .then((response) => {
+        //         if (response) {
+        //             const formattedData = {
+        //                 response,
+        //                 left_count: parseInt(response.left_count, 10),
+        //             };
+        //             router.push("/");
+        //             addCard(formattedData);
+        //         }
+        //     });
+    };
+
+    const decrementCardLeftAction = () => {
+        // axios
+        //     .post("/api/cards", card)
+        //     .then((response) => {
+        //         return response.data;
+        //     })
+        //     .then((response) => {
+        //         if (response) {
+        //             const formattedData = {
+        //                 response,
+        //                 left_count: parseInt(response.left_count, 10),
+        //             };
+        //             router.push("/");
+        //             addCard(formattedData);
+        //         }
+        //     });
+    };
+
     useEffect(() => {
         let ignore = false;
 
         const requestData = async () => {
-            const request = await axios.get("/api/cards");
+            const request = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/cards`);
             const requestJSON = request.data;
             initCards(requestJSON);
         };
@@ -52,8 +86,8 @@ export default function useCards() {
     return {
         cards,
         removeCard,
-        incrementCardLeft,
-        decrementCardLeft,
+        incrementCardLeftAction,
+        decrementCardLeftAction,
         addCardAction,
         updateCard,
     };

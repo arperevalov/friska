@@ -54,11 +54,11 @@ export const useMainStore = create<MainStoreInterface>((set) => ({
                 return id === item.id;
             });
 
-            const left = state.cards[index].left + 1;
+            const left_count = state.cards[index].left_count + 1;
 
             state.cards[index] = {
                 ...state.cards[index],
-                left,
+                left_count,
             };
 
             return {
@@ -71,11 +71,11 @@ export const useMainStore = create<MainStoreInterface>((set) => ({
                 return id === item.id;
             });
 
-            const left = state.cards[index].left > 0 ? state.cards[index].left - 1 : 0;
+            const left_count = state.cards[index].left_count > 0 ? state.cards[index].left_count - 1 : 0;
 
             state.cards[index] = {
                 ...state.cards[index],
-                left,
+                left_count,
             };
 
             return {
@@ -99,7 +99,7 @@ export const useMainStore = create<MainStoreInterface>((set) => ({
             });
 
             const cards = state.cards.find((item) => {
-                if (item.listId === id) return item;
+                if (item.list_id === id) return item;
             });
 
             if (!index && cards) return {};
