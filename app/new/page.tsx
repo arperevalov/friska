@@ -1,6 +1,10 @@
 "use client";
 
 import Header from "@/components/Header";
+import { Input } from "@/components/Input";
+import { InputCalendar } from "@/components/InputCalendar";
+import { Select } from "@/components/Select";
+import { SelectUnits } from "@/components/SelectUnits";
 import Units from "@/enums/Units";
 import useCards from "@/hooks/useCards";
 import useLists from "@/hooks/useLists";
@@ -32,73 +36,44 @@ export default function New() {
     };
 
     if (!lists) return <></>;
-    if (lists.length === 0) return <></>
+    if (lists.length === 0) return <></>;
 
     return (
         <>
             <Header title="New" />
             <div className="container">
-                <form
-                    className="form"
-                    action="#"
-                    onSubmit={handleSubmit(submitForm)}
-                >
-                    <label htmlFor="" className="input">
-                        <span className="input__label">Title</span>
-                        <input
-                            className="input__input"
-                            type="text"
-                            required
-                            {...register('title')}
-                        />
-                    </label>
-                    <label htmlFor="" className="input">
-                        <span className="input__label">Category</span>
-                        <select defaultValue={lists[0].id} className="input__input" required {...register("list_id")}>
-                            {lists.map((value) => {
-                                return (
-                                    <option key={value.id} value={value.id}>
-                                        {value.title}
-                                    </option>
-                                );
-                            })}
-                        </select>
-                    </label>
-                    <label htmlFor="" className="input">
-                        <span className="input__label">Best Before</span>
-                        <input
-                            className="input__input"
-                            type="date"
-                            required
-                            {...register('exp_date')}
-                        />
-                    </label>
+                <form className="form" action="#" onSubmit={handleSubmit(submitForm)}>
+                    <Input formKey="title" label="Title" register={register} type="text" required />
+                    <Select
+                        formKey="list_id"
+                        label="Category"
+                        values={lists}
+                        defaultValue={lists[0].id}
+                        register={register}
+                        required
+                    />
+                    <InputCalendar formKey="exp_date" label="Best Before" register={register} required />
+
                     <div className="input-row">
                         <div className="input-row__col">
-                            <label htmlFor="" className="input">
-                                <span className="input__label">Left</span>
-                                <input
-                                    className="input__input"
-                                    type="number"
-                                    step={0.1}
-                                    required
-                                    {...register('left_count')}
-                                />
-                            </label>
+                            <Input
+                                formKey="left_count"
+                                label="Left"
+                                step={0.1}
+                                register={register}
+                                type="number"
+                                required
+                            />
                         </div>
                         <div className="input-row__col">
-                            <label htmlFor="" className="input">
-                                <span className="input__label">Units</span>
-                                <select defaultValue={0} className="input__input" required {...register("units")}>
-                                    {units.map((value) => {
-                                        return (
-                                            <option key={value} value={value}>
-                                                {value}
-                                            </option>
-                                        );
-                                    })}
-                                </select>
-                            </label>
+                            <SelectUnits
+                                formKey="units"
+                                label="Units"
+                                values={units}
+                                defaultValue={0}
+                                register={register}
+                                required
+                            />
                         </div>
                     </div>
                     <button className="form__btn btn btn--primary" type="submit">

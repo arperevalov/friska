@@ -1,13 +1,22 @@
+"use client";
+
 import Header from "@/components/Header";
 import { Input } from "@/components/Input";
 import { InputAction } from "@/components/InputAction";
-import { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+
+interface FormValues {
+    login: string;
+    email: string;
+    password: string;
+    passwordSecond: string;
+}
 
 export default function SignUp() {
-    const [formData, setFormData] = useState({});
+    const { register, handleSubmit } = useForm<FormValues>();
 
-    const submitForm = () => {
-        console.log(formData);
+    const submitForm: SubmitHandler<FormValues> = (data) => {
+        console.log(data);
     };
 
     const callAction = () => {};
@@ -17,19 +26,12 @@ export default function SignUp() {
             <Header title="Sign-up" />
             <main>
                 <div className="container">
-                    <form
-                        className="form"
-                        action="#"
-                        onSubmit={(event: React.FormEvent) => {
-                            event.preventDefault();
-                            submitForm();
-                        }}
-                    >
-                        <Input type="text" label="Login" setFormData={setFormData} formKey="login" required={true} />
+                    <form className="form" action="#" onSubmit={handleSubmit(submitForm)}>
+                        <Input type="text" label="Login" register={register} formKey="login" required={true} />
                         <InputAction
                             type="email"
                             label="E-mail"
-                            setFormData={setFormData}
+                            register={register}
                             formKey="email"
                             required={true}
                             buttonAction={callAction}
@@ -38,15 +40,15 @@ export default function SignUp() {
                         <Input
                             type="password"
                             label="Password"
-                            setFormData={setFormData}
+                            register={register}
                             formKey="password"
                             required={true}
                         />
                         <Input
                             type="password"
                             label="Repeat password"
-                            setFormData={setFormData}
-                            formKey="password-second"
+                            register={register}
+                            formKey="passwordSecond"
                             required={true}
                         />
                         <button className="form__btn btn btn--primary" type="submit">
