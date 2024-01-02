@@ -9,10 +9,7 @@ export default function Home() {
     const { cards } = useCards();
 
     if (!lists) return <></>;
-
-    if (lists.length === 0) {
-        return <></>;
-    }
+    if (lists.length === 0) return <></>;
 
     return (
         <>
