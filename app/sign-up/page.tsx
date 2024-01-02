@@ -3,10 +3,11 @@
 import Header from "@/components/Header";
 import { Input } from "@/components/Input";
 import { InputAction } from "@/components/InputAction";
+import useUsers from "@/hooks/useUsers";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 interface FormValues {
-    login: string;
+    username: string;
     email: string;
     password: string;
     passwordSecond: string;
@@ -14,9 +15,10 @@ interface FormValues {
 
 export default function SignUp() {
     const { register, handleSubmit } = useForm<FormValues>();
+    const { signUpAction } = useUsers();
 
     const submitForm: SubmitHandler<FormValues> = (data) => {
-        console.log(data);
+        signUpAction(data);
     };
 
     const callAction = () => {};
@@ -27,7 +29,7 @@ export default function SignUp() {
             <main>
                 <div className="container">
                     <form className="form" action="#" onSubmit={handleSubmit(submitForm)}>
-                        <Input type="text" label="Login" register={register} formKey="login" required={true} />
+                        <Input type="text" label="Username" register={register} formKey="username" required={true} />
                         <InputAction
                             type="email"
                             label="E-mail"
