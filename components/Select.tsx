@@ -1,35 +1,20 @@
-import CardInterface from "@/interfaces/Card";
-import { useEffect, useState } from "react";
-
 export interface SelectInterface {
-    label: string;
     values: { title: string; id: number }[];
     defaultValue?: number;
-    setFormData: CallableFunction;
+    label: string;
     formKey: string;
     required?: boolean;
+    register: CallableFunction;
 }
 
 export const Select = (props: SelectInterface) => {
-    const { label, defaultValue, values, setFormData, formKey, required } = props;
-    const [inputValue, setInputValue] = useState(defaultValue ? defaultValue : 0);
-
-    useEffect(() => {
-        setFormData((previousValue: CardInterface) => ({ ...previousValue, [formKey]: inputValue }));
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    const onChange = (event: React.FormEvent<HTMLSelectElement>) => {
-        const value = parseInt(event.currentTarget.value);
-        setInputValue(value);
-        setFormData((previousValue: CardInterface) => ({ ...previousValue, [formKey]: value }));
-    };
+    const { label, defaultValue, values, formKey, required, register } = props;
 
     return (
         <>
             <label htmlFor="" className="input">
                 <span className="input__label">{label}</span>
-                <select defaultValue={defaultValue} onChange={onChange} className="input__input" required={required}>
+                <select defaultValue={defaultValue} {...register(formKey)} className="input__input" required={required}>
                     {values.map((value) => {
                         return (
                             <option key={value.id} value={value.id}>

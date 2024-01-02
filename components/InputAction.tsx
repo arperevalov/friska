@@ -1,28 +1,18 @@
-import CardInterface from "@/interfaces/Card";
-import { useState } from "react";
-
 export interface InputActionInterface {
     label: string;
     defaultValue?: string | null | number;
     type: string;
     min?: number;
     max?: number;
-    setFormData: CallableFunction;
     formKey: string;
     required?: boolean;
     buttonAction: CallableFunction;
     buttonText: string;
+    register: CallableFunction;
 }
 
 export const InputAction = (props: InputActionInterface) => {
-    const { label, defaultValue, type, min, max, setFormData, formKey, required, buttonAction, buttonText } = props;
-    const [inputValue, setInputValue] = useState(defaultValue ? defaultValue : "");
-
-    const onChange = (event: React.FormEvent<HTMLInputElement>) => {
-        const value = event.currentTarget.value;
-        setInputValue(value);
-        setFormData((previousValue: CardInterface) => ({ ...previousValue, [formKey]: value }));
-    };
+    const { label, defaultValue, type, min, max, formKey, required, buttonAction, buttonText, register } = props;
 
     const onButtonClick = () => {
         buttonAction();
@@ -33,10 +23,10 @@ export const InputAction = (props: InputActionInterface) => {
             <label htmlFor="" className="input">
                 <span className="input__label">{label}</span>
                 <input
-                    onChange={onChange}
+                    {...register(formKey)}
                     className="input__input"
                     type={type}
-                    value={inputValue ? inputValue : ""}
+                    defaultValue={defaultValue}
                     min={min}
                     max={max}
                     required={required}

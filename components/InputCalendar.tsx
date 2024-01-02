@@ -1,35 +1,25 @@
-import CardInterface from "@/interfaces/Card";
-import { useState } from "react";
-
 export interface InputInterface {
     label: string;
     defaultValue?: Date | null;
-    setFormData: CallableFunction;
     formKey: string;
     required?: boolean;
+    register: CallableFunction;
 }
 
 export const InputCalendar = (props: InputInterface) => {
-    const { label, defaultValue, setFormData, formKey, required } = props;
-    const [inputValue, setInputValue] = useState(defaultValue ? defaultValue.toLocaleDateString("sv-SE") : "");
+    const { label, defaultValue, formKey, required, register } = props;
 
-    const onChange = (event: React.FormEvent<HTMLInputElement>) => {
-        const value = event.currentTarget.value;
-        const date = new Date(value);
-        setInputValue(value);
-        setFormData((previousValue: CardInterface) => ({ ...previousValue, [formKey]: date }));
-    };
 
     return (
         <>
             <label htmlFor="" className="input">
                 <span className="input__label">{label}</span>
                 <input
-                    onChange={onChange}
                     className="input__input"
                     type="date"
-                    value={inputValue ? inputValue : ""}
                     required={required}
+                    defaultValue={defaultValue ? defaultValue.toLocaleDateString("sv-SE") : ""}
+                    {...register(formKey)}
                 />
             </label>
         </>
