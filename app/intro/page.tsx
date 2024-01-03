@@ -1,5 +1,5 @@
 import IntroCards from "@/components/IntroCards";
-import Image from "next/image";
+import Logo from "@/components/Logo";
 import Link from "next/link";
 
 export default function Intro() {
@@ -11,10 +11,7 @@ export default function Intro() {
                     <div className="intro">
                         <div className="intro__content">
                             <div className="intro__logo">
-                                <div className="intro__logo-icon">
-                                    <Image src="/svg/friska.svg" alt="" fill />
-                                </div>
-                                Friska
+                                <Logo/>
                             </div>
                             <h1 className="intro__title">Hello, there</h1>
                             <p className="intro__text">

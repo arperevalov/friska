@@ -44,7 +44,7 @@
         box-shadow: 16px 16px 12px rgba($black, 0.01);
         border-radius: rem(8);
         width: 50%;
-        
+
         @include media-breakpoint-up(375px) {
             width: 33%;
         }

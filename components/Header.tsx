@@ -4,6 +4,7 @@ import { deleteCookie } from "cookies-next";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import Logo from "./Logo";
 
 interface HeaderProps {
     title?: string;
@@ -23,15 +24,7 @@ export default function Header(props: HeaderProps) {
         <>
             <header className={`header`}>
                 <div className="header__top">
-                    {pathname === "/" ? (
-                        <>
-                            <div className="header__logo">
-                                <div className="header__logo-icon">
-                                    <Image src="/svg/friska.svg" alt="" fill />
-                                </div>
-                                Friska
-                            </div>
-                        </>
+                    {pathname === "/" ? ( <Logo/>
                     ) : (
                         <>
                             <div className="header__inner">
