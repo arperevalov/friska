@@ -23,7 +23,7 @@ export default function Intro() {
                             <Link href={"./sign-in"} className="btn btn--sm btn--primary">
                                 Sign-in
                             </Link>
-                            <Link href={"./sign-in"} className="btn btn--sm btn--outline-primary">
+                            <Link href={"./sign-up"} className="btn btn--sm btn--outline-primary">
                                 Sign-up
                             </Link>
                         </div>
