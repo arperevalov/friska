@@ -3,6 +3,7 @@
 import useLists from "@/hooks/useLists";
 import useCards from "@/hooks/useCards";
 import List from "@/components/List";
+import Header from "@/components/Header";
 
 export default function Home() {
     const { lists } = useLists();
@@ -13,6 +14,7 @@ export default function Home() {
 
     return (
         <>
+            <Header />
             <main>
                 <div className="container">
                     {lists.map((list) => {
