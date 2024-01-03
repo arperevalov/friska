@@ -88,6 +88,8 @@ export default function Update({ params }: { params: { id: string } }) {
                                     formKey="left_count"
                                     required={true}
                                     register={register}
+                                    min={0}
+                                    step={0.1}
                                 />
                             </div>
                             <div className="input-row__col">

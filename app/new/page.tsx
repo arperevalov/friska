@@ -73,6 +73,7 @@ export default function New() {
                             <Input
                                 formKey="left_count"
                                 label="Left"
+                                min={0}
                                 step={0.1}
                                 register={register}
                                 type="number"
