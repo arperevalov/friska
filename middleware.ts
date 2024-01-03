@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-const routes = /\/sign-in|\/sign-up|\/intro/gi
+const routes = /\/(sign-in|sign-up|intro)/gi;
 
 export function middleware(request: NextRequest) {
     const isAuth = request.cookies.get("auth-token")?.value || false;
@@ -16,5 +16,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-    matcher: "/((?!api|_next/static|_next/image|favicon.ico).*)",
+    matcher: "/((?!api|_next/static|_next/image|svg|favicon.ico).*)",
 };

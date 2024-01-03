@@ -10,7 +10,7 @@ export default function Intro() {
                     <div className="intro">
                         <div className="intro__logo">
                             <div className="intro__logo-icon">
-                                <Image src="/friska.svg" alt="" fill />
+                                <Image src="/svg/friska.svg" alt="" fill />
                             </div>
                             Friska
                         </div>
