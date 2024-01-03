@@ -18,6 +18,8 @@ export const List = (props: ListProps) => {
         setActive(!active);
     };
 
+    if (cards.length <= 0) return;
+
     return (
         <>
             <div className={`list${active ? " active" : ""}`} key={id}>
