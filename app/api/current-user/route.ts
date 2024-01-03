@@ -14,7 +14,7 @@ export async function GET() {
         return Response.json(data);
     } catch (error: unknown) {
         if (error instanceof AxiosError) {
-            return Response.json({ error: "Server error" }, { status: error.status });
+            return Response.json({ error: error}, { status: 500 });
         }
     }
 }
