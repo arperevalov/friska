@@ -17,7 +17,7 @@ export default function Header(props: HeaderProps) {
     const onLogoutClick = () => {
         deleteCookie("auth-token");
         router.push("/intro");
-    }
+    };
 
     return (
         <>
@@ -56,11 +56,19 @@ export default function Header(props: HeaderProps) {
                                 </div>
                                 <h1 className="header__title">{title}</h1>
                                 <div className="header__element">
-                                    {pathname === "/settings" ? <>
-                                        <button className="link link--secondary" onClick={onLogoutClick} type="button">
-                                            Logout
-                                        </button>
-                                    </> : ""}
+                                    {pathname === "/settings" ? (
+                                        <>
+                                            <button
+                                                className="link link--secondary"
+                                                onClick={onLogoutClick}
+                                                type="button"
+                                            >
+                                                Logout
+                                            </button>
+                                        </>
+                                    ) : (
+                                        ""
+                                    )}
                                 </div>
                             </div>
                         </>
