@@ -11,7 +11,6 @@ export default function useCurrentUser() {
         if (!ignore) {
             axios.get("/api/current-user").then((response) => {
                 if (response.status === 200) {
-                    debugger;
                     ignore = true;
                     setCurrentUser(response.data);
                 }
