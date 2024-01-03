@@ -11,15 +11,20 @@ export default function Home() {
     const { cards } = useCards();
 
     if (!lists) return <></>;
-    if (lists.length === 0) return <>
-        <Header />
-        <main>
-            <div className="container">
-                <h1 className="h1">There are no lists!</h1>
-                <Link href="/settings" className="link link--primary">Create new at settings</Link>
-            </div>
-        </main>
-    </>
+    if (lists.length === 0)
+        return (
+            <>
+                <Header />
+                <main>
+                    <div className="container">
+                        <h1 className="h1">There are no lists!</h1>
+                        <Link href="/settings" className="link link--primary">
+                            Create new at settings
+                        </Link>
+                    </div>
+                </main>
+            </>
+        );
 
     return (
         <>
