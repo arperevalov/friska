@@ -15,11 +15,11 @@ export const Card = (props: CardInterface) => {
     };
 
     const onIncrementClick = () => {
-        incrementCardLeftAction();
+        incrementCardLeftAction(id);
     };
 
     const onDecrementClick = () => {
-        decrementCardLeftAction();
+        decrementCardLeftAction(id);
     };
 
     const onRemoveClick = () => {

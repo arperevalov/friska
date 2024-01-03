@@ -54,40 +54,34 @@ export default function useCards() {
         });
     };
 
-    const incrementCardLeftAction = () => {
-        // axios
-        //     .put("/api/cards/", card)
-        //     .then((response) => {
-        //         return response.data;
-        //     })
-        //     .then((response) => {
-        //         if (response) {
-        //             const formattedData = {
-        //                 response,
-        //                 left_count: parseInt(response.left_count, 10),
-        //             };
-        //             router.push("/");
-        //             addCard(formattedData);
-        //         }
-        //     });
+    const incrementCardLeftAction = (id: number) => {
+        axios
+            .put(`/api/cards/${id}/increment`)
+            .then((response) => {
+                if (response.status === 200) {
+                    const formattedData = {
+                        ...response.data,
+                        left_count: parseInt(response.data.left_count, 10),
+                    };
+                    updateCard(formattedData);
+                    router.push("/");
+                }
+            });
     };
 
-    const decrementCardLeftAction = () => {
-        // axios
-        //     .post("/api/cards", card)
-        //     .then((response) => {
-        //         return response.data;
-        //     })
-        //     .then((response) => {
-        //         if (response) {
-        //             const formattedData = {
-        //                 response,
-        //                 left_count: parseInt(response.left_count, 10),
-        //             };
-        //             router.push("/");
-        //             addCard(formattedData);
-        //         }
-        //     });
+    const decrementCardLeftAction = (id: number) => {
+        axios
+            .put(`/api/cards/${id}/decrement`)
+            .then((response) => {
+                if (response.status === 200) {
+                    const formattedData = {
+                        ...response.data,
+                        left_count: parseInt(response.data.left_count, 10),
+                    };
+                    updateCard(formattedData);
+                    router.push("/");
+                }
+            });
     };
 
     useEffect(() => {
