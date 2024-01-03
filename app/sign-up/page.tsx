@@ -56,7 +56,7 @@ export default function SignUp() {
                             required={true}
                         />
                         <button className="form__btn btn btn--primary" type="submit">
-                            Add new
+                            Submit
                         </button>
                     </form>
                 </div>

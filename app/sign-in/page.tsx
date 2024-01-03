@@ -34,7 +34,7 @@ export default function SignIn() {
                         />
                         <button className="form__btn-sub link link--primary">Recover password</button>
                         <button className="form__btn btn btn--primary" type="submit">
-                            Add new
+                            Submit
                         </button>
                     </form>
                 </div>
