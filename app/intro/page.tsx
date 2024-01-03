@@ -7,7 +7,7 @@ export default function Intro() {
         <>
             <main>
                 <div className="container">
-                    <IntroCards/>
+                    <IntroCards />
                     <div className="intro">
                         <div className="intro__content">
                             <div className="intro__logo">
