@@ -1,7 +1,18 @@
 .intro {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+
+    &__content {
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        @include media-breakpoint-up(800px) {
+            width: 50%;
+        }
+    }
 
     &__logo {
         display: flex;
