@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from "axios";
 import { useRouter } from "next/navigation";
 
 interface signInInterface {
@@ -12,30 +12,27 @@ interface signUpInterface {
     password: string;
 }
 
-export default function useAuth () {
+export default function useAuth() {
     const router = useRouter();
 
     const signInAction = (data: signInInterface) => {
-        axios.post("/api/sign-in/", data)
-        .then((response) => {
-            debugger
+        axios.post("/api/sign-in/", data).then((response) => {
             if (response.data.token) {
                 router.push("/");
             }
         });
-    }
+    };
 
     const signUpAction = (data: signUpInterface) => {
-        axios.post("/api/sign-up/", data)
-        .then((response) => {
+        axios.post("/api/sign-up/", data).then((response) => {
             if (response.data.token) {
                 router.push("/");
             }
         });
-    }
+    };
 
     return {
         signInAction,
-        signUpAction
-    }
+        signUpAction,
+    };
 }
