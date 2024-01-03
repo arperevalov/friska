@@ -1,5 +1,6 @@
 "use client";
 
+import { deleteCookie } from "cookies-next";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -12,6 +13,11 @@ export default function Header(props: HeaderProps) {
     const { title } = props;
     const pathname = usePathname();
     const router = useRouter();
+
+    const onLogoutClick = () => {
+        deleteCookie("auth-token");
+        router.push("/intro");
+    }
 
     return (
         <>
@@ -49,7 +55,13 @@ export default function Header(props: HeaderProps) {
                                     </button>
                                 </div>
                                 <h1 className="header__title">{title}</h1>
-                                <div className="header__element"></div>
+                                <div className="header__element">
+                                    {pathname === "/settings" ? <>
+                                        <button className="link link--secondary" onClick={onLogoutClick} type="button">
+                                            Logout
+                                        </button>
+                                    </> : ""}
+                                </div>
                             </div>
                         </>
                     )}
