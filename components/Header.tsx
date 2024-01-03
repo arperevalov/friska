@@ -24,7 +24,8 @@ export default function Header(props: HeaderProps) {
         <>
             <header className={`header`}>
                 <div className="header__top">
-                    {pathname === "/" ? ( <Logo/>
+                    {pathname === "/" ? (
+                        <Logo />
                     ) : (
                         <>
                             <div className="header__inner">

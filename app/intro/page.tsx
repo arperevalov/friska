@@ -11,7 +11,7 @@ export default function Intro() {
                     <div className="intro">
                         <div className="intro__content">
                             <div className="intro__logo">
-                                <Logo/>
+                                <Logo />
                             </div>
                             <h1 className="intro__title">Hello, there</h1>
                             <p className="intro__text">
