@@ -21,7 +21,7 @@ export default function Header(props: HeaderProps) {
                         <>
                             <div className="header__logo">
                                 <div className="header__logo-icon">
-                                    <Image src="/friska.svg" alt="" fill />
+                                    <Image src="/svg/friska.svg" alt="" fill />
                                 </div>
                                 Friska
                             </div>
