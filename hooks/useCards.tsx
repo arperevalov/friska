@@ -55,33 +55,29 @@ export default function useCards() {
     };
 
     const incrementCardLeftAction = (id: number) => {
-        axios
-            .put(`/api/cards/${id}/increment`)
-            .then((response) => {
-                if (response.status === 200) {
-                    const formattedData = {
-                        ...response.data,
-                        left_count: parseInt(response.data.left_count, 10),
-                    };
-                    updateCard(formattedData);
-                    router.push("/");
-                }
-            });
+        axios.put(`/api/cards/${id}/increment`).then((response) => {
+            if (response.status === 200) {
+                const formattedData = {
+                    ...response.data,
+                    left_count: parseInt(response.data.left_count, 10),
+                };
+                updateCard(formattedData);
+                router.push("/");
+            }
+        });
     };
 
     const decrementCardLeftAction = (id: number) => {
-        axios
-            .put(`/api/cards/${id}/decrement`)
-            .then((response) => {
-                if (response.status === 200) {
-                    const formattedData = {
-                        ...response.data,
-                        left_count: parseInt(response.data.left_count, 10),
-                    };
-                    updateCard(formattedData);
-                    router.push("/");
-                }
-            });
+        axios.put(`/api/cards/${id}/decrement`).then((response) => {
+            if (response.status === 200) {
+                const formattedData = {
+                    ...response.data,
+                    left_count: parseInt(response.data.left_count, 10),
+                };
+                updateCard(formattedData);
+                router.push("/");
+            }
+        });
     };
 
     useEffect(() => {
