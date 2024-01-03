@@ -1,12 +1,12 @@
 "use client";
 
 import Header from "@/components/Header";
+import useCurrentUser from "@/hooks/useCurrentUser";
 import useLists from "@/hooks/useLists";
-import { useSettingsStore } from "@/store/SettingsStore";
 import { FormEvent, useState } from "react";
 
 export default function Settings() {
-    const { daysBeforeSetting, setDaysBeforeSetting } = useSettingsStore((state) => state);
+    const { currentUser } = useCurrentUser();
     const { lists, addListAction, removeListAction } = useLists();
 
     const [newListValue, setNewListValue] = useState("");
@@ -23,6 +23,8 @@ export default function Settings() {
         removeListAction(id);
     };
 
+    const onBestBeforeChange = () => {};
+
     if (!lists) return <></>;
 
     return (
@@ -35,12 +37,10 @@ export default function Settings() {
                             <label htmlFor="" className="input">
                                 <span className="input__label">Best before limit, days</span>
                                 <input
-                                    onChange={(event) => {
-                                        setDaysBeforeSetting(event.currentTarget.value);
-                                    }}
+                                    onChange={onBestBeforeChange}
                                     className="input__input"
                                     type="number"
-                                    value={daysBeforeSetting}
+                                    value={currentUser.best_before}
                                     min="0"
                                 />
                             </label>

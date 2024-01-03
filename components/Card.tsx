@@ -5,7 +5,7 @@ import Link from "next/link";
 import useCards from "@/hooks/useCards";
 
 export const Card = (props: CardInterface) => {
-    const { daysBeforeSetting } = useSettingsStore((store) => store);
+    const { currentUser } = useSettingsStore((store) => store);
     const { removeCardAction, incrementCardLeftAction, decrementCardLeftAction } = useCards();
     const [active, setActive] = useState(false);
     const { id, title, exp_date, left_count, units } = props;
@@ -29,7 +29,7 @@ export const Card = (props: CardInterface) => {
     const dateString = new Date(exp_date).toLocaleDateString();
 
     const checkExpired = () => {
-        const daysBeforeInMillisec = daysBeforeSetting * 24 * 60 * 60 * 1000;
+        const daysBeforeInMillisec = currentUser.best_before * 24 * 60 * 60 * 1000;
         const date = new Date();
         const oldDate = new Date(exp_date);
         return date.getTime() - oldDate.getTime() > daysBeforeInMillisec;
