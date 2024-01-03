@@ -60,7 +60,7 @@ export default function New() {
                     <Input formKey="title" label="Title" register={register} type="text" required />
                     <Select
                         formKey="list_id"
-                        label="Category"
+                        label="List"
                         values={lists}
                         defaultValue={lists[0].id}
                         register={register}

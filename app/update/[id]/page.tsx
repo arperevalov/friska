@@ -65,7 +65,7 @@ export default function Update({ params }: { params: { id: string } }) {
                             register={register}
                         />
                         <Select
-                            label="Category"
+                            label="List"
                             values={lists}
                             defaultValue={card.list_id}
                             formKey="list_id"

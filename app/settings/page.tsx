@@ -53,7 +53,7 @@ export default function Settings() {
                     </div>
 
                     <div className="input">
-                        <span className="input__label">Categories</span>
+                        <span className="input__label">Lists</span>
                         <div className="chips">
                             {lists.length > 0
                                 ? lists.map((list) => (
@@ -105,7 +105,7 @@ export default function Settings() {
                                 required
                             />
                             <button className="input__button link link--primary" type="submit">
-                                Add Category
+                                Add List
                             </button>
                         </label>
                     </form>
