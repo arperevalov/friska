@@ -2,18 +2,20 @@
 
 import Header from "@/components/Header";
 import { Input } from "@/components/Input";
+import useAuth from "@/hooks/useAuth";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 interface FormValues {
-    login: string;
+    username: string;
     password: string;
 }
 
 export default function SignIn() {
     const { register, handleSubmit } = useForm<FormValues>();
+    const { signInAction } = useAuth();
 
     const submitForm: SubmitHandler<FormValues> = (data) => {
-        console.log(data);
+        signInAction(data);
     };
 
     return (
@@ -22,7 +24,7 @@ export default function SignIn() {
             <main>
                 <div className="container">
                     <form className="form" action="#" onSubmit={handleSubmit(submitForm)}>
-                        <Input type="text" label="Login" register={register} formKey="login" required={true} />
+                        <Input type="text" label="Login" register={register} formKey="username" required={true} />
                         <Input
                             type="password"
                             label="Password"
