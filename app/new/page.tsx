@@ -8,6 +8,7 @@ import { SelectUnits } from "@/components/SelectUnits";
 import Units from "@/enums/Units";
 import useCards from "@/hooks/useCards";
 import useLists from "@/hooks/useLists";
+import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 interface FormValues {
@@ -36,7 +37,15 @@ export default function New() {
     };
 
     if (!lists) return <></>;
-    if (lists.length === 0) return <></>;
+    if (lists.length === 0) return <>
+        <Header title="New" />
+        <main>
+            <div className="container">
+                <h1 className="h1">There are no lists!</h1>
+                <Link href="/settings" className="link link--primary">Create new at settings</Link>
+            </div>
+        </main>
+    </>
 
     return (
         <>
