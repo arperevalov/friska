@@ -17,7 +17,6 @@ export default function SignUp() {
     const { register, handleSubmit } = useForm<FormValues>();
     const { signUpAction } = useAuth();
 
-
     const submitForm: SubmitHandler<FormValues> = (data) => {
         if (data.password === data.passwordSecond) {
             signUpAction(data);
