@@ -25,10 +25,8 @@ export default function useCards() {
             .then((response) => {
                 if (response) {
                     const formattedData = {
-                        response,
-                        left_count: parseInt(response.left_count, 10),
+                        ...response[0],
                     };
-                    router.push("/");
                     addCard(formattedData);
                 }
             });
@@ -81,6 +79,7 @@ export default function useCards() {
     };
 
     useEffect(() => {
+        if (cards.length !== 0) return
         let ignore = false;
 
         const requestData = async () => {
