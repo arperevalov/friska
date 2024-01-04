@@ -8,7 +8,7 @@ export default function useCurrentUser() {
     useEffect(() => {
         let ignore = false;
 
-        if (!ignore) {
+        if (!ignore && !currentUser) {
             axios.get("/api/current-user").then((response) => {
                 if (response.status === 200) {
                     ignore = true;
@@ -17,6 +17,10 @@ export default function useCurrentUser() {
             });
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
+
+        return () => {
+            ignore = true;
+        };
     }, []);
 
     return {
