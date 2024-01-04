@@ -28,8 +28,8 @@ export const List = (props: ListProps) => {
             <div className={`list${active ? " active" : ""}`} key={id}>
                 <div className="list__header">
                     <h2 className="list__title">{title}</h2>
-                    <button type="button" onClick={toggleActive} className="list__settings">
-                        <span className="visually-hidden">Settings</span>
+                    <button type="button" onClick={toggleActive} className="list__toggle-active">
+                        <span className="visually-hidden">Toggle list</span>
                     </button>
                 </div>
                 <div className="list__items">

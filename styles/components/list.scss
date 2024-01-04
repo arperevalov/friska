@@ -1,28 +1,47 @@
 .list {
+    --list-title-font-size: var(--step-3);
+    --list-items-display: none;
+    --list-header-margin-bottom: 0;
     --gap: #{var(--space-2xs)};
+    padding: var(--space-2xs);
+    border-radius: rem(8);
+    background: $gray;
     width: 100%;
-    margin-bottom: var(--space-xl);
+    margin-bottom: var(--space-xs);
+
+    &.active {
+        --list-items-display: flex;
+        --list-header-margin-bottom: var(--space-2xs);
+        --list-title-font-size: var(--step-0);
+    }
 
     &__title {
-        margin-bottom: var(--space-2xs);
-
-        font-size: var(--step-0);
+        font-size: var(--list-title-font-size);
         line-height: 1.2;
         font-weight: 600;
         letter-spacing: -0.04em;
+        transition: font-size $duration-fast;
     }
 
     &__header {
+        position: relative;
         display: flex;
         flex: 0 0 100%;
-        border-bottom: 1px solid $black;
-        margin-bottom: var(--space-s);
+        margin-bottom: var(--list-header-margin-bottom);
+    }
+
+    &__toggle-active {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
     }
 
     &__items {
-        display: flex;
-        flex-wrap: wrap;
         @include make-row(var(--gap), var(--gap));
+        display: var(--list-items-display);
+        flex-wrap: wrap;
     }
 
     &__item {
