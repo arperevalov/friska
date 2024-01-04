@@ -14,11 +14,24 @@ const defaultValue: ModalContextValue = {
 export const ModalContext = createContext<ModalContextValue>(defaultValue);
 export default function ModalProvider({ children }: { children: React.ReactNode }) {
     const [modals, setModal] = useState({
-        [ModalsEnum.FormNewCard]: false,
+        [ModalsEnum.FormNewCard]: {
+            state: false,
+            parameters: null,
+        },
+        [ModalsEnum.FormUpdateCard]: {
+            state: false,
+            parameters: null,
+        },
     });
 
-    const toggleModal = (name: ModalsEnum) => {
-        setModal((previous) => ({ ...previous, [name]: !previous[name] }));
+    const toggleModal = (name: ModalsEnum, parameters: string | number | null) => {
+        setModal((previous) => ({
+            ...previous,
+            [name]: {
+                state: !previous[name].state,
+                parameters,
+            },
+        }));
     };
 
     return (

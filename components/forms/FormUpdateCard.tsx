@@ -17,7 +17,7 @@ interface FormValues {
 
 interface FormUpdateCardProps {
     onSubmit?: CallableFunction;
-    parameters: number;
+    parameters: number | null;
 }
 
 export default function FormUpdateCard(props: FormUpdateCardProps) {
@@ -26,6 +26,8 @@ export default function FormUpdateCard(props: FormUpdateCardProps) {
     const { cards, updateCardAction } = useCards();
     const { lists } = useLists();
     const units = Object.keys(Units);
+
+    if (!parameters) return;
 
     const index = cards.findIndex((item) => item.id === parameters);
     const card = cards[index];
