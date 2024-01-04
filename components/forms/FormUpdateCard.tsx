@@ -27,7 +27,7 @@ export default function FormUpdateCard(props: FormUpdateCardProps) {
     const { lists } = useLists();
     const units = Object.keys(Units);
 
-    const index = cards.findIndex((item) => (item.id === parameters));
+    const index = cards.findIndex((item) => item.id === parameters);
     const card = cards[index];
 
     const submitForm: SubmitHandler<FormValues> = (data) => {
@@ -43,7 +43,6 @@ export default function FormUpdateCard(props: FormUpdateCardProps) {
         reset();
         if (onSubmit) onSubmit();
     };
-
 
     return (
         <>
@@ -85,13 +84,7 @@ export default function FormUpdateCard(props: FormUpdateCardProps) {
                         />
                     </div>
                     <div className="input-row__col">
-                        <SelectUnits
-                            label="Units"
-                            values={units}
-                            formKey="units"
-                            required={true}
-                            register={register}
-                        />
+                        <SelectUnits label="Units" values={units} formKey="units" required={true} register={register} />
                     </div>
                 </div>
 
