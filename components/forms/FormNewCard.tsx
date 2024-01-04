@@ -36,7 +36,7 @@ export default function FormNewCard(props: FormNewCardProps) {
             user_id: 1,
         };
         addCardAction(formattedData);
-        reset()
+        reset();
         if (onSubmit) onSubmit();
     };
 
