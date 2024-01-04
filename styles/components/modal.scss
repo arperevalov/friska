@@ -10,7 +10,7 @@
     display: var(--modal-display, none);
 
     &.show {
-        --modal-display: block
+        --modal-display: block;
     }
 
     &__backdrop {
