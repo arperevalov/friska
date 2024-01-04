@@ -21,7 +21,7 @@ export default function Modals(props: ModalsProps) {
         <>
             <Modal show={modals[ModalsEnum.FormNewCard]} onHide={hideFormNewCard}>
                 <ModalHeader>
-                    <ModalTitle>Update list</ModalTitle>
+                    <ModalTitle>New card</ModalTitle>
                 </ModalHeader>
                 <FormNewCard onSubmit={hideFormNewCard} />
             </Modal>
