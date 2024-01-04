@@ -20,33 +20,35 @@ export default function Home() {
     const filteredCards = cards ? cards.filter((item) => item.title?.match(new RegExp(searchValue, "gi"))) : [];
 
     if (!lists) return <></>;
-    if (lists.length === 0)
-        return (
-            <>
-                <Header />
-                <main>
-                    <div className="container">
-                        <h1 className="h1">There are no lists!</h1>
-                        <Link href="/settings" className="link link--primary">
-                            Create new at settings
-                        </Link>
-                    </div>
-                </main>
-            </>
-        );
 
     return (
         <>
             <Header />
             <main>
                 <div className="container">
-                    <label htmlFor="" className="input">
-                        <span className="input__label">Search</span>
-                        <input className="input__input" type="text" onChange={onSearchChange} value={searchValue} />
-                    </label>
-                    {lists.map((list) => {
-                        return <List key={list.id} id={list.id} title={list.title} cards={filteredCards} />;
-                    })}
+                    {lists.length === 0 ? (
+                        <>
+                            <h1 className="h1">There are no lists!</h1>
+                            <Link href="/settings" className="link link--primary">
+                                Create new at settings
+                            </Link>
+                        </>
+                    ) : (
+                        <>
+                            <label htmlFor="" className="input">
+                                <span className="input__label">Search</span>
+                                <input
+                                    className="input__input"
+                                    type="text"
+                                    onChange={onSearchChange}
+                                    value={searchValue}
+                                />
+                            </label>
+                            {lists.map((list) => {
+                                return <List key={list.id} id={list.id} title={list.title} cards={filteredCards} />;
+                            })}
+                        </>
+                    )}
                 </div>
             </main>
         </>

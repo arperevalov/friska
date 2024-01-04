@@ -39,7 +39,7 @@ export const List = (props: ListProps) => {
                                   return <Card {...card} key={card.id} />;
                               }
                           })
-                        : ""}
+                        : "There are no cards for this list"}
                 </div>
             </div>
         </>
