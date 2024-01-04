@@ -1,13 +1,15 @@
 import { useState } from "react";
 import CardInterface from "@/interfaces/Card";
-import Link from "next/link";
 import useCards from "@/hooks/useCards";
 import useCurrentUser from "@/hooks/useCurrentUser";
+import useModals from "@/hooks/useModals";
+import ModalsEnum from "@/enums/Modals";
 
 export const Card = (props: CardInterface) => {
     const { currentUser } = useCurrentUser();
     const { removeCardAction, incrementCardLeftAction, decrementCardLeftAction } = useCards();
     const [active, setActive] = useState(false);
+    const { toggleModalAction } = useModals();
     const { id, title, exp_date, left_count, units } = props;
 
     const toggleActive = () => {
@@ -24,6 +26,10 @@ export const Card = (props: CardInterface) => {
 
     const onRemoveClick = () => {
         removeCardAction(id);
+    };
+
+    const onUpdateClick = () => {
+        toggleModalAction(ModalsEnum.FormUpdateCard, id);
     };
 
     const dateString = new Date(exp_date).toLocaleDateString();
@@ -59,9 +65,13 @@ export const Card = (props: CardInterface) => {
                         </div>
                     </div>
                     <div className="card__options">
-                        <Link href={`/update/${id}`} className="card__link link link--primary link--centered">
+                        <button
+                            type="button"
+                            onClick={onUpdateClick}
+                            className="card__link link link--primary link--centered"
+                        >
                             Edit
-                        </Link>
+                        </button>
                         <button
                             type="button"
                             className="card__link link link--secondary link--centered"
