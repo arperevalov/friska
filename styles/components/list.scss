@@ -1,7 +1,8 @@
 .list {
     --list-title-font-size: var(--step-3);
     --list-items-display: none;
-    --list-header-margin-bottom: 0;
+    --list-header-padding-top: var(--space-l);
+    --list-header-padding-bottom: 0;
     --gap: #{var(--space-2xs)};
     padding: var(--space-2xs);
     border-radius: rem(8);
@@ -11,15 +12,18 @@
 
     &.active {
         --list-items-display: flex;
-        --list-header-margin-bottom: var(--space-2xs);
+        --list-header-padding-top: 0;
+        --list-header-padding-bottom: var(--space-2xs);
         --list-title-font-size: var(--step-0);
     }
 
     &__header {
+        transition: padding $duration-fast;
         position: relative;
         display: flex;
         flex: 0 0 100%;
-        margin-bottom: var(--list-header-margin-bottom);
+        padding-top: var(--list-header-padding-top);
+        padding-bottom: var(--list-header-padding-bottom);
         align-items: baseline;
     }
 

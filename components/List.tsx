@@ -30,11 +30,15 @@ export const List = (props: ListProps) => {
                     <div className="list__count">
                         {filteredCards.length} {filteredCards.length === 1 ? "item" : "items"}
                     </div>
-                    {filteredCards.length === 0 ? <></> : <>
-                        <button type="button" onClick={toggleActive} className="list__toggle-active">
-                            <span className="visually-hidden">Toggle list</span>
-                        </button>
-                    </>}
+                    {filteredCards.length === 0 ? (
+                        <></>
+                    ) : (
+                        <>
+                            <button type="button" onClick={toggleActive} className="list__toggle-active">
+                                <span className="visually-hidden">Toggle list</span>
+                            </button>
+                        </>
+                    )}
                 </div>
                 <div className="list__items">
                     {cards.length > 0
