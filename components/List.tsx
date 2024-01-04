@@ -14,7 +14,10 @@ export const List = (props: ListProps) => {
     const { id, title, cards } = props;
     const [active, setActive] = useState(false);
 
+    const filteredCards = cards.filter((card: CardInterface) => card.list_id === id);
+
     const toggleActive = () => {
+        if (filteredCards.length === 0) return;
         setActive(!active);
     };
 
@@ -31,7 +34,7 @@ export const List = (props: ListProps) => {
                 </div>
                 <div className="list__items">
                     {cards.length > 0
-                        ? cards.map((card: CardInterface) => {
+                        ? filteredCards.map((card: CardInterface) => {
                               if (card.list_id === id) {
                                   return <Card {...card} key={card.id} />;
                               }
