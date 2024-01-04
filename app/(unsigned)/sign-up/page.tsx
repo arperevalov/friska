@@ -1,6 +1,6 @@
 "use client";
 
-import Header from "@/components/Header";
+import HeaderSimple from "@/components/HeaderSimple";
 import { Input } from "@/components/Input";
 import { InputAction } from "@/components/InputAction";
 import useAuth from "@/hooks/useAuth";
@@ -27,7 +27,7 @@ export default function SignUp() {
 
     return (
         <>
-            <Header title="Sign-up" />
+            <HeaderSimple title="Sign-up" />
             <main>
                 <div className="container">
                     <form className="form" action="#" onSubmit={handleSubmit(submitForm)}>

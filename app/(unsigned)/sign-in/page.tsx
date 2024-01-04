@@ -1,6 +1,6 @@
 "use client";
 
-import Header from "@/components/Header";
+import HeaderSimple from "@/components/HeaderSimple";
 import { Input } from "@/components/Input";
 import useAuth from "@/hooks/useAuth";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -20,7 +20,7 @@ export default function SignIn() {
 
     return (
         <>
-            <Header title="Sign-in" />
+            <HeaderSimple title="Sign-in" />
             <main>
                 <div className="container">
                     <form className="form" action="#" onSubmit={handleSubmit(submitForm)}>
