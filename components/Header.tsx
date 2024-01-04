@@ -5,6 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import Logo from "./Logo";
+import useModals from "@/hooks/useModals";
+import ModalsEnum from "@/enums/Modals";
 
 interface HeaderProps {
     title?: string;
@@ -14,10 +16,15 @@ export default function Header(props: HeaderProps) {
     const { title } = props;
     const pathname = usePathname();
     const router = useRouter();
+    const { toggleModalAction } = useModals();
 
     const onLogoutClick = () => {
         deleteCookie("auth-token");
         router.push("/intro");
+    };
+
+    const onNewClick = () => {
+        toggleModalAction(ModalsEnum.FormNewCard);
     };
 
     return (
@@ -71,15 +78,12 @@ export default function Header(props: HeaderProps) {
 
                 <div className="header__bottom">
                     <nav className="header__nav">
-                        <Link
-                            className={`header__link${pathname === "/new" ? " header__link--active" : ""}`}
-                            href={"/new"}
-                        >
+                        <button className="header__link" type="button" onClick={onNewClick}>
                             <div className="header__icon">
                                 <Image src="/svg/new.svg" alt="" fill />
                             </div>
                             <span className="visually-hidden">New Item</span>
-                        </Link>
+                        </button>
                         <Link className={`header__link${pathname === "/" ? " header__link--active" : ""}`} href={"/"}>
                             <div className="header__icon">
                                 <Image src="/svg/lists.svg" alt="" fill />
