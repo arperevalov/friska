@@ -43,7 +43,10 @@ export default function Modals(props: ModalsProps) {
                 <ModalHeader>
                     <ModalTitle>New card</ModalTitle>
                 </ModalHeader>
-                <FormUpdateCard onSubmit={hideFormUpdateCard} parameters={modals[ModalsEnum.FormUpdateCard]?.parameters} />
+                <FormUpdateCard
+                    onSubmit={hideFormUpdateCard}
+                    parameters={modals[ModalsEnum.FormUpdateCard]?.parameters}
+                />
             </Modal>
         </>
     );
