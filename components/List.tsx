@@ -28,7 +28,9 @@ export const List = (props: ListProps) => {
             <div className={`list${active ? " active" : ""}`} key={id}>
                 <div className="list__header">
                     <h2 className="list__title">{title}</h2>
-                    <div className="list__count">{filteredCards.length} {filteredCards.length === 1 ? "item" : "items"}</div>
+                    <div className="list__count">
+                        {filteredCards.length} {filteredCards.length === 1 ? "item" : "items"}
+                    </div>
                     <button type="button" onClick={toggleActive} className="list__toggle-active">
                         <span className="visually-hidden">Toggle list</span>
                     </button>
