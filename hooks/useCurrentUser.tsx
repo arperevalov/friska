@@ -16,11 +16,11 @@ export default function useCurrentUser() {
                 }
             });
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
 
         return () => {
             ignore = true;
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return {
