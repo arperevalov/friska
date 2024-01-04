@@ -35,8 +35,7 @@ export default function HeaderSimple(props: HeaderSimpleProps) {
                             </button>
                         </div>
                         <h1 className="header__title">{title}</h1>
-                        <div className="header__element">
-                        </div>
+                        <div className="header__element"></div>
                     </div>
                 </div>
             </header>
