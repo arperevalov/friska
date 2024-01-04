@@ -22,7 +22,7 @@ interface FormNewCardProps {
 
 export default function FormNewCard(props: FormNewCardProps) {
     const { onSubmit } = props;
-    const { register, handleSubmit } = useForm<FormValues>();
+    const { register, handleSubmit, reset } = useForm<FormValues>();
     const { addCardAction } = useCards();
     const { lists } = useLists();
     const units = Object.keys(Units);
@@ -36,6 +36,7 @@ export default function FormNewCard(props: FormNewCardProps) {
             user_id: 1,
         };
         addCardAction(formattedData);
+        reset()
         if (onSubmit) onSubmit();
     };
 
