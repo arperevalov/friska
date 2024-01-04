@@ -5,8 +5,8 @@ import { useContext } from "react";
 export default function useModals() {
     const { toggleModal } = useContext(ModalContext);
 
-    const toggleModalAction = (modal: ModalsEnum) => {
-        toggleModal(modal);
+    const toggleModalAction = (modal: ModalsEnum, parameters?: string | number) => {
+        toggleModal(modal, parameters);
     };
 
     return { toggleModalAction };
