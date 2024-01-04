@@ -1,11 +1,11 @@
 import { useState } from "react";
 import CardInterface from "@/interfaces/Card";
-import { useSettingsStore } from "@/store/SettingsStore";
 import Link from "next/link";
 import useCards from "@/hooks/useCards";
+import useCurrentUser from "@/hooks/useCurrentUser";
 
 export const Card = (props: CardInterface) => {
-    const { currentUser } = useSettingsStore((store) => store);
+    const { currentUser } = useCurrentUser();
     const { removeCardAction, incrementCardLeftAction, decrementCardLeftAction } = useCards();
     const [active, setActive] = useState(false);
     const { id, title, exp_date, left_count, units } = props;
