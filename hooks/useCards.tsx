@@ -79,7 +79,7 @@ export default function useCards() {
     };
 
     useEffect(() => {
-        if (cards.length !== 0) return
+        if (cards.length !== 0) return;
         let ignore = false;
 
         const requestData = async () => {
