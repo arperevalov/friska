@@ -16,7 +16,12 @@ interface FormValues {
     list_id: string;
 }
 
-export default function FormNewCard() {
+interface FormNewCardProps {
+    onSubmit?: CallableFunction;
+}
+
+export default function FormNewCard(props: FormNewCardProps) {
+    const { onSubmit } = props;
     const { register, handleSubmit } = useForm<FormValues>();
     const { addCardAction } = useCards();
     const { lists } = useLists();
@@ -31,6 +36,7 @@ export default function FormNewCard() {
             user_id: 1,
         };
         addCardAction(formattedData);
+        if (onSubmit) onSubmit();
     };
 
     if (!lists) return <></>;
