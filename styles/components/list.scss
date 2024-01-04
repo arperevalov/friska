@@ -15,19 +15,30 @@
         --list-title-font-size: var(--step-0);
     }
 
+    &__header {
+        position: relative;
+        display: flex;
+        flex: 0 0 100%;
+        margin-bottom: var(--list-header-margin-bottom);
+        align-items: baseline;
+    }
+
     &__title {
         font-size: var(--list-title-font-size);
         line-height: 1.2;
         font-weight: 600;
         letter-spacing: -0.04em;
         transition: font-size $duration-fast;
+        margin-right: var(--space-s);
     }
 
-    &__header {
-        position: relative;
-        display: flex;
-        flex: 0 0 100%;
-        margin-bottom: var(--list-header-margin-bottom);
+    &__count {
+        font-family: Manrope;
+        font-size: var(--step-0);
+        font-weight: 500;
+        line-height: 1.2;
+        letter-spacing: -0.04em;
+        margin-left: auto;
     }
 
     &__toggle-active {
