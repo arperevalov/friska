@@ -19,7 +19,7 @@ export default function FormNewList(props: FormNewListProps) {
     const submitForm: SubmitHandler<FormValues> = (data) => {
         const formattedData = {
             ...data,
-            best_before: parseInt(data.best_before, 10)
+            best_before: parseInt(data.best_before, 10),
         };
         addListAction(formattedData);
         reset();
@@ -30,15 +30,7 @@ export default function FormNewList(props: FormNewListProps) {
         <>
             <form className="form" action="#" onSubmit={handleSubmit(submitForm)}>
                 <Input formKey="title" label="Title" register={register} type="text" required />
-                <Input
-                    formKey="best_before"
-                    label="Left"
-                    min={0}
-                    step={1}
-                    register={register}
-                    type="number"
-                    required
-                />
+                <Input formKey="best_before" label="Left" min={0} step={1} register={register} type="number" required />
                 <button className="form__btn btn btn--primary" type="submit">
                     Add new
                 </button>

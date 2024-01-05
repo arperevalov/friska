@@ -2,21 +2,9 @@
 
 import Header from "@/components/Header";
 import useLists from "@/hooks/useLists";
-import { FormEvent, useState } from "react";
 
 export default function Settings() {
-    const { lists, addListAction, removeListAction } = useLists();
-
-    const [newListValue, setNewListValue] = useState("");
-
-    const fetchCreateList = (event: FormEvent) => {
-        event.preventDefault();
-        addListAction({
-            title: newListValue,
-            user_id: 1,
-            best_before: 1,
-        });
-    };
+    const { lists, removeListAction } = useLists();
 
     const fetchRemoveList = (id: number) => {
         removeListAction(id);
@@ -92,22 +80,6 @@ export default function Settings() {
                                 : ""}
                         </div>
                     </div>
-                    <form onSubmit={fetchCreateList}>
-                        <label htmlFor="" className="input">
-                            <input
-                                className="input__input"
-                                value={newListValue}
-                                onChange={(event) => {
-                                    setNewListValue(event.currentTarget.value);
-                                }}
-                                type="text"
-                                required
-                            />
-                            <button className="input__button link link--primary" type="submit">
-                                Add List
-                            </button>
-                        </label>
-                    </form>
                 </div>
             </main>
         </>
