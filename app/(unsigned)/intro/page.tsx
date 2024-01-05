@@ -1,4 +1,4 @@
-import IntroCards from "@/components/IntroCards";
+import IntroCards from "@/components/IntroCards/index";
 import Logo from "@/components/Logo";
 import Link from "next/link";
 

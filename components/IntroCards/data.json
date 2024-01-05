@@ -1,0 +1,80 @@
+[
+    [
+        {
+            "left_count": 5,
+            "title": "Milk",
+            "units": "gallons",
+            "exp_date": "1/15/2024"
+        },
+        {
+            "left_count": 2,
+            "title": "Cheese",
+            "units": "blocks",
+            "exp_date": "2/28/2024"
+        },
+        {
+            "left_count": 8,
+            "title": "Yogurt",
+            "units": "cups",
+            "exp_date": "1/20/2024"
+        },
+        {
+            "left_count": 3,
+            "title": "Eggs",
+            "units": "dozen",
+            "exp_date": "1/10/2024"
+        }
+    ],
+    [
+        {
+            "left_count": 6,
+            "title": "Juice",
+            "units": "gallons",
+            "exp_date": "2/10/2024"
+        },
+        {
+            "left_count": 4,
+            "title": "Butter",
+            "units": "sticks",
+            "exp_date": "3/5/2024"
+        },
+        {
+            "left_count": 7,
+            "title": "Apples",
+            "units": "pieces",
+            "exp_date": "1/25/2024"
+        },
+        {
+            "left_count": 1,
+            "title": "Ketchup",
+            "units": "bottle",
+            "exp_date": "2/15/2024"
+        }
+    ],
+    [
+        {
+            "left_count": 3,
+            "title": "Pudding",
+            "units": "cups",
+            "exp_date": "1/18/2024"
+        },
+        {
+            "left_count": 5,
+            "title": "Ham",
+            "units": "pounds",
+            "exp_date": "2/22/2024"
+        },
+        {
+            "left_count": 2,
+            "title": "Tomatoes",
+            "units": "pieces",
+            "exp_date": "1/12/2024"
+        },
+        {
+            "left_count": 4,
+            "title": "Mustard",
+            "units": "bottle",
+            "exp_date": "3/1/2024"
+        }
+    ]
+]
