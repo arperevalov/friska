@@ -32,7 +32,7 @@ export default function FormNewList(props: FormNewListProps) {
                 <Input formKey="title" label="Title" register={register} type="text" required />
                 <Input
                     formKey="best_before"
-                    label="Left"
+                    label="Best before limit, days"
                     min={0}
                     step={1}
                     register={register}
