@@ -8,7 +8,7 @@ import { useEffect } from "react";
 export default function useLists() {
     const { lists, setLists, addList, removeList } = useMainStore((state) => state);
 
-    const addListAction = (value: Omit<ListInterface, "id">) => {
+    const addListAction = (value: Omit<ListInterface, "id" | "user_id">) => {
         axios
             .post("/api/lists", value)
             .then((response) => {
