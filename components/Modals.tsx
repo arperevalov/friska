@@ -5,12 +5,17 @@ import ModalHeader from "@/components/modal/ModalHeader";
 import ModalTitle from "@/components/modal/ModalTitle";
 import useModals from "@/hooks/useModals";
 import FormUpdateCard from "./forms/FormUpdateCard";
+import FormNewList from "./forms/FormNewList";
 
 interface ModalsProps {
     modals: {
+        [ModalsEnum.FormNewList]: {
+            state: boolean;
+            parameters: null;
+        };
         [ModalsEnum.FormNewCard]: {
             state: boolean;
-            parameters: string | number | null;
+            parameters: null;
         };
         [ModalsEnum.FormUpdateCard]: {
             state: boolean;
@@ -23,6 +28,10 @@ export default function Modals(props: ModalsProps) {
     const { modals } = props;
     const { toggleModalAction } = useModals();
 
+    const hideFormNewList = () => {
+        toggleModalAction(ModalsEnum.FormNewList);
+    };
+
     const hideFormNewCard = () => {
         toggleModalAction(ModalsEnum.FormNewCard);
     };
@@ -33,6 +42,12 @@ export default function Modals(props: ModalsProps) {
 
     return (
         <>
+            <Modal show={modals[ModalsEnum.FormNewList].state} onHide={hideFormNewList}>
+                <ModalHeader>
+                    <ModalTitle>New list</ModalTitle>
+                </ModalHeader>
+                <FormNewList onSubmit={hideFormNewList} />
+            </Modal>
             <Modal show={modals[ModalsEnum.FormNewCard].state} onHide={hideFormNewCard}>
                 <ModalHeader>
                     <ModalTitle>New card</ModalTitle>

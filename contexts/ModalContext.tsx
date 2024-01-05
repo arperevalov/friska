@@ -14,6 +14,10 @@ const defaultValue: ModalContextValue = {
 export const ModalContext = createContext<ModalContextValue>(defaultValue);
 export default function ModalProvider({ children }: { children: React.ReactNode }) {
     const [modals, setModal] = useState({
+        [ModalsEnum.FormNewList]: {
+            state: false,
+            parameters: null,
+        },
         [ModalsEnum.FormNewCard]: {
             state: false,
             parameters: null,

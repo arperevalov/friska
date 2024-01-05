@@ -1,4 +1,5 @@
 enum ModalsEnum {
+    FormNewList = "FormNewList",
     FormNewCard = "FormNewCard",
     FormUpdateCard = "FormUpdateCard",
 }

@@ -4,17 +4,23 @@ import useLists from "@/hooks/useLists";
 import useCards from "@/hooks/useCards";
 import List from "@/components/List";
 import Header from "@/components/Header";
-import Link from "next/link";
 import { useState } from "react";
+import useModals from "@/hooks/useModals";
+import ModalsEnum from "@/enums/Modals";
 
 export default function Home() {
     const { lists } = useLists();
     const { cards } = useCards();
+    const { toggleModalAction } = useModals();
 
     const [searchValue, setSearchValue] = useState<string>("");
 
     const onSearchChange = (event: React.FormEvent<HTMLInputElement>) => {
         setSearchValue(event.currentTarget?.value);
+    };
+
+    const onCreateListClick = () => {
+        toggleModalAction(ModalsEnum.FormNewList);
     };
 
     const filteredCards = cards ? cards.filter((item) => item.title?.match(new RegExp(searchValue, "gi"))) : [];
@@ -29,9 +35,6 @@ export default function Home() {
                     {lists.length === 0 ? (
                         <>
                             <h1 className="h1">There are no lists!</h1>
-                            <Link href="/settings" className="link link--primary">
-                                Create new at settings
-                            </Link>
                         </>
                     ) : (
                         <>
@@ -49,6 +52,9 @@ export default function Home() {
                             })}
                         </>
                     )}
+                    <button type="button" onClick={onCreateListClick} className="link link--primary">
+                        Create new list
+                    </button>
                 </div>
             </main>
         </>
