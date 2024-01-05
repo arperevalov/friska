@@ -1,12 +1,10 @@
 "use client";
 
 import Header from "@/components/Header";
-import useCurrentUser from "@/hooks/useCurrentUser";
 import useLists from "@/hooks/useLists";
 import { FormEvent, useState } from "react";
 
 export default function Settings() {
-    const { currentUser } = useCurrentUser();
     const { lists, addListAction, removeListAction } = useLists();
 
     const [newListValue, setNewListValue] = useState("");
@@ -16,6 +14,7 @@ export default function Settings() {
         addListAction({
             title: newListValue,
             user_id: 1,
+            best_before: 1,
         });
     };
 
@@ -40,7 +39,7 @@ export default function Settings() {
                                     onChange={onBestBeforeChange}
                                     className="input__input"
                                     type="number"
-                                    value={currentUser.best_before}
+                                    value={0}
                                     min="0"
                                 />
                             </label>

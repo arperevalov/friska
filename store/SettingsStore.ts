@@ -10,7 +10,6 @@ export const useSettingsStore = create<SettingsStoreInterface>((set) => ({
     currentUser: {
         username: "",
         email: "",
-        best_before: 1,
     },
     setCurrentUser: (value: UserInterface) => set((state) => ({ ...state, currentUser: value })),
 }));

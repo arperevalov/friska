@@ -1,16 +1,16 @@
 import { useState } from "react";
 import CardInterface from "@/interfaces/Card";
 import useCards from "@/hooks/useCards";
-import useCurrentUser from "@/hooks/useCurrentUser";
 import useModals from "@/hooks/useModals";
 import ModalsEnum from "@/enums/Modals";
+import useLists from "@/hooks/useLists";
 
 export const Card = (props: CardInterface) => {
-    const { currentUser } = useCurrentUser();
     const { removeCardAction, incrementCardLeftAction, decrementCardLeftAction } = useCards();
     const [active, setActive] = useState(false);
+    const { lists } = useLists();
     const { toggleModalAction } = useModals();
-    const { id, title, exp_date, left_count, units } = props;
+    const { id, title, exp_date, left_count, units, list_id } = props;
 
     const toggleActive = () => {
         setActive(!active);
@@ -33,9 +33,11 @@ export const Card = (props: CardInterface) => {
     };
 
     const dateString = new Date(exp_date).toLocaleDateString();
+    const listIndex = lists.findIndex((item) => item.id === list_id);
+    const listBestBefore = lists[listIndex].best_before;
 
     const checkExpired = () => {
-        const daysBeforeInMillisec = currentUser.best_before * 24 * 60 * 60 * 1000;
+        const daysBeforeInMillisec = listBestBefore * 24 * 60 * 60 * 1000;
         const date = new Date();
         const oldDate = new Date(exp_date);
         return date.getTime() - oldDate.getTime() > daysBeforeInMillisec;
