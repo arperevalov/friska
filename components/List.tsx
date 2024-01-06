@@ -36,7 +36,7 @@ export const List = (props: ListProps) => {
                     {active ? (
                         <>
                             <button onClick={onUpdateClick} className="list__update">
-                                sss
+                                Update list
                             </button>
                         </>
                     ) : (
