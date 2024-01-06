@@ -33,7 +33,7 @@ export default function useLists() {
     };
 
     const updateListAction = (list: ListInterface) => {
-        axios.put(`/api/lists/${list.id}`).then((response) => {
+        axios.put(`/api/lists/${list.id}`, list).then((response) => {
             if (response.status === 200) {
                 updateList(response.data);
             }
