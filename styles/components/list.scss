@@ -45,6 +45,12 @@
         margin-left: auto;
     }
 
+    &__update {
+        margin-left: auto;
+        position: relative;
+        z-index: 999;
+    }
+
     &__toggle-active {
         position: absolute;
         left: 0;
