@@ -6,7 +6,7 @@ import axios from "axios";
 import { useEffect } from "react";
 
 export default function useLists() {
-    const { lists, setLists, addList, removeList } = useMainStore((state) => state);
+    const { lists, setLists, addList, removeList, updateList } = useMainStore((state) => state);
 
     const addListAction = (value: Omit<ListInterface, "id" | "user_id">) => {
         axios
@@ -28,6 +28,14 @@ export default function useLists() {
         axios.delete(`/api/lists/${id}`).then((response) => {
             if (response.status === 200) {
                 removeList(id);
+            }
+        });
+    };
+
+    const updateListAction = (list: ListInterface) => {
+        axios.put(`/api/lists/${list.id}`).then((response) => {
+            if (response.status === 200) {
+                updateList(response.data);
             }
         });
     };
@@ -55,5 +63,6 @@ export default function useLists() {
         lists,
         addListAction,
         removeListAction,
+        updateListAction,
     };
 }
