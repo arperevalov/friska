@@ -17,7 +17,7 @@ interface FormValues {
 
 interface FormUpdateCardProps {
     onSubmit?: CallableFunction;
-    parameters: number | null;
+    parameters: string | number | null;
 }
 
 export default function FormUpdateCard(props: FormUpdateCardProps) {
@@ -26,11 +26,7 @@ export default function FormUpdateCard(props: FormUpdateCardProps) {
     const { cards, updateCardAction } = useCards();
     const { lists } = useLists();
     const units = Object.keys(Units);
-
-    if (!parameters) return;
-
-    const index = cards.findIndex((item) => item.id === parameters);
-    const card = cards[index];
+    let cardId = parameters;
 
     const submitForm: SubmitHandler<FormValues> = (data) => {
         const formattedData = {
@@ -45,6 +41,12 @@ export default function FormUpdateCard(props: FormUpdateCardProps) {
         reset();
         if (onSubmit) onSubmit();
     };
+
+    if (cardId === null || cardId === undefined) return;
+    if (typeof cardId === "string") cardId = parseInt(cardId, 10);
+
+    const index = cards.findIndex((item) => item.id === cardId);
+    const card = cards[index];
 
     return (
         <>
