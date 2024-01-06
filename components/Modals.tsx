@@ -7,6 +7,7 @@ import useModals from "@/hooks/useModals";
 import FormUpdateCard from "./forms/FormUpdateCard";
 import FormNewList from "./forms/FormNewList";
 import { ModalStateItemInterface } from "@/contexts/ModalContext";
+import FormUpdateList from "./forms/FormUpdateList";
 
 interface ModalsProps {
     modals: ModalStateItemInterface[];
@@ -28,6 +29,10 @@ export default function Modals(props: ModalsProps) {
         toggleModalAction(ModalsEnum.FormNewList);
     };
 
+    const hideFormUpdateList = () => {
+        toggleModalAction(ModalsEnum.FormUpdateList);
+    };
+
     const hideFormNewCard = () => {
         toggleModalAction(ModalsEnum.FormNewCard);
     };
@@ -44,6 +49,15 @@ export default function Modals(props: ModalsProps) {
                 </ModalHeader>
                 <FormNewList onSubmit={hideFormNewList} />
             </Modal>
+            <Modal show={getModalStateItem(ModalsEnum.FormUpdateList).state} onHide={hideFormUpdateList}>
+                <ModalHeader>
+                    <ModalTitle>Update list</ModalTitle>
+                </ModalHeader>
+                <FormUpdateList
+                    onSubmit={hideFormUpdateList}
+                    parameters={getModalStateItem(ModalsEnum.FormUpdateList).parameters}
+                />
+            </Modal>
             <Modal show={getModalStateItem(ModalsEnum.FormNewCard).state} onHide={hideFormNewCard}>
                 <ModalHeader>
                     <ModalTitle>New card</ModalTitle>
@@ -52,7 +66,7 @@ export default function Modals(props: ModalsProps) {
             </Modal>
             <Modal show={getModalStateItem(ModalsEnum.FormUpdateCard).state} onHide={hideFormUpdateCard}>
                 <ModalHeader>
-                    <ModalTitle>New card</ModalTitle>
+                    <ModalTitle>Update card</ModalTitle>
                 </ModalHeader>
                 <FormUpdateCard
                     onSubmit={hideFormUpdateCard}

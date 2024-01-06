@@ -26,6 +26,11 @@ export default function ModalProvider({ children }: { children: React.ReactNode 
             parameters: null,
         },
         {
+            name: ModalsEnum.FormUpdateList,
+            state: false,
+            parameters: null,
+        },
+        {
             name: ModalsEnum.FormNewCard,
             state: false,
             parameters: null,
