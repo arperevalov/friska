@@ -13,10 +13,16 @@ export default function Modal(props: ModalElementProps) {
 
     return (
         <>
-            <div className={`modal${show ? " show" : ""}`}>
-                <div className="modal__content">{children}</div>
-                <div className="modal__backdrop" onClick={onHideEvent}></div>
-            </div>
+            {show ? (
+                <>
+                    <div className={`modal show`}>
+                        <div className="modal__content">{children}</div>
+                        <div className="modal__backdrop" onClick={onHideEvent}></div>
+                    </div>
+                </>
+            ) : (
+                <></>
+            )}
         </>
     );
 }
