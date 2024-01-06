@@ -3,6 +3,8 @@
 import CardInterface from "@/interfaces/Card";
 import { Card } from "./Card";
 import { useState } from "react";
+import useModals from "@/hooks/useModals";
+import ModalsEnum from "@/enums/Modals";
 
 interface ListProps {
     id: number;
@@ -14,6 +16,7 @@ interface ListProps {
 export const List = (props: ListProps) => {
     const { id, title, cards, searchValue } = props;
     const [active, setActive] = useState(false);
+    const { toggleModalAction } = useModals();
 
     const filteredCards = cards.filter((card: CardInterface) => card.list_id === id);
 
@@ -21,14 +24,28 @@ export const List = (props: ListProps) => {
         setActive(!active);
     };
 
+    const onUpdateClick = () => {
+        toggleModalAction(ModalsEnum.FormUpdateList, id);
+    };
+
     return (
         <>
             <div className={`list${searchValue.length > 0 ? " active" : active ? " active" : ""}`} key={id}>
                 <div className="list__header">
                     <h2 className="list__title">{title}</h2>
-                    <div className="list__count">
-                        {filteredCards.length} {filteredCards.length === 1 ? "item" : "items"}
-                    </div>
+                    {active ? (
+                        <>
+                            <button onClick={onUpdateClick} className="list__update">
+                                sss
+                            </button>
+                        </>
+                    ) : (
+                        <>
+                            <div className="list__count">
+                                {filteredCards.length} {filteredCards.length === 1 ? "item" : "items"}
+                            </div>
+                        </>
+                    )}
                     {filteredCards.length === 0 ? (
                         <></>
                     ) : (
