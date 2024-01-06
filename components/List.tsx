@@ -8,10 +8,11 @@ interface ListProps {
     id: number;
     title: string;
     cards: CardInterface[];
+    searchValue: string;
 }
 
 export const List = (props: ListProps) => {
-    const { id, title, cards } = props;
+    const { id, title, cards, searchValue } = props;
     const [active, setActive] = useState(false);
 
     const filteredCards = cards.filter((card: CardInterface) => card.list_id === id);
@@ -22,7 +23,7 @@ export const List = (props: ListProps) => {
 
     return (
         <>
-            <div className={`list${active ? " active" : ""}`} key={id}>
+            <div className={`list${searchValue.length > 0 ? " active" : active ? " active" : ""}`} key={id}>
                 <div className="list__header">
                     <h2 className="list__title">{title}</h2>
                     <div className="list__count">
