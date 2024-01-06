@@ -28,6 +28,12 @@ export default function FormUpdateCard(props: FormUpdateCardProps) {
     const units = Object.keys(Units);
     let cardId = parameters;
 
+    if (cardId === null || cardId === undefined) return;
+    if (typeof cardId === "string") cardId = parseInt(cardId, 10);
+
+    const index = cards.findIndex((item) => item.id === cardId);
+    const card = cards[index];
+
     const submitForm: SubmitHandler<FormValues> = (data) => {
         const formattedData = {
             ...data,
@@ -41,12 +47,6 @@ export default function FormUpdateCard(props: FormUpdateCardProps) {
         reset();
         if (onSubmit) onSubmit();
     };
-
-    if (cardId === null || cardId === undefined) return;
-    if (typeof cardId === "string") cardId = parseInt(cardId, 10);
-
-    const index = cards.findIndex((item) => item.id === cardId);
-    const card = cards[index];
 
     return (
         <>
