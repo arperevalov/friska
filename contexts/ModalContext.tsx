@@ -43,17 +43,18 @@ export default function ModalProvider({ children }: { children: React.ReactNode 
     ]);
 
     const toggleModal = (name: ModalsEnum, parameters: string | number | null) => {
-        const value = modals.map((item) => {
-            if (item.name === name) {
-                return {
-                    ...item,
-                    state: !item.state,
-                    parameters,
-                };
-            }
-            return item;
-        });
-        setModal(value);
+        setModal((previous) =>
+            previous.map((item) => {
+                if (item.name === name) {
+                    return {
+                        ...item,
+                        state: !item.state,
+                        parameters,
+                    };
+                }
+                return item;
+            }),
+        );
     };
 
     return (
