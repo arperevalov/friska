@@ -8,9 +8,9 @@ interface ModalContextValue {
 }
 
 export interface ModalStateItemInterface {
-    name: ModalsEnum,
-    state: boolean,
-    parameters: null | string | number,
+    name: ModalsEnum;
+    state: boolean;
+    parameters: null | string | number;
 }
 
 const defaultValue: ModalContextValue = {
@@ -24,11 +24,13 @@ export default function ModalProvider({ children }: { children: React.ReactNode 
             name: ModalsEnum.FormNewList,
             state: false,
             parameters: null,
-        },{
+        },
+        {
             name: ModalsEnum.FormNewCard,
             state: false,
             parameters: null,
-        },{
+        },
+        {
             name: ModalsEnum.FormUpdateCard,
             state: false,
             parameters: null,
@@ -41,11 +43,11 @@ export default function ModalProvider({ children }: { children: React.ReactNode 
                 return {
                     ...item,
                     state: !item.state,
-                    parameters
-                }
+                    parameters,
+                };
             }
             return item;
-        })
+        });
         setModal(value);
     };
 

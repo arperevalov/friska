@@ -19,10 +19,10 @@ export default function Modals(props: ModalsProps) {
     const getModalStateItem = (name: ModalsEnum) => {
         const index = modals.findIndex((item) => {
             return item.name === name;
-        })
+        });
 
         return modals[index];
-    }
+    };
 
     const hideFormNewList = () => {
         toggleModalAction(ModalsEnum.FormNewList);
