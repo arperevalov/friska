@@ -40,8 +40,8 @@ export default function FormUpdateList(props: FormUpdateListProps) {
     const onRemoveList = () => {
         removeListAction(list.id).then(() => {
             if (onSubmit) onSubmit();
-        })
-    }
+        });
+    };
 
     if (!list) return;
 

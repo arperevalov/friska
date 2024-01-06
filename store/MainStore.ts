@@ -103,20 +103,8 @@ export const useMainStore = create<MainStoreInterface>((set) => ({
         }),
     removeList: (id: number) =>
         set((state) => {
-            const index = state.lists.findIndex((item) => {
-                return item.id === id;
-            });
-
-            const cards = state.cards.find((item) => {
-                if (item.list_id === id) return item;
-            });
-
-            if (!index && cards) return {};
-
-            state.lists.splice(index, 1);
-
             return {
-                lists: [...state.lists],
+                lists: [...state.lists.filter((item) => item.id !== id)],
             };
         }),
 }));
