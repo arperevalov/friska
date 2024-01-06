@@ -48,7 +48,15 @@ export default function Home() {
                                 />
                             </label>
                             {lists.map((list) => {
-                                return <List searchValue={searchValue} key={list.id} id={list.id} title={list.title} cards={filteredCards} />;
+                                return (
+                                    <List
+                                        searchValue={searchValue}
+                                        key={list.id}
+                                        id={list.id}
+                                        title={list.title}
+                                        cards={filteredCards}
+                                    />
+                                );
                             })}
                         </>
                     )}
