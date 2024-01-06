@@ -14,7 +14,7 @@ interface FormUpdateListProps {
 
 export default function FormUpdateList(props: FormUpdateListProps) {
     const { onSubmit, parameters } = props;
-    const { lists } = useLists();
+    const { lists, removeListAction } = useLists();
     const { register, handleSubmit, reset } = useForm<FormValues>();
     const { updateListAction } = useLists();
     let listId = parameters;
@@ -36,6 +36,14 @@ export default function FormUpdateList(props: FormUpdateListProps) {
         reset();
         if (onSubmit) onSubmit();
     };
+
+    const onRemoveList = () => {
+        removeListAction(list.id).then(() => {
+            if (onSubmit) onSubmit();
+        })
+    }
+
+    if (!list) return;
 
     return (
         <>
@@ -61,6 +69,9 @@ export default function FormUpdateList(props: FormUpdateListProps) {
 
                 <button className="form__btn btn btn--primary" type="submit">
                     Save
+                </button>
+                <button className="form__btn link link--secondary" onClick={onRemoveList} type="button">
+                    Remove
                 </button>
             </form>
         </>

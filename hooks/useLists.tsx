@@ -24,8 +24,8 @@ export default function useLists() {
             });
     };
 
-    const removeListAction = (id: number) => {
-        axios.delete(`/api/lists/${id}`).then((response) => {
+    const removeListAction = async (id: number) => {
+        return axios.delete(`/api/lists/${id}`).then((response) => {
             if (response.status === 200) {
                 removeList(id);
             }
