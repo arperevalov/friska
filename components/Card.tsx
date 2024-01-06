@@ -39,8 +39,8 @@ export const Card = (props: CardInterface) => {
     const checkExpired = () => {
         const daysBeforeInMillisec = listBestBefore * 24 * 60 * 60 * 1000;
         const date = new Date();
-        const oldDate = new Date(exp_date);
-        return date.getTime() - oldDate.getTime() > daysBeforeInMillisec;
+        const expDate = new Date(exp_date);
+        return date.getTime() - expDate.getTime() > daysBeforeInMillisec * -1;
     };
     return (
         <>
