@@ -1,12 +1,13 @@
 import Units from "@/enums/Units";
 import useCards from "@/hooks/useCards";
 import useLists from "@/hooks/useLists";
-import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Input } from "../Input";
 import { Select } from "../Select";
 import { InputCalendar } from "../InputCalendar";
 import { SelectUnits } from "../SelectUnits";
+import ModalsEnum from "@/enums/Modals";
+import useModals from "@/hooks/useModals";
 
 interface FormValues {
     title: string;
@@ -24,6 +25,7 @@ export default function FormNewCard(props: FormNewCardProps) {
     const { onSubmit } = props;
     const { register, handleSubmit, reset } = useForm<FormValues>();
     const { addCardAction } = useCards();
+    const { toggleModalAction } = useModals();
     const { lists } = useLists();
     const units = Object.keys(Units);
 
@@ -40,14 +42,20 @@ export default function FormNewCard(props: FormNewCardProps) {
         if (onSubmit) onSubmit();
     };
 
+    const onCreateListClick = () => {
+        toggleModalAction(ModalsEnum.FormNewList, null);
+        reset();
+        if (onSubmit) onSubmit();
+    };
+
     if (!lists) return <></>;
     if (lists.length === 0)
         return (
             <>
                 <h3 className="h1">There are no lists!</h3>
-                <Link href="/settings" className="link link--primary">
-                    Create new at settings
-                </Link>
+                <button type="button" onClick={onCreateListClick} className="link link--primary">
+                    Create new list
+                </button>
             </>
         );
 
