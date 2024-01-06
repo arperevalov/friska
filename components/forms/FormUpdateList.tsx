@@ -70,7 +70,7 @@ export default function FormUpdateList(props: FormUpdateListProps) {
                 <button className="form__btn btn btn--primary" type="submit">
                     Save
                 </button>
-                <button className="form__btn link link--secondary" onClick={onRemoveList} type="button">
+                <button className="form__btn btn btn--secondary" onClick={onRemoveList} type="button">
                     Remove
                 </button>
             </form>
