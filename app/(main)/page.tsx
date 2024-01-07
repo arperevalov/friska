@@ -7,6 +7,7 @@ import Header from "@/components/Header";
 import { useState } from "react";
 import useModals from "@/hooks/useModals";
 import ModalsEnum from "@/enums/Modals";
+import Image from "next/image";
 
 export default function Home() {
     const { lists } = useLists();
@@ -34,7 +35,20 @@ export default function Home() {
                 <div className="container">
                     {lists.length === 0 ? (
                         <>
-                            <h1 className="h1">There are no lists!</h1>
+                            <div className="empty">
+                                <picture className="empty__picture">
+                                    <Image
+                                        alt="You don't have any list yet"
+                                        src="/svg/empty-list.svg"
+                                        fill
+                                        style={{ color: "inherit" }}
+                                    />
+                                </picture>
+                                <h1 className="empty__text">
+                                    Oh, no! You don’t have any list yet. <br />
+                                    Start with creating one!
+                                </h1>
+                            </div>
                         </>
                     ) : (
                         <>
@@ -60,7 +74,7 @@ export default function Home() {
                             })}
                         </>
                     )}
-                    <button type="button" onClick={onCreateListClick} className="link link--primary">
+                    <button type="button" onClick={onCreateListClick} className="link link--primary link--centered">
                         Create new list
                     </button>
                 </div>
