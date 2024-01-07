@@ -8,7 +8,7 @@ export default function useCurrentUser() {
     useEffect(() => {
         let ignore = false;
 
-        if (!ignore && !currentUser) {
+        if (!ignore && !currentUser.username) {
             axios.get("/api/current-user").then((response) => {
                 if (response.status === 200) {
                     ignore = true;

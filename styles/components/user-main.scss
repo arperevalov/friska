@@ -1,0 +1,42 @@
+.user-main {
+    width: 100%;
+    display: flex;
+    margin-bottom: var(--space-m);
+
+    &__avatar {
+        width: var(--space-2xl);
+        height: var(--space-2xl);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        overflow: hidden;
+        background: $gray;
+        margin-right: var(--space-2xs);
+        text-transform: uppercase;
+        font-size: var(--step-2);
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    &__username {
+        font-size: var(--step-1);
+        font-style: normal;
+        font-weight: 600;
+        line-height: 1.2;
+        letter-spacing: -0.04em;
+        margin-bottom: 0;
+    }
+
+    &__email {
+        font-weight: 500;
+        font-size: var(--step--1);
+        font-style: normal;
+        line-height: 1.2;
+        letter-spacing: -0.04em;
+    }
+}
