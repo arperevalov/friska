@@ -1,3 +1,4 @@
+import LoadingProvider from "@/contexts/LoadingContext";
 import ModalProvider from "@/contexts/ModalContext";
 import "@/styles/_.scss";
 import type { Metadata } from "next";
@@ -11,7 +12,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <html lang="en">
             <body>
-                <ModalProvider>{children}</ModalProvider>
+                <LoadingProvider>
+                    <ModalProvider>{children}</ModalProvider>
+                </LoadingProvider>
             </body>
         </html>
     );
