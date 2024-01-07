@@ -5,6 +5,10 @@ import { useEffect } from "react";
 export default function useCurrentUser() {
     const { currentUser, setCurrentUser } = useSettingsStore((state) => state);
 
+    const updatePasswordAction = async (data: { password: string; password_repeat: string }) => {
+        return axios.put("/api/current-user/password", data);
+    };
+
     useEffect(() => {
         let ignore = false;
 
@@ -25,5 +29,6 @@ export default function useCurrentUser() {
 
     return {
         currentUser,
+        updatePasswordAction,
     };
 }

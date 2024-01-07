@@ -11,12 +11,15 @@ interface FormData {
 }
 
 export default function Settings() {
-    const { register, handleSubmit } = useForm<FormData>();
-    const { } = useCurrentUser();
+    const { register, handleSubmit, reset } = useForm<FormData>();
+    const { updatePasswordAction } = useCurrentUser();
 
-    const onFormSubmit: SubmitHandler<FormData> = () => {
-        //
-    }
+    const onFormSubmit: SubmitHandler<FormData> = (data) => {
+        if (data.password !== data.password_repeat) return;
+        updatePasswordAction(data).then((result) => {
+            if (result.status === 200) reset();
+        });
+    };
 
     return (
         <>
@@ -35,9 +38,12 @@ export default function Settings() {
                             type="password"
                             label="Repeat password"
                             register={register}
-                            formKey="passwordSecond"
+                            formKey="password_repeat"
                             required={true}
                         />
+                        <button className="form__btn btn btn--primary" type="submit">
+                            Submit
+                        </button>
                     </form>
                 </div>
             </main>
