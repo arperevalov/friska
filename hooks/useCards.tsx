@@ -3,12 +3,10 @@
 import CardInterface from "@/interfaces/Card";
 import { useMainStore } from "@/store/MainStore";
 import axios from "axios";
-import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import useLoading from "./useLoading";
 
 export default function useCards() {
-    const router = useRouter();
     const { cards, initCards, removeCard, addCard, updateCard } = useMainStore((state) => state);
     const { addToQueueAction, removeFromQueueAction } = useLoading();
 
@@ -45,7 +43,6 @@ export default function useCards() {
             })
             .then((response) => {
                 updateCard(response);
-                router.push("/");
                 removeFromQueueAction(loadingId);
             });
     };
@@ -69,7 +66,6 @@ export default function useCards() {
                     left_count: parseInt(response.data.left_count, 10),
                 };
                 updateCard(formattedData);
-                router.push("/");
             }
             removeFromQueueAction(loadingId);
         });
@@ -84,7 +80,6 @@ export default function useCards() {
                     left_count: parseInt(response.data.left_count, 10),
                 };
                 updateCard(formattedData);
-                router.push("/");
             }
             removeFromQueueAction(loadingId);
         });
