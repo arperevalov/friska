@@ -22,7 +22,9 @@ export default function Settings() {
                     <div className="settings">
                         <ul className="settings__list">
                             <li className="settings__item">
-                                <Link href="/settings/password" className="settings__link">Change password</Link>
+                                <Link href="/settings/password" className="settings__link">
+                                    Change password
+                                </Link>
                             </li>
                         </ul>
                     </div>
