@@ -12,16 +12,10 @@ export default function Settings() {
             <main>
                 <div className="container">
                     <div className="user-main">
-                        <div className="user-main__avatar">
-                            {currentUser.username[0]}
-                        </div>
+                        <div className="user-main__avatar">{currentUser.username[0]}</div>
                         <div className="user-main__info">
-                            <div className="user-main__username">
-                                {currentUser.username}
-                            </div>
-                            <div className="user-main__email">
-                                {currentUser.email}
-                            </div>
+                            <div className="user-main__username">{currentUser.username}</div>
+                            <div className="user-main__email">{currentUser.email}</div>
                         </div>
                     </div>
                 </div>
