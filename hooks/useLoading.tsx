@@ -10,7 +10,7 @@ export default function useLoading() {
 
     const removeFromQueueAction = (id: number) => {
         removeFromQueue(id);
-    }
+    };
 
     return {
         loading,

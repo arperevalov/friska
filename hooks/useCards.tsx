@@ -5,10 +5,12 @@ import { useMainStore } from "@/store/MainStore";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import useLoading from "./useLoading";
 
 export default function useCards() {
     const router = useRouter();
     const { cards, initCards, removeCard, addCard, updateCard } = useMainStore((state) => state);
+    const { addToQueueAction, removeFromQueueAction } = useLoading();
 
     const getCardAction = async (id: string) => {
         const request = await axios.get(`/api/cards/${id}`);
@@ -17,6 +19,7 @@ export default function useCards() {
     };
 
     const addCardAction = (card: Omit<CardInterface, "id">) => {
+        const loadingId = addToQueueAction();
         axios
             .post("/api/cards", card)
             .then((response) => {
@@ -29,10 +32,12 @@ export default function useCards() {
                     };
                     addCard(formattedData);
                 }
+                removeFromQueueAction(loadingId);
             });
     };
 
     const updateCardAction = (card: CardInterface) => {
+        const loadingId = addToQueueAction();
         axios
             .put(`/api/cards/${card.id}`, card)
             .then((response) => {
@@ -41,18 +46,22 @@ export default function useCards() {
             .then((response) => {
                 updateCard(response);
                 router.push("/");
+                removeFromQueueAction(loadingId);
             });
     };
 
     const removeCardAction = (id: number) => {
+        const loadingId = addToQueueAction();
         axios.delete(`/api/cards/${id}`).then((response) => {
             if (response.status === 200) {
                 removeCard(id);
             }
+            removeFromQueueAction(loadingId);
         });
     };
 
     const incrementCardLeftAction = (id: number) => {
+        const loadingId = addToQueueAction();
         axios.put(`/api/cards/${id}/increment`).then((response) => {
             if (response.status === 200) {
                 const formattedData = {
@@ -62,10 +71,12 @@ export default function useCards() {
                 updateCard(formattedData);
                 router.push("/");
             }
+            removeFromQueueAction(loadingId);
         });
     };
 
     const decrementCardLeftAction = (id: number) => {
+        const loadingId = addToQueueAction();
         axios.put(`/api/cards/${id}/decrement`).then((response) => {
             if (response.status === 200) {
                 const formattedData = {
@@ -75,6 +86,7 @@ export default function useCards() {
                 updateCard(formattedData);
                 router.push("/");
             }
+            removeFromQueueAction(loadingId);
         });
     };
 
@@ -83,9 +95,11 @@ export default function useCards() {
         let ignore = false;
 
         const requestData = async () => {
+            const loadingId = addToQueueAction();
             const request = await axios.get("/api/cards");
             const requestJSON = request.data;
             initCards(requestJSON);
+            removeFromQueueAction(loadingId);
         };
 
         if (!ignore) {

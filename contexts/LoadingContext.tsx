@@ -2,8 +2,8 @@
 import { createContext, useState } from "react";
 
 interface LoadingQueueValue {
-    id: number,
-    state: boolean,
+    id: number;
+    state: boolean;
 }
 
 interface LoadingContextValue {
@@ -21,25 +21,27 @@ const defaultValue: LoadingContextValue = {
 export const LoadingContext = createContext<LoadingContextValue>(defaultValue);
 export default function LoadingProvider({ children }: { children: React.ReactNode }) {
     const [loading, setLoading] = useState<LoadingQueueValue[]>([]);
-    const [id, setId] = useState(0);
+    const [queueId, setQueueId] = useState(0);
 
     const addToQueue = () => {
-        setLoading((previous) => [...previous, {id, state: true}]);
-        setId((previous) => previous++);
-        return id
-    }
+        setLoading((previous) => [...previous, { id: queueId, state: true }]);
+        setQueueId((previous) => previous++);
+        return queueId;
+    };
 
     const removeFromQueue = (id: number) => {
-        setLoading((previous) => previous.filter((item)=>{
-            return item.id !== id
-        }))
-    }
+        setLoading((previous) =>
+            previous.filter((item) => {
+                return item.id !== id;
+            }),
+        );
+    };
 
     return (
         <>
             <LoadingContext.Provider value={{ loading, addToQueue, removeFromQueue }}>
                 {children}
-                <div className={`loading${loading.length > 0 ? 'show' : ''}`}></div>
+                <div className={`loading${loading.length > 0 ? " show" : ""}`}></div>
             </LoadingContext.Provider>
         </>
     );
