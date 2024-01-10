@@ -5,10 +5,13 @@ import { useMainStore } from "@/store/MainStore";
 import axios from "axios";
 import { useEffect } from "react";
 import useLoading from "./useLoading";
+import ToastsEnum from "@/enums/Toasts";
+import useToasts from "./useToasts";
 
 export default function useCards() {
     const { cards, initCards, removeCard, addCard, updateCard } = useMainStore((state) => state);
     const { addToQueueAction, removeFromQueueAction } = useLoading();
+    const { addToastAction } = useToasts();
 
     const getCardAction = async (id: string) => {
         const request = await axios.get(`/api/cards/${id}`);
@@ -31,6 +34,9 @@ export default function useCards() {
                     addCard(formattedData);
                 }
             })
+            .catch((error) => {
+                addToastAction({ message: error.message, type: ToastsEnum.ERROR });
+            })
             .finally(() => {
                 removeFromQueueAction(loadingId);
             });
@@ -46,6 +52,9 @@ export default function useCards() {
             .then((response) => {
                 updateCard(response);
             })
+            .catch((error) => {
+                addToastAction({ message: error.message, type: ToastsEnum.ERROR });
+            })
             .finally(() => {
                 removeFromQueueAction(loadingId);
             });
@@ -59,6 +68,9 @@ export default function useCards() {
                 if (response.status === 200) {
                     removeCard(id);
                 }
+            })
+            .catch((error) => {
+                addToastAction({ message: error.message, type: ToastsEnum.ERROR });
             })
             .finally(() => {
                 removeFromQueueAction(loadingId);
@@ -78,6 +90,9 @@ export default function useCards() {
                     updateCard(formattedData);
                 }
             })
+            .catch((error) => {
+                addToastAction({ message: error.message, type: ToastsEnum.ERROR });
+            })
             .finally(() => {
                 removeFromQueueAction(loadingId);
             });
@@ -96,6 +111,9 @@ export default function useCards() {
                     updateCard(formattedData);
                 }
             })
+            .catch((error) => {
+                addToastAction({ message: error.message, type: ToastsEnum.ERROR });
+            })
             .finally(() => {
                 removeFromQueueAction(loadingId);
             });
@@ -113,6 +131,9 @@ export default function useCards() {
                     if (response.status === 200) {
                         initCards(response.data);
                     }
+                })
+                .catch((error) => {
+                    addToastAction({ message: error.message, type: ToastsEnum.ERROR });
                 })
                 .finally(() => {
                     removeFromQueueAction(loadingId);

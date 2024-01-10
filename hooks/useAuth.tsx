@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import useLoading from "./useLoading";
+import useToasts from "./useToasts";
+import ToastsEnum from "@/enums/Toasts";
 
 interface signInInterface {
     username: string;
@@ -16,6 +18,7 @@ interface signUpInterface {
 export default function useAuth() {
     const router = useRouter();
     const { addToQueueAction, removeFromQueueAction } = useLoading();
+    const { addToastAction } = useToasts();
 
     const signInAction = (data: signInInterface) => {
         const loadingId = addToQueueAction();
@@ -25,6 +28,9 @@ export default function useAuth() {
                 if (response.data.token) {
                     router.push("/");
                 }
+            })
+            .catch((error) => {
+                addToastAction({ message: error.message, type: ToastsEnum.ERROR });
             })
             .finally(() => {
                 removeFromQueueAction(loadingId);
@@ -39,6 +45,9 @@ export default function useAuth() {
                 if (response.data.token) {
                     router.push("/");
                 }
+            })
+            .catch((error) => {
+                addToastAction({ message: error.message, type: ToastsEnum.ERROR });
             })
             .finally(() => {
                 removeFromQueueAction(loadingId);

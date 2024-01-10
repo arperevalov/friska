@@ -5,10 +5,13 @@ import { useMainStore } from "@/store/MainStore";
 import axios from "axios";
 import { useEffect } from "react";
 import useLoading from "./useLoading";
+import useToasts from "./useToasts";
+import ToastsEnum from "@/enums/Toasts";
 
 export default function useLists() {
     const { lists, setLists, addList, removeList, updateList } = useMainStore((state) => state);
     const { addToQueueAction, removeFromQueueAction } = useLoading();
+    const { addToastAction } = useToasts();
 
     const addListAction = (value: Omit<ListInterface, "id" | "user_id">) => {
         const loadingId = addToQueueAction();
@@ -25,6 +28,9 @@ export default function useLists() {
                     addList(formattedData);
                 }
             })
+            .catch((error) => {
+                addToastAction({ message: error.message, type: ToastsEnum.ERROR });
+            })
             .finally(() => {
                 removeFromQueueAction(loadingId);
             });
@@ -39,6 +45,9 @@ export default function useLists() {
                     removeList(id);
                 }
             })
+            .catch((error) => {
+                addToastAction({ message: error.message, type: ToastsEnum.ERROR });
+            })
             .finally(() => {
                 removeFromQueueAction(loadingId);
             });
@@ -52,6 +61,9 @@ export default function useLists() {
                 if (response.status === 200) {
                     updateList(response.data);
                 }
+            })
+            .catch((error) => {
+                addToastAction({ message: error.message, type: ToastsEnum.ERROR });
             })
             .finally(() => {
                 removeFromQueueAction(loadingId);
@@ -69,6 +81,9 @@ export default function useLists() {
                     if (response.status === 200) {
                         setLists(response.data);
                     }
+                })
+                .catch((error) => {
+                    addToastAction({ message: error.message, type: ToastsEnum.ERROR });
                 })
                 .finally(() => {
                     removeFromQueueAction(loadingId);

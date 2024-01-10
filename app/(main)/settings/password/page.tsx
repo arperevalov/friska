@@ -17,7 +17,7 @@ export default function Settings() {
     const onFormSubmit: SubmitHandler<FormData> = (data) => {
         if (data.password !== data.password_repeat) return;
         updatePasswordAction(data).then((result) => {
-            if (result.status === 200) reset();
+            if (result && result.status === 200) reset();
         });
     };
 
