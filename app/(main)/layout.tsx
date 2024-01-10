@@ -1,5 +1,6 @@
 import LoadingProvider from "@/contexts/LoadingContext";
 import ModalProvider from "@/contexts/ModalContext";
+import ToastProvider from "@/contexts/ToastsContext";
 import "@/styles/_.scss";
 import type { Metadata } from "next";
 
@@ -13,7 +14,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <html lang="en">
             <body>
                 <LoadingProvider>
-                    <ModalProvider>{children}</ModalProvider>
+                    <ToastProvider>
+                        <ModalProvider>{children}</ModalProvider>
+                    </ToastProvider>
                 </LoadingProvider>
             </body>
         </html>
