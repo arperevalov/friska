@@ -1,3 +1,4 @@
+import GetInitialData from "@/components/helpers/getInitialData";
 import LoadingProvider from "@/contexts/LoadingContext";
 import ModalProvider from "@/contexts/ModalContext";
 import ToastProvider from "@/contexts/ToastsContext";
@@ -15,7 +16,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <body>
                 <LoadingProvider>
                     <ToastProvider>
-                        <ModalProvider>{children}</ModalProvider>
+                        <ModalProvider>
+                            <GetInitialData>{children}</GetInitialData>
+                        </ModalProvider>
                     </ToastProvider>
                 </LoadingProvider>
             </body>

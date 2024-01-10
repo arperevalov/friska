@@ -3,13 +3,12 @@
 import CardInterface from "@/interfaces/Card";
 import { useMainStore } from "@/store/MainStore";
 import axios from "axios";
-import { useEffect } from "react";
 import useLoading from "./useLoading";
 import ToastsEnum from "@/enums/Toasts";
 import useToasts from "./useToasts";
 
 export default function useCards() {
-    const { cards, initCards, removeCard, addCard, updateCard } = useMainStore((state) => state);
+    const { cards, removeCard, addCard, updateCard } = useMainStore((state) => state);
     const { addToQueueAction, removeFromQueueAction } = useLoading();
     const { addToastAction } = useToasts();
 
@@ -118,33 +117,6 @@ export default function useCards() {
                 removeFromQueueAction(loadingId);
             });
     };
-
-    useEffect(() => {
-        if (cards.length !== 0) return;
-        let ignore = false;
-
-        if (!ignore) {
-            const loadingId = addToQueueAction();
-            axios
-                .get("/api/cards")
-                .then((response) => {
-                    if (response.status === 200) {
-                        initCards(response.data);
-                    }
-                })
-                .catch((error) => {
-                    addToastAction({ message: error.message, type: ToastsEnum.ERROR });
-                })
-                .finally(() => {
-                    removeFromQueueAction(loadingId);
-                });
-        }
-
-        return () => {
-            ignore = true;
-        };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
 
     return {
         cards,

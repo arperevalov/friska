@@ -3,13 +3,12 @@
 import ListInterface from "@/interfaces/List";
 import { useMainStore } from "@/store/MainStore";
 import axios from "axios";
-import { useEffect } from "react";
 import useLoading from "./useLoading";
 import useToasts from "./useToasts";
 import ToastsEnum from "@/enums/Toasts";
 
 export default function useLists() {
-    const { lists, setLists, addList, removeList, updateList } = useMainStore((state) => state);
+    const { lists, addList, removeList, updateList } = useMainStore((state) => state);
     const { addToQueueAction, removeFromQueueAction } = useLoading();
     const { addToastAction } = useToasts();
 
@@ -69,32 +68,6 @@ export default function useLists() {
                 removeFromQueueAction(loadingId);
             });
     };
-
-    useEffect(() => {
-        let ignore = false;
-
-        if (!ignore) {
-            const loadingId = addToQueueAction();
-            axios
-                .get("/api/lists")
-                .then((response) => {
-                    if (response.status === 200) {
-                        setLists(response.data);
-                    }
-                })
-                .catch((error) => {
-                    addToastAction({ message: error.message, type: ToastsEnum.ERROR });
-                })
-                .finally(() => {
-                    removeFromQueueAction(loadingId);
-                });
-        }
-
-        return () => {
-            ignore = true;
-        };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
 
     return {
         lists,
