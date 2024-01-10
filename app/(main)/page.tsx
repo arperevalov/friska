@@ -20,6 +20,10 @@ export default function Home() {
         setSearchValue(event.currentTarget?.value);
     };
 
+    const onSearchResetClick = () => {
+        setSearchValue("");
+    };
+
     const onCreateListClick = () => {
         toggleModalAction(ModalsEnum.FormNewList);
     };
@@ -60,6 +64,19 @@ export default function Home() {
                                     onChange={onSearchChange}
                                     value={searchValue}
                                 />
+                                {searchValue.length > 0 ? (
+                                    <>
+                                        <button
+                                            className="input__button link link--primary"
+                                            type="button"
+                                            onClick={onSearchResetClick}
+                                        >
+                                            Reset
+                                        </button>
+                                    </>
+                                ) : (
+                                    <></>
+                                )}
                             </label>
                             {lists.map((list) => {
                                 return (
