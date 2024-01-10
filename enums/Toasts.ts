@@ -1,6 +1,6 @@
 enum ToastsEnum {
-    SUCCESS,
-    ERROR,
+    SUCCESS = "success",
+    ERROR = "error",
 }
 
 export default ToastsEnum;

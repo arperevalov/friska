@@ -22,7 +22,7 @@ export default function Toasts(props: ToastsProps) {
 }
 
 function ToastElement(props: ToastBodyInterface) {
-    const { message } = props;
+    const { message, type } = props;
     const [show, setShow] = useState(true);
 
     useEffect(() => {
@@ -36,7 +36,7 @@ function ToastElement(props: ToastBodyInterface) {
 
     return (
         <>
-            <div className={`${show ? "" : "visually-hidden"}`}>{message}</div>
+            <div className={`toasts__item${show ? " show" : ""}${type ? ` toasts__item--${type}` : ""}`}>{message}</div>
         </>
     );
 }
