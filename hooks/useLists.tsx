@@ -24,43 +24,55 @@ export default function useLists() {
                     };
                     addList(formattedData);
                 }
+            })
+            .finally(() => {
                 removeFromQueueAction(loadingId);
             });
     };
 
     const removeListAction = async (id: number) => {
         const loadingId = addToQueueAction();
-        return axios.delete(`/api/lists/${id}`).then((response) => {
-            if (response.status === 200) {
-                removeList(id);
-            }
-            removeFromQueueAction(loadingId);
-        });
+        return axios
+            .delete(`/api/lists/${id}`)
+            .then((response) => {
+                if (response.status === 200) {
+                    removeList(id);
+                }
+            })
+            .finally(() => {
+                removeFromQueueAction(loadingId);
+            });
     };
 
     const updateListAction = (list: ListInterface) => {
         const loadingId = addToQueueAction();
-        axios.put(`/api/lists/${list.id}`, list).then((response) => {
-            if (response.status === 200) {
-                updateList(response.data);
-            }
-            removeFromQueueAction(loadingId);
-        });
+        axios
+            .put(`/api/lists/${list.id}`, list)
+            .then((response) => {
+                if (response.status === 200) {
+                    updateList(response.data);
+                }
+            })
+            .finally(() => {
+                removeFromQueueAction(loadingId);
+            });
     };
 
     useEffect(() => {
         let ignore = false;
 
-        const requestData = async () => {
-            const loadingId = addToQueueAction();
-            const request = await axios.get("/api/lists");
-            const requestJSON = request.data;
-            setLists(requestJSON);
-            removeFromQueueAction(loadingId);
-        };
-
         if (!ignore) {
-            requestData();
+            const loadingId = addToQueueAction();
+            axios
+                .get("/api/lists")
+                .then((response) => {
+                    if (response.status === 200) {
+                        setLists(response.data);
+                    }
+                })
+                .finally(() => {
+                    removeFromQueueAction(loadingId);
+                });
         }
 
         return () => {

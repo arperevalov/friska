@@ -19,22 +19,30 @@ export default function useAuth() {
 
     const signInAction = (data: signInInterface) => {
         const loadingId = addToQueueAction();
-        axios.post("/api/sign-in/", data).then((response) => {
-            if (response.data.token) {
-                router.push("/");
-            }
-            removeFromQueueAction(loadingId);
-        });
+        axios
+            .post("/api/sign-in/", data)
+            .then((response) => {
+                if (response.data.token) {
+                    router.push("/");
+                }
+            })
+            .finally(() => {
+                removeFromQueueAction(loadingId);
+            });
     };
 
     const signUpAction = (data: signUpInterface) => {
         const loadingId = addToQueueAction();
-        axios.post("/api/sign-up/", data).then((response) => {
-            if (response.data.token) {
-                router.push("/");
-            }
-            removeFromQueueAction(loadingId);
-        });
+        axios
+            .post("/api/sign-up/", data)
+            .then((response) => {
+                if (response.data.token) {
+                    router.push("/");
+                }
+            })
+            .finally(() => {
+                removeFromQueueAction(loadingId);
+            });
     };
 
     return {

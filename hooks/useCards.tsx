@@ -30,6 +30,8 @@ export default function useCards() {
                     };
                     addCard(formattedData);
                 }
+            })
+            .finally(() => {
                 removeFromQueueAction(loadingId);
             });
     };
@@ -43,62 +45,78 @@ export default function useCards() {
             })
             .then((response) => {
                 updateCard(response);
+            })
+            .finally(() => {
                 removeFromQueueAction(loadingId);
             });
     };
 
     const removeCardAction = (id: number) => {
         const loadingId = addToQueueAction();
-        axios.delete(`/api/cards/${id}`).then((response) => {
-            if (response.status === 200) {
-                removeCard(id);
-            }
-            removeFromQueueAction(loadingId);
-        });
+        axios
+            .delete(`/api/cards/${id}`)
+            .then((response) => {
+                if (response.status === 200) {
+                    removeCard(id);
+                }
+            })
+            .finally(() => {
+                removeFromQueueAction(loadingId);
+            });
     };
 
     const incrementCardLeftAction = (id: number) => {
         const loadingId = addToQueueAction();
-        axios.put(`/api/cards/${id}/increment`).then((response) => {
-            if (response.status === 200) {
-                const formattedData = {
-                    ...response.data,
-                    left_count: parseInt(response.data.left_count, 10),
-                };
-                updateCard(formattedData);
-            }
-            removeFromQueueAction(loadingId);
-        });
+        axios
+            .put(`/api/cards/${id}/increment`)
+            .then((response) => {
+                if (response.status === 200) {
+                    const formattedData = {
+                        ...response.data,
+                        left_count: parseInt(response.data.left_count, 10),
+                    };
+                    updateCard(formattedData);
+                }
+            })
+            .finally(() => {
+                removeFromQueueAction(loadingId);
+            });
     };
 
     const decrementCardLeftAction = (id: number) => {
         const loadingId = addToQueueAction();
-        axios.put(`/api/cards/${id}/decrement`).then((response) => {
-            if (response.status === 200) {
-                const formattedData = {
-                    ...response.data,
-                    left_count: parseInt(response.data.left_count, 10),
-                };
-                updateCard(formattedData);
-            }
-            removeFromQueueAction(loadingId);
-        });
+        axios
+            .put(`/api/cards/${id}/decrement`)
+            .then((response) => {
+                if (response.status === 200) {
+                    const formattedData = {
+                        ...response.data,
+                        left_count: parseInt(response.data.left_count, 10),
+                    };
+                    updateCard(formattedData);
+                }
+            })
+            .finally(() => {
+                removeFromQueueAction(loadingId);
+            });
     };
 
     useEffect(() => {
         if (cards.length !== 0) return;
         let ignore = false;
 
-        const requestData = async () => {
-            const loadingId = addToQueueAction();
-            const request = await axios.get("/api/cards");
-            const requestJSON = request.data;
-            initCards(requestJSON);
-            removeFromQueueAction(loadingId);
-        };
-
         if (!ignore) {
-            requestData();
+            const loadingId = addToQueueAction();
+            axios
+                .get("/api/cards")
+                .then((response) => {
+                    if (response.status === 200) {
+                        initCards(response.data);
+                    }
+                })
+                .finally(() => {
+                    removeFromQueueAction(loadingId);
+                });
         }
 
         return () => {

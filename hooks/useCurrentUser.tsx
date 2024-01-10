@@ -9,10 +9,14 @@ export default function useCurrentUser() {
 
     const updatePasswordAction = async (data: { password: string; password_repeat: string }) => {
         const loadingId = addToQueueAction();
-        return axios.put("/api/current-user/password", data).then((result) => {
-            removeFromQueueAction(loadingId);
-            return result;
-        });
+        return axios
+            .put("/api/current-user/password", data)
+            .then((result) => {
+                return result;
+            })
+            .finally(() => {
+                removeFromQueueAction(loadingId);
+            });
     };
 
     useEffect(() => {
@@ -20,13 +24,17 @@ export default function useCurrentUser() {
 
         if (!ignore && !currentUser.username) {
             const loadingId = addToQueueAction();
-            axios.get("/api/current-user").then((response) => {
-                if (response.status === 200) {
-                    ignore = true;
-                    setCurrentUser(response.data);
-                }
-                removeFromQueueAction(loadingId);
-            });
+            axios
+                .get("/api/current-user")
+                .then((response) => {
+                    if (response.status === 200) {
+                        ignore = true;
+                        setCurrentUser(response.data);
+                    }
+                })
+                .finally(() => {
+                    removeFromQueueAction(loadingId);
+                });
         }
 
         return () => {
