@@ -2,16 +2,22 @@ import React from "react";
 import { fireEvent, render } from "@testing-library/react";
 import { InputCalendar } from "@/components/InputCalendar";
 
+const onChange = jest.fn();
+const onInput = jest.fn();
+
 const data = {
     label: "Some label",
-    setFormData: jest.fn(),
+    register: () => {
+        return {
+            onChange,
+            onInput,
+        };
+    },
     formKey: "random",
 };
 
 describe("InputCalendar component", () => {
-    beforeEach(() => {
-        data.setFormData.mockClear();
-    });
+    beforeEach(() => {});
 
     it("renders", () => {
         const { container, getByText } = render(<InputCalendar {...data} />);
@@ -48,7 +54,7 @@ describe("InputCalendar component", () => {
 
         fireEvent.change(input, { target: { value: date.toLocaleDateString("sv-SE") } });
 
-        const callbackCalls = data.setFormData.mock.calls;
+        const callbackCalls = onChange.mock.calls;
 
         expect(callbackCalls.length).toBe(1);
     });

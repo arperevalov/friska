@@ -2,9 +2,17 @@ import React from "react";
 import { fireEvent, render } from "@testing-library/react";
 import { InputAction } from "@/components/InputAction";
 
+const onChange = jest.fn();
+const onInput = jest.fn();
+
 const data = {
     label: "Some label",
-    setFormData: jest.fn(),
+    register: () => {
+        return {
+            onChange,
+            onInput,
+        };
+    },
     formKey: "random",
     buttonAction: jest.fn(),
     buttonText: "Button Action",
@@ -24,7 +32,6 @@ const dataText = {
 
 describe("InputAction component", () => {
     beforeEach(() => {
-        data.setFormData.mockClear();
         data.buttonAction.mockClear();
     });
 
@@ -75,7 +82,7 @@ describe("InputAction component", () => {
         fireEvent.change(input, { target: { value: "Hello" } });
         fireEvent.change(input, { target: { value: "Hello world" } });
 
-        const callbackCalls = data.setFormData.mock.calls;
+        const callbackCalls = onChange.mock.calls;
 
         expect(callbackCalls.length).toBe(2);
     });

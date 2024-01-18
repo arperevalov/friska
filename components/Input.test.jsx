@@ -2,9 +2,17 @@ import React from "react";
 import { fireEvent, render } from "@testing-library/react";
 import { Input } from "@/components/Input";
 
+const onChange = jest.fn();
+const onInput = jest.fn();
+
 const data = {
     label: "Some label",
-    setFormData: jest.fn(),
+    register: () => {
+        return {
+            onChange,
+            onInput,
+        };
+    },
     formKey: "random",
 };
 
@@ -21,9 +29,7 @@ const dataText = {
 };
 
 describe("Input component", () => {
-    beforeEach(() => {
-        data.setFormData.mockClear();
-    });
+    beforeEach(() => {});
 
     it("renders number type", () => {
         const { container, getByText } = render(<Input {...data} {...dataNumber} />);
@@ -68,7 +74,7 @@ describe("Input component", () => {
         fireEvent.change(input, { target: { value: "Hello" } });
         fireEvent.change(input, { target: { value: "Hello world" } });
 
-        const callbackCalls = data.setFormData.mock.calls;
+        const callbackCalls = onChange.mock.calls;
 
         expect(callbackCalls.length).toBe(2);
     });
