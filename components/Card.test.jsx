@@ -35,7 +35,7 @@ describe("Card component", () => {
         useCards.mockReturnValue({
             removeCardAction,
             incrementCardLeftAction,
-            decrementCardLeftAction
+            decrementCardLeftAction,
         });
 
         useLists.mockClear();
@@ -101,5 +101,17 @@ describe("Card component", () => {
 
         expect(decrementCalls.length).toBe(1);
         expect(incrementCalls.length).toBe(2);
+    });
+
+    it("calls remove callback", () => {
+        const { getByText } = render(<Card {...cardData} exp_date={correctDateString} />);
+
+        const btn = getByText(/remove/i);
+
+        fireEvent.click(btn);
+
+        const removeCalls = removeCardAction.mock.calls;
+
+        expect(removeCalls.length).toBe(1);
     });
 });
