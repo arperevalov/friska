@@ -13,14 +13,17 @@ const cardData = {
     list_id: 1,
     title: "Oranges",
     units: "kg",
-    user_id: 1
+    user_id: 1,
 };
 
 const listData = {
     title: "List name",
     id: 1,
     best_before: 2,
-}
+};
+const removeCardAction = jest.fn();
+const incrementCardLeftAction = jest.fn();
+const decrementCardLeftAction = jest.fn();
 
 const correctDate = new Date(new Date().getTime() + 10000000000);
 const correctDateString = correctDate.toISOString().replace(/(\d)T(\d.{0,})\.\d{0,}Z/, "$1 $2");
@@ -30,13 +33,14 @@ describe("Card component", () => {
     beforeEach(() => {
         useCards.mockClear();
         useCards.mockReturnValue({
-            removeCardAction: jest.mock(), 
-            incrementCardLeftAction: jest.mock(), 
-            decrementCardLeftAction: jest.mock()
+            removeCardAction,
+            incrementCardLeftAction,
+            decrementCardLeftAction
         });
+
         useLists.mockClear();
         useLists.mockReturnValue({
-            lists: [listData]
+            lists: [listData],
         });
     });
 
@@ -79,5 +83,23 @@ describe("Card component", () => {
         fireEvent.click(cardContainer);
         const activeSecond = card.classList.contains("active");
         expect(activeSecond).toBeFalsy();
+    });
+
+    it("calls increment, decrement callbacks", () => {
+        const { container } = render(<Card {...cardData} exp_date={correctDateString} />);
+
+        const btnsContainer = container.querySelector(".card__btns");
+        const btnIncrement = btnsContainer.querySelector(".btn--primary");
+        const btnDecrement = btnsContainer.querySelector(".btn--secondary");
+
+        fireEvent.click(btnIncrement);
+        fireEvent.click(btnIncrement);
+        fireEvent.click(btnDecrement);
+
+        const decrementCalls = decrementCardLeftAction.mock.calls;
+        const incrementCalls = incrementCardLeftAction.mock.calls;
+
+        expect(decrementCalls.length).toBe(1);
+        expect(incrementCalls.length).toBe(2);
     });
 });
