@@ -2,18 +2,23 @@ import React from "react";
 import { fireEvent, render } from "@testing-library/react";
 import { SelectUnits } from "@/components/SelectUnits";
 
+const onChange = jest.fn();
+const onInput = jest.fn();
+
 const data = {
     label: "Some label",
     values: ["uno", "dos", "tres"],
-    defaultValue: 2,
-    setFormData: jest.fn(),
+    register: () => {
+        return {
+            onChange,
+            onInput,
+        };
+    },
     formKey: "random",
 };
 
 describe("SelectUnits component", () => {
-    beforeEach(() => {
-        data.setFormData.mockClear();
-    });
+    beforeEach(() => {});
 
     it("renders", () => {
         const { container, getByText } = render(<SelectUnits {...data} />);
@@ -21,11 +26,9 @@ describe("SelectUnits component", () => {
         const labelText = getByText(/some label/i);
 
         const select = container.querySelector("select");
-        const selectedValueBeTruthy = select.value === data.values[data.defaultValue];
 
         expect(labelText).toBeInTheDocument();
         expect(select).toBeInTheDocument();
-        expect(selectedValueBeTruthy).toBeTruthy();
     });
 
     it("renders without values", () => {
@@ -47,8 +50,8 @@ describe("SelectUnits component", () => {
         fireEvent.change(select, { target: { value: data.values[0] } });
         fireEvent.change(select, { target: { value: data.values[2] } });
 
-        const callbackCalls = data.setFormData.mock.calls;
+        const callbackCalls = onChange.mock.calls;
 
-        expect(callbackCalls.length).toBe(3);
+        expect(callbackCalls.length).toBe(2);
     });
 });
