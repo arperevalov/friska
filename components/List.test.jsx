@@ -5,7 +5,6 @@ import useLists from "@/hooks/useLists";
 
 jest.mock("@/hooks/useLists");
 
-
 const cards = [
     {
         id: 0,
@@ -44,8 +43,8 @@ const lists = [
         id: 0,
         title: "List Title",
         best_before: 2,
-    }
-]
+    },
+];
 
 const data = {
     ...lists[0],
