@@ -40,7 +40,7 @@ export default function FormUpdateCard(props: FormUpdateCardProps) {
             id: card.id,
             exp_date: new Date(data.exp_date).toISOString().replace(/(\d)T(\d.{0,})\.\d{0,}Z/, "$1 $2"),
             list_id: parseInt(data.list_id, 10),
-            left_count: parseInt(data.left_count, 10),
+            left_count: parseFloat(data.left_count),
             user_id: 1,
         };
         updateCardAction(formattedData);
