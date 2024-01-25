@@ -84,7 +84,7 @@ export default function FormUpdateCard(props: FormUpdateCardProps) {
                             required={true}
                             register={register}
                             min={0}
-                            step={0.1}
+                            step={0.01}
                         />
                     </div>
                     <div className="input-row__col">

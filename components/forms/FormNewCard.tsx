@@ -93,7 +93,7 @@ export default function FormNewCard(props: FormNewCardProps) {
                             formKey="left_count"
                             label="Left"
                             min={0}
-                            step={0.1}
+                            step={0.01}
                             register={register}
                             type="number"
                             required
