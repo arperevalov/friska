@@ -13,7 +13,8 @@ export interface InputActionInterface {
 }
 
 export const InputAction = (props: InputActionInterface) => {
-    const { label, defaultValue, type, min, max, formKey, required, buttonAction, buttonText, register, autoComplete } = props;
+    const { label, defaultValue, type, min, max, formKey, required, buttonAction, buttonText, register, autoComplete } =
+        props;
 
     const onButtonClick = () => {
         buttonAction();

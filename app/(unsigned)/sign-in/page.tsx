@@ -24,13 +24,21 @@ export default function SignIn() {
             <main>
                 <div className="container">
                     <form className="form" action="#" onSubmit={handleSubmit(submitForm)}>
-                        <Input type="text" label="Login" register={register} formKey="username" required={true} />
+                        <Input
+                            type="text"
+                            label="Login"
+                            register={register}
+                            formKey="username"
+                            required={true}
+                            autoComplete="username"
+                        />
                         <Input
                             type="password"
                             label="Password"
                             register={register}
                             formKey="password"
                             required={true}
+                            autoComplete="current-password"
                         />
                         <button className="form__btn-sub link link--primary">Recover password</button>
                         <button className="form__btn btn btn--primary" type="submit">
