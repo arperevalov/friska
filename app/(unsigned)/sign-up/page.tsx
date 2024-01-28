@@ -19,7 +19,11 @@ export default function SignUp() {
 
     const submitForm: SubmitHandler<FormValues> = (data) => {
         if (data.password === data.passwordSecond) {
-            signUpAction(data);
+            const formattedData = {
+                ...data,
+                username: data.username.trim(),
+            };
+            signUpAction(formattedData);
         }
     };
 

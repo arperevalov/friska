@@ -15,7 +15,11 @@ export default function SignIn() {
     const { signInAction } = useAuth();
 
     const submitForm: SubmitHandler<FormValues> = (data) => {
-        signInAction(data);
+        const formattedData = {
+            ...data,
+            username: data.username.trim(),
+        };
+        signInAction(formattedData);
     };
 
     return (
