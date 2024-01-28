@@ -8,10 +8,11 @@ export interface InputInterface {
     formKey: string;
     required?: boolean;
     register: CallableFunction;
+    autoComplete?: string;
 }
 
 export const Input = (props: InputInterface) => {
-    const { label, type, min, max, step, defaultValue, formKey, required, register } = props;
+    const { label, type, min, max, step, defaultValue, formKey, required, register, autoComplete } = props;
 
     return (
         <>
@@ -25,6 +26,7 @@ export const Input = (props: InputInterface) => {
                     step={step}
                     required={required}
                     defaultValue={defaultValue}
+                    autoComplete={autoComplete}
                     {...register(formKey)}
                 />
             </label>

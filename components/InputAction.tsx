@@ -9,10 +9,11 @@ export interface InputActionInterface {
     buttonAction: CallableFunction;
     buttonText: string;
     register: CallableFunction;
+    autoComplete?: string;
 }
 
 export const InputAction = (props: InputActionInterface) => {
-    const { label, defaultValue, type, min, max, formKey, required, buttonAction, buttonText, register } = props;
+    const { label, defaultValue, type, min, max, formKey, required, buttonAction, buttonText, register, autoComplete } = props;
 
     const onButtonClick = () => {
         buttonAction();
@@ -30,6 +31,7 @@ export const InputAction = (props: InputActionInterface) => {
                     min={min}
                     max={max}
                     required={required}
+                    autoComplete={autoComplete}
                 />
                 <button className="input__button link link--primary" type="button" onClick={onButtonClick}>
                     {buttonText}

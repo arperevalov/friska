@@ -4,10 +4,11 @@ export interface InputInterface {
     formKey: string;
     required?: boolean;
     register: CallableFunction;
+    autoComplete?: string;
 }
 
 export const InputCalendar = (props: InputInterface) => {
-    const { label, defaultValue, formKey, required, register } = props;
+    const { label, defaultValue, formKey, required, register, autoComplete } = props;
 
     return (
         <>
@@ -19,6 +20,7 @@ export const InputCalendar = (props: InputInterface) => {
                     required={required}
                     defaultValue={defaultValue ? defaultValue.toLocaleDateString("sv-SE") : ""}
                     {...register(formKey)}
+                    autoComplete={autoComplete}
                 />
             </label>
         </>
