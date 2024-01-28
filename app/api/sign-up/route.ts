@@ -13,9 +13,11 @@ export async function POST(req: Request) {
         const data = await request.data;
 
         const now = new Date();
-        const days = process.env.NEXT_PUBLIC_AUTH_TOKEN_EXPIRY_DAYS ? parseInt(process.env.NEXT_PUBLIC_AUTH_TOKEN_EXPIRY_DAYS, 10) : 5;
+        const days = process.env.NEXT_PUBLIC_AUTH_TOKEN_EXPIRY_DAYS
+            ? parseInt(process.env.NEXT_PUBLIC_AUTH_TOKEN_EXPIRY_DAYS, 10)
+            : 5;
         const expires = now.getTime() + Math.round(days * 24 * 60 * 60 * 1000);
-        cookies().set("auth-token", data.token, {expires});
+        cookies().set("auth-token", data.token, { expires });
 
         return Response.json(data);
     } catch (error: unknown) {
