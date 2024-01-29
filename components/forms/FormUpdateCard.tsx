@@ -88,7 +88,14 @@ export default function FormUpdateCard(props: FormUpdateCardProps) {
                         />
                     </div>
                     <div className="input-row__col">
-                        <SelectUnits label="Units" values={units} formKey="units" required={true} register={register} defaultValue={card.units}/>
+                        <SelectUnits
+                            label="Units"
+                            values={units}
+                            formKey="units"
+                            required={true}
+                            register={register}
+                            defaultValue={card.units}
+                        />
                     </div>
                 </div>
 

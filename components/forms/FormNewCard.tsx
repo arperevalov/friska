@@ -100,13 +100,7 @@ export default function FormNewCard(props: FormNewCardProps) {
                         />
                     </div>
                     <div className="input-row__col">
-                        <SelectUnits
-                            formKey="units"
-                            label="Units"
-                            values={units}
-                            register={register}
-                            required
-                        />
+                        <SelectUnits formKey="units" label="Units" values={units} register={register} required />
                     </div>
                 </div>
                 <button className="form__btn btn btn--primary" type="submit">
