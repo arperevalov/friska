@@ -1,6 +1,6 @@
 export interface SelectUnitsInterface {
     values: string[];
-    defaultValue?: number;
+    defaultValue?: string;
     label: string;
     formKey: string;
     required?: boolean;

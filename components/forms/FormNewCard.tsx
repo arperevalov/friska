@@ -104,7 +104,6 @@ export default function FormNewCard(props: FormNewCardProps) {
                             formKey="units"
                             label="Units"
                             values={units}
-                            defaultValue={0}
                             register={register}
                             required
                         />
