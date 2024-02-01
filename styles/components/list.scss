@@ -114,8 +114,7 @@
         line-height: 1.2;
         font-weight: 600;
         letter-spacing: -0.04em;
-        transition:
-            background ease $duration-fast;
+        transition: background ease $duration-fast;
 
         &:hover {
             background: var(--theme-color-muted);
