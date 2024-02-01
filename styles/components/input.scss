@@ -6,7 +6,7 @@
     &__label {
         display: block;
         margin-bottom: var(--space-2xs);
-        color: $muted;
+        color: var(--theme-color-muted);
         font-size: var(--step-n1);
         text-transform: uppercase;
         font-weight: 600;
@@ -18,8 +18,8 @@
         padding: var(--space-3xs) var(--space-xs);
         width: 100%;
         border-radius: rem(8);
-        border: 1px solid $muted;
-        background-color: $white;
+        border: 1px solid var(--theme-color-muted);
+        background-color: var(--theme-color-body);
         font-weight: 600;
         letter-spacing: -0.04em;
         font-family: $font-face;

@@ -1,8 +1,8 @@
 .btn {
     --btn-bg: transparent;
-    --btn-color: #{$black};
+    --btn-color: #{var(--theme-color-text)};
     --btn-hover-bg: transparent;
-    --btn-hover-color: #{rgba($black, 0.7)};
+    --btn-hover-color: #{rgba(var(--theme-color-text), 0.7)};
     --btn-border-radius: #{rem(30)};
     --btn-padding-y: #{var(--space-3xs)};
     --btn-padding-x: #{var(--space-m)};
@@ -10,8 +10,8 @@
     --btn-font-size: #{var(--step-1)};
     --btn-font-weight: 600;
     --btn-border-width: 1px;
-    --btn-border-color: #{$gray};
-    --btn-hover-border-color: #{$gray};
+    --btn-border-color: #{var(--theme-color-gray)};
+    --btn-hover-border-color: #{var(--theme-color-gray)};
 
     background: var(--btn-bg);
     color: var(--btn-color);
@@ -34,18 +34,18 @@
     @each $color, $value in $theme-colors {
         &--#{$color} {
             --btn-bg: #{$value};
-            --btn-color: #{$black};
+            --btn-color: #{var(--theme-color-text)};
             --btn-hover-bg: #{rgba($value, 0.7)};
-            --btn-hover-color: #{$black};
+            --btn-hover-color: #{var(--theme-color-text)};
         }
     }
 
     @each $color, $value in $theme-colors {
         &--outline-#{$color} {
             --btn-bg: transparent;
-            --btn-color: #{$black};
+            --btn-color: #{var(--theme-color-text)};
             --btn-hover-bg: transparent;
-            --btn-hover-color: #{$black};
+            --btn-hover-color: #{var(--theme-color-text)};
             --btn-border-color: #{$value};
             --btn-hover-border-color: #{rgba($value, 0.7)};
         }

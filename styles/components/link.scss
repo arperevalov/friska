@@ -1,6 +1,6 @@
 .link {
-    --link-color: #{$black};
-    --link-hover-color: #{rgba($black, 0.7)};
+    --link-color: #{var(--theme-color-text)};
+    --link-hover-color: #{rgba(var(--theme-color-text), 0.7)};
     --link-font-size: #{var(--step-0)};
 
     color: var(--link-color);

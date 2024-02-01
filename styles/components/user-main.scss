@@ -11,7 +11,7 @@
         justify-content: center;
         border-radius: 50%;
         overflow: hidden;
-        background: $gray;
+        background: var(--theme-color-gray);
         margin-right: var(--space-2xs);
         text-transform: uppercase;
         font-size: var(--step-2);

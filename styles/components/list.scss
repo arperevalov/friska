@@ -6,7 +6,7 @@
     --gap: #{var(--space-3xs)};
     padding: var(--space-2xs);
     border-radius: rem(8);
-    background: $gray;
+    background: var(--theme-color-gray);
     width: 100%;
     margin-bottom: var(--space-xs);
 

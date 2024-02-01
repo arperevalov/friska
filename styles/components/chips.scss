@@ -9,10 +9,10 @@
     &__content {
         height: var(--space-l);
         padding: 0 calc(var(--space-xs) - var(--space-3xs)) 0 var(--space-xs);
-        border: 1px solid $primary;
-        background: $white;
+        border: 1px solid var(--theme-color-primary);
+        background: var(--theme-color-body);
         border-radius: 50px;
-        color: $black;
+        color: var(--theme-color-text);
         display: flex;
         align-items: center;
         font-size: var(--step-1);

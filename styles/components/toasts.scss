@@ -24,16 +24,16 @@
         padding-left: calc(var(--space-3xs) + var(--space-xs));
         border-radius: var(--space-2xs);
         margin-bottom: var(--space-2xs);
-        background: $gray;
+        background: var(--theme-color-gray);
         overflow: hidden;
         display: none;
 
         &--error {
-            --toast-type: #{$secondary};
+            --toast-type: #{var(--theme-color-secondary)};
         }
 
         &--success {
-            --toast-type: #{$primary};
+            --toast-type: #{var(--theme-color-primary)};
         }
 
         &::before {

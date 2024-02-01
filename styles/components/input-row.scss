@@ -14,7 +14,7 @@
         font-weight: 600;
         line-height: 1.2;
         letter-spacing: -0.04em;
-        color: $muted;
+        color: var(--theme-color-muted);
 
         @include media-breakpoint-up(900px) {
             width: 80%;

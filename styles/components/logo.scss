@@ -4,13 +4,13 @@
     align-items: center;
     height: var(--space-l);
     padding: var(--space-3xs) var(--space-s);
-    background: $black;
+    background: var(--theme-color-text);
     border-radius: 50px;
     font-size: var(--step-2);
     line-height: 1;
     margin: 0;
     font-weight: 700;
-    color: $white;
+    color: var(--theme-color-body);
     letter-spacing: -0.05em;
     text-transform: uppercase;
 

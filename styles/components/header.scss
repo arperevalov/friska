@@ -52,7 +52,7 @@
         width: fit-content;
         display: flex;
         padding: var(--space-2xs);
-        background: $black;
+        background: var(--theme-color-text);
         border-radius: 50px;
         pointer-events: all;
     }
@@ -65,8 +65,8 @@
         height: var(--space-l);
         border-radius: 50px;
         text-decoration: none;
-        background: $white;
-        color: $black;
+        background: var(--theme-color-body);
+        color: var(--theme-color-text);
         transition: ease opacity $duration-fast;
 
         &:hover {
@@ -74,7 +74,7 @@
         }
 
         &--active {
-            background: $primary;
+            background: var(--theme-color-primary);
         }
 
         & + & {
