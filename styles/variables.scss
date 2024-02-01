@@ -8,13 +8,36 @@ $gray: #eff0f0;
 $black: #050401;
 $white: #fffaff;
 
-$theme-colors: (
+$muted-inverted: #5B5B5B;
+$gray-inverted: #3F3F3F;
+$text-inverted: #FFFFFF;
+$body-inverted: #19191A;
+
+$theme-light: (
     "primary": $primary,
     "secondary": $secondary,
     "muted": $muted,
     "gray": $gray,
-    "black": $black,
-    "white": $white,
+    "text": $black,
+    "body": $white,
+);
+
+$theme-dark: (
+    "primary": $primary,
+    "secondary": $secondary,
+    "muted": $muted,
+    "gray": $gray-inverted,
+    "text": $text-inverted,
+    "body": $body-inverted,
+);
+
+$theme-colors: (
+    "primary": var(--theme-color-primary),
+    "secondary": var(--theme-color-secondary),
+    "muted": var(--theme-color-muted),
+    "gray": var(--theme-color-gray),
+    "text": var(--theme-color-text),
+    "body": var(--theme-color-body),
 );
 
 $duration-fast: 0.3s;

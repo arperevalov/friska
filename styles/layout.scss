@@ -32,6 +32,16 @@
     --container-padding-x: #{var(--space-s)};
     --container-max-width: 900px;
 
+    @each $color, $value in $theme-light {
+        --theme-color-#{$color}: #{$value};
+    }
+
+    @media (prefers-color-scheme: dark) {
+        @each $color, $value in $theme-dark {
+            --theme-color-#{$color}: #{$value};
+        }
+    }
+
     font-family: $font-face;
 }
 
