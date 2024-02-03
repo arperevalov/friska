@@ -8,7 +8,7 @@ import { InputCalendar } from "../InputCalendar";
 import { SelectUnits } from "../SelectUnits";
 import ModalsEnum from "@/enums/Modals";
 import useModals from "@/hooks/useModals";
-import Image from "next/image";
+import Sprite from "../Sprite";
 
 interface FormValues {
     title: string;
@@ -54,14 +54,7 @@ export default function FormNewCard(props: FormNewCardProps) {
         return (
             <>
                 <div className="empty empty--modal">
-                    <picture className="empty__picture">
-                        <Image
-                            alt="You don't have any list yet"
-                            src="/svg/empty-list.svg"
-                            fill
-                            style={{ color: "inherit" }}
-                        />
-                    </picture>
+                    <Sprite name="empty-list" className="empty__picture" />
                     <h3 className="empty__text">
                         Oh, no! You don’t have any list yet. <br />
                         Start with creating one!

@@ -1,12 +1,12 @@
 "use client";
 
 import { deleteCookie } from "cookies-next";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import Logo from "./Logo";
 import useModals from "@/hooks/useModals";
 import ModalsEnum from "@/enums/Modals";
+import Sprite from "./Sprite";
 
 interface HeaderProps {
     title?: string;
@@ -79,24 +79,18 @@ export default function Header(props: HeaderProps) {
                 <div className="header__bottom">
                     <nav className="header__nav">
                         <button className="header__link" type="button" onClick={onNewClick}>
-                            <div className="header__icon">
-                                <Image src="/svg/new.svg" alt="" fill />
-                            </div>
+                            <Sprite className="header__icon" name="new" />
                             <span className="visually-hidden">New Item</span>
                         </button>
                         <Link className={`header__link${pathname === "/" ? " header__link--active" : ""}`} href={"/"}>
-                            <div className="header__icon">
-                                <Image src="/svg/lists.svg" alt="" fill />
-                            </div>
+                            <Sprite className="header__icon" name="lists" />
                             <span className="visually-hidden">Lists</span>
                         </Link>
                         <Link
                             className={`header__link${pathname === "/settings" ? " header__link--active" : ""}`}
                             href={"/settings"}
                         >
-                            <div className="header__icon">
-                                <Image src="/svg/settings.svg" alt="" fill />
-                            </div>
+                            <Sprite className="header__icon" name="settings" />
                             <span className="visually-hidden">Settings</span>
                         </Link>
                     </nav>

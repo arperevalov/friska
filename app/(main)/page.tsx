@@ -7,7 +7,7 @@ import Header from "@/components/Header";
 import { useState } from "react";
 import useModals from "@/hooks/useModals";
 import ModalsEnum from "@/enums/Modals";
-import Image from "next/image";
+import Sprite from "@/components/Sprite";
 
 export default function Home() {
     const { lists } = useLists();
@@ -40,14 +40,7 @@ export default function Home() {
                     {lists.length === 0 ? (
                         <>
                             <div className="empty">
-                                <picture className="empty__picture">
-                                    <Image
-                                        alt="You don't have any list yet"
-                                        src="/svg/empty-list.svg"
-                                        fill
-                                        style={{ color: "inherit" }}
-                                    />
-                                </picture>
+                                <Sprite name="empty-list" className="empty__picture" />
                                 <h1 className="empty__text">
                                     Oh, no! You don’t have any list yet. <br />
                                     Start with creating one!

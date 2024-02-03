@@ -1,11 +1,11 @@
-import Image from "next/image";
+import Sprite from "./Sprite";
 
 export default function Logo() {
     return (
         <>
             <div className="logo">
                 <div className="logo__icon">
-                    <Image src="/svg/friska.svg" alt="" fill />
+                    <Sprite name="friska" />
                 </div>
                 Friska
             </div>
