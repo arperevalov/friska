@@ -1,12 +1,15 @@
 $font-size-base: 16;
 $font-face: "Manrope", "Helvetica", "Arial", sans-serif;
 
+$black: #050401;
+$white: #fffaff;
 $primary: #30bced;
 $secondary: #fc5130;
 $muted: #b8bdc2;
 $gray: #eff0f0;
-$black: #050401;
-$white: #fffaff;
+
+$body: $white;
+$text: $black;
 
 $muted-inverted: #5b5b5b;
 $gray-inverted: #3f3f3f;
@@ -19,8 +22,9 @@ $theme-light: (
     "muted": $muted,
     "gray": $gray,
     "text": $black,
-    "body": $white,
+    "body": $body,
     "button-text": $black,
+    "body-transparent": rgba($body, 0),
 );
 
 $theme-dark: (
@@ -31,6 +35,7 @@ $theme-dark: (
     "text": $text-inverted,
     "body": $body-inverted,
     "button-text": $black,
+    "body-transparent": rgba($body-inverted, 0),
 );
 
 $theme-colors: (

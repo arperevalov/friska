@@ -18,8 +18,8 @@
         background: linear-gradient(
             0deg,
             var(--theme-color-body) 0%,
-            rgba(var(--theme-color-body), 0) 10%,
-            rgba(var(--theme-color-body), 0) 90%,
+            var(--theme-color-body-transparent) 10%,
+            var(--theme-color-body-transparent) 90%,
             var(--theme-color-body) 100%
         );
         z-index: 98;
@@ -29,8 +29,8 @@
         background: linear-gradient(
             90deg,
             var(--theme-color-body) 0%,
-            rgba(var(--theme-color-body), 0) 10%,
-            rgba(var(--theme-color-body), 0) 90%,
+            var(--theme-color-body-transparent) 10%,
+            var(--theme-color-body-transparent) 90%,
             var(--theme-color-body) 100%
         );
     }
