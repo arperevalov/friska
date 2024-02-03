@@ -9,7 +9,8 @@
         "production": "npm run build && npm run start",
         "lint": "next lint",
         "lint-all": "npx tsc --noEmit && npx eslint . && npx prettier --write .",
-        "test": "jest --watch"
+        "test": "jest --watch",
+        "svg-sprite": "svg-symbol-sprite -i ./img/sprite-src -o ./public/sprite.svg"
     },
     "dependencies": {
         "@gsap/react": "^2.0.2",
@@ -44,6 +45,7 @@
         "postcss": "^8.4.31",
         "prettier": "^3.1.1",
         "react-test-renderer": "^18.2.0",
+        "svg-symbol-sprite": "^1.4.1",
         "tailwindcss": "^3.2.7"
     }
 }
