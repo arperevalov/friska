@@ -26,6 +26,7 @@ $theme-light: (
     "button-text": $black,
     "body-transparent": rgba($body, 0),
     "body-loading": rgba($body, 0.4),
+    "modal-backdrop": rgba($black, 0.4),
 );
 
 $theme-dark: (
@@ -38,6 +39,7 @@ $theme-dark: (
     "button-text": $black,
     "body-transparent": rgba($body-inverted, 0),
     "body-loading": rgba($body-inverted, 0.4),
+    "modal-backdrop": rgba($black, 0.5),
 );
 
 $theme-colors: (
