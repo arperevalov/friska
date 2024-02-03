@@ -18,7 +18,7 @@
         background: linear-gradient(
             to right,
             var(--theme-color-primary) 0%,
-            rgba(var(--theme-color-body), 0.4) 50%,
+            var(--theme-color-body-loading) 50%,
             var(--theme-color-primary) 100%
         );
         animation: loading-animation 0.7s $duration-fast infinite;

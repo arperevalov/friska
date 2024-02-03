@@ -25,6 +25,7 @@ $theme-light: (
     "body": $body,
     "button-text": $black,
     "body-transparent": rgba($body, 0),
+    "body-loading": rgba($body, 0.4),
 );
 
 $theme-dark: (
@@ -36,6 +37,7 @@ $theme-dark: (
     "body": $body-inverted,
     "button-text": $black,
     "body-transparent": rgba($body-inverted, 0),
+    "body-loading": rgba($body-inverted, 0.4),
 );
 
 $theme-colors: (
