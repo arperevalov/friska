@@ -54,7 +54,7 @@
         margin-top: var(--space-xs);
         margin-left: var(--space-xs);
         flex: 0 0 auto;
-        box-shadow: 16px 16px 12px rgba(var(--theme-color-text), 0.01);
+        box-shadow: 16px 16px 12px var(--theme-color-intro-card-shadow);
         border-radius: rem(8);
         width: 50%;
 
