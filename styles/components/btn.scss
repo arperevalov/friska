@@ -1,8 +1,8 @@
 .btn {
     --btn-bg: transparent;
-    --btn-color: #{var(--theme-color-text)};
+    --btn-color: #{var(--theme-color-button-text)};
     --btn-hover-bg: transparent;
-    --btn-hover-color: #{rgba(var(--theme-color-text), 0.7)};
+    --btn-hover-color: #{var(--theme-color-button-text)};
     --btn-border-radius: #{rem(30)};
     --btn-padding-y: #{var(--space-3xs)};
     --btn-padding-x: #{var(--space-m)};
@@ -34,9 +34,9 @@
     @each $color, $value in $theme-colors {
         &--#{$color} {
             --btn-bg: #{$value};
-            --btn-color: #{var(--theme-color-text)};
+            --btn-color: #{var(--theme-color-button-text)};
             --btn-hover-bg: #{rgba($value, 0.7)};
-            --btn-hover-color: #{var(--theme-color-text)};
+            --btn-hover-color: #{var(--theme-color-button-text)};
         }
     }
 
@@ -45,7 +45,7 @@
             --btn-bg: transparent;
             --btn-color: #{var(--theme-color-text)};
             --btn-hover-bg: transparent;
-            --btn-hover-color: #{var(--theme-color-text)};
+            --btn-hover-color: #{var(--theme-color-button-text)};
             --btn-border-color: #{$value};
             --btn-hover-border-color: #{rgba($value, 0.7)};
         }

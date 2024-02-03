@@ -20,6 +20,7 @@ $theme-light: (
     "gray": $gray,
     "text": $black,
     "body": $white,
+    "button-text": $black,
 );
 
 $theme-dark: (
@@ -29,6 +30,7 @@ $theme-dark: (
     "gray": $gray-inverted,
     "text": $text-inverted,
     "body": $body-inverted,
+    "button-text": $black,
 );
 
 $theme-colors: (
@@ -38,6 +40,7 @@ $theme-colors: (
     "gray": var(--theme-color-gray),
     "text": var(--theme-color-text),
     "body": var(--theme-color-body),
+    "button-text": var(--theme-color-button-text),
 );
 
 $duration-fast: 0.3s;
