@@ -1,15 +1,15 @@
 import Themes from "@/enums/Themes";
 import { useSettingsStore } from "@/store/SettingsStore";
 
-export default function useTheme () {
+export default function useTheme() {
     const { theme, setTheme } = useSettingsStore((state) => state);
 
     const getThemeAction = () => {
-        if (typeof window === 'undefined') return Themes.default;
-        const result = localStorage.getItem('app-theme') ?? theme ?? Themes.default;
+        if (typeof window === "undefined") return Themes.default;
+        const result = localStorage.getItem("app-theme") ?? theme ?? Themes.default;
         // setInitialClass(result);
         return result;
-    }
+    };
 
     // const setInitialClass = (modifier: string) => {
     //     if (typeof document === 'undefined') return;
@@ -33,7 +33,7 @@ export default function useTheme () {
     const setThemeAction = (themeAttr: string) => {
         setTheme(themeAttr);
         // updateClasses();
-        localStorage.setItem('app-theme', themeAttr);
-    }
-    return {getThemeAction, setThemeAction}
+        localStorage.setItem("app-theme", themeAttr);
+    };
+    return { getThemeAction, setThemeAction };
 }

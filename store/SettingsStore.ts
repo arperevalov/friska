@@ -4,7 +4,7 @@ import { create } from "zustand";
 
 interface SettingsStoreInterface {
     currentUser: UserInterface;
-    theme: Themes,
+    theme: Themes;
     setCurrentUser: CallableFunction;
     setTheme: CallableFunction;
 }

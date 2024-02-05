@@ -15,13 +15,13 @@ export default function Settings() {
 
     const onThemeSelectUpdate = (event: FormEvent<HTMLInputElement>) => {
         setThemeAction(event.currentTarget.value.toLowerCase());
-    }
+    };
 
     const registerThemeSelect = () => {
         return {
-            onChange: onThemeSelectUpdate
-        }
-    }
+            onChange: onThemeSelectUpdate,
+        };
+    };
 
     return (
         <>
@@ -35,7 +35,13 @@ export default function Settings() {
                             <div className="user-main__email">{currentUser.email}</div>
                         </div>
                     </div>
-                    <SelectUnits values={themes} label="App Theme" formKey="app-theme" register={registerThemeSelect} defaultValue={getThemeAction()}/>
+                    <SelectUnits
+                        values={themes}
+                        label="App Theme"
+                        formKey="app-theme"
+                        register={registerThemeSelect}
+                        defaultValue={getThemeAction()}
+                    />
                     <div className="settings">
                         <ul className="settings__list">
                             <li className="settings__item">
