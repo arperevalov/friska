@@ -1,4 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="width: 0; height: 0; position: absolute;"><symbol id="icon-empty-list" viewBox="0 0 97 96">
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="width: 0; height: 0; position: absolute;"><symbol id="icon-btn-arrow-back" viewBox="0 0 9 14">
+    <path d="M8 1L2 7L8 13" stroke="currentColor" strokewidth="2"></path>
+</symbol><symbol id="icon-empty-list" viewBox="0 0 97 96">
 <g opacity="0.5">
 <path d="M48.5 0.5L53.7487 38.9089L89.6362 24.25L58.9975 48L89.6362 71.75L53.7487 57.0911L48.5 95.5L43.2513 57.0911L7.36379 71.75L38.0025 48L7.36379 24.25L43.2513 38.9089L48.5 0.5Z" fill="#B8BDC2"></path>
 </g>
