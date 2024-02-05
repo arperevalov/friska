@@ -44,7 +44,7 @@ export default function Header(props: HeaderProps) {
                                         className="header__button"
                                     >
                                         <span className="visually-hidden">Go back</span>
-                                        <Sprite className="header__icon" name={'btn-arrow-back'}/>
+                                        <Sprite className="header__icon" name={"btn-arrow-back"} />
                                     </button>
                                 </div>
                                 <h1 className="header__title">{title}</h1>
