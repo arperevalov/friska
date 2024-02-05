@@ -37,6 +37,14 @@
     }
 
     @media (prefers-color-scheme: dark) {
+        &:not(.is-theme-light) {
+            @each $color, $value in $theme-dark {
+                --theme-color-#{$color}: #{$value};
+            }
+        }
+    }
+
+    &.is-theme-dark {
         @each $color, $value in $theme-dark {
             --theme-color-#{$color}: #{$value};
         }
