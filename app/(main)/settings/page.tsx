@@ -2,6 +2,7 @@
 
 import Header from "@/components/Header";
 import { SelectUnits } from "@/components/SelectUnits";
+import CardsStyle from "@/enums/CardsStyle";
 import Themes from "@/enums/Themes";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import useSettings from "@/hooks/useSettings";
@@ -10,11 +11,12 @@ import { FormEvent } from "react";
 
 export default function Settings() {
     const { currentUser } = useCurrentUser();
-    const { getThemeAction, setThemeAction } = useSettings();
+    const { getThemeAction, setThemeAction, getCardsStyleAction, setCardsStyleAction } = useSettings();
     const capitalize = (item: string) => {
         return item.charAt(0).toUpperCase() + item.slice(1);
     };
     const themes = Object.keys(Themes).map((item) => capitalize(item));
+    const cardsStyles = Object.keys(CardsStyle).map((item) => capitalize(item));
 
     const onThemeSelectUpdate = (event: FormEvent<HTMLInputElement>) => {
         setThemeAction(event.currentTarget.value.toLowerCase());
@@ -23,6 +25,16 @@ export default function Settings() {
     const registerThemeSelect = () => {
         return {
             onChange: onThemeSelectUpdate,
+        };
+    };
+
+    const onCardsStyleSelectUpdate = (event: FormEvent<HTMLInputElement>) => {
+        setCardsStyleAction(event.currentTarget.value.toLowerCase());
+    };
+
+    const registerCardsStyleSelect = () => {
+        return {
+            onChange: onCardsStyleSelectUpdate,
         };
     };
     return (
@@ -37,6 +49,13 @@ export default function Settings() {
                             <div className="user-main__email">{currentUser.email}</div>
                         </div>
                     </div>
+                    <SelectUnits
+                        values={cardsStyles}
+                        label="Display Cards As"
+                        formKey="app-cards-style"
+                        register={registerCardsStyleSelect}
+                        defaultValue={capitalize(getCardsStyleAction())}
+                    />
                     <SelectUnits
                         values={themes}
                         label="App Theme"

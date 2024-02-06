@@ -4,12 +4,14 @@ import useCards from "@/hooks/useCards";
 import useModals from "@/hooks/useModals";
 import ModalsEnum from "@/enums/Modals";
 import useLists from "@/hooks/useLists";
+import useSettings from "@/hooks/useSettings";
 
 export const Card = (props: CardInterface) => {
     const { removeCardAction, incrementCardLeftAction, decrementCardLeftAction } = useCards();
     const [active, setActive] = useState(false);
     const { lists } = useLists();
     const { toggleModalAction } = useModals();
+    const { getCardsStyleAction } = useSettings();
     const { id, title, exp_date, left_count, units, list_id } = props;
 
     const toggleActive = () => {
@@ -45,7 +47,7 @@ export const Card = (props: CardInterface) => {
     return (
         <>
             <div className={`list__item${active ? " active" : ""}`}>
-                <div className={`card${active ? " active" : ""}${checkExpired() ? " outdated" : ""}`}>
+                <div className={`card${active ? " active" : ""}${checkExpired() ? " outdated" : ""} card--${getCardsStyleAction()}`}>
                     <div
                         className="card__container"
                         onClick={() => {

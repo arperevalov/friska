@@ -1,12 +1,18 @@
+import CardsStyle from "@/enums/CardsStyle";
 import Themes from "@/enums/Themes";
 import { useSettingsStore } from "@/store/SettingsStore";
 
 export default function useSettings() {
-    const { theme, setTheme } = useSettingsStore((state) => state);
+    const { theme, setTheme, cardsStyle, setCardsStyle } = useSettingsStore((state) => state);
 
     const getThemeAction = (): string => {
         if (typeof window === "undefined") return Themes.default;
         return window.localStorage.getItem("app-theme") ?? theme ?? Themes.default;
+    };
+
+    const getCardsStyleAction = (): string => {
+        if (typeof window === "undefined") return CardsStyle.grid;
+        return window.localStorage.getItem("app-cards-style") ?? cardsStyle ?? CardsStyle.grid;
     };
 
     const updateClasses = (themeAttr: string) => {
@@ -26,5 +32,10 @@ export default function useSettings() {
         updateClasses(themeAttr);
         window.localStorage.setItem("app-theme", themeAttr);
     };
-    return { getThemeAction, setThemeAction };
+
+    const setCardsStyleAction = (themeAttr: string) => {
+        setCardsStyle(themeAttr);
+        window.localStorage.setItem("app-cards-style", themeAttr);
+    };
+    return { getThemeAction, setThemeAction, getCardsStyleAction, setCardsStyleAction };
 }
