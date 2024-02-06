@@ -61,7 +61,7 @@
         --card-line-units-margin-left: var(--space-2xs);
         --card-line-units-color: var(--theme-color-muted);
         flex-wrap: wrap;
-    
+
         &.active {
             --card-container-width: 100%;
             --card-header-fz: var(--step-1);
