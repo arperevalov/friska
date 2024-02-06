@@ -11,7 +11,10 @@ import { FormEvent } from "react";
 export default function Settings() {
     const { currentUser } = useCurrentUser();
     const { getThemeAction, setThemeAction } = useTheme();
-    const themes = Object.keys(Themes).map((item) => item.charAt(0).toUpperCase() + item.slice(1));
+    const capitalize = (item: string) => {
+        return item.charAt(0).toUpperCase() + item.slice(1);
+    };
+    const themes = Object.keys(Themes).map((item) => capitalize(item));
 
     const onThemeSelectUpdate = (event: FormEvent<HTMLInputElement>) => {
         setThemeAction(event.currentTarget.value.toLowerCase());
@@ -40,7 +43,7 @@ export default function Settings() {
                         label="App Theme"
                         formKey="app-theme"
                         register={registerThemeSelect}
-                        defaultValue={getThemeAction()}
+                        defaultValue={capitalize(getThemeAction())}
                     />
                     <div className="settings">
                         <ul className="settings__list">

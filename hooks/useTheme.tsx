@@ -1,39 +1,39 @@
 import Themes from "@/enums/Themes";
 import { useSettingsStore } from "@/store/SettingsStore";
+import { useEffect } from "react";
 
 export default function useTheme() {
     const { theme, setTheme } = useSettingsStore((state) => state);
 
-    const getThemeAction = () => {
+    const getThemeAction = (): string => {
         if (typeof window === "undefined") return Themes.default;
-        const result = localStorage.getItem("app-theme") ?? theme ?? Themes.default;
-        // setInitialClass(result);
-        return result;
+        return window.localStorage.getItem("app-theme") ?? theme ?? Themes.default;
     };
 
-    // const setInitialClass = (modifier: string) => {
-    //     if (typeof document === 'undefined') return;
-    //     const { documentElement } = document;
-    //     const template = 'is-theme-'
+    const updateClasses = (themeAttr: string) => {
+        if (typeof document === "undefined") return;
+        const { documentElement } = document;
+        const template = "is-theme-";
 
-    //     documentElement.classList.add(template + modifier);
-    // }
-
-    // const updateClasses = () => {
-    //     if (typeof document === 'undefined') return;
-    //     const { documentElement } = document;
-    //     const template = 'is-theme-'
-
-    //     Object.keys(Themes).forEach((style) => {
-    //         documentElement.classList.remove(template + style);
-    //     });
-    //     documentElement.classList.add(template + theme);
-    // }
+        Object.keys(Themes).forEach((style) => {
+            documentElement.classList.remove(template + style);
+        });
+        if (documentElement.classList.contains(template + themeAttr)) return;
+        documentElement.classList.add(template + themeAttr);
+    };
 
     const setThemeAction = (themeAttr: string) => {
         setTheme(themeAttr);
-        // updateClasses();
-        localStorage.setItem("app-theme", themeAttr);
+        updateClasses(themeAttr);
+        window.localStorage.setItem("app-theme", themeAttr);
     };
+
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            const themeAttr = window.localStorage.getItem("app-theme") ?? theme ?? Themes.default;
+            setThemeAction(themeAttr);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
     return { getThemeAction, setThemeAction };
 }
