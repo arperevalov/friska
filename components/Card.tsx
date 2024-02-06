@@ -47,7 +47,11 @@ export const Card = (props: CardInterface) => {
     return (
         <>
             <div className={`list__item${active ? " active" : ""}`}>
-                <div className={`card${active ? " active" : ""}${checkExpired() ? " outdated" : ""} card--${getCardsStyleAction()}`}>
+                <div
+                    className={`card${active ? " active" : ""}${
+                        checkExpired() ? " outdated" : ""
+                    } card--${getCardsStyleAction()}`}
+                >
                     <div
                         className="card__container"
                         onClick={() => {
