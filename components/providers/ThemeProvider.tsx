@@ -3,7 +3,7 @@ import Themes from "@/enums/Themes";
 import useSettings from "@/hooks/useSettings";
 import { ReactNode, useEffect } from "react";
 
-export default function ThemeProvider (props: {children: ReactNode}) {
+export default function ThemeProvider(props: { children: ReactNode }) {
     const { setThemeAction } = useSettings();
     useEffect(() => {
         if (typeof window !== "undefined") {
@@ -12,7 +12,5 @@ export default function ThemeProvider (props: {children: ReactNode}) {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-    return <>
-        {props.children}
-    </>
+    return <>{props.children}</>;
 }

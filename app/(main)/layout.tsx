@@ -21,7 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     <LoadingProvider>
                         <ToastProvider>
                             <ModalProvider>
-                                    <GetInitialData>{children}</GetInitialData>
+                                <GetInitialData>{children}</GetInitialData>
                             </ModalProvider>
                         </ToastProvider>
                     </LoadingProvider>
