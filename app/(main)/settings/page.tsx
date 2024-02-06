@@ -4,13 +4,13 @@ import Header from "@/components/Header";
 import { SelectUnits } from "@/components/SelectUnits";
 import Themes from "@/enums/Themes";
 import useCurrentUser from "@/hooks/useCurrentUser";
-import useTheme from "@/hooks/useTheme";
+import useSettings from "@/hooks/useSettings";
 import Link from "next/link";
 import { FormEvent } from "react";
 
 export default function Settings() {
     const { currentUser } = useCurrentUser();
-    const { getThemeAction, setThemeAction } = useTheme();
+    const { getThemeAction, setThemeAction } = useSettings();
     const capitalize = (item: string) => {
         return item.charAt(0).toUpperCase() + item.slice(1);
     };
@@ -25,7 +25,6 @@ export default function Settings() {
             onChange: onThemeSelectUpdate,
         };
     };
-
     return (
         <>
             <Header title="Account" />

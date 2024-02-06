@@ -2,7 +2,7 @@ import Themes from "@/enums/Themes";
 import { useSettingsStore } from "@/store/SettingsStore";
 import { useEffect } from "react";
 
-export default function useTheme() {
+export default function useSettings() {
     const { theme, setTheme } = useSettingsStore((state) => state);
 
     const getThemeAction = (): string => {
