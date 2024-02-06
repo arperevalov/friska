@@ -1,6 +1,5 @@
 import Themes from "@/enums/Themes";
 import { useSettingsStore } from "@/store/SettingsStore";
-import { useEffect } from "react";
 
 export default function useSettings() {
     const { theme, setTheme } = useSettingsStore((state) => state);
@@ -27,13 +26,5 @@ export default function useSettings() {
         updateClasses(themeAttr);
         window.localStorage.setItem("app-theme", themeAttr);
     };
-
-    useEffect(() => {
-        if (typeof window !== "undefined") {
-            const themeAttr = window.localStorage.getItem("app-theme") ?? theme ?? Themes.default;
-            setThemeAction(themeAttr);
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
     return { getThemeAction, setThemeAction };
 }

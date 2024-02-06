@@ -1,3 +1,4 @@
+import ThemeProvider from "@/components/providers/ThemeProvider";
 import GetInitialData from "@/components/helpers/getInitialData";
 import LoadingProvider from "@/contexts/LoadingContext";
 import ModalProvider from "@/contexts/ModalContext";
@@ -16,13 +17,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <html lang="en">
             <body>
                 <Image src={"/public/sprite.svg"} fill className="visually-hidden" alt="icons" />
-                <LoadingProvider>
-                    <ToastProvider>
-                        <ModalProvider>
-                            <GetInitialData>{children}</GetInitialData>
-                        </ModalProvider>
-                    </ToastProvider>
-                </LoadingProvider>
+                <ThemeProvider>
+                    <LoadingProvider>
+                        <ToastProvider>
+                            <ModalProvider>
+                                    <GetInitialData>{children}</GetInitialData>
+                            </ModalProvider>
+                        </ToastProvider>
+                    </LoadingProvider>
+                </ThemeProvider>
             </body>
         </html>
     );
