@@ -87,6 +87,18 @@
                 width: 100%;
             }
         }
+
+        &--list {
+            width: 100%;
+
+            @include media-breakpoint-up(375px) {
+                width: 100%;
+            }
+
+            @include media-breakpoint-up(900px) {
+                width: 100%;
+            }
+        }
     }
 
     &__button {

@@ -46,7 +46,7 @@ export const Card = (props: CardInterface) => {
     };
     return (
         <>
-            <div className={`list__item${active ? " active" : ""}`}>
+            <div className={`list__item${active ? " active" : ""} list__item--${getCardsStyleAction()}`}>
                 <div
                     className={`card${active ? " active" : ""}${
                         checkExpired() ? " outdated" : ""
@@ -61,11 +61,11 @@ export const Card = (props: CardInterface) => {
                         <div className="card__top">
                             <div className="card__line">
                                 {dateString}
-                                <div>exp</div>
+                                <div className="card__line-units">exp</div>
                             </div>
                             <div className="card__line">
                                 {`${left_count} ${units}`}
-                                <div>left</div>
+                                <div className="card__line-units">left</div>
                             </div>
                         </div>
                         <div className="card__bottom">
