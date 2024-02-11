@@ -6,4 +6,6 @@ export default interface CardInterface {
     units: string;
     list_id: number;
     user_id: number;
+    updated_at: string;
+    created_at: string;
 }

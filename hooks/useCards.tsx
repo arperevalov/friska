@@ -18,7 +18,7 @@ export default function useCards() {
         return requestJSON;
     };
 
-    const addCardAction = (card: Omit<CardInterface, "id">) => {
+    const addCardAction = (card: Omit<CardInterface, "id" | "created_at" | "updated_at">) => {
         const loadingId = addToQueueAction();
         axios
             .post("/api/cards", card)
@@ -41,7 +41,7 @@ export default function useCards() {
             });
     };
 
-    const updateCardAction = (card: CardInterface) => {
+    const updateCardAction = (card: Omit<CardInterface, "created_at" | "updated_at">) => {
         const loadingId = addToQueueAction();
         axios
             .put(`/api/cards/${card.id}`, card)

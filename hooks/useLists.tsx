@@ -12,7 +12,7 @@ export default function useLists() {
     const { addToQueueAction, removeFromQueueAction } = useLoading();
     const { addToastAction } = useToasts();
 
-    const addListAction = (value: Omit<ListInterface, "id" | "user_id">) => {
+    const addListAction = (value: Omit<ListInterface, "id" | "user_id" | "created_at" | "updated_at">) => {
         const loadingId = addToQueueAction();
         axios
             .post("/api/lists", value)
@@ -52,7 +52,7 @@ export default function useLists() {
             });
     };
 
-    const updateListAction = (list: ListInterface) => {
+    const updateListAction = (list: Omit<ListInterface, "created_at" | "updated_at">) => {
         const loadingId = addToQueueAction();
         axios
             .put(`/api/lists/${list.id}`, list)
