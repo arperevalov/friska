@@ -6,7 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import Logo from "./Logo";
 import useModals from "@/hooks/useModals";
 import ModalsEnum from "@/enums/Modals";
-import Sprite from "./Sprite";
+import Sprite from "@/components/Sprite";
 
 interface HeaderProps {
     title?: string;
