@@ -1,0 +1,41 @@
+.form-container {
+    --form-container-main-transform: translate(0%, 0%);
+    --form-container-confirmation-transform: translate(100%, 0%);
+
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+
+    &.show {
+        --form-container-main-transform: translate(-100%, 0%);
+        --form-container-confirmation-transform: translate(0%, 0%);
+    }
+
+    &__main {
+        width: 100%;
+        height: 100%;
+        transform: var(--form-container-main-transform);
+        transition: transform $ease-default $duration-fast;
+    }
+
+    &__confirmation {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        transform: var(--form-container-confirmation-transform);
+        transition: transform $ease-default $duration-fast;
+    }
+
+    &__text-wrapper {
+        margin-bottom: var(--space-s);
+    }
+
+    &__text {
+        font-size: var(--step-0);
+        margin-bottom: var(--space-3xs);
+    }
+}

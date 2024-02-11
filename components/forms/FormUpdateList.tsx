@@ -1,6 +1,7 @@
 import useLists from "@/hooks/useLists";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Input } from "../Input";
+import { useState } from "react";
 
 interface FormValues {
     title: string;
@@ -17,6 +18,7 @@ export default function FormUpdateList(props: FormUpdateListProps) {
     const { lists, removeListAction } = useLists();
     const { register, handleSubmit, reset } = useForm<FormValues>();
     const { updateListAction } = useLists();
+    const [showConfirm, setShowConfirm] = useState<boolean>(false);
     let listId = parameters;
 
     if (listId === null || listId === undefined) return;
@@ -38,42 +40,69 @@ export default function FormUpdateList(props: FormUpdateListProps) {
     };
 
     const onRemoveList = () => {
+        setShowConfirm(true);
+    };
+
+    const onRemoveListConfirm = () => {
         removeListAction(list.id).then(() => {
             if (onSubmit) onSubmit();
         });
+    };
+
+    const onRemoveListReject = () => {
+        setShowConfirm(false);
     };
 
     if (!list) return;
 
     return (
         <>
-            <form className="form" action="#" onSubmit={handleSubmit(submitForm)}>
-                <Input
-                    formKey="title"
-                    label="Title"
-                    register={register}
-                    type="text"
-                    required
-                    defaultValue={list.title}
-                />
-                <Input
-                    formKey="best_before"
-                    label="Best before limit, days"
-                    min={0}
-                    step={1}
-                    register={register}
-                    defaultValue={list.best_before}
-                    type="number"
-                    required
-                />
+            <div className={`form-container${showConfirm ? " show" : ""}`}>
+                <form className="form form-container__main" action="#" onSubmit={handleSubmit(submitForm)}>
+                    <Input
+                        formKey="title"
+                        label="Title"
+                        register={register}
+                        type="text"
+                        required
+                        defaultValue={list.title}
+                    />
+                    <Input
+                        formKey="best_before"
+                        label="Best before limit, days"
+                        min={0}
+                        step={1}
+                        register={register}
+                        defaultValue={list.best_before}
+                        type="number"
+                        required
+                    />
 
-                <button className="form__btn btn btn--primary" type="submit">
-                    Save
-                </button>
-                <button className="form__btn btn btn--secondary" onClick={onRemoveList} type="button">
-                    Remove
-                </button>
-            </form>
+                    <button className="form__btn btn btn--primary" type="submit">
+                        Save
+                    </button>
+                    <button className="form__btn btn btn--secondary" onClick={onRemoveList} type="button">
+                        Remove
+                    </button>
+                </form>
+                <div className="form-container__confirmation">
+                    <div className="form-container__text-wrapper">
+                        <p className="form-container__text">
+                            You are about to delete list <strong>{list.title}</strong> that contains cards. <br />
+                        </p>
+                        <p className="form-container__text">
+                            This action will result in the deletion of all cards belonging to this list.
+                        </p>
+                        <p className="form-container__text">Are you sure you want to proceed?</p>
+                    </div>
+                    <button className="form__btn btn btn--primary" onClick={onRemoveListConfirm} type="submit">
+                        Yes, I want to proceed!
+                    </button>
+                    <button className="form__btn btn btn--secondary" onClick={onRemoveListReject} type="button">
+                        No, leave it as it is
+                    </button>
+                </div>
+            </div>
         </>
     );
 }

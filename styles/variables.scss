@@ -54,6 +54,8 @@ $theme-colors: (
     "button-text": var(--theme-color-button-text),
 );
 
+$ease-default: cubic-bezier(0.65, 0, 0.35, 1);
+
 $duration-fast: 0.3s;
 
 $zindex-fixed: 999;
