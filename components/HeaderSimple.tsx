@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import Sprite from "@/components/Sprite";
 
 interface HeaderSimpleProps {
     title: string;
@@ -23,15 +24,7 @@ export default function HeaderSimple(props: HeaderSimpleProps) {
                                 className="header__button"
                             >
                                 <span className="visually-hidden">Go back</span>
-                                <svg
-                                    width="9"
-                                    height="14"
-                                    viewBox="0 0 9 14"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path d="M8 1L2 7L8 13" stroke="black" strokeWidth="2" />
-                                </svg>
+                                <Sprite className="header__icon" name={"btn-arrow-back"} />
                             </button>
                         </div>
                         <h1 className="header__title">{title}</h1>
