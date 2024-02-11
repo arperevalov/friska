@@ -19,6 +19,12 @@ export const List = (props: ListProps) => {
     const { toggleModalAction } = useModals();
 
     const filteredCards = cards.filter((card: CardInterface) => card.list_id === id);
+    const sortedCards = filteredCards.sort((a, b) => {
+        const aDate = new Date(a.exp_date).getTime();
+        const bDate = new Date(b.exp_date).getTime();
+
+        return aDate - bDate;
+    });
 
     const toggleActive = () => {
         setActive(!active);
@@ -42,11 +48,11 @@ export const List = (props: ListProps) => {
                     ) : (
                         <>
                             <div className="list__count">
-                                {filteredCards.length} {filteredCards.length === 1 ? "item" : "items"}
+                                {sortedCards.length} {sortedCards.length === 1 ? "item" : "items"}
                             </div>
                         </>
                     )}
-                    {filteredCards.length === 0 ? (
+                    {sortedCards.length === 0 ? (
                         <></>
                     ) : (
                         <>
@@ -58,7 +64,7 @@ export const List = (props: ListProps) => {
                 </div>
                 <div className="list__items">
                     {cards.length > 0
-                        ? filteredCards.map((card: CardInterface) => {
+                        ? sortedCards.map((card: CardInterface) => {
                               if (card.list_id === id) {
                                   return <Card {...card} key={card.id} />;
                               }
