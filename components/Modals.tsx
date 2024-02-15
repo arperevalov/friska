@@ -1,13 +1,9 @@
 import ModalsEnum from "@/enums/Modals";
-import FormNewCard from "@/components/forms/FormNewCard";
 import Modal from "@/components/modal/Modal";
 import ModalHeader from "@/components/modal/ModalHeader";
 import ModalTitle from "@/components/modal/ModalTitle";
 import useModals from "@/hooks/useModals";
-import FormUpdateCard from "./forms/FormUpdateCard";
-import FormNewList from "./forms/FormNewList";
 import { ModalStateItemInterface } from "@/contexts/ModalContext";
-import FormUpdateList from "./forms/FormUpdateList";
 
 interface ModalsProps {
     modals: ModalStateItemInterface[];
@@ -15,7 +11,7 @@ interface ModalsProps {
 
 export default function Modals(props: ModalsProps) {
     const { modals } = props;
-    const { toggleModalAction } = useModals();
+    const { closeModalAction } = useModals();
 
     const getModalStateItem = (name: ModalsEnum) => {
         const index = modals.findIndex((item) => {
@@ -26,19 +22,19 @@ export default function Modals(props: ModalsProps) {
     };
 
     const hideFormNewList = () => {
-        toggleModalAction(ModalsEnum.FormNewList);
+        closeModalAction(ModalsEnum.FormNewList);
     };
 
     const hideFormUpdateList = () => {
-        toggleModalAction(ModalsEnum.FormUpdateList);
+        closeModalAction(ModalsEnum.FormUpdateList);
     };
 
     const hideFormNewCard = () => {
-        toggleModalAction(ModalsEnum.FormNewCard);
+        closeModalAction(ModalsEnum.FormNewCard);
     };
 
     const hideFormUpdateCard = () => {
-        toggleModalAction(ModalsEnum.FormUpdateCard);
+        closeModalAction(ModalsEnum.FormUpdateCard);
     };
 
     return (
@@ -47,31 +43,25 @@ export default function Modals(props: ModalsProps) {
                 <ModalHeader>
                     <ModalTitle>New list</ModalTitle>
                 </ModalHeader>
-                <FormNewList onSubmit={hideFormNewList} />
+                {getModalStateItem(ModalsEnum.FormNewList).body}
             </Modal>
             <Modal show={getModalStateItem(ModalsEnum.FormUpdateList).state} onHide={hideFormUpdateList}>
                 <ModalHeader>
                     <ModalTitle>Update list</ModalTitle>
                 </ModalHeader>
-                <FormUpdateList
-                    onSubmit={hideFormUpdateList}
-                    parameters={getModalStateItem(ModalsEnum.FormUpdateList).parameters}
-                />
+                {getModalStateItem(ModalsEnum.FormUpdateList).body}
             </Modal>
             <Modal show={getModalStateItem(ModalsEnum.FormNewCard).state} onHide={hideFormNewCard}>
                 <ModalHeader>
                     <ModalTitle>New card</ModalTitle>
                 </ModalHeader>
-                <FormNewCard onSubmit={hideFormNewCard} />
+                {getModalStateItem(ModalsEnum.FormNewCard).body}
             </Modal>
             <Modal show={getModalStateItem(ModalsEnum.FormUpdateCard).state} onHide={hideFormUpdateCard}>
                 <ModalHeader>
                     <ModalTitle>Update card</ModalTitle>
                 </ModalHeader>
-                <FormUpdateCard
-                    onSubmit={hideFormUpdateCard}
-                    parameters={getModalStateItem(ModalsEnum.FormUpdateCard).parameters}
-                />
+                {getModalStateItem(ModalsEnum.FormUpdateCard).body}
             </Modal>
         </>
     );

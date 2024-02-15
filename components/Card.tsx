@@ -5,12 +5,13 @@ import useModals from "@/hooks/useModals";
 import ModalsEnum from "@/enums/Modals";
 import useLists from "@/hooks/useLists";
 import useSettings from "@/hooks/useSettings";
+import FormUpdateCard from "./forms/FormUpdateCard";
 
 export const Card = (props: CardInterface) => {
     const { removeCardAction, incrementCardLeftAction, decrementCardLeftAction } = useCards();
     const [active, setActive] = useState(false);
     const { lists } = useLists();
-    const { toggleModalAction } = useModals();
+    const { toggleModalAction, closeModalAction } = useModals();
     const { getCardsStyleAction } = useSettings();
     const { id, title, exp_date, left_count, units, list_id } = props;
 
@@ -31,7 +32,13 @@ export const Card = (props: CardInterface) => {
     };
 
     const onUpdateClick = () => {
-        toggleModalAction(ModalsEnum.FormUpdateCard, id);
+        const formType = ModalsEnum.FormUpdateCard;
+        toggleModalAction(
+            formType, 
+            <FormUpdateCard 
+                parameters={id} 
+                onSubmit={()=>{closeModalAction(formType)}}/>
+        );
     };
 
     const dateString = new Date(exp_date).toLocaleDateString();

@@ -7,6 +7,7 @@ import Logo from "./Logo";
 import useModals from "@/hooks/useModals";
 import ModalsEnum from "@/enums/Modals";
 import Sprite from "@/components/Sprite";
+import FormNewCard from "./forms/FormNewCard";
 
 interface HeaderProps {
     title?: string;
@@ -16,7 +17,7 @@ export default function Header(props: HeaderProps) {
     const { title } = props;
     const pathname = usePathname();
     const router = useRouter();
-    const { toggleModalAction } = useModals();
+    const { toggleModalAction, closeModalAction } = useModals();
 
     const onLogoutClick = () => {
         deleteCookie("auth-token");
@@ -24,7 +25,12 @@ export default function Header(props: HeaderProps) {
     };
 
     const onNewClick = () => {
-        toggleModalAction(ModalsEnum.FormNewCard);
+        const formType = ModalsEnum.FormNewCard;
+        toggleModalAction(
+            formType, 
+            <FormNewCard 
+                onSubmit={()=>{closeModalAction(formType)}}/>
+        );
     };
 
     return (

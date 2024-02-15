@@ -8,11 +8,12 @@ import { useState } from "react";
 import useModals from "@/hooks/useModals";
 import ModalsEnum from "@/enums/Modals";
 import Sprite from "@/components/Sprite";
+import FormNewList from "@/components/forms/FormNewList";
 
 export default function Home() {
     const { lists } = useLists();
     const { cards } = useCards();
-    const { toggleModalAction } = useModals();
+    const { toggleModalAction, closeModalAction } = useModals();
 
     const [searchValue, setSearchValue] = useState<string>("");
 
@@ -25,7 +26,12 @@ export default function Home() {
     };
 
     const onCreateListClick = () => {
-        toggleModalAction(ModalsEnum.FormNewList);
+        const formType = ModalsEnum.FormNewList;
+        toggleModalAction(
+            formType, 
+            <FormNewList 
+                onSubmit={()=>{closeModalAction(formType)}}/>
+        );
     };
 
     const filteredCards = cards ? cards.filter((item) => item.title?.match(new RegExp(searchValue, "gi"))) : [];

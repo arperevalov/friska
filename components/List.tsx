@@ -5,6 +5,7 @@ import { Card } from "./Card";
 import { useState } from "react";
 import useModals from "@/hooks/useModals";
 import ModalsEnum from "@/enums/Modals";
+import FormUpdateList from "./forms/FormUpdateList";
 
 interface ListProps {
     id: number;
@@ -16,7 +17,7 @@ interface ListProps {
 export const List = (props: ListProps) => {
     const { id, title, cards, searchValue } = props;
     const [active, setActive] = useState(false);
-    const { toggleModalAction } = useModals();
+    const { toggleModalAction, closeModalAction } = useModals();
 
     const filteredCards = cards.filter((card: CardInterface) => card.list_id === id);
     const sortedCards = filteredCards.sort((a, b) => {
@@ -31,7 +32,13 @@ export const List = (props: ListProps) => {
     };
 
     const onUpdateClick = () => {
-        toggleModalAction(ModalsEnum.FormUpdateList, id);
+        const formType = ModalsEnum.FormUpdateList;
+        toggleModalAction(
+            formType, 
+            <FormUpdateList 
+                parameters={id}
+                onSubmit={()=>{closeModalAction(formType)}}/>
+        );
     };
 
     return (

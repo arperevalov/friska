@@ -1,20 +1,22 @@
 "use client";
 import Modals from "@/components/Modals";
 import ModalsEnum from "@/enums/Modals";
-import { createContext, useState } from "react";
+import { ReactNode, createContext, useState } from "react";
 
 interface ModalContextValue {
     toggleModal: CallableFunction;
+    closeModal: CallableFunction;
 }
 
 export interface ModalStateItemInterface {
     name: ModalsEnum;
     state: boolean;
-    parameters: null | string | number;
+    body: ReactNode;
 }
 
 const defaultValue: ModalContextValue = {
     toggleModal: () => {},
+    closeModal: () => {},
 };
 
 export const ModalContext = createContext<ModalContextValue>(defaultValue);
@@ -23,33 +25,48 @@ export default function ModalProvider({ children }: { children: React.ReactNode 
         {
             name: ModalsEnum.FormNewList,
             state: false,
-            parameters: null,
+            body: <></>,
         },
         {
             name: ModalsEnum.FormUpdateList,
             state: false,
-            parameters: null,
+            body: <></>,
         },
         {
             name: ModalsEnum.FormNewCard,
             state: false,
-            parameters: null,
+            body: <></>,
         },
         {
             name: ModalsEnum.FormUpdateCard,
             state: false,
-            parameters: null,
+            body: <></>,
         },
     ]);
 
-    const toggleModal = (name: ModalsEnum, parameters: string | number | null) => {
+    const toggleModal = (name: ModalsEnum, body: ReactNode) => {
         setModal((previous) =>
             previous.map((item) => {
                 if (item.name === name) {
                     return {
                         ...item,
                         state: !item.state,
-                        parameters,
+                        body,
+                    };
+                }
+                return item;
+            }),
+        );
+    };
+
+    const closeModal = (name: ModalsEnum) => {
+        setModal((previous) =>
+            previous.map((item) => {
+                if (item.name === name) {
+                    return {
+                        ...item,
+                        state: false,
+                        body: <></>,
                     };
                 }
                 return item;
@@ -59,7 +76,7 @@ export default function ModalProvider({ children }: { children: React.ReactNode 
 
     return (
         <>
-            <ModalContext.Provider value={{ toggleModal }}>
+            <ModalContext.Provider value={{ toggleModal, closeModal }}>
                 {children}
                 <Modals modals={modals} />
             </ModalContext.Provider>

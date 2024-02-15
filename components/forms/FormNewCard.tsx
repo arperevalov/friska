@@ -9,6 +9,7 @@ import { SelectUnits } from "../SelectUnits";
 import ModalsEnum from "@/enums/Modals";
 import useModals from "@/hooks/useModals";
 import Sprite from "../Sprite";
+import FormNewList from "./FormNewList";
 
 interface FormValues {
     title: string;
@@ -26,7 +27,7 @@ export default function FormNewCard(props: FormNewCardProps) {
     const { onSubmit } = props;
     const { register, handleSubmit, reset } = useForm<FormValues>();
     const { addCardAction } = useCards();
-    const { toggleModalAction } = useModals();
+    const { toggleModalAction, closeModalAction } = useModals();
     const { lists } = useLists();
     const units = Object.keys(Units);
 
@@ -44,7 +45,11 @@ export default function FormNewCard(props: FormNewCardProps) {
     };
 
     const onCreateListClick = () => {
-        toggleModalAction(ModalsEnum.FormNewList, null);
+        const formType = ModalsEnum.FormNewList;
+        toggleModalAction(
+            formType, 
+            <FormNewList onSubmit={()=>{closeModalAction(formType)}}/>
+        );
         reset();
         if (onSubmit) onSubmit();
     };
