@@ -56,7 +56,7 @@ export const List = (props: ListProps) => {
                 }}
             />,
         );
-    }
+    };
 
     return (
         <>
@@ -95,7 +95,9 @@ export const List = (props: ListProps) => {
                           })
                         : "There are no cards for this list"}
                     <div className="list__item">
-                        <button onClick={onNewCardClick} className="list__button-add">Add new</button>
+                        <button onClick={onNewCardClick} className="list__button-add">
+                            Add new
+                        </button>
                     </div>
                 </div>
             </div>
