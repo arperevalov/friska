@@ -28,9 +28,12 @@ export default function Home() {
     const onCreateListClick = () => {
         const formType = ModalsEnum.FormNewList;
         toggleModalAction(
-            formType, 
-            <FormNewList 
-                onSubmit={()=>{closeModalAction(formType)}}/>
+            formType,
+            <FormNewList
+                onSubmit={() => {
+                    closeModalAction(formType);
+                }}
+            />,
         );
     };
 

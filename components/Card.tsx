@@ -34,10 +34,13 @@ export const Card = (props: CardInterface) => {
     const onUpdateClick = () => {
         const formType = ModalsEnum.FormUpdateCard;
         toggleModalAction(
-            formType, 
-            <FormUpdateCard 
-                parameters={id} 
-                onSubmit={()=>{closeModalAction(formType)}}/>
+            formType,
+            <FormUpdateCard
+                parameters={id}
+                onSubmit={() => {
+                    closeModalAction(formType);
+                }}
+            />,
         );
     };
 

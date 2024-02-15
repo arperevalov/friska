@@ -34,10 +34,13 @@ export const List = (props: ListProps) => {
     const onUpdateClick = () => {
         const formType = ModalsEnum.FormUpdateList;
         toggleModalAction(
-            formType, 
-            <FormUpdateList 
+            formType,
+            <FormUpdateList
                 parameters={id}
-                onSubmit={()=>{closeModalAction(formType)}}/>
+                onSubmit={() => {
+                    closeModalAction(formType);
+                }}
+            />,
         );
     };
 

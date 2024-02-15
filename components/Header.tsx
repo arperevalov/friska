@@ -27,9 +27,12 @@ export default function Header(props: HeaderProps) {
     const onNewClick = () => {
         const formType = ModalsEnum.FormNewCard;
         toggleModalAction(
-            formType, 
-            <FormNewCard 
-                onSubmit={()=>{closeModalAction(formType)}}/>
+            formType,
+            <FormNewCard
+                onSubmit={() => {
+                    closeModalAction(formType);
+                }}
+            />,
         );
     };
 

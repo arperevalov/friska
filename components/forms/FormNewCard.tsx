@@ -47,8 +47,12 @@ export default function FormNewCard(props: FormNewCardProps) {
     const onCreateListClick = () => {
         const formType = ModalsEnum.FormNewList;
         toggleModalAction(
-            formType, 
-            <FormNewList onSubmit={()=>{closeModalAction(formType)}}/>
+            formType,
+            <FormNewList
+                onSubmit={() => {
+                    closeModalAction(formType);
+                }}
+            />,
         );
         reset();
         if (onSubmit) onSubmit();
