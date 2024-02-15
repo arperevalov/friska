@@ -21,10 +21,11 @@ interface FormValues {
 
 interface FormNewCardProps {
     onSubmit?: CallableFunction;
+    listId?: number;
 }
 
 export default function FormNewCard(props: FormNewCardProps) {
-    const { onSubmit } = props;
+    const { onSubmit, listId } = props;
     const { register, handleSubmit, reset } = useForm<FormValues>();
     const { addCardAction } = useCards();
     const { toggleModalAction, closeModalAction } = useModals();
@@ -75,6 +76,8 @@ export default function FormNewCard(props: FormNewCardProps) {
             </>
         );
 
+    const defaultListId = Number.isInteger(listId) ? lists.find((item) => item.id === listId)?.id : lists[0].id;
+
     return (
         <>
             <form className="form" action="#" onSubmit={handleSubmit(submitForm)}>
@@ -83,7 +86,7 @@ export default function FormNewCard(props: FormNewCardProps) {
                     formKey="list_id"
                     label="List"
                     values={lists}
-                    defaultValue={lists[0].id}
+                    defaultValue={defaultListId}
                     register={register}
                     required
                 />

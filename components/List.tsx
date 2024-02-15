@@ -6,6 +6,7 @@ import { useState } from "react";
 import useModals from "@/hooks/useModals";
 import ModalsEnum from "@/enums/Modals";
 import FormUpdateList from "./forms/FormUpdateList";
+import FormNewCard from "./forms/FormNewCard";
 
 interface ListProps {
     id: number;
@@ -44,6 +45,19 @@ export const List = (props: ListProps) => {
         );
     };
 
+    const onNewCardClick = () => {
+        const formType = ModalsEnum.FormNewCard;
+        toggleModalAction(
+            formType,
+            <FormNewCard
+                listId={id}
+                onSubmit={() => {
+                    closeModalAction(formType);
+                }}
+            />,
+        );
+    }
+
     return (
         <>
             <div className={`list${searchValue.length > 0 ? " active" : active ? " active" : ""}`} key={id}>
@@ -80,9 +94,9 @@ export const List = (props: ListProps) => {
                               }
                           })
                         : "There are no cards for this list"}
-                    {/* <div className="list__item">
+                    <div className="list__item">
                         <button onClick={onNewCardClick} className="list__button-add">Add new</button>
-                    </div> */}
+                    </div>
                 </div>
             </div>
         </>
