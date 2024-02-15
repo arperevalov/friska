@@ -10,19 +10,17 @@ interface FormValues {
 
 interface FormUpdateListProps {
     onSubmit?: CallableFunction;
-    parameters: string | number | null;
+    listId: number;
 }
 
 export default function FormUpdateList(props: FormUpdateListProps) {
-    const { onSubmit, parameters } = props;
+    const { onSubmit, listId } = props;
     const { lists, removeListAction } = useLists();
     const { register, handleSubmit, reset } = useForm<FormValues>();
     const { updateListAction } = useLists();
     const [showConfirm, setShowConfirm] = useState<boolean>(false);
-    let listId = parameters;
 
     if (listId === null || listId === undefined) return;
-    if (typeof listId === "string") listId = parseInt(listId, 10);
 
     const index = lists.findIndex((item) => item.id === listId);
     const list = lists[index];

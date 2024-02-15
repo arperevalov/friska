@@ -36,7 +36,7 @@ export const List = (props: ListProps) => {
         toggleModalAction(
             formType,
             <FormUpdateList
-                parameters={id}
+                listId={id}
                 onSubmit={() => {
                     closeModalAction(formType);
                 }}
