@@ -98,6 +98,9 @@ export const List = (props: ListProps) => {
                         : "There are no cards for this list"}
                     <div className="list__item">
                         <button onClick={onNewCardClick} className="list__button-add">
+                            <div className="list__button-add-icon">
+                                <Sprite name="new-card-list" />
+                            </div>
                             Add new
                         </button>
                     </div>

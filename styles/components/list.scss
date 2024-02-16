@@ -138,4 +138,13 @@
             background: var(--theme-color-muted);
         }
     }
+
+    &__button-add-icon {
+        align-self: center;
+        margin: auto;
+        > svg {
+            width: calc(var(--space-l) * 1.2);
+            height: calc(var(--space-l) * 1.2);
+        }
+    }
 }
