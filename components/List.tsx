@@ -7,6 +7,7 @@ import useModals from "@/hooks/useModals";
 import ModalsEnum from "@/enums/Modals";
 import FormUpdateList from "./forms/FormUpdateList";
 import FormNewCard from "./forms/FormNewCard";
+import Sprite from "./Sprite";
 
 interface ListProps {
     id: number;
@@ -66,7 +67,10 @@ export const List = (props: ListProps) => {
                     {active ? (
                         <>
                             <button onClick={onUpdateClick} className="list__update">
-                                Update list
+                                <Sprite name="settings"/>
+                                <span className="visually-hidden">
+                                    Update list
+                                </span>
                             </button>
                         </>
                     ) : (

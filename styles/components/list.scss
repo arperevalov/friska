@@ -49,6 +49,12 @@
         margin-left: auto;
         position: relative;
         z-index: 999;
+        color: var(--theme-color-muted);
+
+        > svg {
+            width: var(--space-s);
+            height: var(--space-s);
+        }
     }
 
     &__toggle-active {
