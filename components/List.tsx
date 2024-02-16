@@ -67,10 +67,8 @@ export const List = (props: ListProps) => {
                     {active ? (
                         <>
                             <button onClick={onUpdateClick} className="list__update">
-                                <Sprite name="settings"/>
-                                <span className="visually-hidden">
-                                    Update list
-                                </span>
+                                <Sprite name="settings" />
+                                <span className="visually-hidden">Update list</span>
                             </button>
                         </>
                     ) : (
