@@ -1,0 +1,7 @@
+.btn-row {
+    @include make-row(var(--space-s));
+
+    &__item {
+        @include make-col-ready();
+    }
+}

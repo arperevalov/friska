@@ -19,12 +19,16 @@ export default function Intro() {
                                 dates of your food and medicine.
                             </p>
                             <div className="btn-row">
-                                <Link href={"./sign-in"} className="btn btn--sm btn--primary">
-                                    Sign-in
-                                </Link>
-                                <Link href={"./sign-up"} className="btn btn--sm btn--outline-primary">
-                                    Sign-up
-                                </Link>
+                                <div className="btn-row__item">
+                                    <Link href={"./sign-in"} className="btn btn--sm btn--primary">
+                                        Sign-in
+                                    </Link>
+                                </div>
+                                <div className="btn-row__item">
+                                    <Link href={"./sign-up"} className="btn-row__item btn btn--sm btn--outline-primary">
+                                        Sign-up
+                                    </Link>
+                                </div>
                             </div>
                         </div>
                     </div>
