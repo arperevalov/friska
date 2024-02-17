@@ -1,5 +1,5 @@
 import LoadingProvider from "@/contexts/LoadingContext";
-import "@/styles/_.scss";
+import "@/styles/index.scss";
 import type { Metadata } from "next";
 import Image from "next/image";
 

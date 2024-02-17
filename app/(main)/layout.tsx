@@ -3,7 +3,7 @@ import GetInitialData from "@/components/helpers/getInitialData";
 import LoadingProvider from "@/contexts/LoadingContext";
 import ModalProvider from "@/contexts/ModalContext";
 import ToastProvider from "@/contexts/ToastsContext";
-import "@/styles/_.scss";
+import "@/styles/index.scss";
 import type { Metadata } from "next";
 import Image from "next/image";
 
