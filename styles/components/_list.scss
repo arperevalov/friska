@@ -9,6 +9,7 @@
     background: var(--theme-color-gray);
     width: 100%;
     margin-bottom: var(--space-xs);
+    position: relative;
 
     &.active {
         --list-body-display: block;
@@ -19,7 +20,6 @@
 
     &__header {
         transition: padding $duration-fast;
-        position: relative;
         display: flex;
         flex: 0 0 100%;
         padding-top: var(--list-header-padding-top);
@@ -48,7 +48,7 @@
     &__update {
         margin-left: auto;
         position: relative;
-        z-index: 999;
+        z-index: 2;
         color: var(--theme-color-muted);
 
         > svg {
@@ -63,6 +63,7 @@
         top: 0;
         width: 100%;
         height: 100%;
+        z-index: 0;
     }
 
     &__body {
@@ -80,6 +81,8 @@
 
         flex: 0 0 auto;
         width: 50%;
+        position: relative;
+        z-index: 2;
 
         @include media-breakpoint-up(375px) {
             width: 33%;
