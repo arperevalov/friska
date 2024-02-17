@@ -83,17 +83,19 @@ export const List = (props: ListProps) => {
                     </button>
                 </div>
                 <div className="list__body">
-                    { sortedCards.length <= 0 ? <>
-                        <div className="list__text-empty h1">
-                            There are no cards for this list!
-                        </div>
-                    </> : <></> }
+                    {sortedCards.length <= 0 ? (
+                        <>
+                            <div className="list__text-empty h1">There are no cards for this list!</div>
+                        </>
+                    ) : (
+                        <></>
+                    )}
                     <div className="list__items">
-                        { sortedCards.map((card: CardInterface) => {
-                                if (card.list_id === id) {
-                                    return <Card {...card} key={card.id} />;
-                                }
-                            }) }
+                        {sortedCards.map((card: CardInterface) => {
+                            if (card.list_id === id) {
+                                return <Card {...card} key={card.id} />;
+                            }
+                        })}
                         <div className="list__item">
                             <button onClick={onNewCardClick} className="list__button-add">
                                 <div className="list__button-add-icon">
