@@ -1,6 +1,6 @@
 .list {
     --list-title-font-size: var(--step-3);
-    --list-items-display: none;
+    --list-body-display: none;
     --list-header-padding-top: var(--space-l);
     --list-header-padding-bottom: 0;
     --gap: #{var(--space-3xs)};
@@ -11,7 +11,7 @@
     margin-bottom: var(--space-xs);
 
     &.active {
-        --list-items-display: flex;
+        --list-body-display: block;
         --list-header-padding-top: 0;
         --list-header-padding-bottom: var(--space-2xs);
         --list-title-font-size: var(--step-0);
@@ -65,9 +65,13 @@
         height: 100%;
     }
 
+    &__body {
+        display: var(--list-body-display);
+    }
+
     &__items {
         @include make-row(var(--gap), var(--gap));
-        display: var(--list-items-display);
+        display: flex;
         flex-wrap: wrap;
     }
 
@@ -105,6 +109,10 @@
                 width: 100%;
             }
         }
+    }
+
+    &__text-empty {
+        margin-bottom: var(--space-s);
     }
 
     &__button {
