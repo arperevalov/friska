@@ -39,6 +39,7 @@ export const List = (props: ListProps) => {
             formType,
             <FormUpdateList
                 listId={id}
+                cardsLength={sortedCards.length}
                 onSubmit={() => {
                     closeModalAction(formType);
                 }}

@@ -11,10 +11,11 @@ interface FormValues {
 interface FormUpdateListProps {
     onSubmit?: CallableFunction;
     listId: number;
+    cardsLength: number;
 }
 
 export default function FormUpdateList(props: FormUpdateListProps) {
-    const { onSubmit, listId } = props;
+    const { onSubmit, listId, cardsLength } = props;
     const { lists, removeListAction } = useLists();
     const { register, handleSubmit, reset } = useForm<FormValues>();
     const { updateListAction } = useLists();
@@ -79,7 +80,11 @@ export default function FormUpdateList(props: FormUpdateListProps) {
                     <button className="form__btn btn btn--primary" type="submit">
                         Save
                     </button>
-                    <button className="form__btn btn btn--secondary" onClick={onRemoveList} type="button">
+                    <button
+                        className="form__btn btn btn--secondary"
+                        onClick={cardsLength > 0 ? onRemoveList : onRemoveListConfirm}
+                        type="button"
+                    >
                         Remove
                     </button>
                 </form>
