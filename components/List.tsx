@@ -86,7 +86,7 @@ export const List = (props: ListProps) => {
                 <div className="list__body">
                     {sortedCards.length <= 0 ? (
                         <>
-                            <div className="list__text-empty h1">There are no cards for this list!</div>
+                            <div className="list__text-empty">You don’t have any cards in this list</div>
                         </>
                     ) : (
                         <></>
