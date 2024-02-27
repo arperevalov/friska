@@ -150,8 +150,12 @@
         color: var(--card-line-units-color);
     }
 
-    &__link {
-        margin-bottom: var(--space-2xs);
+    &__links {
+        margin-top: calc(var(--space-s) * -1);
+
+        > * {
+            margin-top: var(--space-s);
+        }
     }
 
     &__options {
@@ -167,7 +171,7 @@
         margin-top: var(--space-3xs);
         background: var(--theme-color-body);
         border-radius: rem(8);
-        padding: var(--space-xs);
+        padding: var(--space-s);
     }
 
     &__btns {

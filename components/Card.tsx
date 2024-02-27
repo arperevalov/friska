@@ -100,20 +100,22 @@ export const Card = (props: CardInterface) => {
                             </div>
                         </div>
                         <div className="card__options-row">
-                            <button
-                                type="button"
-                                onClick={onUpdateClick}
-                                className="card__link link link--primary link--centered"
-                            >
-                                Edit
-                            </button>
-                            <button
-                                type="button"
-                                className="card__link link link--secondary link--centered"
-                                onClick={onRemoveClick}
-                            >
-                                Remove
-                            </button>
+                            <div className="card__links">
+                                <button
+                                    type="button"
+                                    onClick={onUpdateClick}
+                                    className="card__link link link--primary link--centered"
+                                >
+                                    Edit
+                                </button>
+                                <button
+                                    type="button"
+                                    className="card__link link link--secondary link--centered"
+                                    onClick={onRemoveClick}
+                                >
+                                    Remove
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
