@@ -27,7 +27,8 @@
         top: 10%;
         z-index: $zindex-card-fixed;
         width: calc(100% - (var(--container-padding-x) * 2) - (var(--list-padding-x, 0px) * 2));
-        
+        pointer-events: none;
+
         @include media-breakpoint-up(900px) {
             top: 30%;
         }
@@ -39,10 +40,12 @@
         #{$self}__container {
             height: auto;
             padding: var(--space-xs);
+            pointer-events: all;
         }
 
         #{$self}__options {
             display: flex;
+            pointer-events: all;
         }
     }
 
