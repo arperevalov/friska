@@ -1,20 +1,39 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import middlewares from "./middlewares";
 
-const routes = /\/(sign-in|sign-up|intro)/gi;
+export async function middleware(request: NextRequest) {
+    const nextResponse = NextResponse.next();
+    
+    const middlewareFunctions = middlewares.map(fn => fn(request));
+    const middlewareHeader = [];
 
-export function middleware(request: NextRequest) {
-    const isAuth = request.cookies.get("auth-token")?.value ?? false;
+    for (const middleware of middlewareFunctions) {
+        const result = await middleware;
 
-    if (isAuth && request.nextUrl.pathname.match(routes)) {
-        return NextResponse.redirect(new URL("/", request.url));
+        if (!result.ok) {
+            return result;
+        }
+        middlewareHeader.push(result.headers);
     }
 
-    if (!isAuth && !request.nextUrl.pathname.match(routes)) {
-        return NextResponse.redirect(new URL("/intro", request.url));
+    let redirectTo = null;
+
+    middlewareHeader.some((header) => {
+        const redirect = header.get('x-middleware-request-redirect');
+        
+        if (redirect) {
+            redirectTo = redirect;
+            return true;
+        }
+        return false;
+    });
+
+    if (redirectTo) {
+        return NextResponse.redirect(new URL(redirectTo, request.url), {
+        status: 307,
+        });
     }
+
+    return nextResponse;
 }
-
-export const config = {
-    matcher: "/((?!api|_next/static|_next/image|svg|favicon.ico|sprite.svg).*)",
-};
