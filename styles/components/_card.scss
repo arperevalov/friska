@@ -9,6 +9,7 @@
     --card-top-flex-direction: column;
     --card-bottom-order: initial;
     --card-bottom-margin-top: var(--space-2xl);
+    --card-bottom-max-width: initial;
     --card-line-margin-left: 0;
     --card-line-units-margin-left: 0;
     --card-line-units-color: currentColor;
@@ -66,6 +67,7 @@
         --card-top-flex-direction: row;
         --card-bottom-margin-top: 0;
         --card-bottom-order: -1;
+        --card-bottom-max-width: 50%;
         --card-line-margin-left: var(--space-xs);
         --card-line-units-margin-left: var(--space-2xs);
         --card-line-units-color: var(--theme-color-muted);
@@ -121,6 +123,7 @@
     &__bottom {
         margin-top: var(--card-bottom-margin-top);
         order: var(--card-bottom-order);
+        max-width: var(--card-bottom-max-width);
     }
 
     &__title {
