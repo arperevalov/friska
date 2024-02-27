@@ -24,9 +24,13 @@
         left: 0;
         right: 0;
         margin: auto;
-        top: 30%;
+        top: 10%;
         z-index: $zindex-card-fixed;
         width: calc(100% - (var(--container-padding-x) * 2) - (var(--list-padding-x, 0px) * 2));
+        
+        @include media-breakpoint-up(900px) {
+            top: 30%;
+        }
 
         #{$self}__title {
             white-space: break-spaces;
