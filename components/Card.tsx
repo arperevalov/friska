@@ -58,6 +58,12 @@ export const Card = (props: CardInterface) => {
         <>
             <div className={`list__item${active ? " active" : ""} list__item--${getCardsStyleAction()}`}>
                 <div
+                    className={`card-overlay${active ? " active" : ""}`}
+                    onClick={() => {
+                        toggleActive();
+                    }}
+                ></div>
+                <div
                     className={`card${active ? " active" : ""}${
                         checkExpired() ? " outdated" : ""
                     } card--${getCardsStyleAction()}`}
@@ -83,26 +89,30 @@ export const Card = (props: CardInterface) => {
                         </div>
                     </div>
                     <div className="card__options">
-                        <button
-                            type="button"
-                            onClick={onUpdateClick}
-                            className="card__link link link--primary link--centered"
-                        >
-                            Edit
-                        </button>
-                        <button
-                            type="button"
-                            className="card__link link link--secondary link--centered"
-                            onClick={onRemoveClick}
-                        >
-                            Remove
-                        </button>
-                        <div className="card__btns">
-                            <button type="button" className="btn btn--sm btn--secondary" onClick={onDecrementClick}>
-                                -1
+                        <div className="card__options-row">
+                            <div className="card__btns">
+                                <button type="button" className="btn btn--sm btn--secondary" onClick={onDecrementClick}>
+                                    -1
+                                </button>
+                                <button type="button" className="btn btn--sm btn--primary" onClick={onIncrementClick}>
+                                    +1
+                                </button>
+                            </div>
+                        </div>
+                        <div className="card__options-row">
+                            <button
+                                type="button"
+                                onClick={onUpdateClick}
+                                className="card__link link link--primary link--centered"
+                            >
+                                Edit
                             </button>
-                            <button type="button" className="btn btn--sm btn--primary" onClick={onIncrementClick}>
-                                +1
+                            <button
+                                type="button"
+                                className="card__link link link--secondary link--centered"
+                                onClick={onRemoveClick}
+                            >
+                                Remove
                             </button>
                         </div>
                     </div>

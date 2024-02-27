@@ -6,9 +6,6 @@
     --card-container-flex-direction: column;
     --card-container-width: 100%;
     --card-container-align-items: flex-start;
-    --card-options-width: calc(36% - var(--space-3xs));
-    --card-options-margin-left: var(--space-3xs);
-    --card-options-flex-direction: column;
     --card-top-flex-direction: column;
     --card-bottom-order: initial;
     --card-bottom-margin-top: var(--space-2xl);
@@ -16,12 +13,20 @@
     --card-line-units-margin-left: 0;
     --card-line-units-color: currentColor;
     display: flex;
+    flex-direction: column;
+    max-width: calc(var(--container-max-width) - (var(--container-padding-x) * 2) - (var(--list-padding-x, 0px) * 2));
 
     &.active {
         --card-header-fz: var(--step-3);
         --card-categories-fz: var(--step-1);
-        --card-container-width: 64%;
         padding-bottom: var(--space-3xs);
+        position: fixed;
+        left: 0;
+        right: 0;
+        margin: auto;
+        top: 30%;
+        z-index: $zindex-card-fixed;
+        width: calc(100% - (var(--container-padding-x) * 2) - (var(--list-padding-x, 0px) * 2));
 
         #{$self}__title {
             white-space: break-spaces;
@@ -54,16 +59,12 @@
         --card-top-flex-direction: row;
         --card-bottom-margin-top: 0;
         --card-bottom-order: -1;
-        --card-options-flex-direction: row;
-        --card-options-width: 100%;
-        --card-options-margin-left: 0;
         --card-line-margin-left: var(--space-xs);
         --card-line-units-margin-left: var(--space-2xs);
         --card-line-units-color: var(--theme-color-muted);
         flex-wrap: wrap;
 
         &.active {
-            --card-container-width: 100%;
             --card-header-fz: var(--step-1);
             --card-categories-fz: var(--step-n2);
         }
@@ -148,14 +149,18 @@
 
     &__options {
         display: none;
-        flex-direction: var(--card-options-flex-direction);
-        padding: var(--space-xs);
-        height: auto;
-        width: var(--card-options-width);
-        margin-left: var(--card-options-margin-left);
+        flex-direction: column;
+        height: fit-content;
+        width: 50%;
+        margin-left: auto;
         flex: 0 0 auto;
+    }
+
+    &__options-row {
+        margin-top: var(--space-3xs);
         background: var(--theme-color-body);
         border-radius: rem(8);
+        padding: var(--space-xs);
     }
 
     &__btns {

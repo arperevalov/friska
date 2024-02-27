@@ -1,10 +1,12 @@
 .list {
+    --list-padding-x: var(--space-2xs);
+    --list-padding-y: var(--space-2xs);
     --list-title-font-size: var(--step-3);
     --list-body-display: none;
     --list-header-padding-top: var(--space-l);
     --list-header-padding-bottom: 0;
     --gap: #{var(--space-3xs)};
-    padding: var(--space-2xs);
+    padding: var(--list-padding-y) var(--list-padding-x);
     border-radius: rem(8);
     background: var(--theme-color-gray);
     width: 100%;
@@ -93,12 +95,7 @@
         }
 
         &.active {
-            flex: 0 0 auto;
-            width: 100%;
-
-            @include media-breakpoint-up(900px) {
-                width: 100%;
-            }
+            z-index: initial;
         }
 
         &--list {
