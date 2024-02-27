@@ -2,10 +2,11 @@
 
 import CardInterface from "@/interfaces/Card";
 import { useMainStore } from "@/store/MainStore";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import useLoading from "./useLoading";
 import ToastsEnum from "@/enums/Toasts";
 import useToasts from "./useToasts";
+import UnauthorizedErrorHandler from "@/handlers/UnauthorizedErrorHandler";
 
 export default function useCards() {
     const { cards, removeCard, addCard, updateCard } = useMainStore((state) => state);
@@ -13,9 +14,19 @@ export default function useCards() {
     const { addToastAction } = useToasts();
 
     const getCardAction = async (id: string) => {
-        const request = await axios.get(`/api/cards/${id}`);
-        const requestJSON = await request.data;
-        return requestJSON;
+        try {
+            const request = await axios.get(`/api/cards/${id}`);
+            const requestJSON = await request.data;
+            return requestJSON;
+        } catch (error) {
+            if (error instanceof AxiosError) {
+                if (error?.response?.status === 401) {
+                    UnauthorizedErrorHandler();
+                } else {
+                    addToastAction({ message: error.message, type: ToastsEnum.ERROR });
+                }
+            }
+        }
     };
 
     const addCardAction = (card: Omit<CardInterface, "id" | "created_at" | "updated_at">) => {
@@ -34,7 +45,11 @@ export default function useCards() {
                 }
             })
             .catch((error) => {
-                addToastAction({ message: error.message, type: ToastsEnum.ERROR });
+                if (error.response.status === 401) {
+                    UnauthorizedErrorHandler();
+                } else {
+                    addToastAction({ message: error.message, type: ToastsEnum.ERROR });
+                }
             })
             .finally(() => {
                 removeFromQueueAction(loadingId);
@@ -52,7 +67,11 @@ export default function useCards() {
                 updateCard(response);
             })
             .catch((error) => {
-                addToastAction({ message: error.message, type: ToastsEnum.ERROR });
+                if (error.response.status === 401) {
+                    UnauthorizedErrorHandler();
+                } else {
+                    addToastAction({ message: error.message, type: ToastsEnum.ERROR });
+                }
             })
             .finally(() => {
                 removeFromQueueAction(loadingId);
@@ -69,7 +88,11 @@ export default function useCards() {
                 }
             })
             .catch((error) => {
-                addToastAction({ message: error.message, type: ToastsEnum.ERROR });
+                if (error.response.status === 401) {
+                    UnauthorizedErrorHandler();
+                } else {
+                    addToastAction({ message: error.message, type: ToastsEnum.ERROR });
+                }
             })
             .finally(() => {
                 removeFromQueueAction(loadingId);
@@ -90,7 +113,11 @@ export default function useCards() {
                 }
             })
             .catch((error) => {
-                addToastAction({ message: error.message, type: ToastsEnum.ERROR });
+                if (error.response.status === 401) {
+                    UnauthorizedErrorHandler();
+                } else {
+                    addToastAction({ message: error.message, type: ToastsEnum.ERROR });
+                }
             })
             .finally(() => {
                 removeFromQueueAction(loadingId);
@@ -111,7 +138,11 @@ export default function useCards() {
                 }
             })
             .catch((error) => {
-                addToastAction({ message: error.message, type: ToastsEnum.ERROR });
+                if (error.response.status === 401) {
+                    UnauthorizedErrorHandler();
+                } else {
+                    addToastAction({ message: error.message, type: ToastsEnum.ERROR });
+                }
             })
             .finally(() => {
                 removeFromQueueAction(loadingId);

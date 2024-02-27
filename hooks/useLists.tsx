@@ -6,6 +6,7 @@ import axios from "axios";
 import useLoading from "./useLoading";
 import useToasts from "./useToasts";
 import ToastsEnum from "@/enums/Toasts";
+import UnauthorizedErrorHandler from "@/handlers/UnauthorizedErrorHandler";
 
 export default function useLists() {
     const { lists, addList, removeList, updateList } = useMainStore((state) => state);
@@ -28,7 +29,11 @@ export default function useLists() {
                 }
             })
             .catch((error) => {
-                addToastAction({ message: error.message, type: ToastsEnum.ERROR });
+                if (error.response.status === 401) {
+                    UnauthorizedErrorHandler();
+                } else {
+                    addToastAction({ message: error.message, type: ToastsEnum.ERROR });
+                }
             })
             .finally(() => {
                 removeFromQueueAction(loadingId);
@@ -45,7 +50,11 @@ export default function useLists() {
                 }
             })
             .catch((error) => {
-                addToastAction({ message: error.message, type: ToastsEnum.ERROR });
+                if (error.response.status === 401) {
+                    UnauthorizedErrorHandler();
+                } else {
+                    addToastAction({ message: error.message, type: ToastsEnum.ERROR });
+                }
             })
             .finally(() => {
                 removeFromQueueAction(loadingId);
@@ -62,7 +71,11 @@ export default function useLists() {
                 }
             })
             .catch((error) => {
-                addToastAction({ message: error.message, type: ToastsEnum.ERROR });
+                if (error.response.status === 401) {
+                    UnauthorizedErrorHandler();
+                } else {
+                    addToastAction({ message: error.message, type: ToastsEnum.ERROR });
+                }
             })
             .finally(() => {
                 removeFromQueueAction(loadingId);

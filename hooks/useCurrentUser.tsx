@@ -3,6 +3,7 @@ import axios from "axios";
 import useLoading from "./useLoading";
 import useToasts from "./useToasts";
 import ToastsEnum from "@/enums/Toasts";
+import UnauthorizedErrorHandler from "@/handlers/UnauthorizedErrorHandler";
 
 export default function useCurrentUser() {
     const { currentUser } = useSettingsStore((state) => state);
@@ -17,7 +18,11 @@ export default function useCurrentUser() {
                 return result;
             })
             .catch((error) => {
-                addToastAction({ message: error.message, type: ToastsEnum.ERROR });
+                if (error.response.status === 401) {
+                    UnauthorizedErrorHandler();
+                } else {
+                    addToastAction({ message: error.message, type: ToastsEnum.ERROR });
+                }
             })
             .finally(() => {
                 removeFromQueueAction(loadingId);

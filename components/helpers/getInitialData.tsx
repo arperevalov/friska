@@ -6,6 +6,7 @@ import axios from "axios";
 import useToasts from "@/hooks/useToasts";
 import ToastsEnum from "@/enums/Toasts";
 import { useSettingsStore } from "@/store/SettingsStore";
+import UnauthorizedErrorHandler from "@/handlers/UnauthorizedErrorHandler";
 
 interface getInitialDataProps {
     children: React.ReactNode;
@@ -28,7 +29,11 @@ export default function GetInitialData(props: getInitialDataProps) {
                 }
             })
             .catch((error) => {
-                addToastAction({ message: error.message, type: ToastsEnum.ERROR });
+                if (error.response.status === 401) {
+                    UnauthorizedErrorHandler();
+                } else {
+                    addToastAction({ message: error.message, type: ToastsEnum.ERROR });
+                }
             });
     };
 
@@ -41,7 +46,11 @@ export default function GetInitialData(props: getInitialDataProps) {
                 }
             })
             .catch((error) => {
-                addToastAction({ message: error.message, type: ToastsEnum.ERROR });
+                if (error.response.status === 401) {
+                    UnauthorizedErrorHandler();
+                } else {
+                    addToastAction({ message: error.message, type: ToastsEnum.ERROR });
+                }
             });
     };
 
@@ -54,7 +63,11 @@ export default function GetInitialData(props: getInitialDataProps) {
                 }
             })
             .catch((error) => {
-                addToastAction({ message: error.message, type: ToastsEnum.ERROR });
+                if (error.response.status === 401) {
+                    UnauthorizedErrorHandler();
+                } else {
+                    addToastAction({ message: error.message, type: ToastsEnum.ERROR });
+                }
             });
     };
 
