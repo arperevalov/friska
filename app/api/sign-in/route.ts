@@ -22,7 +22,7 @@ export async function POST(req: Request) {
         return Response.json(data);
     } catch (error: unknown) {
         if (error instanceof AxiosError) {
-            return Response.json({ error: error }, { status: 500 });
+            return Response.json({ error: error }, { status: error.response?.status });
         }
     }
 }
