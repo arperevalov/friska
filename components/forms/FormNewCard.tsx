@@ -17,6 +17,7 @@ interface FormValues {
     left_count: string;
     units: string;
     list_id: string;
+    best_before: string;
 }
 
 interface FormNewCardProps {
@@ -39,6 +40,7 @@ export default function FormNewCard(props: FormNewCardProps) {
             list_id: parseInt(data.list_id, 10),
             left_count: parseFloat(data.left_count),
             user_id: 1,
+            best_before: parseInt(data.best_before, 10),
         };
         addCardAction(formattedData);
         reset();
@@ -76,7 +78,9 @@ export default function FormNewCard(props: FormNewCardProps) {
             </>
         );
 
-    const defaultListId = Number.isInteger(listId) ? lists.find((item) => item.id === listId)?.id : lists[0].id;
+    const list = lists.find((item) => item.id === listId)
+    const defaultListId = list ? list.id : lists[0].id;
+    const defaultBestBefore =  list ? list.best_before : 1;
 
     return (
         <>
@@ -90,8 +94,27 @@ export default function FormNewCard(props: FormNewCardProps) {
                     register={register}
                     required
                 />
-                <InputCalendar formKey="exp_date" label="Best Before" register={register} required />
+                <InputCalendar formKey="exp_date" label="Expiry date" register={register} required />
 
+                <div className="input-row">
+                    <div className="input-row__col">
+                        <Input
+                            type="number"
+                            label="Best before limit, days"
+                            defaultValue={defaultBestBefore}
+                            formKey="best_before"
+                            required={true}
+                            register={register}
+                            min={0}
+                            step={1}
+                        />
+                    </div>
+                    <div className="input-row__col">
+                        <p className="input-row__text">
+                            Set number of days when we should notify you about outdated products in your list
+                        </p>
+                    </div>
+                </div>
                 <div className="input-row">
                     <div className="input-row__col">
                         <Input

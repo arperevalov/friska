@@ -8,4 +8,5 @@ export default interface CardInterface {
     user_id: number;
     updated_at: string;
     created_at: string;
+    best_before: number;
 }

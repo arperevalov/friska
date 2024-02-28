@@ -13,6 +13,7 @@ interface FormValues {
     left_count: string;
     units: string;
     list_id: string;
+    best_before: string;
 }
 
 interface FormUpdateCardProps {
@@ -42,6 +43,7 @@ export default function FormUpdateCard(props: FormUpdateCardProps) {
             list_id: parseInt(data.list_id, 10),
             left_count: parseFloat(data.left_count),
             user_id: 1,
+            best_before: parseInt(data.best_before, 10),
         };
         updateCardAction(formattedData);
         reset();
@@ -68,12 +70,31 @@ export default function FormUpdateCard(props: FormUpdateCardProps) {
                     register={register}
                 />
                 <InputCalendar
-                    label="Best Before"
+                    label="Expiry date"
                     defaultValue={new Date(card.exp_date)}
                     formKey="exp_date"
                     required={true}
                     register={register}
                 />
+                <div className="input-row">
+                    <div className="input-row__col">
+                        <Input
+                            type="number"
+                            label="Best before limit, days"
+                            defaultValue={card.best_before}
+                            formKey="best_before"
+                            required={true}
+                            register={register}
+                            min={0}
+                            step={1}
+                        />
+                    </div>
+                    <div className="input-row__col">
+                        <p className="input-row__text">
+                            Set number of days when we should notify you about outdated products in your list
+                        </p>
+                    </div>
+                </div>
                 <div className="input-row">
                     <div className="input-row__col">
                         <Input
