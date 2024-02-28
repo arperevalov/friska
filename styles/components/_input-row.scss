@@ -17,7 +17,7 @@
         color: var(--theme-color-muted);
 
         @include media-breakpoint-up(900px) {
-            width: 80%;
+            font-size: var(--step-n2);
         }
     }
 }
