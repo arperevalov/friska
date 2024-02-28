@@ -78,9 +78,9 @@ export default function FormNewCard(props: FormNewCardProps) {
             </>
         );
 
-    const list = lists.find((item) => item.id === listId)
+    const list = lists.find((item) => item.id === listId);
     const defaultListId = list ? list.id : lists[0].id;
-    const defaultBestBefore =  list ? list.best_before : 1;
+    const defaultBestBefore = list ? list.best_before : 1;
 
     return (
         <>
