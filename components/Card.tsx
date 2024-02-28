@@ -7,11 +7,11 @@ import useSettings from "@/hooks/useSettings";
 import FormUpdateCard from "./forms/FormUpdateCard";
 
 export const Card = (props: CardInterface) => {
-    const { removeCardAction, incrementCardLeftAction, decrementCardLeftAction } = useCards();
+    const { addCardAction, removeCardAction, incrementCardLeftAction, decrementCardLeftAction } = useCards();
     const [active, setActive] = useState(false);
     const { toggleModalAction, closeModalAction } = useModals();
     const { getCardsStyleAction } = useSettings();
-    const { id, title, exp_date, left_count, units, best_before } = props;
+    const { id, title, exp_date, left_count, units, best_before, list_id, user_id } = props;
 
     const toggleActive = () => {
         setActive(!active);
@@ -27,6 +27,20 @@ export const Card = (props: CardInterface) => {
 
     const onRemoveClick = () => {
         removeCardAction(id);
+    };
+
+    const onCopyClick = () => {
+        addCardAction({
+            title,
+            exp_date: new Date(exp_date).toISOString().replace(/(\d)T(\d.{0,})\.\d{0,}Z/, "$1 $2"),
+            left_count,
+            units,
+            list_id,
+            user_id,
+            best_before,
+        });
+
+        toggleActive();
     };
 
     const onUpdateClick = () => {
@@ -96,6 +110,13 @@ export const Card = (props: CardInterface) => {
                         </div>
                         <div className="card__options-row">
                             <div className="card__links">
+                                <button
+                                    type="button"
+                                    onClick={onCopyClick}
+                                    className="card__link link link--primary link--centered"
+                                >
+                                    Copy
+                                </button>
                                 <button
                                     type="button"
                                     onClick={onUpdateClick}
