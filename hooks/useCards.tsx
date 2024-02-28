@@ -39,7 +39,7 @@ export default function useCards() {
             .then((response) => {
                 if (response) {
                     const formattedData = {
-                        ...response[0],
+                        ...response,
                     };
                     addCard(formattedData);
                 }
