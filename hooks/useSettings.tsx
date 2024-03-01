@@ -1,13 +1,13 @@
 import CardsStyle from "@/enums/CardsStyle";
 import Themes from "@/enums/Themes";
 import { useSettingsStore } from "@/store/SettingsStore";
+import { getCookie, setCookie } from "cookies-next";
 
 export default function useSettings() {
     const { theme, setTheme, cardsStyle, setCardsStyle } = useSettingsStore((state) => state);
 
     const getThemeAction = (): string => {
-        if (typeof window === "undefined") return Themes.default;
-        return window.localStorage.getItem("app-theme") ?? theme ?? Themes.default;
+        return getCookie("app-theme") ?? theme ?? Themes.default;
     };
 
     const getCardsStyleAction = (): string => {
@@ -30,7 +30,7 @@ export default function useSettings() {
     const setThemeAction = (themeAttr: string) => {
         setTheme(themeAttr);
         updateClasses(themeAttr);
-        window.localStorage.setItem("app-theme", themeAttr);
+        setCookie("app-theme", themeAttr);
     };
 
     const setCardsStyleAction = (themeAttr: string) => {
