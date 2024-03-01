@@ -7,6 +7,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Wrapper from "@/app/wrapper";
 import { cookies } from "next/headers";
+import parse from "html-react-parser";
+import head from "@/app/head";
 
 export const metadata: Metadata = {
     title: "Friska",
@@ -18,6 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
     return (
         <html lang="en" className={theme ? `is-theme-${theme}` : ""}>
+            <head>{parse(head)}</head>
             <body>
                 <Image src={"/public/sprite.svg"} fill className="visually-hidden" alt="icons" />
                 <ThemeProvider>
