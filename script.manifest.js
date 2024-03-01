@@ -4,8 +4,9 @@ const path = require("path");
 
 const source = "./favicons-source.png"; // Source image(s). `string`, `buffer` or array of `string`
 const destinations = {
-    manifest: "./app/manifest.json",
+    manifest: "./public/favicons/manifest.webmanifest",
     favicons: "./public/favicons",
+    html: "./app/head.js",
 };
 
 const configuration = {
@@ -53,6 +54,15 @@ favicons(source, configuration)
     .then(async (response) => {
         const manifest = response.files[0].contents;
         const { images } = response;
+
+        const tags = response.html.reduce((a, b) => {
+            return a + b;
+        })
+
+        const html = `const tags = '${tags}';
+export default tags;`
+
+        await fs.writeFile(destinations.html, html)
 
         await fs.writeFile(destinations.manifest, manifest);
 
