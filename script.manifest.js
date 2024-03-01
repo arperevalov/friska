@@ -57,12 +57,12 @@ favicons(source, configuration)
 
         const tags = response.html.reduce((a, b) => {
             return a + b;
-        })
+        });
 
         const html = `const tags = '${tags}';
-export default tags;`
+export default tags;`;
 
-        await fs.writeFile(destinations.html, html)
+        await fs.writeFile(destinations.html, html);
 
         await fs.writeFile(destinations.manifest, manifest);
 
