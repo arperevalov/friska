@@ -1,4 +1,5 @@
 "use client";
+
 import { useMainStore } from "@/store/MainStore";
 import { useEffect } from "react";
 import useLoading from "@/hooks/useLoading";
@@ -87,5 +88,6 @@ export default function GetInitialData(props: getInitialDataProps) {
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
     return <>{children}</>;
 }
