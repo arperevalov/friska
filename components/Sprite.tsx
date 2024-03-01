@@ -9,7 +9,7 @@ export default function Sprite(props: SpriteProps) {
     return (
         <>
             <svg className={className}>
-                <use xlinkHref={`/sprite.svg#icon-${name}`} />
+                <use xlinkHref={`/img/sprite.svg#icon-${name}`} />
             </svg>
         </>
     );
