@@ -10,7 +10,8 @@
         "lint": "next lint",
         "lint-all": "npx tsc --noEmit && npx eslint . && npx prettier --write .",
         "test": "jest --watch",
-        "svg-sprite": "svg-symbol-sprite -i ./img/sprite-src -o ./public/img/sprite.svg"
+        "svg-sprite": "svg-symbol-sprite -i ./img/sprite-src -o ./public/img/sprite.svg",
+        "manifest": "node ./script.manifest.js"
     },
     "dependencies": {
         "@gsap/react": "^2.0.2",
