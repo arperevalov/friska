@@ -14,11 +14,10 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-
-    const theme = cookies().get("app-theme")?.value ?? ""
+    const theme = cookies().get("app-theme")?.value ?? "";
 
     return (
-        <html lang="en" className={theme ? `is-theme-${theme}` : ''}>
+        <html lang="en" className={theme ? `is-theme-${theme}` : ""}>
             <body>
                 <Image src={"/public/sprite.svg"} fill className="visually-hidden" alt="icons" />
                 <ThemeProvider>
