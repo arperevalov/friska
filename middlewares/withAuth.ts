@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const matcher = /(api|_next\/static|_next\/image|svg|favicon.ico|sprite.svg)/gi;
+const matcher = /(api|_next\/static|_next\/image|favicon.ico|img|js)/gi;
 const routes = /\/(sign-in|sign-up|intro)/gi;
 
 export default async function withAuth(request: NextRequest) {
