@@ -21,6 +21,7 @@ export default function Header(props: HeaderProps) {
 
     const onLogoutClick = () => {
         deleteCookie("auth-token");
+        deleteCookie("refresh-token");
         router.push("/intro");
     };
 
