@@ -25,7 +25,7 @@ export default function useAuth() {
         axios
             .post("/api/sign-in/", data)
             .then((response) => {
-                if (response.data.token) {
+                if (response.data["auth-token"]) {
                     router.push("/");
                 }
             })
@@ -42,7 +42,7 @@ export default function useAuth() {
         axios
             .post("/api/sign-up/", data)
             .then((response) => {
-                if (response.data.token) {
+                if (response.data["auth-token"]) {
                     router.push("/");
                 }
             })
