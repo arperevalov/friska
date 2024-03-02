@@ -17,7 +17,9 @@ export async function POST(req: Request) {
             ? parseInt(process.env.NEXT_PUBLIC_AUTH_TOKEN_EXPIRY_DAYS, 10)
             : 5;
         const expires = now.getTime() + Math.round(days * 24 * 60 * 60 * 1000);
-        cookies().set("auth-token", data.token, { expires });
+
+        cookies().set("auth-token", data["auth-token"], { expires });
+        cookies().set("refresh-token", data["refresh-token"], { expires, httpOnly: true });
 
         return Response.json(data);
     } catch (error: unknown) {
