@@ -12,8 +12,13 @@ export async function GET() {
 
         const data = await request.data;
 
-        cookies().set("auth-token", data["auth-token"]);
-        cookies().set("refresh-token", data["refresh-token"], { httpOnly: true });
+        const tokenAuth = data["auth-token"];
+        const expiresAuth = data["auth-token-exp"];
+        const tokenRefresh = data["refresh-token"];
+        const expiresRefresh = data["refresh-token-exp"];
+
+        cookies().set("auth-token", tokenAuth, { expires: expiresAuth });
+        cookies().set("refresh-token", tokenRefresh, { expires: expiresRefresh, httpOnly: true });
 
         return Response.json(data);
     } catch (error: unknown) {
