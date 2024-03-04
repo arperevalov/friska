@@ -27,7 +27,7 @@ interface FormNewCardProps {
 
 export default function FormNewCard(props: FormNewCardProps) {
     const { onSubmit, listId } = props;
-    const { register, handleSubmit, reset } = useForm<FormValues>();
+    const { register, handleSubmit, reset, getValues } = useForm<FormValues>();
     const { addCardAction } = useCards();
     const { toggleModalAction, closeModalAction } = useModals();
     const { lists } = useLists();
@@ -60,6 +60,16 @@ export default function FormNewCard(props: FormNewCardProps) {
         reset();
         if (onSubmit) onSubmit();
     };
+    
+    const onListChange = () => {
+        const id = getValues("list_id");
+        if (id) {
+            const newBestBefore = lists.find((item) => item.id === parseInt(id, 10))?.best_before;
+            reset({
+                best_before: newBestBefore?.toString()
+            })
+        }
+    }
 
     if (!lists) return <></>;
     if (lists.length === 0)
@@ -91,7 +101,11 @@ export default function FormNewCard(props: FormNewCardProps) {
                     label="List"
                     values={lists}
                     defaultValue={defaultListId}
-                    register={register}
+                    register={
+                        register.bind(null, "list_id", {
+                            onChange: onListChange
+                        })
+                    }
                     required
                 />
                 <InputCalendar formKey="exp_date" label="Expiry date" register={register} required />
