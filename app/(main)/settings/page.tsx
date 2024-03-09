@@ -4,7 +4,6 @@ import Header from "@/components/Header";
 import { SelectUnits } from "@/components/SelectUnits";
 import CardsStyle from "@/enums/CardsStyle";
 import Themes from "@/enums/Themes";
-import WithConfirmedEmail from "@/hoc/WithConfirmedEmail";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import useSettings from "@/hooks/useSettings";
 import Link from "next/link";
@@ -80,4 +79,4 @@ function Settings(): ReactNode {
     );
 }
 
-export default WithConfirmedEmail(Settings);
+export default Settings;

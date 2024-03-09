@@ -9,7 +9,6 @@ import useModals from "@/hooks/useModals";
 import ModalsEnum from "@/enums/Modals";
 import Sprite from "@/components/Sprite";
 import FormNewList from "@/components/forms/FormNewList";
-import WithConfirmedEmail from "@/hoc/WithConfirmedEmail";
 
 function Home(): ReactNode {
     const { lists } = useLists();
@@ -103,4 +102,4 @@ function Home(): ReactNode {
     );
 }
 
-export default WithConfirmedEmail(Home);
+export default Home;

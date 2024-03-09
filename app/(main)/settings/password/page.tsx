@@ -2,7 +2,6 @@
 
 import Header from "@/components/Header";
 import { Input } from "@/components/Input";
-import WithConfirmedEmail from "@/hoc/WithConfirmedEmail";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import { ReactNode } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -52,4 +51,4 @@ function ChangePassword(): ReactNode {
         </>
     );
 }
-export default WithConfirmedEmail(ChangePassword);
+export default ChangePassword;
