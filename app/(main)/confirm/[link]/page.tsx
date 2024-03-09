@@ -2,8 +2,7 @@
 
 import Header from "@/components/Header";
 import axios from "axios";
-import { useParams } from "next/navigation";
-import { useRouter } from "next/router";
+import { useParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export default function ConfirmLink() {
