@@ -2,7 +2,6 @@
 
 import HeaderSimple from "@/components/HeaderSimple";
 import { Input } from "@/components/Input";
-import { InputAction } from "@/components/InputAction";
 import useAuth from "@/hooks/useAuth";
 import { SubmitHandler, useForm } from "react-hook-form";
 
@@ -27,8 +26,6 @@ export default function SignUp() {
         }
     };
 
-    const callAction = () => {};
-
     return (
         <>
             <HeaderSimple title="Sign-up" />
@@ -36,14 +33,12 @@ export default function SignUp() {
                 <div className="container">
                     <form className="form" action="#" onSubmit={handleSubmit(submitForm)}>
                         <Input type="text" label="Login" register={register} formKey="username" required={true} />
-                        <InputAction
+                        <Input
                             type="email"
                             label="E-mail"
                             register={register}
                             formKey="email"
                             required={true}
-                            buttonAction={callAction}
-                            buttonText="Validate"
                         />
                         <Input
                             type="password"
