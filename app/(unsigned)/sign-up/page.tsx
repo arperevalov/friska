@@ -33,13 +33,7 @@ export default function SignUp() {
                 <div className="container">
                     <form className="form" action="#" onSubmit={handleSubmit(submitForm)}>
                         <Input type="text" label="Login" register={register} formKey="username" required={true} />
-                        <Input
-                            type="email"
-                            label="E-mail"
-                            register={register}
-                            formKey="email"
-                            required={true}
-                        />
+                        <Input type="email" label="E-mail" register={register} formKey="email" required={true} />
                         <Input
                             type="password"
                             label="Password"
