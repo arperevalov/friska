@@ -16,6 +16,7 @@ export const useSettingsStore = create<SettingsStoreInterface>((set) => ({
     currentUser: {
         username: "",
         email: "",
+        confirmed_at: null,
     },
     theme: Themes.default,
     cardsStyle: CardsStyle.grid,
