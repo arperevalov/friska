@@ -5,19 +5,18 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export default function WithConfirmedEmail(Component: () => React.ReactNode) {
-
     const WithConfirmedEmailComponent = () => {
         const { currentUser } = useCurrentUser();
         const router = useRouter();
-    
-        useEffect(()=>{
+
+        useEffect(() => {
             if (!currentUser.confirmed_at) {
-                router.push('/confirm')
+                router.push("/confirm");
             }
-        }, [])
-    
-        return <Component/>;
-    }
+        }, []);
+
+        return <Component />;
+    };
 
     return WithConfirmedEmailComponent;
 }

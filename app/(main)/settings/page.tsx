@@ -80,4 +80,4 @@ function Settings(): ReactNode {
     );
 }
 
-export default WithConfirmedEmail(Settings)
+export default WithConfirmedEmail(Settings);

@@ -103,4 +103,4 @@ function Home(): ReactNode {
     );
 }
 
-export default WithConfirmedEmail(Home)
+export default WithConfirmedEmail(Home);

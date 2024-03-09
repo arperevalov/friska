@@ -52,4 +52,4 @@ function ChangePassword(): ReactNode {
         </>
     );
 }
-export default WithConfirmedEmail(ChangePassword)
+export default WithConfirmedEmail(ChangePassword);
