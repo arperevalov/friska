@@ -43,7 +43,7 @@ export default function useAuth() {
             .post("/api/sign-up/", data)
             .then((response) => {
                 if (response.data["auth-token"]) {
-                    router.push("/");
+                    router.push("/confirm");
                 }
             })
             .catch((error) => {
