@@ -2,7 +2,9 @@
 
 import Header from "@/components/Header";
 import { Input } from "@/components/Input";
+import WithConfirmedEmail from "@/hoc/WithConfirmedEmail";
 import useCurrentUser from "@/hooks/useCurrentUser";
+import { ReactNode } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 interface FormData {
@@ -10,7 +12,7 @@ interface FormData {
     password_repeat: string;
 }
 
-export default function Settings() {
+function ChangePassword(): ReactNode {
     const { register, handleSubmit, reset } = useForm<FormData>();
     const { updatePasswordAction } = useCurrentUser();
 
@@ -50,3 +52,4 @@ export default function Settings() {
         </>
     );
 }
+export default WithConfirmedEmail(ChangePassword)

@@ -4,13 +4,14 @@ import useLists from "@/hooks/useLists";
 import useCards from "@/hooks/useCards";
 import List from "@/components/List";
 import Header from "@/components/Header";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import useModals from "@/hooks/useModals";
 import ModalsEnum from "@/enums/Modals";
 import Sprite from "@/components/Sprite";
 import FormNewList from "@/components/forms/FormNewList";
+import WithConfirmedEmail from "@/hoc/WithConfirmedEmail";
 
-export default function Home() {
+function Home(): ReactNode {
     const { lists } = useLists();
     const { cards } = useCards();
     const { toggleModalAction, closeModalAction } = useModals();
@@ -101,3 +102,5 @@ export default function Home() {
         </>
     );
 }
+
+export default WithConfirmedEmail(Home)

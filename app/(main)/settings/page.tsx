@@ -4,12 +4,13 @@ import Header from "@/components/Header";
 import { SelectUnits } from "@/components/SelectUnits";
 import CardsStyle from "@/enums/CardsStyle";
 import Themes from "@/enums/Themes";
+import WithConfirmedEmail from "@/hoc/WithConfirmedEmail";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import useSettings from "@/hooks/useSettings";
 import Link from "next/link";
-import { FormEvent } from "react";
+import { FormEvent, ReactNode } from "react";
 
-export default function Settings() {
+function Settings(): ReactNode {
     const { currentUser } = useCurrentUser();
     const { getThemeAction, setThemeAction, getCardsStyleAction, setCardsStyleAction } = useSettings();
     const capitalize = (item: string) => {
@@ -37,6 +38,7 @@ export default function Settings() {
             onChange: onCardsStyleSelectUpdate,
         };
     };
+
     return (
         <>
             <Header title="Account" />
@@ -77,3 +79,5 @@ export default function Settings() {
         </>
     );
 }
+
+export default WithConfirmedEmail(Settings)
