@@ -13,12 +13,14 @@ export async function GET() {
         const data = await request.data;
 
         const tokenAuth = data["auth-token"];
-        const expiresAuth = data["auth-token-exp"];
+        const maxAgeAuth = data["auth-token-exp"];
         const tokenRefresh = data["refresh-token"];
-        const expiresRefresh = data["refresh-token-exp"];
+        const maxAgeRefresh = data["refresh-token-exp"];
+        const confirmed = data["confirmed"];
 
-        cookies().set("auth-token", tokenAuth, { expires: expiresAuth });
-        cookies().set("refresh-token", tokenRefresh, { expires: expiresRefresh, httpOnly: true });
+        cookies().set("auth-token", tokenAuth, { maxAge: maxAgeAuth });
+        cookies().set("refresh-token", tokenRefresh, { maxAge: maxAgeRefresh, httpOnly: true });
+        cookies().set("confirmed", confirmed, { maxAge: maxAgeRefresh, httpOnly: true });
 
         return Response.json(data);
     } catch (error: unknown) {
