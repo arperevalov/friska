@@ -11,10 +11,12 @@ import FormNewCard from "./forms/FormNewCard";
 
 interface HeaderProps {
     title?: string;
+    isLogout: boolean;
+    isBack: boolean;
 }
 
 export default function Header(props: HeaderProps) {
-    const { title } = props;
+    const { title, isLogout, isBack } = props;
     const pathname = usePathname();
     const router = useRouter();
     const { toggleModalAction, closeModalAction } = useModals();
@@ -47,19 +49,23 @@ export default function Header(props: HeaderProps) {
                         <>
                             <div className="header__inner">
                                 <div className="header__element">
-                                    <button
-                                        onClick={() => {
-                                            router.back();
-                                        }}
-                                        className="header__button"
-                                    >
-                                        <span className="visually-hidden">Go back</span>
-                                        <Sprite className="header__icon" name={"btn-arrow-back"} />
-                                    </button>
+                                    {isBack ? (
+                                        <button
+                                            onClick={() => {
+                                                router.back();
+                                            }}
+                                            className="header__button"
+                                        >
+                                            <span className="visually-hidden">Go back</span>
+                                            <Sprite className="header__icon" name={"btn-arrow-back"} />
+                                        </button>
+                                    ) : (
+                                        ""
+                                    )}
                                 </div>
                                 <h1 className="header__title">{title}</h1>
                                 <div className="header__element">
-                                    {pathname === "/settings" ? (
+                                    {isLogout ? (
                                         <>
                                             <button
                                                 className="link link--secondary"
