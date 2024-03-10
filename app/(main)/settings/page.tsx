@@ -40,7 +40,7 @@ function Settings(): ReactNode {
 
     return (
         <>
-            <Header title="Account" isLogout={true} isBack={true} />
+            <Header title="Account" isLogout={true} isBack={true} isBottom={true} />
             <main>
                 <div className="container">
                     <div className="user-main">

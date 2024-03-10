@@ -13,10 +13,11 @@ interface HeaderProps {
     title?: string;
     isLogout: boolean;
     isBack: boolean;
+    isBottom: boolean;
 }
 
 export default function Header(props: HeaderProps) {
-    const { title, isLogout, isBack } = props;
+    const { title, isLogout, isBack, isBottom } = props;
     const pathname = usePathname();
     const router = useRouter();
     const { toggleModalAction, closeModalAction } = useModals();
@@ -84,25 +85,32 @@ export default function Header(props: HeaderProps) {
                     )}
                 </div>
 
-                <div className="header__bottom">
-                    <nav className="header__nav">
-                        <button className="header__link" type="button" onClick={onNewClick}>
-                            <Sprite className="header__icon" name="new" />
-                            <span className="visually-hidden">New Item</span>
-                        </button>
-                        <Link className={`header__link${pathname === "/" ? " header__link--active" : ""}`} href={"/"}>
-                            <Sprite className="header__icon" name="lists" />
-                            <span className="visually-hidden">Lists</span>
-                        </Link>
-                        <Link
-                            className={`header__link${pathname === "/settings" ? " header__link--active" : ""}`}
-                            href={"/settings"}
-                        >
-                            <Sprite className="header__icon" name="settings" />
-                            <span className="visually-hidden">Settings</span>
-                        </Link>
-                    </nav>
-                </div>
+                {isBottom ? (
+                    <div className="header__bottom">
+                        <nav className="header__nav">
+                            <button className="header__link" type="button" onClick={onNewClick}>
+                                <Sprite className="header__icon" name="new" />
+                                <span className="visually-hidden">New Item</span>
+                            </button>
+                            <Link
+                                className={`header__link${pathname === "/" ? " header__link--active" : ""}`}
+                                href={"/"}
+                            >
+                                <Sprite className="header__icon" name="lists" />
+                                <span className="visually-hidden">Lists</span>
+                            </Link>
+                            <Link
+                                className={`header__link${pathname === "/settings" ? " header__link--active" : ""}`}
+                                href={"/settings"}
+                            >
+                                <Sprite className="header__icon" name="settings" />
+                                <span className="visually-hidden">Settings</span>
+                            </Link>
+                        </nav>
+                    </div>
+                ) : (
+                    ""
+                )}
             </header>
         </>
     );

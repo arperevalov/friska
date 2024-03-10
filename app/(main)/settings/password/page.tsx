@@ -24,7 +24,7 @@ function ChangePassword(): ReactNode {
 
     return (
         <>
-            <Header title="Change Password" isLogout={true} isBack={true} />
+            <Header title="Change Password" isLogout={true} isBack={true} isBottom={true} />
             <main>
                 <div className="container">
                     <form onSubmit={handleSubmit(onFormSubmit)}>

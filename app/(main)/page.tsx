@@ -43,7 +43,7 @@ function Home(): ReactNode {
 
     return (
         <>
-            <Header isLogout={false} isBack={false} />
+            <Header isLogout={false} isBack={false} isBottom={true} />
             <main>
                 <div className="container">
                     {lists.length === 0 ? (
