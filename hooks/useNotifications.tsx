@@ -5,7 +5,6 @@ export default function useNotifications() {
     const register = async () => {
         try {
             if (typeof navigator === "undefined") throw "Navigator is not available";
-            
 
             const registration = await navigator.serviceWorker.ready;
 
@@ -36,20 +35,20 @@ export default function useNotifications() {
         } catch (error) {
             throw error;
         }
-    }
+    };
 
     const subscribe = () => {
         register().then((result: PushSubscription) => {
-            axios.post('/notifications/subscribe', result.toJSON());
+            axios.post("/notifications/subscribe", result.toJSON());
         });
-    }
-    
+    };
+
     const unsubscribe = () => {
-        unregister().then(()=>{})
-    }
+        unregister().then(() => {});
+    };
 
     return {
         subscribe,
         unsubscribe,
-    }
+    };
 }
