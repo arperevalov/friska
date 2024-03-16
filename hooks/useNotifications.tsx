@@ -5,6 +5,7 @@ export default function useNotifications() {
     const register = async () => {
         try {
             if (typeof navigator === "undefined") throw "Navigator is not available";
+            if (!("serviceWorker" in navigator)) throw "serviceWorkers are not available";
 
             const registration = await navigator.serviceWorker.ready;
 
@@ -25,6 +26,7 @@ export default function useNotifications() {
     const unregister = async () => {
         try {
             if (typeof navigator === "undefined") throw "Navigator is not available";
+            if (!("serviceWorker" in navigator)) throw "serviceWorkers are not available";
 
             const registration = await navigator.serviceWorker.ready;
 
