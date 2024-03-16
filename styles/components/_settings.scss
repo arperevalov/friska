@@ -5,6 +5,10 @@
         margin: 0;
     }
 
+    &__item {
+        margin-bottom: var(--space-3xs);
+    }
+
     &__link {
         padding: var(--space-xs);
         border-radius: var(--space-2xs);
