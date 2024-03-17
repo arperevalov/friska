@@ -9,7 +9,9 @@ export default function useNotifications() {
 
             const registration = await navigator.serviceWorker.ready;
 
-            await registration.pushManager.getSubscription();
+            const current = await registration.pushManager.getSubscription();
+
+            if (current) throw "Subscription already exists!";
 
             const key = process.env.NEXT_PUBLIC_NOTIFICATIONS_KEY ?? "";
             const applicationServerKey = urlBase64ToUint8Array(key);
