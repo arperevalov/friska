@@ -33,7 +33,9 @@ export default function useNotifications() {
             const subscription = await registration.pushManager.getSubscription();
 
             if (!subscription) return;
-            return await subscription.unsubscribe();
+            await subscription.unsubscribe();
+
+            return subscription;
         } catch (error) {
             throw error;
         }
@@ -41,12 +43,16 @@ export default function useNotifications() {
 
     const subscribe = () => {
         register().then((result: PushSubscription) => {
-            axios.post("/notifications/subscribe", result.toJSON());
+            axios.post("/api/notifications/", result.toJSON());
         });
     };
 
     const unsubscribe = () => {
-        unregister().then(() => {});
+        unregister().then((result: PushSubscription | undefined) => {
+            if (result) {
+                axios.post("/api/notifications/delete", result.toJSON());
+            }
+        });
     };
 
     return {
