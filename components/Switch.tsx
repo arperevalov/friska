@@ -4,10 +4,11 @@ interface SwitchInterface {
     formKey: string;
     required?: boolean;
     defaultChecked?: boolean;
+    checked?: boolean;
 }
 
 export const Switch = (props: SwitchInterface) => {
-    const { register, formKey, required, label, defaultChecked } = props;
+    const { register, formKey, required, label, defaultChecked, checked } = props;
 
     return (
         <label htmlFor="" className="switch">
@@ -17,6 +18,7 @@ export const Switch = (props: SwitchInterface) => {
                 required={required}
                 {...register(formKey)}
                 defaultChecked={defaultChecked}
+                checked={checked}
             />
             {label}
         </label>
