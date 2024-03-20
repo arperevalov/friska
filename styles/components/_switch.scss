@@ -14,7 +14,9 @@
         background-image: var(--switch-bg-img);
         background-position: left;
         background-repeat: no-repeat;
-        transition: background-position $ease-default $duration-fast, background-color $ease-default $duration-fast;
+        transition:
+            background-position $ease-default $duration-fast,
+            background-color $ease-default $duration-fast;
         margin-right: var(--space-s);
 
         &:checked {
