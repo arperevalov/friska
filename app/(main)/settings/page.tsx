@@ -14,7 +14,7 @@ import { FormEvent, ReactNode } from "react";
 function Settings(): ReactNode {
     const { currentUser } = useCurrentUser();
     const { getThemeAction, setThemeAction, getCardsStyleAction, setCardsStyleAction } = useSettings();
-    const { subscribe, unsubscribe } = useNotifications();
+    const { subscribe, unsubscribe, hasSubscrtiption } = useNotifications();
     const capitalize = (item: string) => {
         return item.charAt(0).toUpperCase() + item.slice(1);
     };
@@ -71,6 +71,7 @@ function Settings(): ReactNode {
                         label="Enable notifications"
                         formKey="notifications"
                         register={registerNotificationsSwitch}
+                        checked={hasSubscrtiption}
                     />
                     <SelectUnits
                         values={cardsStyles}
