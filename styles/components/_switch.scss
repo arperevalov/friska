@@ -1,0 +1,25 @@
+.switch {
+    --switch-bg-img: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--input-margin);
+
+    &__input {
+        width: var(--space-xl);
+        height: var(--space-l);
+        border-radius: 100px;
+        background: var(--theme-color-body);
+        border: 1px solid var(--theme-color-muted);
+        appearance: none;
+        background-image: var(--switch-bg-img);
+        background-position: left;
+        background-repeat: no-repeat;
+        transition: background-position $ease-default $duration-fast, background-color $ease-default $duration-fast;
+        margin-right: var(--space-s);
+
+        &:checked {
+            background-position: right;
+            background-color: var(--theme-color-primary);
+        }
+    }
+}
