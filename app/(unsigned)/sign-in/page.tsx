@@ -27,7 +27,7 @@ export default function SignIn() {
             <HeaderSimple title="Sign-in" />
             <main>
                 <div className="container">
-                    <form className="form" action="#" onSubmit={handleSubmit(submitForm)}>
+                    <form className="form" action="#" method="POST" onSubmit={handleSubmit(submitForm)}>
                         <Input
                             type="text"
                             label="Login"
