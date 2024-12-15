@@ -1,71 +1,43 @@
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 import CardInterface from "@/interfaces/Card";
-import useCards from "@/hooks/useCards";
-import useModals from "@/hooks/useModals";
-import ModalsEnum from "@/enums/Modals";
 import useSettings from "@/hooks/useSettings";
-import FormUpdateCard from "./forms/FormUpdateCard";
+import classNames from "classnames";
 
-export const Card = (props: CardInterface) => {
-    const { addCardAction, removeCardAction, incrementCardLeftAction, decrementCardLeftAction } = useCards();
+type Props = React.HTMLAttributes<HTMLElement> & {
+    card: CardInterface
+    onCopyClick: (id: number) => void
+    onRemoveClick: (id: number) => void
+    onIncrementClick: (id: number) => void
+    onDecrementClick: (id: number) => void
+    onUpdateClick: (id: number) => void
+}
+
+const Card = forwardRef<HTMLElement, Props>(({ card, onCopyClick, onDecrementClick, onIncrementClick, onRemoveClick, onUpdateClick }) => {
     const [active, setActive] = useState(false);
-    const { toggleModalAction, closeModalAction } = useModals();
     const { getCardsStyleAction } = useSettings();
-    const { id, title, exp_date, left_count, units, best_before, list_id, user_id } = props;
 
     const toggleActive = () => {
         setActive(!active);
     };
 
-    const onIncrementClick = () => {
-        incrementCardLeftAction(id);
-    };
-
-    const onDecrementClick = () => {
-        decrementCardLeftAction(id);
-    };
-
-    const onRemoveClick = () => {
-        removeCardAction(id);
-    };
-
-    const onCopyClick = () => {
-        addCardAction({
-            title,
-            exp_date: new Date(exp_date).toISOString().replace(/(\d)T(\d.{0,})\.\d{0,}Z/, "$1 $2"),
-            left_count,
-            units,
-            list_id,
-            user_id,
-            best_before,
-        });
-
-        toggleActive();
-    };
-
-    const onUpdateClick = () => {
-        const formType = ModalsEnum.FormUpdateCard;
-        toggleModalAction(
-            formType,
-            <FormUpdateCard
-                parameters={id}
-                onSubmit={() => {
-                    closeModalAction(formType);
-                }}
-            />,
-        );
-    };
-
-    const dateString = new Date(exp_date).toLocaleDateString();
+    const dateString = new Date(card.exp_date).toLocaleDateString();
     const checkExpired = () => {
-        const daysBeforeInMillisec = best_before * 24 * 60 * 60 * 1000;
+        const daysBeforeInMillisec = card.best_before * 24 * 60 * 60 * 1000;
         const date = new Date();
-        const expDate = new Date(exp_date);
+        const expDate = new Date(card.exp_date);
         return date.getTime() - expDate.getTime() > daysBeforeInMillisec * -1;
     };
+
     return (
         <>
-            <div className={`list__item${active ? " active" : ""} list__item--${getCardsStyleAction()}`}>
+            <div className={
+                classNames(
+                    `list__item`,
+                    `list__item--${getCardsStyleAction()}`,
+                    {
+                        'active': active
+                    }
+                )}>
                 <div
                     className={`card-overlay${active ? " active" : ""}`}
                     onClick={() => {
@@ -73,9 +45,8 @@ export const Card = (props: CardInterface) => {
                     }}
                 ></div>
                 <div
-                    className={`card${active ? " active" : ""}${
-                        checkExpired() ? " outdated" : ""
-                    } card--${getCardsStyleAction()}`}
+                    className={classNames(`card${active ? " active" : ""}${checkExpired() ? " outdated" : ""
+                        } card--${getCardsStyleAction()}`)}
                 >
                     <div
                         className="card__container"
@@ -89,21 +60,21 @@ export const Card = (props: CardInterface) => {
                                 <div className="card__line-units">exp</div>
                             </div>
                             <div className="card__line">
-                                {`${left_count} ${units}`}
+                                {`${card.left_count} ${card.units}`}
                                 <div className="card__line-units">left</div>
                             </div>
                         </div>
                         <div className="card__bottom">
-                            <h3 className="card__title">{title}</h3>
+                            <h3 className="card__title">{card.title}</h3>
                         </div>
                     </div>
                     <div className="card__options">
                         <div className="card__options-row">
                             <div className="card__btns">
-                                <button type="button" className="btn btn--sm btn--secondary" onClick={onDecrementClick}>
+                                <button type="button" className="btn btn--sm btn--secondary" onClick={() => onDecrementClick(card.id)}>
                                     -1
                                 </button>
-                                <button type="button" className="btn btn--sm btn--primary" onClick={onIncrementClick}>
+                                <button type="button" className="btn btn--sm btn--primary" onClick={() => onIncrementClick(card.id)}>
                                     +1
                                 </button>
                             </div>
@@ -112,14 +83,14 @@ export const Card = (props: CardInterface) => {
                             <div className="card__links">
                                 <button
                                     type="button"
-                                    onClick={onCopyClick}
+                                    onClick={() => onCopyClick(card.id)}
                                     className="card__link link link--primary link--centered"
                                 >
                                     Copy
                                 </button>
                                 <button
                                     type="button"
-                                    onClick={onUpdateClick}
+                                    onClick={() => onUpdateClick(card.id)}
                                     className="card__link link link--primary link--centered"
                                 >
                                     Edit
@@ -127,7 +98,7 @@ export const Card = (props: CardInterface) => {
                                 <button
                                     type="button"
                                     className="card__link link link--secondary link--centered"
-                                    onClick={onRemoveClick}
+                                    onClick={() => onRemoveClick(card.id)}
                                 >
                                     Remove
                                 </button>
@@ -138,4 +109,8 @@ export const Card = (props: CardInterface) => {
             </div>
         </>
     );
-};
+});
+
+Card.displayName = 'Card'
+
+export { Card }
