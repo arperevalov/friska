@@ -2,13 +2,13 @@
 
 import useLists from "@/hooks/useLists";
 import useCards from "@/hooks/useCards";
-import List from "@/components/List";
+import { List } from "@/widgets";
 import Header from "@/components/Header";
 import { ReactNode, useState } from "react";
 import useModals from "@/hooks/useModals";
 import ModalsEnum from "@/enums/Modals";
-import Sprite from "@/components/Sprite";
 import FormNewList from "@/components/forms/FormNewList";
+import { Sprite } from "@/components/shared";
 
 function Home(): ReactNode {
     const { lists } = useLists();

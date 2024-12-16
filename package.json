@@ -17,6 +17,7 @@
         "@gsap/react": "^2.0.2",
         "@sentry/nextjs": "^7.105.0",
         "axios": "^1.6.2",
+        "classnames": "^2.5.1",
         "cookies-next": "^4.1.0",
         "eslint": "8.34.0",
         "eslint-config-next": "^14.0.4",
@@ -29,6 +30,7 @@
         "react-hook-form": "^7.49.2",
         "sass": "^1.58.2",
         "typescript": "^5.3.3",
+        "uid": "^2.0.2",
         "zustand": "^4.4.3"
     },
     "devDependencies": {

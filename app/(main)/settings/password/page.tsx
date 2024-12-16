@@ -1,7 +1,7 @@
 "use client";
 
 import Header from "@/components/Header";
-import { Input } from "@/components/Input";
+import { Input } from "@/components/shared/input/Input";
 import useCurrentUser from "@/hooks/useCurrentUser";
 import { ReactNode } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";

@@ -42,9 +42,10 @@ const Card = forwardRef<HTMLElement, Props>(
                         }}
                     ></div>
                     <div
-                        className={classNames(
-                            `card`, `card--${cardStyle}`, { "active": active, "outdated": checkExpired() }
-                        )}
+                        className={classNames(`card`, `card--${cardStyle}`, {
+                            "active": active,
+                            "outdated": checkExpired(),
+                        })}
                     >
                         <div
                             className="card__container"

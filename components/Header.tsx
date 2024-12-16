@@ -3,10 +3,9 @@
 import { deleteCookie } from "cookies-next";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import Logo from "./Logo";
+import { Logo, Sprite } from "@/components/shared";
 import useModals from "@/hooks/useModals";
 import ModalsEnum from "@/enums/Modals";
-import Sprite from "@/components/Sprite";
 import FormNewCard from "./forms/FormNewCard";
 
 interface HeaderProps {

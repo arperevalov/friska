@@ -1,7 +1,7 @@
 "use client";
 
 import HeaderSimple from "@/components/HeaderSimple";
-import { Input } from "@/components/Input";
+import { Input } from "@/components/shared/input/Input";
 import useAuth from "@/hooks/useAuth";
 import { SubmitHandler, useForm } from "react-hook-form";
 

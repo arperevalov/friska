@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import Sprite from "@/components/Sprite";
+import { Sprite } from "@/components/shared";
 
 interface HeaderSimpleProps {
     title: string;

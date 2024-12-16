@@ -7,8 +7,7 @@ interface SwitchInterface {
     checked?: boolean;
 }
 
-export const Switch = (props: SwitchInterface) => {
-    const { register, formKey, required, label, defaultChecked, checked } = props;
+export const Switch = ({ register, formKey, required, label, defaultChecked, checked }: SwitchInterface) => {
 
     return (
         <label htmlFor="" className="switch">

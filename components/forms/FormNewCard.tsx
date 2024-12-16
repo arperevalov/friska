@@ -2,13 +2,13 @@ import Units from "@/enums/Units";
 import useCards from "@/hooks/useCards";
 import useLists from "@/hooks/useLists";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Input } from "../Input";
-import { Select } from "../Select";
-import { InputCalendar } from "../InputCalendar";
-import { SelectUnits } from "../SelectUnits";
+import { Input } from "../shared/input/Input";
+import { Select } from "../shared/select/Select";
+import { InputCalendar } from "../shared/input-calendar/InputCalendar";
+import { SelectUnits } from "../shared/select-units/SelectUnits";
 import ModalsEnum from "@/enums/Modals";
 import useModals from "@/hooks/useModals";
-import Sprite from "../Sprite";
+import { Sprite } from "@/components/shared";
 import FormNewList from "./FormNewList";
 
 interface FormValues {

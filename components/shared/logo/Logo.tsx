@@ -1,6 +1,6 @@
-import Sprite from "./Sprite";
+import { Sprite } from "@/components/shared/";
 
-export default function Logo() {
+export function Logo() {
     return (
         <>
             <div className="logo">

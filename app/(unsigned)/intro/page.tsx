@@ -1,5 +1,5 @@
 import IntroCards from "@/components/IntroCards/index";
-import Logo from "@/components/Logo";
+import { Logo } from "@/components/shared";
 import Link from "next/link";
 
 export default function Intro() {

@@ -1,8 +1,7 @@
 "use client";
 
 import Header from "@/components/Header";
-import { SelectUnits } from "@/components/SelectUnits";
-import { Switch } from "@/components/Switch";
+import { Switch, SelectUnits } from "@/components/shared";
 import CardsStyle from "@/enums/CardsStyle";
 import Themes from "@/enums/Themes";
 import useCurrentUser from "@/hooks/useCurrentUser";

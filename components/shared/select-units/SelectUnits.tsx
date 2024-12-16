@@ -7,8 +7,7 @@ export interface SelectUnitsInterface {
     register: CallableFunction;
 }
 
-export const SelectUnits = (props: SelectUnitsInterface) => {
-    const { label, defaultValue, values, formKey, required, register } = props;
+export const SelectUnits = ({ label, defaultValue, values, formKey, required, register }: SelectUnitsInterface) => {
 
     return (
         <>

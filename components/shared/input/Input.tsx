@@ -1,14 +1,17 @@
 export interface InputInterface {
     label: string;
-    defaultValue?: Date | null;
+    defaultValue?: string | null | number;
+    type: string;
+    min?: number;
+    max?: number;
+    step?: number;
     formKey: string;
     required?: boolean;
     register: CallableFunction;
     autoComplete?: string;
 }
 
-export const InputCalendar = (props: InputInterface) => {
-    const { label, defaultValue, formKey, required, register, autoComplete } = props;
+export const Input = ({ label, type, min, max, step, defaultValue, formKey, required, register, autoComplete }: InputInterface) => {
 
     return (
         <>
@@ -16,11 +19,14 @@ export const InputCalendar = (props: InputInterface) => {
                 <span className="input__label">{label}</span>
                 <input
                     className="input__input"
-                    type="date"
+                    type={type}
+                    min={min}
+                    max={max}
+                    step={step}
                     required={required}
-                    defaultValue={defaultValue ? defaultValue.toLocaleDateString("sv-SE") : ""}
-                    {...register(formKey)}
+                    defaultValue={defaultValue}
                     autoComplete={autoComplete}
+                    {...register(formKey)}
                 />
             </label>
         </>

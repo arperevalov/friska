@@ -1,16 +1,16 @@
 "use client";
 
 import CardInterface from "@/interfaces/Card";
-import { Card } from "./Card";
 import { useState } from "react";
 import useModals from "@/hooks/useModals";
 import ModalsEnum from "@/enums/Modals";
-import FormUpdateList from "./forms/FormUpdateList";
-import FormNewCard from "./forms/FormNewCard";
-import Sprite from "./Sprite";
+import FormUpdateList from "../../components/forms/FormUpdateList";
+import FormNewCard from "../../components/forms/FormNewCard";
+import { Sprite } from "@/components/shared";
 import useCards from "@/hooks/useCards";
-import FormUpdateCard from "./forms/FormUpdateCard";
+import FormUpdateCard from "../../components/forms/FormUpdateCard";
 import useSettings from "@/hooks/useSettings";
+import { Card } from "@/features";
 
 interface ListProps {
     id: number;

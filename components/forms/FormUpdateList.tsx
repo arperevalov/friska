@@ -1,6 +1,6 @@
 import useLists from "@/hooks/useLists";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Input } from "../Input";
+import { Input } from "../shared/input/Input";
 import { useState } from "react";
 
 interface FormValues {

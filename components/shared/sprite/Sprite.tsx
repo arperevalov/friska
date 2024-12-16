@@ -3,7 +3,7 @@ interface SpriteProps {
     name: string;
 }
 
-export default function Sprite(props: SpriteProps) {
+export function Sprite(props: SpriteProps) {
     const { className, name } = props;
 
     return (
