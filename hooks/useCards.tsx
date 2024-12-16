@@ -79,9 +79,13 @@ export default function useCards() {
     };
 
     const copyCardAction = (id: number) => {
-        const card = cards.find((card) => card.id === id)
-        if (card) addCardAction({ ...card, exp_date: new Date(card.exp_date).toISOString().replace(/(\d)T(\d.{0,})\.\d{0,}Z/, "$1 $2") })
-    }
+        const card = cards.find((card) => card.id === id);
+        if (card)
+            addCardAction({
+                ...card,
+                exp_date: new Date(card.exp_date).toISOString().replace(/(\d)T(\d.{0,})\.\d{0,}Z/, "$1 $2"),
+            });
+    };
 
     const removeCardAction = (id: number) => {
         const loadingId = addToQueueAction();

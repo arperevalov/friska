@@ -10,6 +10,7 @@ import FormNewCard from "./forms/FormNewCard";
 import Sprite from "./Sprite";
 import useCards from "@/hooks/useCards";
 import FormUpdateCard from "./forms/FormUpdateCard";
+import useSettings from "@/hooks/useSettings";
 
 interface ListProps {
     id: number;
@@ -21,9 +22,9 @@ interface ListProps {
 export const List = (props: ListProps) => {
     const { id, title, cards, searchValue } = props;
     const [active, setActive] = useState(false);
-    const { incrementCardLeftAction, decrementCardLeftAction, removeCardAction, copyCardAction } = useCards()
+    const { incrementCardLeftAction, decrementCardLeftAction, removeCardAction, copyCardAction } = useCards();
     const { toggleModalAction, closeModalAction } = useModals();
-
+    const { getCardsStyleAction } = useSettings();
 
     const onUpdateCardClick = (id: number) => {
         const formType = ModalsEnum.FormUpdateCard;
@@ -101,19 +102,24 @@ export const List = (props: ListProps) => {
                     </button>
                 </div>
                 <div className="list__body">
-                    {sortedCards.length <= 0 && <div className="list__text-empty">You don’t have any cards in this list</div>}
+                    {sortedCards.length <= 0 && (
+                        <div className="list__text-empty">You don’t have any cards in this list</div>
+                    )}
                     <div className="list__items">
                         {sortedCards.map((card: CardInterface) => {
                             if (card.list_id === id) {
-                                return <Card
-                                    onCopyClick={copyCardAction}
-                                    onDecrementClick={decrementCardLeftAction}
-                                    onIncrementClick={incrementCardLeftAction}
-                                    onRemoveClick={removeCardAction}
-                                    onUpdateClick={onUpdateCardClick}
-                                    card={card}
-                                    key={card.id}
-                                />;
+                                return (
+                                    <Card
+                                        onCopyClick={copyCardAction}
+                                        onDecrementClick={decrementCardLeftAction}
+                                        onIncrementClick={incrementCardLeftAction}
+                                        onRemoveClick={removeCardAction}
+                                        onUpdateClick={onUpdateCardClick}
+                                        cardStyle={getCardsStyleAction()}
+                                        card={card}
+                                        key={card.id}
+                                    />
+                                );
                             }
                         })}
                         <div className="list__item">
