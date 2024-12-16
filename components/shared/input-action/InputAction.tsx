@@ -12,8 +12,19 @@ export interface InputActionInterface {
     autoComplete?: string;
 }
 
-export const InputAction = ({ label, defaultValue, type, min, max, formKey, required, buttonAction, buttonText, register, autoComplete }: InputActionInterface) => {
-
+export const InputAction = ({
+    label,
+    defaultValue,
+    type,
+    min,
+    max,
+    formKey,
+    required,
+    buttonAction,
+    buttonText,
+    register,
+    autoComplete,
+}: InputActionInterface) => {
     const onButtonClick = () => {
         buttonAction();
     };

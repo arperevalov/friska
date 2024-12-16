@@ -8,7 +8,6 @@ export interface SelectUnitsInterface {
 }
 
 export const SelectUnits = ({ label, defaultValue, values, formKey, required, register }: SelectUnitsInterface) => {
-
     return (
         <>
             <label htmlFor="" className="input">

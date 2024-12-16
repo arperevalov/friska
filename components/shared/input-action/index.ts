@@ -1,1 +1,1 @@
-export { InputAction } from "./InputAction"
+export { InputAction } from "./InputAction";

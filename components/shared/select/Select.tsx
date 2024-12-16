@@ -8,7 +8,6 @@ export interface SelectInterface {
 }
 
 export const Select = ({ label, defaultValue, values, formKey, required, register }: SelectInterface) => {
-
     return (
         <>
             <label htmlFor="" className="input">

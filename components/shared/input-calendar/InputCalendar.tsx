@@ -8,7 +8,6 @@ export interface InputInterface {
 }
 
 export const InputCalendar = ({ label, defaultValue, formKey, required, register, autoComplete }: InputInterface) => {
-
     return (
         <>
             <label htmlFor="" className="input">

@@ -8,7 +8,6 @@ interface SwitchInterface {
 }
 
 export const Switch = ({ register, formKey, required, label, defaultChecked, checked }: SwitchInterface) => {
-
     return (
         <label htmlFor="" className="switch">
             <input

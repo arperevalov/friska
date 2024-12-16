@@ -11,8 +11,18 @@ export interface InputInterface {
     autoComplete?: string;
 }
 
-export const Input = ({ label, type, min, max, step, defaultValue, formKey, required, register, autoComplete }: InputInterface) => {
-
+export const Input = ({
+    label,
+    type,
+    min,
+    max,
+    step,
+    defaultValue,
+    formKey,
+    required,
+    register,
+    autoComplete,
+}: InputInterface) => {
     return (
         <>
             <label htmlFor="" className="input">
